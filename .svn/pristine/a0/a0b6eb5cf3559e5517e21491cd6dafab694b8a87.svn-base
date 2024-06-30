@@ -1,0 +1,10 @@
+/** \file CStack.cpp
+ *  \brief CStack class implementation
+ *  \details File contain CStack class container implementation.
+ *  \authors 
+ *  \version 0.0.1
+ *  $Id$
+*/
+
+#include "CStack.h"
+

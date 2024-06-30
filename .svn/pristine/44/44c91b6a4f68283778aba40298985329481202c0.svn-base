@@ -1,0 +1,322 @@
+/** \file main.cpp
+ *  \brief Main source
+ *  \details Simple CBlock example of usage
+ *  \authors Kluka, Majnus, Pesek, Prasek, Petyovsky, Richter
+ *  \version 2022
+ *	\attention File main.cpp does not contain testing of CStack class methods. Class is in development at this stage in this version.
+ *  $Id$
+ */
+
+#include <ctime>
+#include <iostream>
+#include <stdexcept>
+#include <typeinfo>
+#include <type_traits>		// Due to: std::is_same_v<>
+
+#include "demagle.h"
+#include "CBlock.h"
+#include "check.h"
+
+using std::endl;
+using std::cout;
+using std::cin;
+using std::cerr;
+
+int main(int argc, char *argv[])
+	{
+#ifdef NDEBUG
+	std::srand(unsigned(std::time(nullptr)));	// Initialize random generator by actual time
+#else
+	std::srand(unsigned(42));					// Initialize random generator by fixed value useful for debugging
+#endif
+
+	cout << "Pocet parametru: " << argc << endl;
+	for (int i = 0; i < argc; i++)
+		cout << "Parametr #" << i << ": " << argv[i] << endl;
+
+// pocitani prvku pomoci tridy ClassInfo - pracuje "automaticky"
+	cout << endl << "Nyni existuje " << ClassInfo<CBlock>::Living() << " instanci tridy: " << DM(typeid(CBlock).name()) << endl;
+	cout << "Velikost jedne instance tridy " << DM(typeid(CBlock).name()) << " je: " << sizeof(CBlock) << " bajtu." << endl;
+// value class tests - START
+// pocitani prvku pomoci tridy ClassInfo - pracuje "automaticky"
+	cout << "Nyni existuje " << ClassInfo<CBlockBase>::Living() << " instanci tridy: " << DM(typeid(CBlockBase).name()) << endl;
+
+	cout << endl << "\n=============== CBlock API tests ====================\n" << endl;
+
+	try
+		{
+		//(implementation of CStack class methods created and sorted by each author - author1, author2, author3, author4)
+		{// author1 - MAJNUS ===========================
+
+
+
+		}// END author1 - MAJNUS =======================
+		{// author2 - KLUKA ============================
+
+
+
+		}// END author2 - KLUKA ========================
+		{// author3 - PRASEK ===========================
+
+
+
+		}// END author3 - PRASEK =======================
+		{// author4 - PESEK ============================
+
+
+
+		}// END author4 - PESEK ========================
+
+	// Test default c'tor - pomoci pristupu do namespace
+		CBlock_bool::CBlock temp_instance1;
+		CBlock_TWeekDay::CBlock temp_instance2;
+
+	// Test default c'tor
+		CBlock a;
+		cout << "Objekt a je " << a.ID() << "-tou instanci tridy: " << DM(typeid(CBlock).name()) << endl;
+		cout << "Nyni existuje " << ClassInfo<CBlock>::Living() << " instanci tridy: " << DM(typeid(CBlock).name()) << endl;
+		cout << "V prubehu programu zatim vzniklo celkem " << ClassInfo<CBlock>::Total() << " instanci tridy: " << DM(typeid(CBlock).name()) << endl;
+				
+	// Test c'tor konverzni
+		CBlock b(CBlock::TestValue0());
+		CBlock c(CBlock::TestValue1());
+
+	// Test c'tor copy
+		CBlock d = a;
+		CBlock e(a);
+
+	// Test c'tor konverzni s nahodnymi parametry
+		CBlock f(CBlock::TestValueRandom());
+		try
+			{
+		// Test c'tor se dvema parametry
+			CBlock f3(CBlock::TestValue0(), &e); // propojeni s jinym prvkem 
+			f3.SetNextItem(nullptr); // nastaveni pro uspesne volani destruktoru
+			CBlock f2(CBlock::TestValue0(), &e); // nastaveni propojeni - nasledny destruktor hlasi chybu - objekt neukazuje na nullptr
+			cout << "\nTest hlaseni chybneho nastaveni objektu pri volani destruktoru.";
+			} /* try */
+
+		catch (std::runtime_error &e)
+			{
+			// pro KCBlockDtorNoException = false - objekt ma nastavenu vazbu na dalsi prvek
+			cerr << "std::runtime_error: " << e.what() << "!!!\n\a" << endl;
+			}
+
+	// Test c'tor z retezce
+		const std::string str(CBlock::TestStringValue1());
+		cout << "C'tor instance CBlock z C retezce: \"" << str << "\"." << endl;
+		CBlock g(CBlock::TestStringValue0());
+		CBlock h(str);
+		cout << " V instanci je hodnota: " << h << endl;
+
+	// Test CBlock::operator<<
+		cout << "CBlock::operator>>" << endl;
+		cout << ' ' << a << ',' << b << ',' << c << ',' << d << ',' << e << ',' << f << ',' << g << ',' << h << endl;
+
+	// Test CBlock::operator>>
+		cout << "CBlock::operator<<" << endl;
+		cout << " Test vlozeni " << DM(typeid(CBlock).name()) << " nahodne hodnoty\n";
+		const std::string teststring = CBlock::TestStringValueRandom().c_str();
+		cout << " Vkladam hodnotu: '" << teststring << '\'' << endl;
+		std::istringstream test_cin(teststring, std::istringstream::in);
+		test_cin >> d;
+		cout << " V instanci je hodnota: " << d << endl;
+
+	// Test setter CBlock::SetValue
+		cout << "CBlock::SetValue" << endl;
+		b.SetValue(CBlock::TestValue0());
+
+	// Test getter CBlock::Value
+		cout << "CBlock::Value" << endl;
+		cout << " Value=" << a.Value() << endl;
+
+	// Test CBlock::operator-
+		cout << "CBlock::operator-" << endl;
+		cout << ' ' << c << ',';
+		cout << -c << ',';
+		cout << c << endl;
+
+	// Test CBlock::operator=
+		c = a;
+
+	// Test CBlock::operator==
+		cout << "CBlock::operator==" << endl;
+		cout << " Hodnota v objektu a je ";
+		if(a == d)
+			cout << "stejna jako hodnota";
+		else
+			cout << "ruzna od hodnoty";
+		cout << " v objektu d" << endl;
+
+	// Test CBlock::operator!=
+		cout << "CBlock::operator!=" << endl;
+		cout << " Hodnota v objektu a je ";
+		if(a != d)
+			cout << "ruzna od hodnoty";
+		else
+			cout << "stejna jako hodnota";
+		cout << " v objektu d" << endl;
+
+	// Test CBlock::operator>
+		cout << "CBlock::operator>" << endl;
+		cout << " Hodnota v objektu a ";
+		cout << ((a > d) ? "je" : "neni");
+		cout << " vetsi nez hodnota v objektu d" << endl;
+
+	// Test CBlock::operator<
+		cout << "CBlock::operator<" << endl;
+		cout << " Hodnota v objektu a ";
+		cout << ((a < d) ? "je" : "neni");
+		cout << " mensi nez hodnota v objektu d" << endl;
+
+		cout << "Nyni existuje " << ClassInfo<CBlock>::Living() << " instanci tridy: " << DM(typeid(CBlock).name()) << endl;
+		} /* try */
+
+	catch (std::invalid_argument &e)
+		{
+		cerr << "std::invalid_argument: " << e.what() << "!!!\n\a" << endl;
+		}
+
+	catch (std::length_error &e)
+		{
+		cerr << "std::length_error: " << e.what() << "!!!\n\a" << endl;
+		}
+
+	catch (std::out_of_range &e)
+		{
+		cerr << "std::out_of_range: " << e.what() << "!!!\n\a" << endl;
+		}
+
+	catch (std::range_error &e)
+		{
+		cerr << "std::range_error: " << e.what() << "!!!\n\a" << endl;
+		}
+
+	catch (std::runtime_error &e)
+		{
+		cerr << "std::runtime_error: " << e.what() << "!!!\n\a" << endl;
+		}
+
+// Doplnkove testy
+if constexpr(std::is_same_v<CBlock, CBlock_TWeekDay::CBlock>)
+	{
+	if constexpr(KTWeekDaySupplementTests)
+		{
+		try
+			{
+			unsigned x;
+			CBlock_TWeekDay::CBlock a;
+			cout << "CBlock::operator<<" << endl;
+			cout << " Zadej schvalne (kvuli testovani) cislo vetsi nez (0-6) jako hodnotu dne: ";
+			cin >> x;
+			a.SetValue(CBlock_TWeekDay::TWeekDay(x));
+			cout << " Zadal jsi hodnotu: " << a << endl;
+	
+			cout << " Zadej schvalne spatne jmeno dne(napr. (Wonday)): ";
+			cin >> a;
+			cout << " Zadal jsi hodnotu: " << a << endl;
+			} /* try */
+	
+		catch(std::range_error &e)
+			{
+			cerr << "std::range_error: " << e.what() << "!!!\n\a" << endl;
+			}
+	
+		catch(std::runtime_error &e)
+			{
+			cerr << "std::runtime_error: " << e.what() << "!!!\n\a" << endl;
+			}
+		}
+	}
+
+	cout << endl << "\n=============== End of CBlock API tests ====================\n"<< endl;
+
+	cout << "Nyni existuje " << ClassInfo<CBlockBase>::Living() << " instanci tridy: " << DM(typeid(CBlockBase).name()) << endl;
+	cout << "V prubehu programu vzniklo celkem " << ClassInfo<CBlockBase>::Total() << " instanci tridy: " << DM(typeid(CBlockBase).name()) << endl;
+
+	cout << endl << "Nyni existuje (aktualni CBlock) " << ClassInfo<CBlock>::Living() << " instanci tridy: " << DM(typeid(CBlock).name()) << endl;
+	cout << "V prubehu programu vzniklo celkem " << ClassInfo<CBlock>::Total() << " instanci tridy: " << DM(typeid(CBlock).name()) << endl;
+
+	cout << endl << "V prubehu programu vzniklo celkem " << ClassInfo<CBlock_bool::CBlock>::Total() << " instanci tridy: " << DM(typeid(CBlock_bool::CBlock).name()) << endl;
+	cout << "V prubehu programu vzniklo celkem " << ClassInfo<CBlock_TWeekDay::CBlock>::Total() << " instanci tridy: " << DM(typeid(CBlock_TWeekDay::CBlock).name()) << endl;
+
+
+	cout << endl << "\n===== Base class API tests ========\n" << endl;
+
+	try
+		{
+		CBlock a;
+		CBlock b(CBlock::TestValue0());
+		CBlock c(CBlock::TestValue1());
+		CBlock d(a), e, f, g, h;
+
+	// Test setter/getter CBlock::ExtraInt
+	// Pouzitelne pouze pro nektere projekty, napr. multimnozina, prioritni fronta. V ostatnich projektech nebude vyuzito.
+		a.SetExtraInt(1);
+		b.SetExtraInt(2);
+		c.SetExtraInt(1);
+		d.SetExtraInt(3);
+
+	// Test getter CBlock::NextItem()
+		cout << "CBlock::NextItem" << endl;
+		cout << "V objektu a [ " << &a << " ]" << " hodnota ukazatele Next " << a.NextItem() << endl;
+	
+	// Test getter CBlock::PrevItem()
+		cout << "CBlock::PrevItem" << endl;
+		cout << "V objektu a [ " << &a << " ]" << " hodnota ukazatele Prev " << a.PrevItem() << endl;
+
+	// Test setter CBlock::SetPrevNext; SetPrevItem; SetNextItem
+		cout << "\nPropojeni obousmerne vazaneho linearniho seznamu objektu 'a' - 'h'" << endl;
+		cout << "CBlock::SetNextItem      CBlock::SetPrevNext    CBlock::SetPrevItem" << endl;
+		a.SetNextItem(&b);
+		b.SetPrevNext(&a,&c); c.SetPrevNext(&b,&d); d.SetPrevNext(&c,&e); e.SetPrevNext(&d,&f); f.SetPrevNext(&e,&g); g.SetPrevNext(&f,&h);
+		h.SetPrevItem(&g);
+
+	// Test getter CBlock::Next()
+		cout << "CBlock::NextItem    CBlock::PrevItem" << endl;
+		cout << "V objektu a [ " << &a << " ]" << " hodnota ukazatele iPrev " << a.PrevItem() << " hodnota ukazatele iNext " << a.NextItem() <<  endl;
+		cout << "V objektu b [ " << &b << " ]" << " hodnota ukazatele iPrev " << b.PrevItem() << " hodnota ukazatele iNext " << b.NextItem() <<  endl;
+		cout << "V objektu h [ " << &h << " ]" << " hodnota ukazatele iPrev " << h.PrevItem() << " hodnota ukazatele iNext " << h.NextItem() <<  endl;
+
+	// Vytisknuti a rozpojeni seznamu instanci tridy CBlock
+		cout << "\nVytisknuti a rozpojeni seznamu instanci tridy: " << DM(typeid(CBlock).name()) << endl;
+
+		CBlock *ptrAkt = &a, *ptrPrev = dynamic_cast<CBlock*> (ptrAkt->PrevItem());
+		do
+			{
+			cout << '\t' << "[ " << ptrAkt << " ] Prev: " << ptrPrev << " Next: " << ptrAkt->NextItem() << ": "
+				 << DM(typeid(*ptrAkt).name()) << "#" << ptrAkt->ID() << '(' << ptrAkt->Value() << ')' << endl;
+			
+			// rozpojeni probehne korektne kdyz vyjmuty objekt ukazuje na nullptr - jinak bude hlasena chyba/vyjimka v destruktoru			
+			ptrPrev = dynamic_cast<CBlock*> (ptrAkt); // zapamatovani hodnoty pouze pro zobrazeni
+			ptrAkt = dynamic_cast<CBlock*> (ptrAkt->SetNextItem(nullptr)); // zapise novou hodnotu a vrati puvodni hodnotu v iNext 			
+			if (ptrAkt)
+				ptrAkt->SetPrevItem(nullptr); // nastaveni iPrev v novem prvnim prvku na nullptr 
+			}
+		while (ptrAkt != nullptr);
+
+		} /* try */
+
+	catch (std::range_error &e)
+		{
+		cerr << "std::range_error: " << e.what() << "!!!\n\a" << endl;
+		}
+
+	catch (std::runtime_error &e)
+		{
+		cerr << "std::runtime_error: " << e.what() << "!!!\n\a" << endl;
+		}
+
+	cout << endl << "\n===== End of base class API tests ========\n" << endl;
+	cout << "Nyni existuje " << ClassInfo<CBlockBase>::Living() << " instanci tridy: " << DM(typeid(CBlockBase).name()) << endl;
+	cout << "V prubehu programu vzniklo celkem " << ClassInfo<CBlockBase>::Total() << " instanci tridy: " << DM(typeid(CBlockBase).name()) << endl;
+	
+	cout << endl << "Nyni existuje (aktualni CBlock) " << ClassInfo<CBlock>::Living() << " instanci tridy: " << DM(typeid(CBlock).name()) << endl;
+	cout << "V prubehu programu vzniklo celkem " << ClassInfo<CBlock>::Total() << " instanci tridy: " << DM(typeid(CBlock).name()) << endl;
+
+	cout << endl << "V prubehu programu vzniklo celkem " << ClassInfo<CBlock_bool::CBlock>::Total() << " instanci tridy: " << DM(typeid(CBlock_bool::CBlock).name()) << endl;
+	cout << "V prubehu programu vzniklo celkem " << ClassInfo<CBlock_TWeekDay::CBlock>::Total() << " instanci tridy: " << DM(typeid(CBlock_TWeekDay::CBlock).name()) << endl;
+
+	cout << " =============== end program ==================== "<< endl;
+	return 0;
+	}

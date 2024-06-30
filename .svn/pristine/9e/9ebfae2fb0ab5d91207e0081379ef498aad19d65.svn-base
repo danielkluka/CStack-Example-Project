@@ -1,0 +1,147 @@
+#include "CBlockUnitTests.h"
+
+using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+
+namespace UnitTests
+{
+	TEST_CLASS(UnitTests)
+	{
+	public:
+		//KLUKA
+		/**
+		 \test **Test of CBlock conversion c'tor**. **Author:** `Kluka`.
+		 - Instance can be correctly inicialized with `CBlock::TestValue0` and `CBlock::TestValue0`
+		 - Counter `ClassInfo::Living` was incremented
+		 - Each new CBlock instance have unique `ClassInfo::ID`
+		 - C'tor allocate, reallocate od deallocate dynamic memory if it was defined by `KCBlock_allocate` predicate
+		 - Destruction of constructed instance deallocate memory if it was defined by `KCBlock_allocate` predicate
+		 - Destruction of constructed instance decrement counter `ClassInfo::Living`
+		 */
+		
+		TEST_METHOD(CStack_ctor_conv)
+		{
+			size_t allocsize_before = get_alloc_actual_size();
+			ptrdiff_t living_before = ClassInfo<CStack>::Living();
+			ptrdiff_t living_after;
+			size_t allocsize_after;
+			{
+				const CBlock val0(CBlock::TestValue0());
+				const CBlock val1(CBlock::TestValue1());
+
+				CStack stack0(val0);
+				CStack stack1(val1);
+
+				living_after = ClassInfo<CStack>::Living();
+				allocsize_after = get_alloc_actual_size();
+				Assert::IsTrue(CBlock::TestValue0() == val0.Value(), L"Wrong value", LINE_INFO());
+				Assert::IsTrue(CBlock::TestValue1() == val1.Value(), L"Wrong value", LINE_INFO());
+				Assert::IsFalse(val0.Value() == val1.Value(), L"Wrong value", LINE_INFO());
+				Assert::IsTrue(living_before + 2 == living_after, L"Wrong number of instances", LINE_INFO());
+				Assert::IsTrue(val1.ID() > val0.ID(), L"Wrong ClassInfo ID initialization", LINE_INFO());
+				//(this section will be activated as soon as Destroy()/Delete() method using "delete" will be created in the next stage of development)
+				/*if constexpr (KCBlock_allocate)
+					Assert::IsTrue(allocsize_before < allocsize_after, L"No memory allocation", LINE_INFO());
+				else
+					Assert::IsTrue(allocsize_before == allocsize_after, L"Memory allocated", LINE_INFO());*/
+			}
+			ptrdiff_t living_after2 = ClassInfo<CStack>::Living();
+			size_t allocsize_after2 = get_alloc_actual_size();
+			Assert::IsTrue(living_before == living_after2, L"Wrong number of instances", LINE_INFO());
+			//(this section will be activated as soon as Destroy()/Delete() method using "delete" will be created in the next stage of development)
+			//(memory is leaking, yes)
+			//Assert::AreEqual(allocsize_before, allocsize_after2, L"Memory leaking", LINE_INFO());
+		}
+
+		// PRASEK
+		/**
+		 \test **Test of operator less than (<) stStringValues`**. **Author:** `Prasek`.
+		 - Test `Two stack . Stacks are same if, they have the same number of elements and the same lenght. //nutno dopsat
+		 */
+		TEST_METHOD(CStack_operator_less_than)
+			{
+			const CStack val1_0(CBlock::TestValue0()), val2_0(CBlock::TestValue0());
+			const CStack val3_1(CBlock::TestValue1()), val4_1(CBlock::TestValue1());
+
+			Assert::IsTrue(val1_0.ID() < val2_0.ID(), L"Wrong ClassInfo ID", LINE_INFO());
+			Assert::IsTrue(val2_0.ID() < val3_1.ID(), L"Wrong ClassInfo ID", LINE_INFO());
+			Assert::IsTrue(val3_1.ID() < val4_1.ID(), L"Wrong ClassInfo ID", LINE_INFO());
+
+			Assert::IsFalse(val1_0 < val1_0, L"Must be false", LINE_INFO());
+			Assert::IsFalse(val3_1 < val4_1, L"Must be false", LINE_INFO());
+
+			Assert::IsFalse(val1_0 < val2_0, L"Must be false", LINE_INFO());
+			Assert::IsFalse(val2_0 < val1_0, L"Must be false", LINE_INFO());
+
+			Assert::IsFalse(val3_1 < val4_1, L"Must be false", LINE_INFO());
+			Assert::IsFalse(val3_1 < val4_1, L"Must be false", LINE_INFO());
+
+			// !!WARNING!! - WORK ON THE "CONSTRUCTION SITE" - it will work in the next version
+
+			//Assert::IsTrue(val1_0 < val3_1, L"Must be true", LINE_INFO());
+			//Assert::IsFalse(val3_1 < val1_0, L"Must be false", LINE_INFO());	
+			
+			//Assert::IsTrue(val2_0 < val4_1, L"Must be true", LINE_INFO());
+			//Assert::IsFalse(val4_1 < val2_0, L"Must be false", LINE_INFO());
+			}
+
+
+		//MAJNUS
+		/**
+		 \test **Test of CBlock default c'tor**. **Author:** `Majnus`.
+		 - Instance inicialized to the default value `CBlock::TestValue0`
+		 - Counter `ClassInfo::Living` was incremented
+		 - C'tor don't allocate, reallocate od deallocate any dynamic memory
+		 - New CBlock instance have unique `ClassInfo::ID`
+		 */
+		
+		TEST_METHOD(CStack_ctor_default)
+			{
+			size_t alloc_count_before = get_alloc_count();
+			size_t dealloc_count_before = get_dealloc_count();
+			size_t realloc_count_before = get_realloc_count();
+			ptrdiff_t living_before = ClassInfo<CBlock>::Living();
+			CBlock val0;
+			ptrdiff_t living_after = ClassInfo<CBlock>::Living();
+			size_t alloc_count_after = get_alloc_count();
+			size_t dealloc_count_after = get_dealloc_count();
+			size_t realloc_count_after = get_realloc_count();
+			Assert::IsTrue(CBlock::TestValue0() == val0.Value(), L"Wrong init value", LINE_INFO());
+			Assert::IsTrue(living_before + 1 == living_after, L"Wrong number of instances", LINE_INFO());
+			Assert::AreEqual(alloc_count_before, alloc_count_after, L"Default c'tor allocate", LINE_INFO());
+			Assert::AreEqual(dealloc_count_before, dealloc_count_after, L"Default c'tor deallocate", LINE_INFO());
+			Assert::AreEqual(realloc_count_before, realloc_count_after, L"Default c'tor reallocate", LINE_INFO());
+			CBlock val1;
+			Assert::IsTrue(val1.ID() > val0.ID(), L"Wrong ClassInfo ID initialization", LINE_INFO());
+			}
+		
+		//PESEK
+
+		TEST_METHOD(CStack_operator_greater_than)
+		{
+			const CStack val1_0(CBlock::TestValue0()), val2_0(CBlock::TestValue0());
+			const CStack val3_1(CBlock::TestValue1()), val4_1(CBlock::TestValue1());
+		
+			Assert::IsTrue(val1_0.ID() < val2_0.ID(), L"Wrong ClassInfo ID", LINE_INFO());
+			Assert::IsTrue(val2_0.ID() < val3_1.ID(), L"Wrong ClassInfo ID", LINE_INFO());
+			Assert::IsTrue(val3_1.ID() < val4_1.ID(), L"Wrong ClassInfo ID", LINE_INFO());
+		
+			Assert::IsFalse(val1_0 > val1_0, L"Must be false", LINE_INFO());
+			Assert::IsFalse(val3_1 > val4_1, L"Must be false", LINE_INFO());
+		
+			Assert::IsFalse(val1_0 > val2_0, L"Must be false", LINE_INFO());
+			Assert::IsFalse(val2_0 > val1_0, L"Must be false", LINE_INFO());
+		
+			Assert::IsFalse(val3_1 > val4_1, L"Must be false", LINE_INFO());
+			Assert::IsFalse(val3_1 > val4_1, L"Must be false", LINE_INFO());
+
+			// BUDE DODELANO V PRISTI VERZI !!!
+
+			/*Assert::IsFalse(val1_0 > val3_1, L"Must be false", LINE_INFO());
+			Assert::IsTrue(val3_1 > val1_0, L"Must be true", LINE_INFO());
+		
+			Assert::IsFalse(val2_0 > val4_1, L"Must be false", LINE_INFO());
+			Assert::IsTrue(val4_1 > val2_0, L"Must be true", LINE_INFO());
+			*/
+		}
+	};
+}

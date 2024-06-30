@@ -1,0 +1,570 @@
+  line   rev      merged   date                           path                                                         author                         content 
+
+       0     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       #ifndef CBLOCK_TINTERVAL_H
+       1     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       #define CBLOCK_TINTERVAL_H
+       2     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       /** \file CBlock_TInterval.h
+       3     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                        *  \brief CBlock_TInterval class header
+       4     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                        *  \details File contain CBlock_TInterval::CBlock definition
+       5     2220     2220 3. 12. 2022 13:43:26           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                        *  \author Kluka (source code and documentation in this file)
+       6     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                        *  \version 2022
+       7     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                        *  $Id$
+       8     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                        */
+       9     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+      10     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       #include <iostream>
+      11     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       #include <sstream>
+      12     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       #include <string>
+      13     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       #include <stdexcept>
+      14     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       #include <typeinfo>
+      15     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       #include <utility>		// Due to: std::declval<CBlockBase>
+      16     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+      17     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       #include "ClassInfo.h"
+      18     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       #include "CBlockBase.h"
+      19     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       #include "check.h"
+      20     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+      21     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       /** \brief Namespace for encapsulating of \c TInterval variant of CBlock class
+      22     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                        *  \details For selecting this variant of CBlock class uncomment \c using \c namespace section in the CBlock.h.
+      23     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                        *  \author Kluka
+      24     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                        *	\attention CBlock_TInterval.h is completely finished with working unit tests and classes.
+      25     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                        */
+      26     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       namespace CBlock_TInterval
+      27     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       	{
+      28     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       	/** \brief Basic definition of \c long type used for class \c TInterval.
+      29     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       	 */
+      30     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       	using TType = long;						///< Defined \c long \c TType of Interval
+      31     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+      32     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       	/** \brief Basic definition of enumeration type for searching location of element in TInterval.
+      33     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       	 */
+      34     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       	enum TLocation
+      35     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		{
+      36     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		ELess = -1, EWithin = 0, EGreater = 1
+      37     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		};
+      38     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+      39     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       	/** \brief Minimum method for searching minimum TType boundary of Interval.
+      40     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       	 *  \param[in]	aLeft	Left boundary of Interval
+      41     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       	 *  \param[in]	aRight	Right boundary of Interval
+      42     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       	 *  \details Definition of Minimum method, which returns lower boundary in case of bad input (example: <5,-4>	->	not: <min,max> values).
+      43     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       	 *	\author Kluka
+      44     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       	 */
+      45     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       	inline TType Minimum(TType aLeft, TType aRight)
+      46     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		{
+      47     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		if(aLeft > aRight) return aRight;
+      48     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		else return aLeft;
+      49     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		}
+      50     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+      51     2388     2388 10. 12. 2022 12:08:48          /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       	/** \brief Maximum method for searching maximum TType boundary of Interval.
+      52     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       	 *  \param[in]	aLeft	Left boundary of Interval
+      53     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       	 *  \param[in]	aRight	Right boundary of Interval
+      54     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       	 *  \details Definition of Maximum method, which returns bigger boundary in case of bad input (example: <5,-4>	->	not: <min,max> values).
+      55     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       	 *	\author Kluka
+      56     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       	 */
+      57     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       	inline TType Maximum(TType aLeft, TType aRight)
+      58     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		{
+      59     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		if(aLeft > aRight) return aLeft;
+      60     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		else return aRight;
+      61     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		}
+      62     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+      63     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       	/** \brief TInterval class (\c TInterval variant)
+      64     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       	 *  \details Definition of TInterval class (\c TInterval variant). There are defined all common methods and attributes.
+      65     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       	 */
+      66     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       	class TInterval
+      67     2414     2414 11. 12. 2022 14:08:00          /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		{
+      68     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		TType iLeft;						///< Defined \c TType left boundary of Interval
+      69     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		TType iRight;						///< Defined \c TType right boundary of Interval
+      70     2414     2414 11. 12. 2022 14:08:00          /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+      71     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       	public:
+      72     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		// c'tors
+      73     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		/** \brief Default c'tor
+      74     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \details Value attributes are set to \c 0. 
+      75     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \author Kluka
+      76     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 */
+      77     2371     2371 9. 12. 2022 19:59:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		TInterval(): iLeft(0), iRight(0)
+      78     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			{
+      79     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			}
+      80     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+      81     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		/** \brief Conversion c'tor
+      82     2384     2384 10. 12. 2022 0:17:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \details Value attributes are initialized by given values or by default to the \c this value. Method checks if boundaries were set at the right order and switches them in case if not.
+      83     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \param[in]	aLeft	Left boundary of Interval
+      84     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \param[in]	aRight	Right boundary of Interval
+      85     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \author Kluka
+      86     2384     2384 10. 12. 2022 0:17:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \attention Method demonstrates use of Minimum and Maximum method. For generating exception of bad input is used input operator>>. 
+      87     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 */
+      88     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		TInterval(TType aLeft, TType aRight): iLeft(Minimum(aLeft,aRight)), iRight(Maximum(aLeft,aRight))
+      89     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			{
+      90     2384     2384 10. 12. 2022 0:17:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			//Values();											//(prints all values of Interval, not activated by default - method is complete and fully functional, activate just for demonstration purposes)
+      91     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			}
+      92     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+      93     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		/** \brief Copy c'tor
+      94     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \details Create new instance by copying only \p aInterval parameter.
+      95     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \param[in]	aInterval	Interval which parameters will be copied by copy c'tor
+      96     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \author Kluka
+      97     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \attention Method checks if boundaries were set at the right order and switches them in case if not.
+      98     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 */
+      99     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		TInterval(const TInterval& aInterval): iLeft(Minimum(aInterval.iLeft,aInterval.iRight)), iRight(Maximum(aInterval.iLeft,aInterval.iRight))
+     100     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			{
+     101     2384     2384 10. 12. 2022 0:17:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			//Values();											//(prints all values of Interval, not activated by default - method is complete and fully functional, activate just for demonstration purposes)
+     102     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			}
+     103     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     104     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		// operators
+     105     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		/** \brief Assignment operator
+     106     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \details Create new instance by copying only \p aInterval parameter.
+     107     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \param[in]	aInterval	Interval, which contains parameters iLeft and iRight that will be used for setting new parameters iLeft and iRight
+     108     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \author Kluka
+     109     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \attention Method checks if boundaries were set at the right order and switches them in case if not.
+     110     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 */
+     111     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		TInterval& operator=(const TInterval& aInterval)
+     112     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			{
+     113     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			iLeft = Minimum(aInterval.iLeft,aInterval.iRight);
+     114     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			iRight = Maximum(aInterval.iLeft,aInterval.iRight);
+     115     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			return *this;
+     116     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			}
+     117     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     118     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		/** \brief Inversion operator
+     119     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \details Operator makes inversion of iLeft and iRight boundary and switches them to make inverted Interval.
+     120     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *	\return Inverted interval with switched boundaries.
+     121     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \author Kluka
+     122     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 */
+     123     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		TInterval operator-() const
+     124     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			{
+     125     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			return TInterval(-iRight, -iLeft);
+     126     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			}
+     127     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     128     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		/** \brief Comparing by Value operator
+     129     2384     2384 10. 12. 2022 0:17:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \return Return \c bool result of comparision.
+     130     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \author Kluka
+     131     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 */
+     132     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		bool operator==(const TInterval& aInterval) const
+     133     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			{
+     134     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			return (iLeft == aInterval.iLeft) && (iRight == aInterval.iRight);
+     135     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			}
+     136     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     137     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       #ifdef CBLOCK_THREE_WAY_COMPARISON
+     138     2384     2384 10. 12. 2022 0:17:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		/** \brief Three-way comparison operator
+     139     2384     2384 10. 12. 2022 0:17:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \return Return \c std::strong_ordering result of comparision.
+     140     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \author Kluka
+     141     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 */
+     142     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		std::strong_ordering operator<=>(const TInterval& aInterval) const
+     143     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			{
+     144     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			const TType aSize1 = (iRight - iLeft);
+     145     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			const TType aSize2 = (aInterval.iRight - aInterval.iLeft);
+     146     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			return aSize1 <=> aSize2;
+     147     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			}
+     148     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     149     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       #else
+     150     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		/** \brief Comparing by Value operator
+     151     2384     2384 10. 12. 2022 0:17:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \return Return \c bool result of comparision.
+     152     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \author Kluka
+     153     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 */
+     154     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		bool operator!=(const TInterval& aInterval) const
+     155     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			{
+     156     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			TType aSize1 = (iRight - iLeft);
+     157     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			TType aSize2 = (aInterval.iRight - aInterval.iLeft);
+     158     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			return aSize1 != aSize2;
+     159     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			}
+     160     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     161     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		/** \brief Comparing by Value operator
+     162     2384     2384 10. 12. 2022 0:17:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \return Return \c bool result of comparision.
+     163     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \author Kluka
+     164     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 */
+     165     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		bool operator<(const TInterval& aInterval) const
+     166     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			{
+     167     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			TType aSize1 = (iRight - iLeft);
+     168     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			TType aSize2 = (aInterval.iRight - aInterval.iLeft);
+     169     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			return aSize1 < aSize2;
+     170     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			}
+     171     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     172     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		/** \brief Comparing by Value operator
+     173     2384     2384 10. 12. 2022 0:17:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \return Return \c bool result of comparision.
+     174     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \author Kluka
+     175     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 */
+     176     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		bool operator>(const TInterval& aInterval) const
+     177     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			{
+     178     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			TType aSize1 = (iRight - iLeft);
+     179     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			TType aSize2 = (aInterval.iRight - aInterval.ileft);
+     180     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			return aSize1 > aSize2;
+     181     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			}
+     182     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     183     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       #endif /* CBLOCK_THREE_WAY_COMPARISON */
+     184     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     185     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		/** \brief Output to the stream operator. (\em serialization)
+     186     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \param[in]	aOStream	Output stream
+     187     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \param[in]	aInterval	Serialized instantion of CBlock
+     188     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \return Return \c std::ostream with serialized Value.
+     189     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \author Kluka
+     190     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 */
+     191     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		friend std::ostream& operator<<(std::ostream& aOStream, const TInterval& aInterval)
+     192     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			{
+     193     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			aOStream << '<' << aInterval.iLeft << ',' << aInterval.iRight << '>';
+     194     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			return aOStream;
+     195     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			}
+     196     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     197     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		/** \brief Input from the stream operator. (\em deserialization)
+     198     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *	\details Method demonstrates use of exception in case of bad input.
+     199     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \param[in]	aIStream	Input stream
+     200     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \param[out]	aInterval	Place for deserialized instantion of CBlock
+     201     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \return Return rest of \c std::istream.
+     202     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \attention Method demonstrates use of exception in case of bad input.
+     203     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \author Kluka
+     204     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 */
+     205     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		friend std::istream& operator>>(std::istream& aIStream, TInterval& aInterval)
+     206     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			{
+     207     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			char ch = '\0';
+     208     2371     2371 9. 12. 2022 19:59:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			TType tmp_aLeft = 0;
+     209     2371     2371 9. 12. 2022 19:59:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			TType tmp_aRight = 0;
+     210     2371     2371 9. 12. 2022 19:59:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     211     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			aIStream >> std::skipws >> ch;
+     212     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			if(!aIStream.good() || ch != '<')
+     213     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       				throw std::runtime_error("Input stream data integrity error!");
+     214     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     215     2371     2371 9. 12. 2022 19:59:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			if (!aIStream.good())
+     216     2371     2371 9. 12. 2022 19:59:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       				throw std::runtime_error("Input stream data integrity error!");
+     217     2371     2371 9. 12. 2022 19:59:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			aIStream >> tmp_aLeft;
+     218     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     219     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			aIStream >> std::noskipws >> ch;
+     220     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			if(!aIStream.good() || ch != ',')
+     221     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       				throw std::runtime_error("Input stream data integrity error!");
+     222     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     223     2371     2371 9. 12. 2022 19:59:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			if (!aIStream.good())
+     224     2371     2371 9. 12. 2022 19:59:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       				throw std::runtime_error("Input stream data integrity error!");
+     225     2371     2371 9. 12. 2022 19:59:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			aIStream >> tmp_aRight;
+     226     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     227     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			aIStream >> std::noskipws >> ch;
+     228     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			if(!aIStream.good() || ch != '>')
+     229     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       				throw std::runtime_error("Input stream data integrity error!");
+     230     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     231     2371     2371 9. 12. 2022 19:59:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			if (tmp_aLeft > tmp_aRight)
+     232     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       				throw std::runtime_error("Bad input! Input in format: <max,min>  ->  should be: <min,max>");
+     233     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     234     2371     2371 9. 12. 2022 19:59:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			aInterval.iLeft = tmp_aLeft;
+     235     2371     2371 9. 12. 2022 19:59:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			aInterval.iRight = tmp_aRight;
+     236     2371     2371 9. 12. 2022 19:59:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     237     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			return aIStream;
+     238     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			}
+     239     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     240     2371     2371 9. 12. 2022 19:59:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		// TInterval characteristic methods
+     241     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		/** \brief Interval value location
+     242     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \param[in]	aValue	Checking if value lies on the left side outside the Interval, on the right side outside the Interval or within the boundaries of the Interval
+     243     2384     2384 10. 12. 2022 0:17:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \return Boundaries comparision result using \c enum type TLocation.
+     244     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \author Kluka
+     245     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 */
+     246     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		TLocation Location(TType aValue) const
+     247     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			{
+     248     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			if(aValue > Right()) return EGreater;
+     249     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			if(aValue < Left())	return ELess;
+     250     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			if(aValue >= Left() && aValue <= Right()) return EWithin;
+     251     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			}
+     252     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     253     2371     2371 9. 12. 2022 19:59:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		/** \brief Printing method of Interval values
+     254     2371     2371 9. 12. 2022 19:59:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \details Method allocates dynamic array based on length between Interval boundaries and prints them on the screen. In the end, this array will be deallocated to prevent memory leaking.
+     255     2371     2371 9. 12. 2022 19:59:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \return Print of values representing Interval.
+     256     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \author Kluka
+     257     2371     2371 9. 12. 2022 19:59:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \attention After considering all possible code options of this method and its potential, for simplicity of the code of TInterval class, it was decided not to use it as class variable filling method and just as printing method to present all values of Interval.
+     258     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 */
+     259     2371     2371 9. 12. 2022 19:59:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		TType Values()
+     260     2374     2374 9. 12. 2022 20:48:12           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			{
+     261     2372     2372 9. 12. 2022 20:30:00           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			TType aSize = (Maximum(iLeft,iRight) - Minimum(iLeft,iRight));
+     262     2371     2371 9. 12. 2022 19:59:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			++aSize;
+     263     2371     2371 9. 12. 2022 19:59:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     264     2371     2371 9. 12. 2022 19:59:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			TType* aInterval = (TType*)malloc(sizeof(TType) * aSize);
+     265     2371     2371 9. 12. 2022 19:59:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			TType aValue = iLeft;
+     266     2371     2371 9. 12. 2022 19:59:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			size_t i = 0;
+     267     2371     2371 9. 12. 2022 19:59:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     268     2371     2371 9. 12. 2022 19:59:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			std::cout << "<";
+     269     2371     2371 9. 12. 2022 19:59:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			for (size_t i = 0; i <= (aSize - 1); ++i)
+     270     2374     2374 9. 12. 2022 20:48:12           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       				{
+     271     2371     2371 9. 12. 2022 19:59:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       				if (Location(aValue) == 0)
+     272     2374     2374 9. 12. 2022 20:48:12           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       					{
+     273     2371     2371 9. 12. 2022 19:59:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       					aInterval[i] = aValue;
+     274     2371     2371 9. 12. 2022 19:59:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       					std::cout << aInterval[i];
+     275     2371     2371 9. 12. 2022 19:59:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       					if (aInterval[i] != iRight) std::cout << ",";
+     276     2374     2374 9. 12. 2022 20:48:12           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       					}
+     277     2374     2374 9. 12. 2022 20:48:12           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       				++aValue;
+     278     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       				}
+     279     2371     2371 9. 12. 2022 19:59:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			std::cout << ">";
+     280     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     281     2371     2371 9. 12. 2022 19:59:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			free(aInterval);
+     282     2371     2371 9. 12. 2022 19:59:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			return 0;
+     283     2374     2374 9. 12. 2022 20:48:12           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			}
+     284     2371     2371 9. 12. 2022 19:59:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     285     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		// getters
+     286     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		/** \brief Left Interval boundary getter
+     287     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \return Actual \c TType \p Value iLeft.
+     288     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \author Kluka
+     289     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 */
+     290     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		TType Left() const
+     291     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			{
+     292     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			return iLeft;
+     293     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			}
+     294     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     295     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		/** \brief Right Interval boundary getter
+     296     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \return Actual \c TType \p Value iRight.
+     297     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \author Kluka
+     298     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 */
+     299     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		TType Right() const
+     300     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			{
+     301     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			return iRight;
+     302     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			}
+     303     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       	};
+     304     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     305     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       	/** \brief CBlock class (\c TInterval variant)
+     306     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       	 *  \details Definition of CBlock class (\c TInterval variant). There are defined all common methods and attributes.
+     307     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       	 *  \author Kluka
+     308     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       	 */
+     309     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       	class CBlock: public CBlockBase
+     310     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		{
+     311     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		ClassInfo<CBlock> iInstanceInfo;	///< Instance of the class info for usage statistics
+     312     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		TInterval iValue;					///< Encapsulated \c TInterval value
+     313     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		
+     314     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       	public:
+     315     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		// c'tors
+     316     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		/** \brief Default c'tor
+     317     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \details Sets Interval boundaries to iLeft = 0 and iRight = 0.
+     318     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \author Kluka
+     319     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 */
+     320     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		CBlock() : CBlockBase(), iValue()
+     321     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			{
+     322     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			}
+     323     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     324     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		/** \brief Copy c'tor
+     325     2384     2384 10. 12. 2022 0:17:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \details Create new instance by copying only \p iValue parameter. Pointer attributes are initialized to the \c this value (CBlockBase definition).
+     326     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \param[in]	aValue	Original instance for copying
+     327     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \author Kluka
+     328     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 */
+     329     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		CBlock(const CBlock& aValue) : CBlockBase(), iValue(aValue.Value())
+     330     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			{
+     331     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			}
+     332     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     333     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		/** \brief Conversion c'tor
+     334     2384     2384 10. 12. 2022 0:17:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \details Value is set. Pointer attributes are initialized by given values or by default to the \c this value (CBlockBase definition).
+     335     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \param[in]	aValue	New TInterval Value
+     336     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \param[in]	aPrev	Connection with previous node (when needed)
+     337     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \param[in]	aNext	Connection with next node (when needed)
+     338     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \author Kluka
+     339     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 */
+     340     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		explicit CBlock(const TInterval& aValue, CBlock* aPrev = nullptr, CBlock* aNext = nullptr) : CBlockBase(aPrev, aNext), iValue(aValue)
+     341     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			{
+     342     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			}
+     343     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     344     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		/** \brief Conversion c'tor from std::string
+     345     2384     2384 10. 12. 2022 0:17:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \details Create new instance of CStack. Pointer attributes are initialized by given values or by default to the \c this value (CBlockBase definition).
+     346     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \param[in]	aString	std::string with long value
+     347     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \param[in]	aPrev	Connection with previous node (when needed)
+     348     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \param[in]	aNext	Connection with next node (when needed)
+     349     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \author Kluka
+     350     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 */
+     351     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		explicit CBlock(const std::string& aString, CBlock* aPrev = nullptr, CBlock* aNext = nullptr) : CBlock(aString.c_str(), aPrev, aNext)
+     352     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			{		
+     353     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			}
+     354     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     355     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		/** \brief Conversion c'tor from plain C string (striped string)
+     356     2384     2384 10. 12. 2022 0:17:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \details Create new instance from Value in the string. Pointer attributes are initialized by given values or by default to the \c this value (CBlockBase definition).
+     357     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \param[in]	aStr	Plain C string with long value
+     358     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \param[in]	aPrev	Connection with previous node (when needed)
+     359     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \param[in]	aNext	Connection with next node (when needed)
+     360     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \author Kluka
+     361     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 */
+     362     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		explicit CBlock(const char* aStr, CBlock* aPrev = nullptr, CBlock* aNext = nullptr) : CBlockBase(aPrev, aNext), iValue()
+     363     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			{
+     364     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			std::istringstream iss(aStr, std::istringstream::in); iss >> iValue;
+     365     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			}
+     366     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     367     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		// d'tor:
+     368     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		/** \brief Virtual d'tor
+     369     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \author Kluka
+     370     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 */
+     371     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		virtual ~CBlock() noexcept(noexcept(std::declval<CBlockBase>().~CBlockBase()))
+     372     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			{
+     373     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			iValue = { 0,0 };
+     374     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			}
+     375     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     376     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		// InstanceInfo getter:
+     377     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		/** \brief ID getter
+     378     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \return Unique instance ID.
+     379     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \author Kluka
+     380     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 */
+     381     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		size_t ID() const
+     382     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			{
+     383     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			return iInstanceInfo.ID();
+     384     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			}
+     385     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     386     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		// setter/getter
+     387     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		/** \brief Value setter
+     388     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \param[in]	aValue	New Value
+     389     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \author Kluka
+     390     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 */
+     391     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		void SetValue(const TInterval& aValue)
+     392     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			{
+     393     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			iValue = aValue;
+     394     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			}
+     395     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     396     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		/** \brief Value getter
+     397     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \return iValue of CBlock.
+     398     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \author Kluka
+     399     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 */
+     400     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		TInterval Value() const
+     401     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			{
+     402     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			return iValue;
+     403     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			}
+     404     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     405     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		// operators
+     406     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		/** \brief Complement operator
+     407     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \return CBlock instance with complemented attribute Value.
+     408     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \author Kluka
+     409     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 */
+     410     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		CBlock operator-() const
+     411     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			{
+     412     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			return CBlock(-iValue);
+     413     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			}
+     414     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     415     2384     2384 10. 12. 2022 0:17:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		/** \brief Assignment operator
+     416     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \return CBlock instance with copied attribute Value.
+     417     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \author Kluka
+     418     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 */
+     419     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		CBlock& operator=(const CBlock& aValue)
+     420     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			{
+     421     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			SetValue(aValue.Value());
+     422     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			return *this;
+     423     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			}
+     424     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     425     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		/** \brief Comparing by Value operator
+     426     2384     2384 10. 12. 2022 0:17:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \return Return \c bool result of comparision.
+     427     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \author Kluka
+     428     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 */
+     429     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		bool operator==(const CBlock& aValue) const
+     430     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			{
+     431     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			return iValue == aValue.Value();
+     432     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			}
+     433     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     434     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       #ifdef CBLOCK_THREE_WAY_COMPARISON
+     435     2384     2384 10. 12. 2022 0:17:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		/** \brief Three-way comparison by Value operator
+     436     2384     2384 10. 12. 2022 0:17:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \return Return \c std::strong_ordering result of comparision.
+     437     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \author Kluka
+     438     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 */
+     439     2085     2085 2. 12. 2022 15:22:22           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xprase08                       		std::strong_ordering operator<=> (const CBlock &aValue) const
+     440     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			{
+     441     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			return iValue <=> aValue.Value();
+     442     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			}
+     443     2413     2413 11. 12. 2022 13:30:12          /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     444     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       #else
+     445     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		/** \brief Comparing by Value operator
+     446     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \return Return \c bool result of comparation.
+     447     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \author Kluka
+     448     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 */
+     449     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		bool operator!=(const CBlock& aValue) const
+     450     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			{
+     451     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			return iValue != aValue.Value();
+     452     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			}
+     453     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     454     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		/** \brief Comparing by Value operator
+     455     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \return Return \c bool result of comparation.
+     456     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \author Kluka
+     457     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 */
+     458     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		bool operator<(const CBlock& aValue) const
+     459     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			{
+     460     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			return iValue < aValue.Value();
+     461     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			}
+     462     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     463     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		/** \brief Comparing by Value operator
+     464     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \return Return \c bool result of comparation.
+     465     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \author Kluka
+     466     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 */
+     467     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		bool operator>(const CBlock& aValue) const
+     468     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			{
+     469     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			return iValue > aValue.Value();
+     470     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			}
+     471     2413     2413 11. 12. 2022 13:30:12          /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     472     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       #endif /* CBLOCK_THREE_WAY_COMPARISON */
+     473     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     474     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		/** \brief Output to the stream operator. (\em serialization)
+     475     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \param[in]	aOStream	Output stream
+     476     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \param[in]	aValue	Serialized instantion of CBlock
+     477     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \return Return \c std::ostream with serialized Value.
+     478     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \author Kluka
+     479     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 */
+     480     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		friend std::ostream& operator<<(std::ostream &aOStream, const CBlock &aValue)
+     481     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			{
+     482     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			aOStream << aValue.iValue;
+     483     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			return aOStream;
+     484     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			}
+     485     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     486     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		/** \brief Input from the stream operator. (\em deserialization)
+     487     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \param[in]	aIStream	Input stream
+     488     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \param[out]	aValue	Place for deserialized instantion of CBlock
+     489     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \return Return rest of \c std::istream.
+     490     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \author Kluka
+     491     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 */
+     492     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		friend std::istream& operator>>(std::istream &aIStream, CBlock &aValue)
+     493     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			{
+     494     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			aIStream >> aValue.iValue;
+     495     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			return aIStream;
+     496     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			}
+     497     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     498     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       #ifdef CBLOCK_TEST_API
+     499     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     500     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		// constants for testing CBlock functionalities:
+     501     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		/** \brief First test value
+     502     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \return Return \c TInterval value (\c 0 0).
+     503     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \author Kluka
+     504     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \note Useful for automated testing of CBlock functionality.
+     505     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 */
+     506     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		static TInterval TestValue0()
+     507     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			{
+     508     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			return TInterval(0,0);
+     509     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			}
+     510     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     511     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		/** \brief First test string value
+     512     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \return Return string with \c TInterval value (\c "<0,0>").
+     513     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \author Kluka
+     514     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \note Useful for automated testing of CBlock functionality.
+     515     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 */
+     516     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		static std::string TestStringValue0()
+     517     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			{
+     518     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			return std::string("<0,0>");
+     519     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			}
+     520     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     521     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		/** \brief Second test value
+     522     2384     2384 10. 12. 2022 0:17:15           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \details Test value with bad input (\c 5, -4) - constructor fixes bad input automatically using Minimum and Maximum methods - demonstration.
+     523     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \return Return fixed \c long values of Interval boundaries (\c -4, 5).
+     524     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \author Kluka
+     525     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \note Useful for automated testing of CBlock functionality.
+     526     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 */
+     527     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		static TInterval TestValue1()
+     528     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			{
+     529     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			return TInterval(5,-4);
+     530     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			}
+     531     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     532     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		/** \brief Second test string value
+     533     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *	\details Test string value with good input (\c <-4,5>) - in case of bad input (\c <-5,4>), user will get exception of bad input and will not use Minimum and Maximum method to fix it.
+     534     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \return Return string with \c long value (\c "<-4,5>").
+     535     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \author Kluka
+     536     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \note Useful for automated testing of CBlock functionality.
+     537     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 */
+     538     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		static std::string TestStringValue1()
+     539     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			{
+     540     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			return std::string("<-4,5>");
+     541     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			}
+     542     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     543     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		/** \brief Random test value
+     544     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \return Return random \c long value.
+     545     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \author Kluka
+     546     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \note Useful for automated testing of CBlock functionality.
+     547     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 */
+     548     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		static TInterval TestValueRandom()
+     549     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			{
+     550     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			return TInterval(std::rand() % 100, std::rand() % 100);
+     551     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			}
+     552     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     553     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		/** \brief Random test string value
+     554     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \return Return string with random \c long value.
+     555     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \author Kluka
+     556     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 *  \note Useful for automated testing of CBlock functionality.
+     557     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		 */
+     558     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		static std::string TestStringValueRandom()
+     559     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			{
+     560     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			std::string aStr = std::to_string(std::rand() % 100) + "," + std::to_string(std::rand() % 100);
+     561     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			return "<" + aStr + ">";
+     562     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       			}
+     563     2413     2413 11. 12. 2022 13:30:12          /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       
+     564     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       #endif /* CBLOCK_TEST_API */
+     565     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       		}; /* class CBlock */
+     566     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       	} /* namespace CBlock_TInterval */
+     567     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h     xkluka00                       #endif /* __CBLOCK_TINTERVAL_H__ */

@@ -1,0 +1,456 @@
+  line   rev      merged   date                           author                         content 
+
+     0      324 3. 11. 2022 10:13:56           xprase08                       #ifndef CSTACK_H
+     1      324 3. 11. 2022 10:13:56           xprase08                       #define CSTACK_H
+     2     2134 2. 12. 2022 18:09:24           xpesek13                       #define CSTACK_TEST_API
+     3     2134 2. 12. 2022 18:09:24           xpesek13                       
+     4      324 3. 11. 2022 10:13:56           xprase08                       /** \file CStack.h
+     5      324 3. 11. 2022 10:13:56           xprase08                        *  \brief CStack class header
+     6      324 3. 11. 2022 10:13:56           xprase08                        *  \details File contain CStack class container definition.
+     7     2070 2. 12. 2022 13:26:47           xkluka00                        *  \authors Kluka, Majnus, Pesek, Prasek
+     8     2070 2. 12. 2022 13:26:47           xkluka00                        *  \version 2022
+     9       90 29. 10. 2022 18:30:16          xkluka00                        *  $Id$
+    10       90 29. 10. 2022 18:30:16          xkluka00                        */
+    11       90 29. 10. 2022 18:30:16          xkluka00                       
+    12     2715 16. 12. 2022 21:36:34          xkluka00                       //(disabled by default, use only to see print of each step of mine methods and extra control of other author methods or to check, if method is working properly, DO NOT USE FOR UNIT TESTS)
+    13     3493 21. 12. 2022 23:55:12          xkluka00                       //#define KLUKA_PRINT
+    14     2715 16. 12. 2022 21:36:34          xkluka00                       
+    15       90 29. 10. 2022 18:30:16          xkluka00                       #include "CBlock.h"
+    16     2070 2. 12. 2022 13:26:47           xkluka00                       //#include <initializer_list>		// Due to: std::initializer_list<CBlock>
+    17       90 29. 10. 2022 18:30:16          xkluka00                       #include "check.h"
+    18       90 29. 10. 2022 18:30:16          xkluka00                       
+    19     2070 2. 12. 2022 13:26:47           xkluka00                        /** \brief CStack class
+    20     2070 2. 12. 2022 13:26:47           xkluka00                         *  \details Definition of CStack class. There are defined all common methods and attributes.
+    21     2070 2. 12. 2022 13:26:47           xkluka00                         */
+    22      324 3. 11. 2022 10:13:56           xprase08                       class CStack
+    23       90 29. 10. 2022 18:30:16          xkluka00                       	{
+    24     2070 2. 12. 2022 13:26:47           xkluka00                       	CBlock* iTop;						///< Pointer at the top of Stack
+    25     2070 2. 12. 2022 13:26:47           xkluka00                       	CBlock* iBottom;					///< Pointer at the bottom of Stack
+    26     2070 2. 12. 2022 13:26:47           xkluka00                       	size_t iCount;						///< Number of totally created instances
+    27     2070 2. 12. 2022 13:26:47           xkluka00                       	ClassInfo<CStack> iInstanceInfo;	///< Instance of the class info for usage statistics
+    28      788 12. 11. 2022 19:36:18          xpesek13                       
+    29     2070 2. 12. 2022 13:26:47           xkluka00                       	/** \brief Private method CompareDeep
+    30     2385 10. 12. 2022 0:22:43           xkluka00                       	 *  \details Compare stacks by according length and CBlock as well.
+    31     3691 30. 12. 2022 13:38:24          xkluka00                       	 *  \param[in] aStack	Second Stack to be compared with the first Stack
+    32     3691 30. 12. 2022 13:38:24          xkluka00                       	 *  \return "-1" if first stack is shorter or "0" if both have same length or "1" if first stack is longer.
+    33     2680 16. 12. 2022 0:35:59           xkluka00                       	 *	\authors	Majnus
+    34     2906 19. 12. 2022 11:43:23          xkluka00                       	 *	\attention	Helped Kluka (whole source code).
+    35     2070 2. 12. 2022 13:26:47           xkluka00                       	 */
+    36     3691 30. 12. 2022 13:38:24          xkluka00                       	int CompareDeep(const CStack& aStack) const;
+    37      788 12. 11. 2022 19:36:18          xpesek13                       
+    38     2070 2. 12. 2022 13:26:47           xkluka00                       	/** \brief Private method Compare
+    39     2227 4. 12. 2022 11:32:33           xpesek13                       	 *  \details	Returns an integer(-1,0,1) representing the result of comparison (Stack > aStack, Stack == aStack, Stack < aStack)
+    40     3691 30. 12. 2022 13:38:24          xkluka00                       	 *  \param[in] aStack	Second Stack to be compared with the first Stack
+    41     2070 2. 12. 2022 13:26:47           xkluka00                       	 *  \return Returns an integer(-1,0,1) representing the result of comparison.
+    42     2070 2. 12. 2022 13:26:47           xkluka00                       	 *  \author Pesek
+    43       90 29. 10. 2022 18:30:16          xkluka00                       	 */
+    44     2070 2. 12. 2022 13:26:47           xkluka00                       	int Compare(const CStack& aStack) const;
+    45      788 12. 11. 2022 19:36:18          xpesek13                       
+    46     2931 19. 12. 2022 15:30:23          xprase08                       	/** \brief Private method IntegrityTest
+    47     2931 19. 12. 2022 15:30:23          xprase08                       	 *  \details Method comparing the number of items from iTop -> Next and iBottom -> Next. Works only in Debug mode.
+    48     2931 19. 12. 2022 15:30:23          xprase08                       	 *  \author Petyovsky
+    49     2931 19. 12. 2022 15:30:23          xprase08                       	 */
+    50     2919 19. 12. 2022 13:28:05          petyovsky                      	bool IntegrityTest() const
+    51     2919 19. 12. 2022 13:28:05          petyovsky                      		{
+    52     2919 19. 12. 2022 13:28:05          petyovsky                      #ifndef NDEBUG
+    53     2919 19. 12. 2022 13:28:05          petyovsky                      		size_t count = 0;
+    54     2919 19. 12. 2022 13:28:05          petyovsky                      		CBlock *ptr = iTop;
+    55     2919 19. 12. 2022 13:28:05          petyovsky                      		while(ptr)
+    56     2919 19. 12. 2022 13:28:05          petyovsky                      			{
+    57     2919 19. 12. 2022 13:28:05          petyovsky                      			++count;
+    58     2919 19. 12. 2022 13:28:05          petyovsky                      			ptr = static_cast<CBlock *>(ptr->NextItem());
+    59     2919 19. 12. 2022 13:28:05          petyovsky                      			}
+    60     2919 19. 12. 2022 13:28:05          petyovsky                      
+    61     2919 19. 12. 2022 13:28:05          petyovsky                      		if(count != iCount)
+    62     2919 19. 12. 2022 13:28:05          petyovsky                      			{
+    63     2919 19. 12. 2022 13:28:05          petyovsky                      			std::cout << count << " vs. " << iCount << '\n';
+    64     2919 19. 12. 2022 13:28:05          petyovsky                      			throw std::runtime_error("Nesedi pocet prvku iTop -> Next");
+    65     2919 19. 12. 2022 13:28:05          petyovsky                      			return false;
+    66     2919 19. 12. 2022 13:28:05          petyovsky                      			}
+    67     2919 19. 12. 2022 13:28:05          petyovsky                      
+    68     2919 19. 12. 2022 13:28:05          petyovsky                      		count = 0;
+    69     2919 19. 12. 2022 13:28:05          petyovsky                      		ptr = iBottom;
+    70     2919 19. 12. 2022 13:28:05          petyovsky                      		while(ptr)
+    71     2919 19. 12. 2022 13:28:05          petyovsky                      			{
+    72     2919 19. 12. 2022 13:28:05          petyovsky                      			++count;
+    73     2919 19. 12. 2022 13:28:05          petyovsky                      			ptr = static_cast<CBlock *>(ptr->PrevItem());
+    74     2919 19. 12. 2022 13:28:05          petyovsky                      			}
+    75     2919 19. 12. 2022 13:28:05          petyovsky                      
+    76     2919 19. 12. 2022 13:28:05          petyovsky                      		if(count != iCount)
+    77     2919 19. 12. 2022 13:28:05          petyovsky                      			{
+    78     2919 19. 12. 2022 13:28:05          petyovsky                      			std::cout << count << " vs. " << iCount << '\n';
+    79     2919 19. 12. 2022 13:28:05          petyovsky                      			throw std::runtime_error("Nesedi pocet prvku iBottom -> Prev");
+    80     2919 19. 12. 2022 13:28:05          petyovsky                      			return false;
+    81     2919 19. 12. 2022 13:28:05          petyovsky                      			}
+    82     2919 19. 12. 2022 13:28:05          petyovsky                      #endif
+    83     2919 19. 12. 2022 13:28:05          petyovsky                      		return true;
+    84     2919 19. 12. 2022 13:28:05          petyovsky                      		}
+    85     3141 21. 12. 2022 0:38:53           xkluka00                       
+    86     2414 11. 12. 2022 14:08:00          xkluka00                       public:
+    87     2414 11. 12. 2022 14:08:00          xkluka00                       	// c'tors
+    88     2417 11. 12. 2022 15:12:30          xkluka00                       	/** \brief Default c'tor
+    89     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \details Creates new instance. Set iTop = nullptr and iCount = 0.
+    90     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \author Majnus
+    91     2414 11. 12. 2022 14:08:00          xkluka00                       	 */
+    92     3352 21. 12. 2022 21:15:11          xmajnu01                       	CStack();
+    93      788 12. 11. 2022 19:36:18          xpesek13                       
+    94     2414 11. 12. 2022 14:08:00          xkluka00                       	/** \brief CBlock conversion c'tor
+    95     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \details Create new instance with CBlock element.
+    96     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \param[in]	aBlock	Element of CBlock
+    97     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \author Kluka
+    98     2414 11. 12. 2022 14:08:00          xkluka00                       	 */
+    99     2414 11. 12. 2022 14:08:00          xkluka00                       	CStack(const CBlock& aBlock);
+   100       90 29. 10. 2022 18:30:16          xkluka00                       
+   101     3352 21. 12. 2022 21:15:11          xmajnu01                       	/** \brief Copy c'tor
+   102     3352 21. 12. 2022 21:15:11          xmajnu01                       	 *  \details Creates own copy of all data (deep copy of all individual instances of the class CBlock), but will have a unique iID.
+   103     3352 21. 12. 2022 21:15:11          xmajnu01                       	 *  \param[in]	aStack	Element of CStack
+   104     3352 21. 12. 2022 21:15:11          xmajnu01                       	 *  \author Majnus
+   105     3352 21. 12. 2022 21:15:11          xmajnu01                       	 */
+   106     3352 21. 12. 2022 21:15:11          xmajnu01                       	CStack(const CStack& aStack);
+   107     2070 2. 12. 2022 13:26:47           xkluka00                       			
+   108     2414 11. 12. 2022 14:08:00          xkluka00                       	/** \brief String conversion c'tor
+   109     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \details Create new instance from C string.
+   110     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \param[in]	aString	C string in format: (value-element1,value-element2,value-element3,...)
+   111     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \author Kluka
+   112     2414 11. 12. 2022 14:08:00          xkluka00                       	 */
+   113     2715 16. 12. 2022 21:36:34          xkluka00                       	CStack(const std::string& aString);
+   114      788 12. 11. 2022 19:36:18          xpesek13                       
+   115     2414 11. 12. 2022 14:08:00          xkluka00                       	/** \brief CBlock conversion c'tor from array of known size
+   116     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \details Creates new Stack containing elements from input array.
+   117     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \param[in]	aSize	Size of input array
+   118     2414 11. 12. 2022 14:08:00          xkluka00                       	 *	\param[in]	aArray	Array of CBlock to be used for Stack creation
+   119     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \author Pesek
+   120     2414 11. 12. 2022 14:08:00          xkluka00                       	 */
+   121     2480 13. 12. 2022 17:30:55          xpesek13                       	CStack(size_t aSize, const CBlock* aArray);
+   122     2070 2. 12. 2022 13:26:47           xkluka00                       
+   123     2420 11. 12. 2022 17:50:38          xprase08                       	/** \brief Conversion c'tor from init list
+   124     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \details C'tor from an initializer list of CBlock use delegation to the c'tor from array of CBlock items.
+   125     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \author Prasek
+   126     2414 11. 12. 2022 14:08:00          xkluka00                       	 */
+   127     2437 11. 12. 2022 23:00:09          xprase08                       	CStack(std::initializer_list<CBlock> aInitList);
+   128     2070 2. 12. 2022 13:26:47           xkluka00                       
+   129     2414 11. 12. 2022 14:08:00          xkluka00                       	/** \brief Conversion c'tor of type size_t
+   130     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \details Creates a new stack containing as many CBlock elements created by the default constructor as the number of elements specified.
+   131     3691 30. 12. 2022 13:38:24          xkluka00                       	 *  \param[in]	aSize	Size of new Stack
+   132     2414 11. 12. 2022 14:08:00          xkluka00                       	 *	\author Prasek
+   133     2414 11. 12. 2022 14:08:00          xkluka00                       	 */
+   134     2429 11. 12. 2022 21:43:41          xprase08                       	CStack(const size_t aSize);
+   135     2070 2. 12. 2022 13:26:47           xkluka00                       
+   136     2414 11. 12. 2022 14:08:00          xkluka00                       	// d'tor
+   137     2414 11. 12. 2022 14:08:00          xkluka00                       	/** \brief Destructor
+   138     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \details Destructor with active count down of elements with variable ClassInfo. It will deallocate dynamic member elements (all CBlocks belonging to it), i.e. deallocate the entire stack.
+   139     2772 17. 12. 2022 19:03:01          xkluka00                       	 *  \author	Majnus
+   140     2906 19. 12. 2022 11:43:23          xkluka00                       	 *  \attention Helped Kluka (whole source code - completely fixed memory leak).
+   141     2414 11. 12. 2022 14:08:00          xkluka00                       	 */
+   142     2696 16. 12. 2022 16:39:50          xkluka00                       	virtual ~CStack() noexcept(false);
+   143     2070 2. 12. 2022 13:26:47           xkluka00                       
+   144     2696 16. 12. 2022 16:39:50          xkluka00                       	/** \brief Destroy
+   145     2696 16. 12. 2022 16:39:50          xkluka00                       	 *  \details Destroy method is used to deallocate nodes included in Stack.
+   146     2696 16. 12. 2022 16:39:50          xkluka00                       	 *	\author Kluka
+   147     2696 16. 12. 2022 16:39:50          xkluka00                       	 *	\attention Method was created as a last hope of node deallocation after many non-functioning versions of Destructor. 
+   148     2696 16. 12. 2022 16:39:50          xkluka00                       	 */
+   149     2696 16. 12. 2022 16:39:50          xkluka00                       	void Destroy();
+   150     2696 16. 12. 2022 16:39:50          xkluka00                       
+   151     2414 11. 12. 2022 14:08:00          xkluka00                       	// InstanceInfo getters
+   152     2414 11. 12. 2022 14:08:00          xkluka00                       	/** \brief Actual getter
+   153     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \return Number of actually living instances.
+   154     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \author Majnus
+   155     2414 11. 12. 2022 14:08:00          xkluka00                       	 */
+   156     3352 21. 12. 2022 21:15:11          xmajnu01                       	size_t Actual() const;
+   157     2414 11. 12. 2022 14:08:00          xkluka00                       
+   158     2414 11. 12. 2022 14:08:00          xkluka00                       	/** \brief ID getter
+   159     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \return Unique instance ID.
+   160     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \author Majnus
+   161     2414 11. 12. 2022 14:08:00          xkluka00                       	 */
+   162     2436 11. 12. 2022 22:48:43          xmajnu01                       	size_t ID() const;
+   163     2070 2. 12. 2022 13:26:47           xkluka00                       		
+   164     2414 11. 12. 2022 14:08:00          xkluka00                       	/** \brief Total getter
+   165     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \return Number of totally created instances.
+   166     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \author Majnus
+   167     2414 11. 12. 2022 14:08:00          xkluka00                       	 */
+   168     2436 11. 12. 2022 22:48:43          xmajnu01                       	size_t Total() const;
+   169     2070 2. 12. 2022 13:26:47           xkluka00                       
+   170     2414 11. 12. 2022 14:08:00          xkluka00                       	// setters/getters
+   171     2414 11. 12. 2022 14:08:00          xkluka00                       	/** \brief PocetPrvku getter
+   172     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \details Number of totally created instances.
+   173     2414 11. 12. 2022 14:08:00          xkluka00                       	 *	\return Return number of totally created instances in Stack.
+   174     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \author Kluka
+   175     2414 11. 12. 2022 14:08:00          xkluka00                       	 */
+   176     2414 11. 12. 2022 14:08:00          xkluka00                       	size_t PocetPrvku() const;
+   177     2070 2. 12. 2022 13:26:47           xkluka00                       
+   178     2414 11. 12. 2022 14:08:00          xkluka00                       	/** \brief Usage getter
+   179     2859 18. 12. 2022 19:01:25          xpesek13                       	 *  \details Finds out the effectivity of memory usage of CBlock linear doubly linked list compared to array of CBlock.
+   180     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \return Returns effectivity value in %.
+   181     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \author Pesek
+   182     2414 11. 12. 2022 14:08:00          xkluka00                       	 */
+   183     2859 18. 12. 2022 19:01:25          xpesek13                       	static double Usage();
+   184     2070 2. 12. 2022 13:26:47           xkluka00                       
+   185     2414 11. 12. 2022 14:08:00          xkluka00                       	// unary operators
+   186     2417 11. 12. 2022 15:12:30          xkluka00                       	/** \brief Unary Operator +
+   187     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \details Useless operator which returns used Stack.
+   188     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \author Pesek
+   189     2414 11. 12. 2022 14:08:00          xkluka00                       	 */
+   190     2480 13. 12. 2022 17:30:55          xpesek13                       	CStack& operator+();
+   191     2070 2. 12. 2022 13:26:47           xkluka00                       
+   192     2417 11. 12. 2022 15:12:30          xkluka00                       	/** \brief Unary Operator -
+   193     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \details Reversion of all CBlocks in Stack using Reverzuj method.
+   194     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \author Kluka
+   195     2414 11. 12. 2022 14:08:00          xkluka00                       	 */
+   196     2483 13. 12. 2022 18:10:09          xkluka00                       	CStack& operator-();
+   197     2070 2. 12. 2022 13:26:47           xkluka00                       
+   198     2417 11. 12. 2022 15:12:30          xkluka00                       	/** \brief Unary Operator ++  
+   199     2420 11. 12. 2022 17:50:38          xprase08                       	 *  \details Inserts a new CBlock element created by the default c'tor at the end of the stack.
+   200     2414 11. 12. 2022 14:08:00          xkluka00                       	 *	\return Returns Stack with a new element on top.
+   201     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \author Prasek
+   202     2414 11. 12. 2022 14:08:00          xkluka00                       	 */
+   203     2420 11. 12. 2022 17:50:38          xprase08                       	CStack& operator++();
+   204     2070 2. 12. 2022 13:26:47           xkluka00                       
+   205     2417 11. 12. 2022 15:12:30          xkluka00                       	/** \brief Unary Operator --
+   206     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \details Deletes CBlock element from the end of the Stack using CStack Pop() method.
+   207     2414 11. 12. 2022 14:08:00          xkluka00                       	 *	\return Returns Stack reduced by one element.
+   208     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \author Kluka
+   209     2414 11. 12. 2022 14:08:00          xkluka00                       	 */
+   210     2414 11. 12. 2022 14:08:00          xkluka00                       	CStack& operator--();
+   211     2070 2. 12. 2022 13:26:47           xkluka00                       
+   212     2417 11. 12. 2022 15:12:30          xkluka00                       	/** \brief Unary Operator !
+   213     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \details If stack is empty, return true and makes exception.
+   214     2414 11. 12. 2022 14:08:00          xkluka00                       	 *	\return True or false.
+   215     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \author Majnus
+   216     2414 11. 12. 2022 14:08:00          xkluka00                       	 */
+   217     2436 11. 12. 2022 22:48:43          xmajnu01                       	bool operator!() const;
+   218     2431 11. 12. 2022 21:45:45          xmajnu01                       
+   219     2414 11. 12. 2022 14:08:00          xkluka00                       	// binary operators
+   220     2417 11. 12. 2022 15:12:30          xkluka00                       	/** \brief Binary Operator +
+   221     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \details Adds two stacks, is not commutative, the order depends on the stack order.
+   222     3691 30. 12. 2022 13:38:24          xkluka00                       	 *  \param[in]	aStack	Second Stack, which will be added at the end of first Stack
+   223     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \return Two stacked stacks.
+   224     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \author Majnus
+   225     2414 11. 12. 2022 14:08:00          xkluka00                       	 */
+   226     3352 21. 12. 2022 21:15:11          xmajnu01                       	CStack operator+(const CStack &aStack) const;
+   227     2070 2. 12. 2022 13:26:47           xkluka00                       
+   228     2417 11. 12. 2022 15:12:30          xkluka00                       	/** \brief Binary Operator =
+   229     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \details For assignment. Creates copy of values except the iID, that´s original. Overwrite original values in the result variable and dynamic deallocate deallocate. 
+   230     3691 30. 12. 2022 13:38:24          xkluka00                       	 *  \param[in]	aStack	Second Stack, which replaces the first Stack in this instance
+   231     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \return Original overwritten values. Deallocate dynamic values.
+   232     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \author Majnus
+   233     3352 21. 12. 2022 21:15:11          xmajnu01                       	 */
+   234     2460 12. 12. 2022 22:11:41          xmajnu01                       	CStack& operator=(const CStack& aStack);
+   235     2070 2. 12. 2022 13:26:47           xkluka00                       
+   236     2414 11. 12. 2022 14:08:00          xkluka00                       	/** \brief Binary non-member Operator +
+   237     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \details Appends CBlock element to top of the Stack.
+   238     3692 30. 12. 2022 14:07:18          xpesek13                       	 *	\param[in]	aStack	CStack on top which will be pushed aBlock element
+   239     3692 30. 12. 2022 14:07:18          xpesek13                       	 *	\param[in]	aBlock	CBlock element, which will be pushed onto stack
+   240     3051 20. 12. 2022 18:41:32          xpesek13                       	 *  \return Returns Stack with appended element. CBlock + CStack
+   241     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \author Pesek
+   242     2414 11. 12. 2022 14:08:00          xkluka00                       	 */
+   243     2414 11. 12. 2022 14:08:00          xkluka00                       	friend CStack operator+(const CBlock& aBlock, const CStack& aStack);
+   244     2070 2. 12. 2022 13:26:47           xkluka00                       
+   245     3051 20. 12. 2022 18:41:32          xpesek13                       	/** \brief Binary non-member Operator +
+   246     3051 20. 12. 2022 18:41:32          xpesek13                       	 *  \details Puts CBlock element to the bottom of the Stack.
+   247     3692 30. 12. 2022 14:07:18          xpesek13                       	 *	\param[in]	aStack	CStack on which bottom will be added aBlock element
+   248     3692 30. 12. 2022 14:07:18          xpesek13                       	 *	\param[in]	aBlock	CBlock element, which will be put onto bottom of aStack
+   249     3051 20. 12. 2022 18:41:32          xpesek13                       	 *  \return Returns Stack with appended element. CStack + CBlock
+   250     3051 20. 12. 2022 18:41:32          xpesek13                       	 *  \author Pesek
+   251     3051 20. 12. 2022 18:41:32          xpesek13                       	 */
+   252     3051 20. 12. 2022 18:41:32          xpesek13                       	friend CStack operator+(const CStack& aStack, const CBlock& aBlock);
+   253     3051 20. 12. 2022 18:41:32          xpesek13                       
+   254     2417 11. 12. 2022 15:12:30          xkluka00                       	/** \brief Binary Operator -
+   255     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \details A new stack will be created that will contain all elements from the first stack that are not contained in the second stack and will not honor the order.
+   256     3691 30. 12. 2022 13:38:24          xkluka00                       	 *  \param[in]	aStack	Second Stack, which will be subtracted from the first Stack
+   257     2451 12. 12. 2022 20:00:28          xprase08                       	 *	\return New Stack
+   258     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \author Prasek
+   259     2414 11. 12. 2022 14:08:00          xkluka00                       	 */
+   260     2414 11. 12. 2022 14:08:00          xkluka00                       	CStack operator-(const CStack& aStack) const;
+   261     2070 2. 12. 2022 13:26:47           xkluka00                       			
+   262     2772 17. 12. 2022 19:03:01          xkluka00                       	/** \brief Binary Operator -=		
+   263     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \details Subtracts two stacks by subtracting all elements of Stack2 from Stack1.
+   264     3691 30. 12. 2022 13:38:24          xkluka00                       	 *  \param[in]	aStack	Second Stack, which will be subtracted from the first Stack
+   265     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \return Subtraction of two Stacks.
+   266     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \author Kluka
+   267     2414 11. 12. 2022 14:08:00          xkluka00                       	 */
+   268     2414 11. 12. 2022 14:08:00          xkluka00                       	CStack& operator-=(const CStack& aStack);
+   269     2070 2. 12. 2022 13:26:47           xkluka00                       
+   270     2417 11. 12. 2022 15:12:30          xkluka00                       	/** \brief Binary Operator +=
+   271     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \details Creates a stack of CBlock elements of Stack1 and Stack2.
+   272     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \param[in]	aStack	Stack2, that will be added to Stack1
+   273     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \return Addition of two Stacks.
+   274     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \author Pesek
+   275     2414 11. 12. 2022 14:08:00          xkluka00                       	 */
+   276     2414 11. 12. 2022 14:08:00          xkluka00                       	CStack& operator+=(const CStack& aStack);
+   277     2070 2. 12. 2022 13:26:47           xkluka00                       
+   278     2414 11. 12. 2022 14:08:00          xkluka00                       	/** \brief Operator size_t 
+   279     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \details Converts the stack to size_t, which will represent the number of stack elements.
+   280     2421 11. 12. 2022 18:23:26          xprase08                       	 *	\return Number of elements in the Stack.
+   281     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \author Prasek
+   282     2414 11. 12. 2022 14:08:00          xkluka00                       	 */
+   283     2421 11. 12. 2022 18:23:26          xprase08                       	explicit operator size_t() const;
+   284     2070 2. 12. 2022 13:26:47           xkluka00                       
+   285     2414 11. 12. 2022 14:08:00          xkluka00                       	/** \brief Relational Operator ==
+   286     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \details Comparison of two stacks using CompareDeep() method.
+   287     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \param[in]	aStack	Stack for comparison
+   288     2414 11. 12. 2022 14:08:00          xkluka00                       	 *	\return Return \c bool result of comparision.
+   289     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \author Kluka
+   290     2414 11. 12. 2022 14:08:00          xkluka00                       	 */
+   291     2414 11. 12. 2022 14:08:00          xkluka00                       	bool operator==(const CStack& aStack) const;
+   292     2392 10. 12. 2022 15:05:40          xkluka00                       
+   293     2070 2. 12. 2022 13:26:47           xkluka00                       #ifdef CBLOCK_THREE_WAY_COMPARISON
+   294     2417 11. 12. 2022 15:12:30          xkluka00                       	/** \brief Three-way comparison by Value Operator
+   295     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \return Return \c std::strong_ordering result of comparision.
+   296     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \author Kluka
+   297     2414 11. 12. 2022 14:08:00          xkluka00                       	 */
+   298     2414 11. 12. 2022 14:08:00          xkluka00                       	std::strong_ordering operator<=>(const CStack& aStack) const;
+   299     2386 10. 12. 2022 1:08:18           xkluka00                       	
+   300     2070 2. 12. 2022 13:26:47           xkluka00                       #else
+   301     2414 11. 12. 2022 14:08:00          xkluka00                       	// relational operators
+   302     2414 11. 12. 2022 14:08:00          xkluka00                       	/** \brief Relational Operator !=
+   303     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \details Comparison of two stacks using CompareDeep() method.
+   304     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \param[in]	aStack	Stack for comparison
+   305     2414 11. 12. 2022 14:08:00          xkluka00                       	 *	\return Return \c bool result of comparision.
+   306     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \author Majnus
+   307     2414 11. 12. 2022 14:08:00          xkluka00                       	 */
+   308     2414 11. 12. 2022 14:08:00          xkluka00                       	bool operator!=(const CStack& aStack) const;
+   309     2070 2. 12. 2022 13:26:47           xkluka00                       
+   310     2414 11. 12. 2022 14:08:00          xkluka00                       	/** \brief Relational Operator <
+   311     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \details Comparison of two stacks using CompareDeep() method.
+   312     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \author Prasek
+   313     2414 11. 12. 2022 14:08:00          xkluka00                       	 */
+   314     2414 11. 12. 2022 14:08:00          xkluka00                       	bool operator<(const CStack& aStack) const;
+   315     2070 2. 12. 2022 13:26:47           xkluka00                       
+   316     2414 11. 12. 2022 14:08:00          xkluka00                       	/** \brief Relational Operator >
+   317     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \details Comparison of two stacks using CompareDeep() method.
+   318     3692 30. 12. 2022 14:07:18          xpesek13                       	 *	param[in]	aStack	CStack to be compared with
+   319     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \author Pesek
+   320     2414 11. 12. 2022 14:08:00          xkluka00                       	 */
+   321     2414 11. 12. 2022 14:08:00          xkluka00                       	bool operator>(const CStack& aStack) const;
+   322     2070 2. 12. 2022 13:26:47           xkluka00                       
+   323     2070 2. 12. 2022 13:26:47           xkluka00                       #endif /* CBLOCK_THREE_WAY_COMPARISON */
+   324     2070 2. 12. 2022 13:26:47           xkluka00                       
+   325     2772 17. 12. 2022 19:03:01          xkluka00                       	/** \brief Output to the stream operator (\em serialization)
+   326     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \param[in]	aOStream	Output stream
+   327     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \param[in]	aStack	Serialized instantion of CBlock
+   328     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \return Return \c std::ostream with serialized Value
+   329     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \author Majnus
+   330     2414 11. 12. 2022 14:08:00          xkluka00                       	 */
+   331     2656 15. 12. 2022 20:57:32          xmajnu01                       	friend std::ostream& operator<<(std::ostream& aOStream, const CStack& aStack);
+   332     2070 2. 12. 2022 13:26:47           xkluka00                       
+   333     2772 17. 12. 2022 19:03:01          xkluka00                       	/** \brief Input from the stream operator (\em deserialization)
+   334     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \param[in]	aIStream	Input stream
+   335     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \param[out]	aStack	Place for deserialized instantion of CBlock
+   336     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \return Return rest of \c std::istream
+   337     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \author Majnus
+   338     2414 11. 12. 2022 14:08:00          xkluka00                       	 */
+   339     2656 15. 12. 2022 20:57:32          xmajnu01                       	friend std::istream& operator>>(std::istream& aIStream, CStack & aStack);
+   340     2070 2. 12. 2022 13:26:47           xkluka00                       		
+   341     2414 11. 12. 2022 14:08:00          xkluka00                       	// CStack characteristic methods
+   342     2414 11. 12. 2022 14:08:00          xkluka00                       	/** \brief Method aaa.Reverzuj 
+   343     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \details Reversion of all CBlocks in Stack.
+   344     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \author Kluka
+   345     2414 11. 12. 2022 14:08:00          xkluka00                       	 */
+   346     2674 15. 12. 2022 23:07:57          xkluka00                       	CStack& Reverzuj();
+   347     2070 2. 12. 2022 13:26:47           xkluka00                       
+   348     2430 11. 12. 2022 21:44:22          xkluka00                       	/** \brief Function Reverzuj(aaa)
+   349     2430 11. 12. 2022 21:44:22          xkluka00                       	 *  \details Leaves the aaa Stack unchanged and returns (temp object) the reversed bbb Stack. 
+   350     2430 11. 12. 2022 21:44:22          xkluka00                       	 *  \author Prasek
+   351     2430 11. 12. 2022 21:44:22          xkluka00                       	 */
+   352     2430 11. 12. 2022 21:44:22          xkluka00                       	friend CStack Reverzuj(CStack aValue);
+   353     2070 2. 12. 2022 13:26:47           xkluka00                       
+   354     2430 11. 12. 2022 21:44:22          xkluka00                       	/** \brief Stack Push
+   355     2430 11. 12. 2022 21:44:22          xkluka00                       	 *  \details Pushes a CBlock element on top of the Stack.
+   356     2430 11. 12. 2022 21:44:22          xkluka00                       	 *	\param[in]	aValue	Reference to a value to be pushed onto the stack
+   357     2430 11. 12. 2022 21:44:22          xkluka00                       	 *	\return Returns used stack.
+   358     2829 18. 12. 2022 13:34:05          xkluka00                       	 *  \authors Prasek, Pesek
+   359     3141 21. 12. 2022 0:38:53           xkluka00                       *	 *  \attention Helped Kluka
+   360     2430 11. 12. 2022 21:44:22          xkluka00                       	 */
+   361     2715 16. 12. 2022 21:36:34          xkluka00                       	///\bugfix[Hla] proc tato metoda vraci CStack&? - v docasnom CBlocku vznikne novy node na zaklade aValue a ten je priradeny na *this->iTop, ktore posleme dalej na spracovanie dalsim metodam.. nie som originalny autor tejto metody, skor by vedeli kolegovia.. - Kluka
+   362     2430 11. 12. 2022 21:44:22          xkluka00                       	CStack& Push(const CBlock& aValue);
+   363     2418 11. 12. 2022 15:25:48          xprase08                       
+   364     2414 11. 12. 2022 14:08:00          xkluka00                       	/** \brief Stack Pop
+   365     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \details Removes a CBlock element from top of the Stack.
+   366     2414 11. 12. 2022 14:08:00          xkluka00                       	 *	\return Returns used stack.
+   367     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \authors Prasek, Pesek
+   368     3141 21. 12. 2022 0:38:53           xkluka00                       	 *	\attention Helped Kluka
+   369     2414 11. 12. 2022 14:08:00          xkluka00                       	 */
+   370     2715 16. 12. 2022 21:36:34          xkluka00                       	 ///\bugfix[Hla] proc tato metoda vraci CStack&? - opat vraciame *this po odstraneni posledneho prvku v zasobniku.. pre viac info vid kod kolegov - Kluka
+   371     2715 16. 12. 2022 21:36:34          xkluka00                       	CStack& Pop();
+   372     2070 2. 12. 2022 13:26:47           xkluka00                       
+   373     2414 11. 12. 2022 14:08:00          xkluka00                       	/** \brief Stack Top
+   374     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \details Returns an element from top of the Stack.
+   375     2688 16. 12. 2022 11:42:13          xprase08                       	 *	\return Returns CBlock element from top of the Stack.
+   376     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \authors Prasek, Pesek
+   377     2414 11. 12. 2022 14:08:00          xkluka00                       	 */
+   378     2688 16. 12. 2022 11:42:13          xprase08                       	 ///\bugfix[Hla] proc tato metoda vraci CStack nema zde byt spise CBlock - Opraveno.. nyni vraci CBlock* - Pesek,Prasek
+   379     2484 13. 12. 2022 18:18:15          xpesek13                       	CBlock* Top() const;
+   380     2070 2. 12. 2022 13:26:47           xkluka00                       
+   381     2414 11. 12. 2022 14:08:00          xkluka00                       	/** \brief Stack Bottom
+   382     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \details Returns an element from bottom of the Stack.
+   383     2688 16. 12. 2022 11:42:13          xprase08                       	 *	\return Returns CBlock element from bottom of the Stack.
+   384     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \authors Majnus
+   385     2414 11. 12. 2022 14:08:00          xkluka00                       	 */
+   386     2490 13. 12. 2022 21:34:05          xmajnu01                       	CBlock* Bottom() const;
+   387     2386 10. 12. 2022 1:08:18           xkluka00                       
+   388     2414 11. 12. 2022 14:08:00          xkluka00                       	/** \brief Stack Search
+   389     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \details Determines if the searched value is in the Stack.
+   390     2414 11. 12. 2022 14:08:00          xkluka00                       	 *	\param[in]	aValue	Reference to a value to be searched for
+   391     2414 11. 12. 2022 14:08:00          xkluka00                       	 *	\return Returns true if the value was found or false if the value was not found.
+   392     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \authors Prasek, Pesek
+   393     2891 19. 12. 2022 0:46:27           xkluka00                       	 *	\attention Helped Kluka - fixed while cycle, just a little tweak.
+   394     2414 11. 12. 2022 14:08:00          xkluka00                       	 */
+   395     2414 11. 12. 2022 14:08:00          xkluka00                       	bool Search(const CBlock &aValue) const;
+   396     2070 2. 12. 2022 13:26:47           xkluka00                       
+   397     2414 11. 12. 2022 14:08:00          xkluka00                       	/** \brief Stack Dup
+   398     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \details Duplicates an existing Stack.
+   399     3203 21. 12. 2022 14:26:58          xpesek13                       	 *	\return Returns duplicate of Stack
+   400     2829 18. 12. 2022 13:34:05          xkluka00                       	 *  \authors Prasek, Pesek
+   401     2414 11. 12. 2022 14:08:00          xkluka00                       	 */
+   402     3203 21. 12. 2022 14:26:58          xpesek13                       	CStack Dup() const;
+   403     2070 2. 12. 2022 13:26:47           xkluka00                       
+   404     2134 2. 12. 2022 18:09:24           xpesek13                       #ifdef CSTACK_TEST_API
+   405     2134 2. 12. 2022 18:09:24           xpesek13                       
+   406     2882 18. 12. 2022 22:12:02          xpesek13                       	/** \brief Array of CBlock for testing
+   407     3458 21. 12. 2022 23:29:53          xkluka00                       	 *	\details array of n CBlock elements which are created using CBlock default constructorn
+   408     3458 21. 12. 2022 23:29:53          xkluka00                       	 *	\param[in]	n	Number of CBlock elements inside array
+   409     3458 21. 12. 2022 23:29:53          xkluka00                       	 *  \return Return an array of n CBlock elementsn
+   410     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \author Pesek
+   411     2414 11. 12. 2022 14:08:00          xkluka00                       	 *  \note Useful for automated testing of CStack functionality.
+   412     2414 11. 12. 2022 14:08:00          xkluka00                       	 */
+   413     2484 13. 12. 2022 18:18:15          xpesek13                       	static CBlock* TestValue0(const size_t n)
+   414     2414 11. 12. 2022 14:08:00          xkluka00                       		{
+   415     2414 11. 12. 2022 14:08:00          xkluka00                       		CBlock* aArray = (CBlock*)malloc(sizeof(CBlock) * n);
+   416     3215 21. 12. 2022 14:55:35          xpesek13                       		if(!aArray)
+   417     3215 21. 12. 2022 14:55:35          xpesek13                       			{
+   418     3458 21. 12. 2022 23:29:53          xkluka00                       			throw("Error: Error while allocating memory using malloc");
+   419     3215 21. 12. 2022 14:55:35          xpesek13                       			}
+   420     3215 21. 12. 2022 14:55:35          xpesek13                       
+   421     2462 13. 12. 2022 0:12:52           xpesek13                       		for (size_t i = 0; i < n; ++i)
+   422     2386 10. 12. 2022 1:08:18           xkluka00                       			{
+   423     2414 11. 12. 2022 14:08:00          xkluka00                       			aArray[i] = CBlock();
+   424     2414 11. 12. 2022 14:08:00          xkluka00                       			}
+   425     2227 4. 12. 2022 11:32:33           xpesek13                       
+   426     2484 13. 12. 2022 18:18:15          xpesek13                       		return aArray;
+   427     2414 11. 12. 2022 14:08:00          xkluka00                       		}
+   428     2462 13. 12. 2022 0:12:52           xpesek13                       
+   429     2882 18. 12. 2022 22:12:02          xpesek13                       	/** \brief Array of CBlock for testing
+   430     3458 21. 12. 2022 23:29:53          xkluka00                       	 *	\details array of n CBlock elements which are created using CBlock random test value method.
+   431     3458 21. 12. 2022 23:29:53          xkluka00                       	 *	\param[in]	n	Number of CBlock elements inside array
+   432     3458 21. 12. 2022 23:29:53          xkluka00                       	 *  \return Return an array of n CBlock elements.
+   433     2882 18. 12. 2022 22:12:02          xpesek13                       	 *  \author Pesek
+   434     2882 18. 12. 2022 22:12:02          xpesek13                       	 *  \note Useful for automated testing of CStack functionality.
+   435     2882 18. 12. 2022 22:12:02          xpesek13                       	 */
+   436     2844 18. 12. 2022 15:17:14          xpesek13                       	static CBlock* TestValueRandom(const size_t n)
+   437     3458 21. 12. 2022 23:29:53          xkluka00                       		{
+   438     2844 18. 12. 2022 15:17:14          xpesek13                       		CBlock* aArray = (CBlock*)malloc(sizeof(CBlock) * n);
+   439     2844 18. 12. 2022 15:17:14          xpesek13                       
+   440     2844 18. 12. 2022 15:17:14          xpesek13                       		for (size_t i = 0; i < n; ++i)
+   441     3494 21. 12. 2022 23:56:29          xkluka00                       			{
+   442     2844 18. 12. 2022 15:17:14          xpesek13                       			aArray[i] = static_cast<CBlock>(CBlock::TestValueRandom());
+   443     3494 21. 12. 2022 23:56:29          xkluka00                       			}
+   444     2844 18. 12. 2022 15:17:14          xpesek13                       
+   445     2844 18. 12. 2022 15:17:14          xpesek13                       		return aArray;
+   446     3494 21. 12. 2022 23:56:29          xkluka00                       		}
+   447     2844 18. 12. 2022 15:17:14          xpesek13                       
+   448     2222 3. 12. 2022 13:51:01           xpesek13                       #endif
+   449     2134 2. 12. 2022 18:09:24           xpesek13                       
+   450     2357 8. 12. 2022 22:20:29           xprase08                       ///\bugfix[Hla] Postradam neclenskou funkci Reverzuj!!! Je to ta stejna metoda jako Reverse??? - Ano, je to to stejne, Reverse prejmenovano na Reverzuj - Prasek
+   451     2222 3. 12. 2022 13:51:01           xpesek13                       
+   452     2134 2. 12. 2022 18:09:24           xpesek13                       		}; /* class CStack */
+   453     2070 2. 12. 2022 13:26:47           xkluka00                       #endif /* CSTACK_H */

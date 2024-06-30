@@ -1,0 +1,10 @@
+/** \file CZasobnik.cpp
+ *  \brief CZasobnik class implementation
+ *  \details File contain CZasobnik class container implementation.
+ *  \authors 
+ *  \version 0.0.1
+ *  $Id$
+*/
+
+#include "CZasobnik.h"
+

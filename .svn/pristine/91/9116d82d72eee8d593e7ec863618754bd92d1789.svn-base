@@ -1,0 +1,929 @@
+#include "CBlockUnitTests.h"
+
+using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+
+namespace UnitTests
+	{
+	TEST_CLASS(UnitTests)
+	{
+	public:
+	// c'tors
+		/*	Default c'tor
+		 *	author Majnus
+		 */
+		TEST_METHOD(CStack_default_ctor)
+			{
+			const size_t alloc_count_before = get_alloc_count();
+			const size_t dealloc_count_before = get_dealloc_count();
+			const size_t realloc_count_before = get_realloc_count();
+			const ptrdiff_t living_before = ClassInfo<CStack>::Living();
+			CStack val0;
+			const ptrdiff_t living_after = ClassInfo<CStack>::Living();
+			const size_t alloc_count_after = get_alloc_count();
+			const size_t dealloc_count_after = get_dealloc_count();
+			const size_t realloc_count_after = get_realloc_count();
+			Assert::IsTrue(living_before + 1 == living_after, L"Wrong number of instances", LINE_INFO());
+			Assert::AreEqual(alloc_count_before, alloc_count_after, L"Default c'tor allocate", LINE_INFO());
+			Assert::AreEqual(dealloc_count_before, dealloc_count_after, L"Default c'tor deallocate", LINE_INFO());
+			Assert::AreEqual(realloc_count_before, realloc_count_after, L"Default c'tor reallocate", LINE_INFO());
+			CStack val1;
+			Assert::IsTrue(val1.ID() > val0.ID(), L"Wrong ClassInfo ID initialization", LINE_INFO());
+			}
+
+		/**
+		 \test **Test of CBlock conversion c'tor**. **Author:** `Kluka`.
+		  - Instance can be correctly inicialized with `CBlock::TestValue0` and `CBlock::TestValue0`
+		  - Counter `ClassInfo::Living` was incremented
+		  - Each new CBlock instance have unique `ClassInfo::ID`
+		  - C'tor allocate, reallocate od deallocate dynamic memory if it was defined by `KCBlock_allocate` predicate
+		  - Destruction of constructed instance deallocate memory if it was defined by `KCBlock_allocate` predicate
+		  - Destruction of constructed instance decrement counter `ClassInfo::Living`
+		  */
+		TEST_METHOD(CStack_bloc_conv_ctor)
+			{
+			size_t allocsize_before = get_alloc_actual_size();
+			ptrdiff_t living_before = ClassInfo<CStack>::Living();
+			ptrdiff_t living_after;
+			size_t allocsize_after;
+				{
+				const CBlock val0(CBlock::TestValue0());
+				const CBlock val1(CBlock::TestValue1());
+
+				const CStack stack0(val0);
+				const CStack stack1(val1);
+
+				living_after = ClassInfo<CStack>::Living();
+				allocsize_after = get_alloc_actual_size();
+				Assert::IsTrue(CBlock::TestValue0() == val0.Value(), L"Wrong value", LINE_INFO());
+				Assert::IsTrue(CBlock::TestValue1() == val1.Value(), L"Wrong value", LINE_INFO());
+				Assert::IsFalse(val0.Value() == val1.Value(), L"Wrong value", LINE_INFO());
+				Assert::IsTrue(living_before + 2 == living_after, L"Wrong number of instances", LINE_INFO());
+				Assert::IsTrue(val1.ID() > val0.ID(), L"Wrong ClassInfo ID initialization", LINE_INFO());
+				Assert::IsTrue(stack1.ID() > stack0.ID(), L"Wrong ClassInfo ID initialization", LINE_INFO());
+				if constexpr(KCBlock_allocate)
+					Assert::IsTrue(allocsize_before < allocsize_after, L"No memory allocation", LINE_INFO());
+				}
+			ptrdiff_t living_after2 = ClassInfo<CStack>::Living();
+			size_t allocsize_after2 = get_alloc_actual_size();
+			Assert::IsTrue(living_before == living_after2, L"Wrong number of instances", LINE_INFO());
+			Assert::AreEqual(allocsize_before, allocsize_after2, L"Memory leaking", LINE_INFO());
+			}
+
+		/*	Copy c'tor
+		 *	author Majnus
+		 */
+		TEST_METHOD(CStack_copy_ctor)
+			{
+			CBlock CBlockVal0(CBlock::TestValue0());
+			CBlock CBlockVal1(CBlock::TestValue1());
+			CStack stack1;
+
+			stack1.Push(CBlockVal1);
+			stack1.Push(CBlockVal1);
+
+			CStack stack2(stack1);
+			
+			while (stack1.Top() != nullptr)
+				{
+				Assert::IsTrue(stack1.Top()->Value() == stack2.Top()->Value(), L"Copy isnt the same!", LINE_INFO());
+				stack1.Pop();
+				stack2.Pop();
+				}
+			}
+
+		/*	String conversion c'tor
+		 *	author Kluka
+		 */
+		TEST_METHOD(CStack_str_conv_ctor)
+			{
+			size_t allocsize_before = get_alloc_actual_size();
+			ptrdiff_t living_before = ClassInfo<CStack>::Living();
+			ptrdiff_t living_after;
+			size_t allocsize_after;
+				{
+				const CBlock val0(CBlock::TestValue0());
+				const CBlock val1(CBlock::TestValue1());
+
+				const CStack stack0("("+CBlock::TestStringValue0()+")");
+				const CStack stack1("("+CBlock::TestStringValue1()+")");
+
+				living_after = ClassInfo<CStack>::Living();
+				allocsize_after = get_alloc_actual_size();
+				Assert::IsTrue(stack0.Top()->Value() == val0.Value(), L"Value isn't same", LINE_INFO());
+				Assert::IsTrue(stack1.Top()->Value() == val1.Value(), L"Value isn't same", LINE_INFO());
+				Assert::IsFalse(val0.Value() == val1.Value(), L"Wrong value", LINE_INFO());
+				Assert::IsTrue(living_before + 2 == living_after, L"Wrong number of instances", LINE_INFO());
+				Assert::IsTrue(stack1.ID() > stack0.ID(), L"Wrong ClassInfo ID initialization", LINE_INFO());
+				Assert::IsTrue(allocsize_before < allocsize_after, L"No memory allocation", LINE_INFO());
+				}
+			ptrdiff_t living_after2 = ClassInfo<CStack>::Living();
+			size_t allocsize_after2 = get_alloc_actual_size();
+			Assert::IsTrue(living_before == living_after2, L"Wrong number of instances", LINE_INFO());
+			Assert::AreEqual(allocsize_before, allocsize_after2, L"Memory leaking", LINE_INFO());
+			}
+
+		/*	CBlock conversion c'tor from array of known size
+		 *	author Pesek
+		 */
+		TEST_METHOD(CStack_array_conv_ctor)
+			{
+			size_t allocsize_before = get_alloc_actual_size();
+			ptrdiff_t living_before = ClassInfo<CStack>::Living();
+			ptrdiff_t living_after;
+			size_t allocsize_after;
+				{
+				CBlock* iArray3 = CStack::TestValue0(3);
+				CBlock* iArray4 = CStack::TestValue0(4);
+
+				const CStack val03 = CStack(3, iArray3);
+				const CStack val04 = CStack(4, iArray4);
+
+				free(iArray3);
+				free(iArray4);
+
+				living_after = ClassInfo<CStack>::Living();
+				allocsize_after = get_alloc_actual_size();
+
+				Assert::IsTrue(val03.PocetPrvku() == 3, L"Wrong size of Stack", LINE_INFO());
+				Assert::IsTrue(val04.PocetPrvku() == 4, L"Wrong size of Stack", LINE_INFO());
+				Assert::IsTrue(living_before + 2 == living_after, L"Wrong number of instances", LINE_INFO());
+				Assert::IsTrue(val04.ID() > val03.ID(), L"Wrong ClassInfo ID initialization", LINE_INFO());
+				Assert::IsTrue(allocsize_before < allocsize_after, L"No memory allocation", LINE_INFO());
+				}
+			ptrdiff_t living_after2 = ClassInfo<CStack>::Living();
+			size_t allocsize_after2 = get_alloc_actual_size();
+			Assert::IsTrue(living_before == living_after2, L"Wrong number of instances", LINE_INFO());
+			Assert::AreEqual(allocsize_before, allocsize_after2, L"Memory leaking", LINE_INFO());
+			}
+
+		/*	Conversion c'tor from init list
+		 *	author Prasek
+		 */
+		TEST_METHOD(CStack_initl_conv_ctor)
+			{
+			size_t allocsize_before = get_alloc_actual_size();
+			ptrdiff_t living_before = ClassInfo<CStack>::Living();
+			ptrdiff_t living_after;
+			size_t allocsize_after;
+				{
+				const CBlock val0(CBlock::TestValue0());
+				const CBlock val1(CBlock::TestValue1());
+				CStack const stack = { val0, val1 };
+
+				living_after = ClassInfo<CStack>::Living();
+				allocsize_after = get_alloc_actual_size();
+				
+				Assert::IsTrue(stack.PocetPrvku() == 2, L"Wrong size of Stack", LINE_INFO());
+				Assert::IsTrue(stack.Top()->Value() == val1.Value(), L"Wrong element on top of Stack", LINE_INFO());
+				Assert::IsTrue(stack.Bottom()->Value() == val0.Value(), L"Wrong element on bottom of Stack", LINE_INFO());
+				Assert::IsTrue(living_before + 1 == living_after, L"Wrong number of instances", LINE_INFO());
+			
+				if constexpr (KCBlock_allocate)
+					Assert::IsTrue(allocsize_before < allocsize_after, L"No memory allocation", LINE_INFO());
+				}
+			ptrdiff_t living_after1 = ClassInfo<CStack>::Living();
+			size_t allocsize_after1 = get_alloc_actual_size();
+			Assert::IsTrue(living_before == living_after1, L"Wrong number of instances", LINE_INFO());
+			Assert::AreEqual(allocsize_before, allocsize_after1, L"Memory leaking", LINE_INFO());
+			}
+
+		/*	Conversion c'tor of type size_t
+		 *	author Prasek
+		 */
+		TEST_METHOD(CStack_sizet_conv_ctor)
+			{
+			size_t allocsize_before = get_alloc_actual_size();
+			ptrdiff_t living_before = ClassInfo<CStack>::Living();
+			ptrdiff_t living_after;
+			size_t allocsize_after;
+				{
+				CStack stack(3);
+				living_after = ClassInfo<CStack>::Living();
+				allocsize_after = get_alloc_actual_size();
+
+				Assert::IsTrue(stack.PocetPrvku() == 3, L"Wrong size of Stack", LINE_INFO());
+				Assert::IsTrue(living_before + 1 == living_after, L"Wrong number of instances", LINE_INFO());
+
+				if constexpr (KCBlock_allocate)
+					Assert::IsTrue(allocsize_before < allocsize_after, L"No memory allocation", LINE_INFO());
+				}
+			ptrdiff_t living_after1 = ClassInfo<CStack>::Living();
+			size_t allocsize_after1 = get_alloc_actual_size();
+			Assert::IsTrue(living_before == living_after1, L"Wrong number of instances", LINE_INFO());
+			Assert::AreEqual(allocsize_before, allocsize_after1, L"Memory leaking", LINE_INFO());
+			}
+
+	// d'tor
+		/*	Destructor
+		 *	author Majnus
+		 */
+		TEST_METHOD(CStack_dtor)
+			{
+			size_t alocbefore1 = get_alloc_actual_size();
+			CBlock CBlockVal0(CBlock::TestValue1());
+			CBlock CBlockVal1(CBlock::TestValue1());
+			CStack stack1;
+
+			stack1.Push(CBlockVal1);
+			stack1.Push(CBlockVal1);
+			stack1.Push(CBlockVal1);
+			stack1.Push(CBlockVal1);
+			stack1.Push(CBlockVal1);
+
+			auto pocet1 = stack1.PocetPrvku();
+			auto living1 = stack1.Actual();
+
+			stack1.Destroy();
+
+			auto pocet12 = stack1.PocetPrvku();
+			auto living12 = stack1.Actual();
+
+			size_t alocafter1 = get_alloc_actual_size();
+
+			Assert::IsTrue(pocet12 == 0, L"Memory leaking for stack with more than 1 element", LINE_INFO());
+			Assert::IsTrue(stack1.Bottom() == nullptr, L"Bottom is not nullptr for stack with more than 1 element", LINE_INFO());
+			Assert::IsTrue(stack1.Top() == nullptr, L"Top is not nullptr for stack with more than 1 element", LINE_INFO());
+			Assert::IsTrue(living1 == living12, L"Number of instances are not the same for stack with more than 1 element", LINE_INFO());
+			Assert::AreEqual(alocbefore1, alocafter1, L"Number of instances are not the same for stack with more than 1 element", LINE_INFO());
+
+			size_t alocbefore2 = get_alloc_actual_size();
+
+			CStack stack2;
+
+			stack2.Push(CBlockVal1);
+
+			auto pocet2 = stack1.PocetPrvku();
+			auto living2 = stack1.Actual();
+
+			stack2.Destroy();
+
+			auto pocet22 = stack1.PocetPrvku();
+			auto living22 = stack1.Actual();
+
+			size_t alocafter2 = get_alloc_actual_size();
+			Assert::IsTrue(pocet22 == 0, L"Memory leaking for stack with 1 element", LINE_INFO());
+			Assert::IsTrue(stack1.Bottom() == nullptr, L"Bottom is not nullptr for stack with 1 element", LINE_INFO());
+			Assert::IsTrue(stack1.Top() == nullptr, L"Top is not nullptr for stack with 1 element", LINE_INFO());
+			Assert::IsTrue(living2 == living22, L"Number of instances are not the same for stack with 1 element", LINE_INFO());
+			Assert::AreEqual(alocbefore2, alocafter2, L"Number of instances are not the same for stack with 1 element", LINE_INFO());
+
+			size_t alocbefore3 = get_alloc_actual_size();
+			
+			CStack stack3;
+
+			auto pocet3 = stack1.PocetPrvku();
+			auto living3 = stack1.Actual();
+
+			stack2.Destroy();
+
+			auto pocet32 = stack1.PocetPrvku();
+			auto living32 = stack1.Actual();
+
+			size_t alocafter3 = get_alloc_actual_size();
+			Assert::IsTrue(pocet32 == 0, L"Memory leaking for stack without element", LINE_INFO());
+			Assert::IsTrue(stack1.Bottom() == nullptr, L"Bottom is not nullptr for stack without element", LINE_INFO());
+			Assert::IsTrue(stack1.Top() == nullptr, L"Top is not nullptr for stack without element", LINE_INFO());
+			Assert::IsTrue(living3 == living32, L"Number of instances are not the same for stack without element", LINE_INFO());
+			Assert::AreEqual(alocbefore2, alocafter2, L"Number of instances are not the same for stack without element", LINE_INFO());
+			}
+
+	// unary operators
+		/*	Unary Operator +
+		 *	author Pesek
+		 */
+		TEST_METHOD(CStack_unary_plus)
+			{
+			size_t allocsize_before = get_alloc_actual_size();
+			ptrdiff_t living_before = ClassInfo<CStack>::Living();
+			ptrdiff_t living_after;
+			size_t allocsize_after;
+				{
+				CBlock* iArray = CStack::TestValueRandom(2);
+				CStack Stack = CStack(2, iArray);
+				free(iArray);
+				CStack Stack1 = +Stack;
+
+				allocsize_after = get_alloc_actual_size();
+				living_after = ClassInfo<CStack>::Living();
+
+				Assert::IsTrue(Stack == Stack1, L"Wrong Stack value returned by unary operator+", LINE_INFO());
+				Assert::IsTrue(living_before + 2 == living_after, L"Wrong number of instances", LINE_INFO());
+				Assert::IsTrue(allocsize_before < allocsize_after, L"No memory allocated", LINE_INFO());
+				}
+			allocsize_after = get_alloc_actual_size();
+			living_after = ClassInfo<CStack>::Living();
+			Assert::IsTrue(living_before == living_after, L"Wrong number of instances", LINE_INFO());
+			Assert::IsTrue(allocsize_before == allocsize_after, L"No memory allocated", LINE_INFO());
+			}
+
+		/*	Unary Operator -
+		 *	author Kluka
+		 */
+		TEST_METHOD(CStack_unary_minus)
+			{
+			size_t allocsize_before = get_alloc_actual_size();
+			ptrdiff_t living_before = ClassInfo<CStack>::Living();
+			ptrdiff_t living_after;
+			size_t allocsize_after;
+				{
+				const CBlock val0(CBlock::TestValue0());
+				const CBlock val1(CBlock::TestValue1());
+
+				CStack stack0;
+				CStack stack1;
+
+				living_after = ClassInfo<CStack>::Living();
+				allocsize_after = get_alloc_actual_size();
+
+				stack0.Push(val0);
+				stack0.Push(val0);
+				stack0.Push(val1);
+
+				stack1.Push(val0);
+				stack1.Push(val0);
+				stack1.Push(val1);
+
+				size_t ID_before = stack1.ID();
+
+				Assert::IsTrue(CBlock::TestValue0() == val0.Value(), L"Wrong value", LINE_INFO());
+				Assert::IsTrue(living_before + 2 == living_after, L"Wrong number of instances", LINE_INFO());
+				Assert::IsTrue(stack0.Top()->Value() == stack1.Top()->Value(), L"Stacks are not the same", LINE_INFO());
+				Assert::IsFalse(stack0 < stack1, L"Must be false", LINE_INFO());
+				Assert::IsTrue(stack1.ID() > stack0.ID(), L"Wrong ClassInfo ID initialization", LINE_INFO());
+
+				-stack0;
+
+				ptrdiff_t living_after2 = ClassInfo<CStack>::Living();
+				size_t allocsize_after2 = get_alloc_actual_size();
+				Assert::IsTrue(living_after == living_after2, L"Wrong number of instances", LINE_INFO());
+				Assert::IsFalse(stack0.Top()->Value() == stack1.Top()->Value(), L"Stacks are the same", LINE_INFO());
+				Assert::IsFalse(stack0 < stack1, L"Must be false", LINE_INFO());
+				if constexpr(KCBlock_allocate)
+					Assert::IsTrue(allocsize_before < allocsize_after, L"No memory allocation", LINE_INFO());
+				else
+					Assert::IsTrue(allocsize_before == allocsize_after, L"Memory allocated", LINE_INFO());
+				if constexpr(KCBlock_allocate)
+					Assert::IsTrue(allocsize_before == allocsize_after2, L"Memory allocated", LINE_INFO());
+				}
+			ptrdiff_t living_after3 = ClassInfo<CStack>::Living();
+			size_t allocsize_after3 = get_alloc_actual_size();
+			Assert::IsTrue(living_before == living_after3, L"Wrong number of instances", LINE_INFO());
+			Assert::AreEqual(allocsize_before, allocsize_after3, L"Memory leaking", LINE_INFO());
+			}
+
+		/*	Unary Operator ++
+		 *	author Prasek
+		 */
+		TEST_METHOD(CStack_unary_plus_plus)
+			{
+			size_t allocsize_before = get_alloc_actual_size();
+			size_t allocsize_after;
+
+			CStack stack;
+			allocsize_after = get_alloc_actual_size();
+			Assert::IsTrue(stack.PocetPrvku() == 0, L"Wrong size of Stack", LINE_INFO());
+			++stack;
+			Assert::IsTrue(stack.PocetPrvku() == 1, L"Wrong size of Stack", LINE_INFO());
+
+			if constexpr (KCBlock_allocate)
+				Assert::IsTrue(allocsize_before < allocsize_after, L"No memory allocation", LINE_INFO());
+			else
+				Assert::IsTrue(allocsize_before == allocsize_after, L"Memory allocated", LINE_INFO());
+			}
+
+		/*	Unary Operator --
+		 *	author Kluka
+		 */
+		TEST_METHOD(CStack_unary_minus_minus)
+			{
+			size_t allocsize_before = get_alloc_actual_size();
+			ptrdiff_t living_before = ClassInfo<CStack>::Living();
+			ptrdiff_t living_after;
+			size_t allocsize_after;
+				{
+				CBlock val0(CBlock::TestValue0());
+				CBlock val1(CBlock::TestValue1());
+
+				CStack stack0;
+				living_after = ClassInfo<CStack>::Living();
+				allocsize_after = get_alloc_actual_size();
+
+				stack0.Push(val0);
+				stack0.Push(val1);
+
+				size_t stack_size = stack0.PocetPrvku();
+				Assert::IsTrue(CBlock::TestValue0() == val0.Value(), L"Wrong value", LINE_INFO());
+				Assert::IsTrue(CBlock::TestValue1() == val1.Value(), L"Value isn't same", LINE_INFO());
+				Assert::IsTrue(stack0.Top()->Value() == val1.Value(), L"Wrong value", LINE_INFO());
+				Assert::IsFalse(val0.Value() == val1.Value(), L"Wrong value", LINE_INFO());
+				Assert::IsTrue(stack_size == 2, L"Wrong number of instances", LINE_INFO());
+				Assert::IsTrue(living_before + 1 == living_after, L"Wrong number of instances", LINE_INFO());
+
+				--stack0;
+
+				stack_size = stack0.PocetPrvku();
+				living_after = ClassInfo<CStack>::Living();
+				Assert::IsTrue(CBlock::TestValue0() == val0.Value(), L"Wrong value", LINE_INFO());
+				Assert::IsTrue(stack_size == 1, L"Wrong number of instances", LINE_INFO());
+				Assert::IsTrue(living_before + 1 == living_after, L"Wrong number of instances", LINE_INFO());
+				if constexpr(KCBlock_allocate)
+					Assert::IsTrue(allocsize_before < allocsize_after, L"No memory allocation", LINE_INFO());
+				else
+					Assert::IsTrue(allocsize_before == allocsize_after, L"Memory allocated", LINE_INFO());
+				}
+			ptrdiff_t living_after3 = ClassInfo<CStack>::Living();
+			size_t allocsize_after3 = get_alloc_actual_size();
+			Assert::IsTrue(living_before == living_after3, L"Wrong number of instances", LINE_INFO());
+			Assert::AreEqual(allocsize_before, allocsize_after3, L"Memory leaking", LINE_INFO());
+			}
+
+	// binary operators
+		/*	Binary Operator +
+		 *	author Majnus
+		 */
+		TEST_METHOD(CStack_binary_plus)
+			{
+			CBlock CBlockVal0(CBlock::TestValue0());
+			CBlock CBlockVal1(CBlock::TestValue1());
+
+			CStack stack, stack1, newstack;
+
+			stack.Push(CBlockVal0);
+			stack.Push(CBlockVal1);
+
+			stack1.Push(CBlockVal1);
+			stack1.Push(CBlockVal0);
+
+			newstack = stack + stack1;
+
+			Assert::IsTrue(stack.PocetPrvku() + stack1.PocetPrvku() == newstack.PocetPrvku(), L"Wrong number of instances - push or push in method is not working correctly", LINE_INFO());
+
+			auto *tmp = newstack.Bottom();
+			Assert::IsTrue(*tmp == CBlockVal0, L"Value is not the same as pushed value", LINE_INFO());
+
+			tmp = static_cast<CBlock *>(tmp->PrevItem());
+			Assert::IsTrue(*tmp == CBlockVal1, L"Value is not the same as pushed value", LINE_INFO());
+
+			tmp = static_cast<CBlock *>(tmp->PrevItem());
+			Assert::IsTrue(*tmp == CBlockVal1, L"Value is not the same as pushed value", LINE_INFO());
+
+			tmp = static_cast<CBlock *>(tmp->PrevItem());
+			Assert::IsTrue(*tmp == CBlockVal0, L"Value is not the same as pushed value", LINE_INFO());
+			}
+
+		/*	Binary Operator =
+		 *	author Majnus
+		 */
+		TEST_METHOD(CStack_binary_assign)
+			{
+			CBlock CBlockVal0(CBlock::TestValue0());
+			CBlock CBlockVal1(CBlock::TestValue1());
+
+			
+			CStack stack, stack1;
+			stack.Push(CBlockVal0);
+
+			stack.Push(CBlockVal1);
+			stack.Push(CBlockVal1);
+			stack.Push(CBlockVal1);
+
+			stack1.Push(CBlockVal1);
+			stack1.Push(CBlockVal0);
+			stack1.Push(CBlockVal1);
+
+			stack = stack1;
+
+			Assert::IsTrue(stack.PocetPrvku() == 3, L"Wrong number of instances", LINE_INFO());
+
+			auto *tmp = stack1.Bottom();
+
+			Assert::IsTrue(*tmp == CBlockVal1, L"Value is not the same as pushed value", LINE_INFO());
+
+			tmp = static_cast<CBlock *>(stack.Bottom()->PrevItem());
+			Assert::IsTrue(*tmp == CBlockVal0, L"Value is not the same as pushed value", LINE_INFO());
+
+			tmp = static_cast<CBlock *>(tmp->PrevItem());
+			Assert::IsTrue(*tmp == CBlockVal1, L"Value is not the same as pushed value", LINE_INFO());
+			}
+
+		/*	Binary non-member Operator+ (CBlock + CStack)
+		 *	author Pesek
+		 */
+		TEST_METHOD(CStack_binary_nonmem_CBlock_plus_CStack)
+			{
+			size_t allocsize_before = get_alloc_actual_size();
+			ptrdiff_t living_CStack_before = ClassInfo<CStack>::Living();
+			ptrdiff_t living_CStack_after;
+			size_t allocsize_after;
+
+			ptrdiff_t living_CBlock_before = ClassInfo<CBlock>::Living();
+			ptrdiff_t living_CBlock_after;
+				{
+				CBlock Block0(CBlock::TestValue0());
+				CBlock Block1(CBlock::TestValue1());
+				CStack Stack = CStack(Block0);
+
+				size_t old_Stack_size = Stack.PocetPrvku();
+
+				Stack = Block1 + Stack;
+
+				living_CBlock_after = ClassInfo<CBlock>::Living();
+				allocsize_after = get_alloc_actual_size();
+				living_CStack_after = ClassInfo<CStack>::Living();
+				
+				Assert::IsTrue(living_CStack_before + 1 == living_CStack_after, L"Wrong number of CStack instances", LINE_INFO());
+				Assert::IsTrue(living_CBlock_before + 4 == living_CBlock_after, L"Wrong number of CBlock instances", LINE_INFO());
+				Assert::IsTrue(allocsize_before < allocsize_after, L"No memory allocation", LINE_INFO());
+				Assert::IsTrue(Stack.Top()->Value() == Block1.Value(), L"Wrong value on top of Stack", LINE_INFO());
+				Assert::IsTrue(Stack.PocetPrvku() == old_Stack_size+1, L"Wrong size of Stack", LINE_INFO());
+				}
+			ptrdiff_t living_CStack_after1 = ClassInfo<CStack>::Living();
+			ptrdiff_t living_CBlock_after1 = ClassInfo<CBlock>::Living();
+			size_t allocsize_after1 = get_alloc_actual_size();
+
+			Assert::IsTrue(living_CStack_before == living_CStack_after1, L"Wrong number of CStack instances", LINE_INFO());
+			Assert::IsTrue(living_CBlock_before == living_CBlock_after1, L"Wrong number of CBlock instances", LINE_INFO());
+			Assert::IsTrue(allocsize_before == allocsize_after1, L"Wrong memory deallocation", LINE_INFO());
+			}
+
+		/*	Binary non-member Operator+ (CStack + CBlock)
+		 *	author Pesek
+		 */
+		TEST_METHOD(CStack_binary_nonmem_CStack_plus_CBlock)
+			{
+			size_t allocsize_before = get_alloc_actual_size();
+			ptrdiff_t living_CStack_before = ClassInfo<CStack>::Living();
+			ptrdiff_t living_CStack_after;
+			size_t allocsize_after;
+
+			ptrdiff_t living_CBlock_before = ClassInfo<CBlock>::Living();
+			ptrdiff_t living_CBlock_after;
+				{
+				CBlock Block0(CBlock::TestValue0());
+				CBlock Block1(CBlock::TestValue1());
+				CStack Stack = CStack(Block0);
+
+				size_t old_Stack_size = Stack.PocetPrvku();
+
+				Stack = Stack + Block1;
+
+				living_CBlock_after = ClassInfo<CBlock>::Living();
+				allocsize_after = get_alloc_actual_size();
+				living_CStack_after = ClassInfo<CStack>::Living();
+
+				Assert::IsTrue(living_CStack_before + 1 == living_CStack_after, L"Wrong number of CStack instances", LINE_INFO());
+				Assert::IsTrue(living_CBlock_before + 4 == living_CBlock_after, L"Wrong number of CBlock instances", LINE_INFO());
+				Assert::IsTrue(allocsize_before < allocsize_after, L"No memory allocation", LINE_INFO());
+				Assert::IsTrue(Stack.Bottom()->Value() == Block1.Value(), L"Wrong value on Bottom of Stack", LINE_INFO());
+				Assert::IsTrue(Stack.PocetPrvku() == old_Stack_size + 1, L"Wrong size of Stack", LINE_INFO());
+				}
+			ptrdiff_t living_CStack_after1 = ClassInfo<CStack>::Living();
+			ptrdiff_t living_CBlock_after1 = ClassInfo<CBlock>::Living();
+			size_t allocsize_after1 = get_alloc_actual_size();
+
+			Assert::IsTrue(living_CStack_before == living_CStack_after1, L"Wrong number of CStack instances", LINE_INFO());
+			Assert::IsTrue(living_CBlock_before == living_CBlock_after1, L"Wrong number of CBlock instances", LINE_INFO());
+			Assert::IsTrue(allocsize_before == allocsize_after1, L"Wrong memory deallocation", LINE_INFO());
+			}
+
+		/*	Binary Operator -
+		 *	author Prasek
+		 */
+		TEST_METHOD(CStack_binary_minus)
+			{
+			size_t allocsize_before = get_alloc_actual_size();
+			size_t allocsize_after;
+
+			CBlock val0(CBlock::TestValue0());
+			CBlock val1(CBlock::TestValue1());
+
+			CStack stackS1;
+			CStack stackS2;
+			CStack stackRes;
+			allocsize_after = get_alloc_actual_size();
+
+			stackS1.Push(val0);
+			stackS1.Push(val0);
+			stackS1.Push(val0);
+
+			stackS2.Push(val0);
+			stackS2.Push(val1);
+
+			stackRes = stackS1 - stackS2;
+
+			size_t stack_size1 = stackS1.PocetPrvku();
+			Assert::IsTrue(CBlock::TestValue0() == val0.Value(), L"Wrong value", LINE_INFO());
+			Assert::IsTrue(stackS1.Top()->Value() == val0.Value(), L"Wrong value", LINE_INFO());
+			Assert::IsFalse(val0.Value() == val1.Value(), L"Wrong value", LINE_INFO());
+			Assert::IsTrue(stack_size1 == 3, L"Wrong number of instances", LINE_INFO());
+			
+			size_t stack_size2 = stackS2.PocetPrvku();
+			Assert::IsTrue(CBlock::TestValue0() == val0.Value(), L"Wrong value", LINE_INFO());
+			Assert::IsTrue(CBlock::TestValue1() == val1.Value(), L"Value isn't same", LINE_INFO());
+			Assert::IsTrue(stackS2.Top()->Value() == val1.Value(), L"Wrong value", LINE_INFO());
+			Assert::IsFalse(val0.Value() == val1.Value(), L"Wrong value", LINE_INFO());
+			Assert::IsTrue(stack_size2 == 2, L"Wrong number of instances", LINE_INFO());
+		
+			size_t stack_size3 = stackRes.PocetPrvku();
+			Assert::IsTrue(CBlock::TestValue0() == val0.Value(), L"Wrong value", LINE_INFO());
+			Assert::IsTrue(CBlock::TestValue1() == val1.Value(), L"Value isn't same", LINE_INFO());
+			Assert::IsTrue(stackRes.Top()->Value() == val1.Value(), L"Wrong value", LINE_INFO());
+			Assert::IsFalse(val0.Value() == val1.Value(), L"Wrong value", LINE_INFO());
+			Assert::IsTrue(stack_size3 == 1, L"Wrong number of instances", LINE_INFO());
+
+			if constexpr (KCBlock_allocate)
+				Assert::IsTrue(allocsize_before < allocsize_after, L"No memory allocation", LINE_INFO());
+			else
+				Assert::IsTrue(allocsize_before == allocsize_after, L"Memory allocated", LINE_INFO());
+			}
+
+		/*	Binary Operator -=
+		 *	author Kluka
+		 */
+		TEST_METHOD(CStack_binary_subtr)
+			{
+			size_t allocsize_before = get_alloc_actual_size();
+			ptrdiff_t living_before = ClassInfo<CStack>::Living();
+			ptrdiff_t living_after;
+			size_t allocsize_after;
+				{
+				const CBlock val0(CBlock::TestValue0());
+				const CBlock val1(CBlock::TestValue1());
+
+				CStack stack0;
+				CStack stack1;
+				living_after = ClassInfo<CStack>::Living();
+				allocsize_after = get_alloc_actual_size();
+
+				stack0.Push(val0);
+				stack0.Push(val1);
+				stack0.Push(val0);
+
+				stack1.Push(val1);
+
+				size_t stack_size = stack0.PocetPrvku();
+				Assert::IsTrue(CBlock::TestValue0() == val0.Value(), L"Wrong value", LINE_INFO());
+				Assert::IsTrue(CBlock::TestValue1() == val1.Value(), L"Value isn't same", LINE_INFO());
+				Assert::IsTrue(stack0.Top()->Value() == val0.Value(), L"Wrong value", LINE_INFO());
+				Assert::IsFalse(val0.Value() == val1.Value(), L"Wrong value", LINE_INFO());
+				Assert::IsTrue(stack_size == 3, L"Wrong number of instances", LINE_INFO());
+				Assert::IsTrue(living_before + 2 == living_after, L"Wrong number of instances", LINE_INFO());
+
+				stack0 -= stack1;
+
+				living_after = ClassInfo<CStack>::Living();
+				Assert::IsTrue(CBlock::TestValue0() == val0.Value(), L"Wrong value", LINE_INFO());
+				Assert::IsTrue(stack0.Search(val1) == false, L"Node not deleted", LINE_INFO());
+				Assert::IsTrue(stack_size == 3, L"Wrong number of instances", LINE_INFO());
+				stack_size = stack0.PocetPrvku();
+				Assert::IsTrue(living_before + 2 == living_after, L"Wrong number of instances", LINE_INFO());
+				if constexpr(KCBlock_allocate)
+					Assert::IsTrue(allocsize_before < allocsize_after, L"No memory allocation", LINE_INFO());
+				else
+					Assert::IsTrue(allocsize_before == allocsize_after, L"Memory allocated", LINE_INFO());
+				}
+			ptrdiff_t living_after3 = ClassInfo<CStack>::Living();
+			size_t allocsize_after3 = get_alloc_actual_size();
+			Assert::IsTrue(living_before == living_after3, L"Wrong number of instances", LINE_INFO());
+			Assert::AreEqual(allocsize_before, allocsize_after3, L"Memory leaking", LINE_INFO());
+			}
+
+		/*	Binary Operator +=
+		 *	author Pesek
+		 */
+		TEST_METHOD(CStack_binary_add)
+			{
+			size_t allocsize_before = get_alloc_actual_size();
+			ptrdiff_t living_before = ClassInfo<CStack>::Living();
+			ptrdiff_t living_after;
+			size_t allocsize_after;
+				{
+				CBlock* iArray2 = CStack::TestValueRandom(2);
+				CBlock* iArray3 = CStack::TestValueRandom(3);
+
+				CStack Stack02 = CStack(2, iArray2);
+				CStack Stack03 = CStack(3, iArray3);
+				free(iArray2);
+				free(iArray3);
+
+				size_t Stack02_old_size = Stack02.PocetPrvku();
+				CBlock *Stack02_old_bottom = Stack02.Bottom();
+
+				allocsize_after = get_alloc_actual_size();
+				living_after = ClassInfo<CStack>::Living();
+				Assert::IsTrue(living_before + 2 == living_after, L"Wrong number of instances", LINE_INFO());
+				Assert::IsTrue(allocsize_before < allocsize_after, L"No memory allocation", LINE_INFO());
+
+				Stack02 += Stack03;
+
+				size_t allocsize_after1 = get_alloc_actual_size();
+				ptrdiff_t living_after1 = ClassInfo<CStack>::Living();
+				Assert::IsTrue(living_after1 == living_after, L"Wrong number of instances", LINE_INFO());
+				Assert::IsTrue(allocsize_after1 > allocsize_after, L"Wrong memory allocation/deallocation", LINE_INFO());
+				Assert::IsTrue(Stack02.PocetPrvku() == Stack02_old_size + Stack03.PocetPrvku(), L"Wrong size of modified stack", LINE_INFO());
+				Assert::IsTrue(Stack02.Top()->Value() == Stack03.Top()->Value(), L"Wrong Top of modified Stack", LINE_INFO());
+				Assert::IsTrue(Stack02.Bottom()->Value() == Stack02_old_bottom->Value(), L"Wrong Bottom of modified Stack", LINE_INFO());
+				}
+			size_t allocsize_after2 = get_alloc_actual_size();
+			ptrdiff_t living_after2 = ClassInfo<CStack>::Living();
+			Assert::IsTrue(living_before == living_after2, L"Wrong number of instances", LINE_INFO());
+			Assert::IsTrue(allocsize_before == allocsize_after2, L"No memory allocation", LINE_INFO());
+			}
+
+		/*	Operator size_t
+		 *	author Prasek
+		 */
+		TEST_METHOD(CStack_sizet)
+			{
+			size_t allocsize_before = get_alloc_actual_size();
+			size_t allocsize_after;
+
+			const CBlock val0(CBlock::TestValue0());
+			CStack stack;
+			allocsize_after = get_alloc_actual_size();
+
+			Assert::IsTrue((size_t)stack == 0, L"Wrong size of Stack", LINE_INFO());
+			stack.Push(val0);
+			Assert::IsTrue((size_t)stack == 1, L"Wrong size of Stack", LINE_INFO());
+
+			if constexpr (KCBlock_allocate)
+				Assert::IsTrue(allocsize_before < allocsize_after, L"No memory allocation", LINE_INFO());
+			else
+				Assert::IsTrue(allocsize_before == allocsize_after, L"Memory allocated", LINE_INFO());
+			}
+
+		/*	Relational Operator ==
+		 *	author Kluka
+		 */
+		TEST_METHOD(CStack_equal)
+			{
+			const CBlock val1_0(CBlock::TestValue0()), val2_0(CBlock::TestValue0());
+			const CBlock val3_1(CBlock::TestValue1()), val4_1(CBlock::TestValue1());
+
+			const CStack stack1_0(val1_0), stack2_0(val2_0);
+			const CStack stack3_1(val3_1), stack4_1(val4_1);
+
+			Assert::IsTrue(stack1_0.ID() < stack2_0.ID(), L"Wrong ClassInfo ID", LINE_INFO());
+			Assert::IsTrue(stack2_0.ID() < stack3_1.ID(), L"Wrong ClassInfo ID", LINE_INFO());
+			Assert::IsTrue(stack3_1.ID() < stack4_1.ID(), L"Wrong ClassInfo ID", LINE_INFO());
+
+			Assert::IsTrue(stack1_0 == stack1_0, L"Must be true", LINE_INFO());
+			Assert::IsTrue(stack3_1 == stack4_1, L"Must be true", LINE_INFO());
+
+			Assert::IsTrue(stack1_0 == stack2_0, L"Must be true", LINE_INFO());
+			Assert::IsTrue(stack2_0 == stack1_0, L"Must be true", LINE_INFO());
+
+			Assert::IsTrue(stack3_1 == stack4_1, L"Must be true", LINE_INFO());
+			Assert::IsTrue(stack3_1 == stack4_1, L"Must be true", LINE_INFO());
+
+			Assert::IsFalse(stack1_0 == stack3_1, L"Must be false", LINE_INFO());
+			Assert::IsFalse(stack3_1 == stack1_0, L"Must be false", LINE_INFO());
+
+			Assert::IsFalse(stack2_0 == stack4_1, L"Must be false", LINE_INFO());
+			Assert::IsFalse(stack4_1 == stack2_0, L"Must be false", LINE_INFO());
+			}
+
+		/*	Relational Operator !=
+		 *	author Majnus
+		 */
+		TEST_METHOD(CStack_not_equal)
+			{
+			const CBlock val1_0(CBlock::TestValue0()), val2_0(CBlock::TestValue0()), val3_1(CBlock::TestValue1()), val4_1(CBlock::TestValue1());
+
+			const CStack stack1_0(val1_0), stack2_0(val2_0), stack3_1(val3_1), stack4_1(val4_1);
+						
+			Assert::IsFalse(stack1_0 != stack2_0, L"Must be same", LINE_INFO());
+			Assert::IsFalse(stack3_1 != stack4_1, L"Must be same", LINE_INFO());
+
+			Assert::IsTrue(stack1_0 != stack3_1, L"Must be true", LINE_INFO());
+			Assert::IsTrue(stack2_0 != stack4_1, L"Must be false", LINE_INFO());
+			}
+
+		/*	Relational Operator <
+		 *	author Prasek
+		 */
+		TEST_METHOD(CStack_operator_less_than)
+			{
+			const CBlock val1_0(CBlock::TestValue0()), val2_0(CBlock::TestValue0());
+			const CBlock val3_1(CBlock::TestValue1()), val4_1(CBlock::TestValue1());
+
+			const CStack stack1_0(val1_0), stack2_0(val2_0);
+			const CStack stack3_1(val3_1), stack4_1(val4_1);
+
+			Assert::IsTrue(val1_0.ID() < val2_0.ID(), L"Wrong ClassInfo ID", LINE_INFO());
+			Assert::IsTrue(val2_0.ID() < val3_1.ID(), L"Wrong ClassInfo ID", LINE_INFO());
+			Assert::IsTrue(val3_1.ID() < val4_1.ID(), L"Wrong ClassInfo ID", LINE_INFO());
+
+			Assert::IsFalse(val1_0 < val1_0, L"Must be false", LINE_INFO());
+			Assert::IsFalse(val3_1 < val4_1, L"Must be false", LINE_INFO());
+
+			Assert::IsFalse(val1_0 < val2_0, L"Must be false", LINE_INFO());
+			Assert::IsFalse(val2_0 < val1_0, L"Must be false", LINE_INFO());
+
+			Assert::IsFalse(val3_1 < val4_1, L"Must be false", LINE_INFO());
+			Assert::IsFalse(val3_1 < val4_1, L"Must be false", LINE_INFO());
+
+			Assert::IsTrue(val1_0 < val3_1, L"Must be true", LINE_INFO());
+			Assert::IsFalse(val3_1 < val1_0, L"Must be false", LINE_INFO());
+
+			Assert::IsTrue(val2_0 < val4_1, L"Must be true", LINE_INFO());
+			Assert::IsFalse(val4_1 < val2_0, L"Must be false", LINE_INFO());
+			}
+
+		/*	Relational Operator >
+		 *	author Pesek
+		 */
+		TEST_METHOD(CStack_operator_greater_than)
+			{
+			CBlock* iArray1 = CStack::TestValue0(2);
+			CBlock* iArray2 = CStack::TestValue0(3);
+
+			const CStack val1_0 = CStack(2, iArray1);
+			const CStack val2_0 = CStack(2, iArray1);
+			const CStack val3_1 = CStack(3, iArray2);
+			const CStack val4_1 = CStack(3, iArray2);
+			free(iArray2);
+			free(iArray1);
+
+			Assert::IsTrue(val1_0.ID() < val2_0.ID(), L"Wrong ClassInfo ID", LINE_INFO());
+			Assert::IsTrue(val2_0.ID() < val3_1.ID(), L"Wrong ClassInfo ID", LINE_INFO());
+			Assert::IsTrue(val3_1.ID() < val4_1.ID(), L"Wrong ClassInfo ID", LINE_INFO());
+
+			Assert::IsFalse(val1_0 > val1_0, L"Must be false", LINE_INFO());
+			Assert::IsFalse(val3_1 > val4_1, L"Must be false", LINE_INFO());
+
+			Assert::IsFalse(val1_0 > val2_0, L"Must be false", LINE_INFO());
+			Assert::IsFalse(val2_0 > val1_0, L"Must be false", LINE_INFO());
+
+			Assert::IsFalse(val3_1 > val4_1, L"Must be false", LINE_INFO());
+			Assert::IsFalse(val3_1 > val4_1, L"Must be false", LINE_INFO());
+
+			Assert::IsFalse(val1_0 > val3_1, L"Must be false", LINE_INFO());
+			Assert::IsTrue(val3_1 > val1_0, L"Must be true", LINE_INFO());
+
+			Assert::IsFalse(val2_0 > val4_1, L"Must be false", LINE_INFO());
+			Assert::IsTrue(val4_1 > val2_0, L"Must be true", LINE_INFO());
+			}
+
+	// CStack characteristic methods
+		/*	Function Reverzuj(aaa)
+		 *	author Prasek
+		 */
+		TEST_METHOD(CStack_reverzujaaa)
+			{
+			size_t allocsize_before = get_alloc_actual_size();
+
+			size_t allocsize_after;
+
+			const CBlock val0(CBlock::TestValue0());
+			const CBlock val1(CBlock::TestValue0());
+
+			CStack stack_aaa;
+			CStack stack_bbb;
+			allocsize_after = get_alloc_actual_size();
+
+			stack_aaa.Push(val0);
+			stack_aaa.Push(val1);
+			Assert::IsTrue(stack_aaa.PocetPrvku() == 2, L"Wrong size of Stack", LINE_INFO());
+			Assert::IsTrue(*stack_aaa.Top() == val1, L"Wrong element on top of Stack", LINE_INFO());
+			Assert::IsTrue(*stack_aaa.Bottom() == val0, L"Wrong element on top of Stack", LINE_INFO());
+			stack_bbb = Reverzuj(stack_aaa);
+			Assert::IsTrue(stack_bbb.PocetPrvku() == 2, L"Wrong size of Stack", LINE_INFO());
+			Assert::IsTrue(*stack_bbb.Top() == val0, L"Wrong element on top of Stack", LINE_INFO());
+			Assert::IsTrue(*stack_bbb.Bottom() == val1, L"Wrong element on top of Stack", LINE_INFO());
+
+			if constexpr (KCBlock_allocate)
+				Assert::IsTrue(allocsize_before < allocsize_after, L"No memory allocation", LINE_INFO());
+			else
+				Assert::IsTrue(allocsize_before == allocsize_after, L"Memory allocated", LINE_INFO());
+			}
+
+		/*	Stack Dup
+		 *	authors Pesek, Prasek
+		 */
+		TEST_METHOD(CStack_dup)
+			{
+			size_t allocsize_before = get_alloc_actual_size();
+			ptrdiff_t living_before = ClassInfo<CStack>::Living();
+			ptrdiff_t living_after;
+			size_t allocsize_after;
+				{
+				CBlock* Array = CStack::TestValueRandom(3);
+				CStack Stack1 = CStack(3, Array);
+				free(Array);
+
+				CStack Stack2 = Stack1.Dup();
+
+				allocsize_after = get_alloc_actual_size();
+				living_after = ClassInfo<CStack>::Living();
+				Assert::IsTrue(living_before + 2 == living_after, L"Wrong number of instances", LINE_INFO());
+				Assert::IsTrue(allocsize_before < allocsize_after, L"No memory allocation", LINE_INFO());
+				Assert::IsTrue(Stack1 == Stack2, L"Stack2 isn't a duplicate of Stack1", LINE_INFO());
+				}
+			allocsize_after = get_alloc_actual_size();
+			living_after = ClassInfo<CStack>::Living();
+			Assert::IsTrue(living_before == living_after, L"Wrong number of instances", LINE_INFO());
+			Assert::IsTrue(allocsize_before == allocsize_after, L"Wrong memory deallocation", LINE_INFO());
+			}
+	};
+}

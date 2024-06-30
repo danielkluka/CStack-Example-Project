@@ -1,0 +1,55 @@
+#include "CBlockUnitTests.h"
+
+using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+
+namespace UnitTests
+{
+	TEST_CLASS(UnitTests)
+	{
+	public:
+
+		TEST_METHOD(test)
+		{
+			
+		}
+
+		/**
+		 \test **Test of CBlock conversion c'tor**. **Author:** `Petyovsky`.
+		 - Instance can be correctly inicialized with `CBlock::TestValue0` and `CBlock::TestValue0`
+		 - Counter `ClassInfo::Living` was incremented
+		 - Each new CBlock instance have unique `ClassInfo::ID`
+		 - C'tor allocate, reallocate od deallocate dynamic memory if it was defined by `KCBlock_allocate` predicate
+		 - Destruction of constructed instance deallocate memory if it was defined by `KCBlock_allocate` predicate
+		 - Destruction of constructed instance decrement counter `ClassInfo::Living`
+		 */
+		/*
+		TEST_METHOD(CBlock_ctor_conv)
+		{
+			size_t allocsize_before = get_alloc_actual_size();
+			ptrdiff_t living_before = ClassInfo<CBlock>::Living();
+			ptrdiff_t living_after;
+			size_t allocsize_after;
+			{
+				const CBlock val0(CBlock::TestValue0());
+				const CBlock val1(CBlock::TestValue1());
+
+				living_after = ClassInfo<CBlock>::Living();
+				allocsize_after = get_alloc_actual_size();
+				Assert::IsTrue(CBlock::TestValue0() == val0.Value(), L"Wrong value", LINE_INFO());
+				Assert::IsTrue(CBlock::TestValue1() == val1.Value(), L"Wrong value", LINE_INFO());
+				Assert::IsFalse(val0.Value() == val1.Value(), L"Wrong value", LINE_INFO());
+				Assert::IsTrue(living_before + 2 == living_after, L"Wrong number of instances", LINE_INFO());
+				Assert::IsTrue(val1.ID() > val0.ID(), L"Wrong ClassInfo ID initialization", LINE_INFO());
+				if constexpr (KCBlock_allocate)
+					Assert::IsTrue(allocsize_before < allocsize_after, L"No memory allocation", LINE_INFO());
+				else
+					Assert::IsTrue(allocsize_before == allocsize_after, L"Memory allocated", LINE_INFO());
+			}
+			ptrdiff_t living_after2 = ClassInfo<CBlock>::Living();
+			size_t allocsize_after2 = get_alloc_actual_size();
+			Assert::IsTrue(living_before == living_after2, L"Wrong number of instances", LINE_INFO());
+			Assert::AreEqual(allocsize_before, allocsize_after2, L"Memory leaking", LINE_INFO());
+		}
+		*/
+	};
+}

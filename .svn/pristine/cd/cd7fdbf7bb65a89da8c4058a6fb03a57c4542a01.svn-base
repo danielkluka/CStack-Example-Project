@@ -1,0 +1,64 @@
+// GraphViz picture: Project's files hierarchy by: based on Pety, Richter 2022
+// $Id$
+
+digraph ProjectHierarchy
+	{
+	graph[size="11,11"];
+	rankdir="RL";
+	node[color="gray25", fontname="Helvetica", shape="Mrecord", style="solid"];
+		top[label="BPC-PPC project 2022", URL="\ref index"];
+
+	node[color="lightblue2", fontname="Helvetica", shape="Mrecord", style="solid"];
+		ClassInfo[label="ClassInfo.h", tooltip="ClassInfo class template"];
+		check[label="check.h\lcheck.cpp", tooltip="Checker tool"];
+
+	node[color="green", fontname="Helvetica", shape="Mrecord", style="dashed"];
+		Doxygen[label="Doxygen\ndocumentation", tooltip="Doxygen documentation", URL="\ref doc"];
+
+	node[color="gray50", fontname="Helvetica-Bold", shape="Mrecord", style="dotted"];
+		CContainer[label="CZasobnik.h\lCZasobnik.cpp", tooltip="CZasobnik class", URL="\ref CZasobnik.h"];
+
+	node[color="goldenrod2", fontname="Helvetica-Bold", shape="Mrecord", style="dotted"];
+		CBlock_long[label="CBlock_long.h\lCBlock_long.cpp", tooltip="CBlock_long class", URL="\ref CBlock_long.h"];
+		CBlock_TInterval[label="CBlock_TInterval.h\lCBlock_TInterval.cpp", tooltip="CBlock_TInterval class", URL="\ref CBlock_TInterval.h"];
+
+	node[color="goldenrod2", fontname="Helvetica", shape="Mrecord", style="dashed"];
+		main[label="main.cpp", URL="\ref main.cpp"];
+		CBlock[label="CBlock.h", URL="\ref CBlock.h"];
+
+	node[color="goldenrod2", fontname="Helvetica", shape="Mrecord", style="solid"];
+		CBlock_bool[label="CBlock_bool.h", tooltip="CBlock_bool class", URL="\ref CBlock_bool.h"];
+		CBlock_TWeekDay[label="CBlock_TWeekDay.h \lCBlock_TWeekDay.cpp", tooltip="CBlock_TWeekDay class", URL="\ref CBlock_TWeekDay.h"];
+		CBlockBase[label="CBlockBase.h \lCBlockBase.cpp", tooltip="CBlockBase class", URL="\ref CBlockBase.h"];
+
+	Doxygen -> top [color="green"];
+
+	edge[color="goldenrod2"];
+		main -> top;
+		CZasobnik -> main;
+		CBlock -> CZasobnik;
+
+		CBlock_bool -> CBlock;
+		CBlock_TWeekDay -> CBlock;
+		CBlock_long -> CBlock;
+		CBlock_TInterval -> CBlock;
+
+		CBlockBase -> CBlock_bool;
+		CBlockBase -> CBlock_TWeekDay;
+		CBlockBase -> CBlock_long;
+		CBlockBase -> CBlock_TInterval;
+
+	edge[color="lightblue3" style="dashed"];
+		check -> main;
+		check -> CZasobnik;
+		check -> CBlock;
+		check -> CBlockBase;
+
+		ClassInfo -> main;
+		ClassInfo -> CZasobnik;
+		ClassInfo -> CBlock_bool;
+		ClassInfo -> CBlock_TWeekDay;
+		ClassInfo -> CBlock_long;
+		ClassInfo -> CBlock_TInterval;
+
+	}

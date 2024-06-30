@@ -1,0 +1,544 @@
+/** \file main.cpp
+ *  \brief Main source
+ *  \details Simple CContainer example of usage
+ *  \author Kluka, Majnus, Pesek, Prasek, Pety 20XX / 2022 modified Richter
+ *  $Id$
+ */
+
+#include <ctime>
+#include <iostream>
+#include <stdexcept>
+#include <typeinfo>
+#include <type_traits>		// Due to: std::is_same_v<>
+
+#include "demagle.h"
+#include "CBlock.h"
+#include "check.h"
+#include "CStack.h"
+
+using std::endl;
+using std::cout;
+using std::cin;
+using std::cerr;
+
+//(consultation mode)
+#define CONSULTATION
+
+int main(int argc, char *argv[])
+	{
+#ifdef NDEBUG
+	std::srand(unsigned(std::time(nullptr)));	// Initialize random generator by actual time
+#else
+	std::srand(unsigned(42));					// Initialize random generator by fixed value useful for debugging
+#endif
+
+	cout << "Pocet parametru: " << argc << endl;
+	for(int i = 0; i < argc; i++)
+		cout << "Parametr #" << i << ": " << argv[i] << endl;
+	
+	cout << endl << "Nyni existuje " << ClassInfo<CBlock>::Living() << " instanci tridy: " << DM(typeid(CBlock).name()) << endl;
+	cout << "Velikost jedne instance tridy " << DM(typeid(CBlock).name()) << " je: " << sizeof(CBlock) << " bajtu." << endl;
+
+	cout << endl << "Nyni existuje " << ClassInfo<CStack>::Living() << " instanci tridy: " << DM(typeid(CStack).name()) << endl;
+	cout << "Velikost jedne instance tridy " << DM(typeid(CStack).name()) << " je: " << sizeof(CStack) << " bajtu." << endl;
+	cout << endl;
+
+	try
+		{
+		cout << "===============================================================================" << endl;
+		cout << "Nyni existuje " << ClassInfo<CBlock>::Living() << " instanci tridy: " << DM(typeid(CBlock).name()) << endl;
+		cout << "Nyni existuje " << ClassInfo<CStack>::Living() << " instanci tridy: " << DM(typeid(CStack).name()) << endl;
+		cout << endl;
+
+		// Tady bude zdrojovy text pouzivajici vas projekt
+		CBlock EmptyCBlock;
+		CBlock CBlockVal0(CBlock::TestValue0());
+		CBlock CBlockVal1(CBlock::TestValue1());
+		CBlock CBlockValRand(CBlock::TestValueRandom());
+		CBlock CBlockString(CBlock::TestStringValue1());
+		std::string string;
+
+		
+		//(implementation of CStack class methods created and sorted by each author - author1, author2, author3, author4)
+		{// author1 - MAJNUS ===========================
+			cout << "Testing methods of author1 - Majnus:" << endl ;
+
+			cout << "	Calling unary operator +" << endl;
+				{
+				
+				//CStack stack1;
+				//CStack stack2;
+				//stack1.Push(CBlockVal0);
+				//stack1.Push(CBlockVal0);
+				//stack2.Push(CBlockVal1);
+				//stack2.Push(CBlockVal1);
+				//stack1 = stack2;
+
+				//std::stringstream ss; //using stringstream  = basic_stringstream<char, char_traits<char>, allocator<char>>;
+
+				//ss << std::string("(<3,4>,<5,89>)");
+
+				//cout << CBlock::TestStringValue1();
+
+				//std::string("("+CBlock::TestStringValue0()+","+ CBlock::TestStringValue1() + ")") >> ss;
+				//cout << CBlock() << endl;
+				////auto x= stack1 + stack2;
+				//CStack stack3;
+				////ss >> stack3;
+				}
+			
+
+			//cout << "	Calling string conversion c'tor" << endl;
+			//{
+			//CStack stack2(string.data());
+			//}
+			//cout << "End of testing methods of author1 - Majnus" << endl;
+
+			cout << endl;
+		}// END author1 - MAJNUS =======================
+
+		//try
+		//{
+		//	catch(prazdny_zasobnik)
+		//	{
+		//		return 1;
+		//	}
+		//	
+		//}
+
+		{// author2 - KLUKA ============================
+			cout << "Testing methods of author2 - Kluka:" << endl;
+#ifdef KLUKA_PRINT
+			cout << endl << "	KLUKA_PRINT is enabled." << endl;
+#else
+			cout << endl <<
+				   "	KLUKA_PRINT mode in CStack.h is not enabled. To see each step of my methods in detail, please," << endl
+				<< "	enable this mode defined in the CStack.h file at the top of this file. This also gives you extra" << endl
+				<< "	control of methods of other authors." << endl;
+#endif
+#ifdef	CONSULTATION
+			cout << endl <<
+				   "	Not calling any methods due to ongoing consultation - my methods are using methods/operators" << endl
+				<< "	of other authors and some of them are not working properly. To consultate those methods, please," << endl
+				<< "	disable consultation mode defined in the main.cpp file at the top of this file." << endl;
+#else
+			cout << endl << "	CONSULTAION mode in main.cpp is not enabled." << endl;
+
+			// CBlock conversion c'tor
+			cout << endl << "	Calling CBlock conversion c'tor" << endl;
+				{
+				CStack stack1(EmptyCBlock);
+				}
+
+			// String conversion c'tor
+			cout << endl << "	Calling string conversion c'tor" << endl;
+				{
+				//(method is using operators << and >>, which are not working)
+				//CStack stack2("("+CBlock::TestStringValue0()+","+ CBlock::TestStringValue1() + ")");
+				}
+
+			// PocetPrvku getter
+			cout << endl << "	Calling PocetPrvku getter" << endl;
+				{
+				CStack stack3;
+
+				size_t pocet_prvku = stack3.PocetPrvku();
+				}
+
+			// Unary operator -
+			cout << endl << "	Calling unary operator -" << endl;
+				{
+				CStack stack4;
+
+				stack4.Push(CBlockVal0);
+				stack4.Push(CBlockVal0);
+				stack4.Push(CBlockVal1);
+
+				-stack4;
+				}
+
+			// Unary operator --
+			cout << endl << "	Calling unary operator --" << endl;
+				{
+				CStack stack5;
+
+				stack5.Push(CBlockVal0);
+				stack5.Push(CBlockVal0);
+
+				--stack5;										
+				}
+
+			// Binary operator -=
+			cout << endl << "	Calling binary operator -=" << endl;
+				{
+				CStack stack6;
+				CStack stack7;
+
+				stack6.Push(CBlockVal0);
+				stack6.Push(CBlockVal1);
+				stack6.Push(CBlockVal0);
+
+				stack7.Push(CBlockVal1);
+
+				//(method is using operator =, which is not working)
+				stack6 -= stack7;
+
+				//stack6.Search(CBlockVal1);
+
+				cout << "			Found?: " << stack6.Search(CBlockVal1) << endl;
+				}
+
+			// Relational Operator ==
+			cout << endl << "	Calling relational operator ==" << endl;
+				{
+				CStack stack8;
+				CStack stack9;
+
+				stack8.Push(CBlockVal0);
+				stack9.Push(CBlockVal0);
+
+				stack8 == stack9;
+				}
+
+			// Threeway comparison by Value operator
+			cout << endl << "	Calling three-way comparison by Value operator" << endl;
+				{
+				CStack stack10;
+				CStack stack11;
+
+				stack10 <=> stack11;
+				}
+
+			// Method aaa.Reverzuj
+			cout << endl << "	Calling method aaa.Reverzuj" << endl;
+				{
+				CStack stack12;
+
+				stack12.Push(CBlockVal0);
+				stack12.Push(CBlockVal0);
+				stack12.Push(CBlockVal0);
+
+				stack12.Reverzuj();
+				}
+#endif
+
+			cout << endl << "End of testing methods of author2 - Kluka" << endl;
+			cout << endl;
+
+		}// END author2 - KLUKA ========================
+
+		{// author3 - PRASEK ===========================
+			cout << "Testing methods of author3 - Prasek:" << endl;
+
+			// Convert C'tor from init list
+			cout << "	Calling Convert C'tor from init list" << endl;
+				{
+				CStack stackS1 = { CBlockVal0, CBlockVal1 };
+				cout << "		The stackS1 consists of an array of size: " << stackS1 << endl;
+				}
+
+			// Conversion C'tor of type size_t
+				cout << "	Calling Conversion C'tor of type size_t " << endl;
+				{
+				CStack stackS2(3);
+				cout << "		The stackS2 consists of size of size_t: " << (size_t)stackS2 << endl;
+				}
+			 
+			// Unary operator ++
+			cout << "	Calling unary operator ++" << endl;
+				{
+				CStack stackS3;
+				++stackS3;
+				cout << "		New CBlock element: " << stackS3.Top()->Value() << " was pushed on Top of the StackS3" << endl;
+				}
+
+			// Binary operator -
+			cout << "	Calling binary operator -" << endl;
+				{
+				CStack stackS4;
+				CStack stackS5;
+				CStack stackRes;
+
+				stackS4.Push(CBlockVal0);
+				stackS4.Push(CBlockVal0);
+
+				stackS5.Push(CBlockVal0);
+				stackS5.Push(CBlockVal1);
+
+				stackRes = stackS4 - stackS5; 
+				}	
+
+			// Operator size_t
+			cout << "	Calling operator size_t" << endl;
+				{
+				CStack stackS6;
+				stackS6.Push(CBlockVal0);
+				cout << "		Size_t of Stack is: " <<(size_t)stackS6 << endl;
+				}
+
+			// Relation operator <
+			cout << "	Calling relation operator <" << endl;
+				{
+				CStack stackS7;
+				CStack stackS8;
+
+				stackS7.Push(CBlockVal0);
+				stackS8.Push(CBlockVal1);
+				stackS8.Push(CBlockVal0);
+
+				if(stackS7 < stackS8)
+					{
+					cout << "		StackS7 is less than stackS8" << endl;
+					}
+				else
+					{
+					cout << "		StackS7 is greater or same as stackS8" << endl;
+					}
+				}
+
+			// Function Reverzuj(aaa)
+			cout << "	Calling function Reverzuj(aaa)" << endl;
+				{
+				CStack stackS9;
+				stackS9.Push(CBlockVal0);
+				stackS9.Push(CBlockVal1);
+				//CStack stackS10 = Reverzuj(stackS9);
+				}
+
+			// Method Stack Pop
+			cout << "	Calling method Stack Pop" << endl;
+				{
+				CStack stackS11;
+				stackS11.Push(CBlockVal0);
+				stackS11.Pop();
+				}
+
+			// Method Stack Top
+			cout << "	Calling method Stack Top" << endl;
+				{
+				CStack stackS12;
+				stackS12.Push(CBlockVal0);
+				cout<<"		Value of Top element is:" << stackS12.Top()->Value() << endl;
+				}
+
+			// Method Stack Search
+			cout << "	Calling method Stack Search" << endl;
+				{
+				CStack stackS13;
+				stackS13.Push(CBlockVal0);
+				stackS13.Push(CBlockVal1);
+				if(stackS13.Search(CBlockVal0))
+					{
+					cout << "		CBlock element found" << endl;
+					}
+				else
+					cout << "		CBlock element not found" << endl;
+				}
+
+			cout << "End of testing methods of author3 - Prasek" << endl;
+			cout << endl;
+		}// END author3 - PRASEK =======================
+
+
+
+		{// author4 - PESEK ============================
+
+			cout << "Testing methods of author4 - Pesek:" << endl;
+
+			// Method Stack Push
+			cout << "\n	Calling method Stack Push" << endl;
+				{
+				CStack Stack;
+				Stack.Push(CBlockVal1);
+				cout << "		Value to be pushed onto stack = " << CBlockVal1 << endl;
+				cout << "		Value on Top of Stack = " << Stack.Top()->Value() << endl;
+				}
+
+			// Method Stack Top
+			cout << "\n	Calling method Stack Top" << endl;
+				{
+				CStack Stack(CBlockVal1);
+				cout << "		Value on Top of Stack = " << Stack.Top()->Value() << endl;
+					
+				}
+
+			//CBlock array of known size conversion c'tor
+			cout << "\n	Calling conversion c'tor from CBlock array of known size" << endl;
+				{
+				size_t n = 3;
+				CBlock* iArray = CStack::TestValueRandom(n);
+				CStack Stack = CStack(n, iArray);
+				free(iArray);
+
+				for (size_t i = 0; i < n; ++i)
+				{
+					cout << "		iArray[" << i << "] = " << iArray[i] << endl;
+				}
+
+				cout << "		Array size = " << n << endl;
+				cout << "		Stack size = " << Stack.PocetPrvku() << endl;
+				}
+
+			//binary operator +=
+			cout << "\n	Calling binary operator +="<< endl;
+				{
+				CBlock* iArray1 = CStack::TestValueRandom(1);
+				CBlock* iArray2 = CStack::TestValueRandom(3);
+
+				CStack Stack1 = CStack(1, iArray1);
+				CStack Stack2 = CStack(3, iArray2);
+
+				free(iArray1);
+				free(iArray2);
+
+				size_t Stack1_old_size = Stack1.PocetPrvku();
+
+				Stack1 += Stack2;
+				cout << "		       " << Stack1_old_size << "        +      " << Stack2.PocetPrvku() << "     " << " =       " << Stack1.PocetPrvku() << endl;
+				cout << "		Stack5_old_size + Stack6_size = Stack5_new_size" << endl;
+				//cout << Stack5;
+
+				}
+
+			//binary non member operator +
+			cout << "\n	Calling binary CStack class non member operator +" << endl;
+				{
+				CBlock* iArray = CStack::TestValueRandom(2);
+
+				CStack Stack = CStack(2, iArray);
+				free(iArray);
+
+				Stack = CBlockVal1 + Stack;
+				cout << "		CBlock pushed onto stack: " << CBlockVal1 << endl;
+				cout << "		CBlock on top of the stack after calling operator+: " << Stack.Top()->Value() << endl;
+
+				}
+
+			//binary operator >
+			cout << "\n	Calling binary operator >" << endl;
+				{
+				CBlock* iArray1 = CStack::TestValueRandom(2);
+				CBlock* iArray2 = CStack::TestValueRandom(3);
+				CBlock* iArray3 = CStack::TestValueRandom(3);
+				CBlock* iArray4 = CStack::TestValueRandom(3);
+
+				CStack Stack1 = CStack(2, iArray1);
+				CStack Stack2 = CStack(3, iArray2);
+				CStack Stack3 = CStack(3, iArray3);
+				CStack Stack4 = CStack(3, iArray4);
+
+				free(iArray1);
+				free(iArray2);
+				free(iArray3);
+				free(iArray4);
+
+				cout << "		Stack1 size = " << Stack1.PocetPrvku() << endl;
+				cout << "		Stack2 size = " << Stack2.PocetPrvku() << endl;
+				cout << "		Stack3 size = " << Stack3.PocetPrvku() << endl;
+				cout << "		Stack4 size = " << Stack4.PocetPrvku() << endl;
+
+				if (Stack2 > Stack1)
+					{
+					cout << "		Stack2 is bigger than Stack1" << endl;
+					}
+				else
+					{
+					cout << "		Stack2 is not bigger than Stack1" << endl;
+					}
+
+				if (Stack4 > Stack3)
+				{
+					cout << "		Stack4 is bigger than Stack3" << endl;
+				}
+				else
+				{
+					cout << "		Stack4 is not bigger than Stack3" << endl;
+				}
+
+				}
+
+			//Unary operator +
+			cout << "\n	Calling unary operator+" << endl;
+				{
+				CBlock* iArray = CStack::TestValueRandom(3);
+				CStack Stack1 = CStack(3, iArray);
+				free(iArray);
+				CStack Stack2 = +Stack1;
+
+				cout << "		Stack1 size = Stack2 size" << endl;
+				cout << "		     " << Stack1.PocetPrvku() << "      =      " << Stack2.PocetPrvku() << "     " << endl;
+
+				//cout << "Stack1 = " << Stack1 << endl;
+				//cout << "Stack2 = " << Stack2 << endl;
+				
+				}
+
+			//method Usage
+			cout << "\n	Calling method Usage" << endl;
+				{
+				//CStack Stack = CStack();
+				double iUsage = CStack::Usage();
+				cout <<
+					"		Stack uses " << iUsage << " % more memory than array of the same amount of CBlock values "
+					<< endl;
+				}
+
+			//method TestValueRandom
+			cout << "\n	Calling method CStack::TestValueRandom" << endl;
+				{
+				size_t n = 5;
+				CBlock* iArray = CStack::TestValueRandom(n);
+				
+
+				for(size_t i = 0; i<n; ++i)
+					{
+					cout << "		iArray[" << i << "] = " << iArray[i] << endl;
+					}
+				free(iArray);
+				//std::cout << "	CStack length = " << aa.PocetPrvku() << std::endl;
+				}
+
+			cout << "End of testing methods of author4 - Pesek" << endl;
+			cout << endl;
+
+
+		}// END author4 - PESEK ========================
+
+		cout << "Hotovo." << endl;
+		cout << "===============================================================================" << endl;
+		} /* try */
+
+	catch(std::invalid_argument &e)
+		{
+		cerr << "std::invalid_argument: " << e.what() << "!!!\n\a" << endl;
+		}
+	catch(std::length_error &e)
+		{
+		cerr << "std::length_error: " << e.what() << "!!!\n\a" << endl;
+		}
+	catch(std::out_of_range &e)
+		{
+		cerr << "std::out_of_range: " << e.what() << "!!!\n\a" << endl;
+		}
+	catch(std::range_error &e)
+		{
+		cerr << "std::range_error: " << e.what() << "!!!\n\a" << endl;
+		}
+	catch(std::runtime_error &e)
+		{
+		cerr << "std::runtime_error: " << e.what() << "!!!\n\a" << endl;
+		}
+
+	cout << endl << "Nyni existuje " << ClassInfo<CBlock>::Living() << " instanci tridy: " << DM(typeid(CBlock).name()) << endl;
+	cout << "V prubehu programu vzniklo celkem " << ClassInfo<CBlock>::Total() << " instanci tridy: " << DM(typeid(CBlock).name()) << endl;
+
+	cout << endl << "V prubehu programu vzniklo celkem " << ClassInfo<CBlock_bool::CBlock>::Total() << " instanci tridy: " << DM(typeid(CBlock_bool::CBlock).name()) << endl;
+	cout << "V prubehu programu vzniklo celkem " << ClassInfo<CBlock_long::CBlock>::Total() << " instanci tridy: " << DM(typeid(CBlock_long::CBlock).name()) << endl;
+	cout << "V prubehu programu vzniklo celkem " << ClassInfo<CBlock_TInterval::CBlock>::Total() << " instanci tridy: " << DM(typeid(CBlock_TInterval::CBlock).name()) << endl;
+	cout << "V prubehu programu vzniklo celkem " << ClassInfo<CBlock_TWeekDay::CBlock>::Total() << " instanci tridy: " << DM(typeid(CBlock_TWeekDay::CBlock).name()) << endl;
+
+	cout << endl << "Nyni existuje " << ClassInfo<CStack>::Living() << " instanci tridy: " << DM(typeid(CStack).name()) << endl;
+	cout << "V prubehu programu vzniklo celkem " << ClassInfo<CStack>::Total() << " instanci tridy: " << DM(typeid(CStack).name()) << endl;
+
+	return 0;
+	}

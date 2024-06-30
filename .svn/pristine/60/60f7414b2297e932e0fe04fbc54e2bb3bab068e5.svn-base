@@ -1,0 +1,454 @@
+/** \file main.cpp
+ *  \brief Main source
+ *  \details Simple CContainer example of usage
+ *  \author Kluka, Majnus, Pesek, Prasek, Pety 20XX / 2022 modified Richter
+ *  $Id$
+ */
+
+#include <ctime>
+#include <iostream>
+#include <stdexcept>
+#include <typeinfo>
+#include <type_traits>		// Due to: std::is_same_v<>
+
+#include "demagle.h"
+#include "CBlock.h"
+#include "check.h"
+#include "CStack.h"
+
+using std::endl;
+using std::cout;
+using std::cin;
+using std::cerr;
+
+//(consultation mode)
+#define CONSULTATION
+
+int main(int argc, char *argv[])
+	{
+#ifdef NDEBUG
+	std::srand(unsigned(std::time(nullptr)));	// Initialize random generator by actual time
+#else
+	std::srand(unsigned(42));					// Initialize random generator by fixed value useful for debugging
+#endif
+
+	cout << "Pocet parametru: " << argc << endl;
+	for(int i = 0; i < argc; i++)
+		cout << "Parametr #" << i << ": " << argv[i] << endl;
+	
+	cout << endl << "Nyni existuje " << ClassInfo<CBlock>::Living() << " instanci tridy: " << DM(typeid(CBlock).name()) << endl;
+	cout << "Velikost jedne instance tridy " << DM(typeid(CBlock).name()) << " je: " << sizeof(CBlock) << " bajtu." << endl;
+
+	cout << endl << "Nyni existuje " << ClassInfo<CStack>::Living() << " instanci tridy: " << DM(typeid(CStack).name()) << endl;
+	cout << "Velikost jedne instance tridy " << DM(typeid(CStack).name()) << " je: " << sizeof(CStack) << " bajtu." << endl;
+	cout << endl;
+
+	try
+		{
+		cout << "===============================================================================" << endl;
+		cout << "Nyni existuje " << ClassInfo<CBlock>::Living() << " instanci tridy: " << DM(typeid(CBlock).name()) << endl;
+		cout << "Nyni existuje " << ClassInfo<CStack>::Living() << " instanci tridy: " << DM(typeid(CStack).name()) << endl;
+		cout << endl;
+
+		// Tady bude zdrojovy text pouzivajici vas projekt
+		CBlock EmptyCBlock;
+		CBlock CBlockVal0(CBlock::TestValue0());
+		CBlock CBlockVal1(CBlock::TestValue1());
+		CBlock CBlockValRand(CBlock::TestValueRandom());
+		CBlock CBlockString(CBlock::TestStringValue1());
+		std::string string;
+
+		
+		//(implementation of CStack class methods created and sorted by each author - author1, author2, author3, author4)
+		{// author1 - MAJNUS ===========================
+			cout << "Testing methods of author1 - Majnus:" << endl ;
+
+			cout << "	Not calling unary operator +" << endl;
+			CStack stack1;
+			CStack stack2;
+			stack1.Push(CBlockVal0);
+			stack1.Push(CBlockVal0);
+			stack2.Push(CBlockVal1);
+			stack2.Push(CBlockVal1);
+
+			stack1 + stack2 ;
+
+			//cout << "	Calling string conversion c'tor" << endl;
+			//{
+			//CStack stack2(string.data());
+			//}
+			//cout << "End of testing methods of author1 - Majnus" << endl;
+
+			cout << endl;
+		}// END author1 - MAJNUS =======================
+
+		//try
+		//{
+		//	catch(prazdny_zasobnik)
+		//	{
+		//		return 1;
+		//	}
+		//	
+		//}
+
+		{// author2 - KLUKA ============================
+			cout << "Testing methods of author2 - Kluka:" << endl;
+#ifdef KLUKA_PRINT
+			cout << endl << "	KLUKA_PRINT is enabled." << endl;
+#else
+			/*cout << endl <<
+				   "	KLUKA_PRINT mode in CStack.h is not enabled. To see each step of my methods in detail, please," << endl
+				<< "	enable this mode defined in the CStack.h file at the top of this file. This also gives you extra" << endl
+				<< "	control of methods of other authors." << endl;*/
+#endif
+#ifdef	CONSULTATION
+			cout << endl <<
+				   "	Not calling any methods due to ongoing consultation - my methods are using methods/operators" << endl
+				<< "	of other authors and some of them are not working properly. To consultate those methods, please," << endl
+				<< "	disable consultation mode defined in the main.cpp file at the top of this file." << endl;
+#else
+			// CBlock conversion c'tor
+			cout << endl << "	Calling CBlock conversion c'tor" << endl;
+				{
+				CStack stack1(EmptyCBlock);						//(conversion c'tor uses "new" to allocate memory, d'tor using "delete" needed)
+				}
+
+			// String conversion c'tor
+			cout << endl << "	Calling string conversion c'tor" << endl;
+				{
+				CStack stack2("("+CBlock::TestStringValue0()+","+ CBlock::TestStringValue1() + ")");
+				}
+
+			// PocetPrvku getter
+			cout << endl << "	Calling PocetPrvku getter" << endl;
+				{
+				CStack stack3;
+				size_t pocet_prvku = stack3.PocetPrvku();
+				}
+
+			// Unary operator -
+			cout << endl << "	Calling unary operator -" << endl;
+				{
+				CStack stack4;
+				CStack stack5;
+				stack4.Push(CBlockVal0);
+				stack4.Push(CBlockVal0);
+				stack4.Push(CBlockVal1);
+				stack5 = -stack4;
+				}
+
+			// Unary operator --
+			cout << endl << "	Calling unary operator --" << endl;
+				{
+				CStack stack5;
+				stack5.Push(CBlockVal0);
+				stack5.Push(CBlockVal0);
+				--stack5;										
+				}
+
+			// Binary operator -=
+			cout << endl << "	Calling binary operator -=" << endl;
+				{
+				CStack stack6;
+				CStack stack7;
+
+				stack6.Push(CBlockVal0);
+				stack6.Push(CBlockVal1);
+				stack6.Push(CBlockVal0);
+
+				stack7.Push(CBlockVal1);
+
+				stack6 -= stack7;								
+				}
+
+			// Relational Operator ==
+			cout << endl << "	Calling relational operator ==" << endl;
+				{
+				CStack stack9;
+				CStack stack10;
+
+				stack9.Push(CBlockVal0);
+				stack10.Push(CBlockVal0);
+
+				stack9 == stack10;
+				}
+
+			// Threeway comparison by Value operator
+			cout << endl << "	Calling three-way comparison by Value operator" << endl;
+				{
+				CStack stack9;
+				CStack stack10;
+				stack9 <=> stack10;
+				}
+
+			// Method aaa.Reverzuj
+			cout << endl << "	Calling method aaa.Reverzuj" << endl;
+				{
+				CStack stack8;
+				stack8.Push(CBlockVal0);
+				stack8.Push(CBlockVal0);
+				stack8.Push(CBlockVal0);
+				stack8.Reverzuj();
+				}
+
+			//(debug completed)
+			/*
+			cout << endl;
+			cout << "	test debug equal" << endl;
+				{
+				CBlock val0(CBlock::TestValue0());
+				CBlock val1(CBlock::TestValue1());
+				
+				CStack stack0(val0);
+				cout << "		Total stack0: " << stack0.Total() << endl;
+				cout << "		PocetPrvku after stack0(val0): " << stack0.PocetPrvku() << endl;
+
+				stack0.Push(val1);
+				//cout << "		Total stack0.Push(val1): " << stack0.Total() << endl;
+				cout << "		PocetPrvku after stack0.Push(val1): " << stack0.PocetPrvku() << endl;
+
+				--stack0;
+				//cout << "	Total stack0.Push(val1): " << stack0.Total() << endl;
+				cout << "		PocetPrvku after --stack0: " << stack0.PocetPrvku() << endl;
+
+				//--stack0;
+				cout << "		Total stack0.Push(val1): " << stack0.Total() << endl;
+				cout << "		PocetPrvku after --stack0: " << stack0.PocetPrvku() << endl;
+				}
+			cout << "	end test debug equal" << endl;
+			cout << endl;
+			*/
+
+			//(debug completed)
+			/*
+			cout << "	test debug comparedeep" << endl;
+				{
+				CBlock val0(CBlock::TestValue0());
+				CBlock val1(CBlock::TestValue1());
+				cout << "		val0: " << val0 << endl;
+				cout << "		val1: " << val1 << endl;
+				cout << endl;
+
+				CStack stack0;
+				cout << "		PocetPrvku after stack0: " << stack0.PocetPrvku() << endl;
+				stack0.Push(val0);
+				stack0.Top();
+				
+				cout << "		PocetPrvku after stack0 1x push: " << stack0.PocetPrvku() << endl;
+				cout << endl;
+
+				CStack stack1;
+				cout << "		PocetPrvku after stack1: " << stack1.PocetPrvku() << endl;
+				stack1.Push(val0);
+				
+				cout << "		PocetPrvku after stack1 1x push: " << stack1.PocetPrvku() << endl;
+				cout << endl;
+
+				cout << "		Comparison of stack0 and stack1: Are the stacks same?: " << (stack0 == stack1) << endl;
+				cout << endl;
+
+				CStack stack2;
+				cout << "		PocetPrvku after stack2: " << stack2.PocetPrvku() << endl;
+				stack2.Push(val1);
+				stack2.Top();
+
+				cout << "		PocetPrvku after stack2 1x push: " << stack2.PocetPrvku() << endl;
+				cout << endl;
+
+				cout << "		Comparison of stack0 and stack2: Are the stacks same?: " << (stack0 == stack2) << endl;
+				}
+			cout << "	end test debug comparedeep" << endl;
+			cout << endl;
+			*/
+#endif
+			cout << endl << "End of testing methods of author2 - Kluka" << endl;
+			//cout << "Methods of author2 report: operator -- is waiting for method Pop and operator -= is probably not working (exception because of empty stacks?)" << endl;
+			cout << endl;
+		}// END author2 - KLUKA ========================
+
+		{// author3 - PRASEK ===========================
+			cout << "Testing methods of author3 - Prasek:" << endl;
+
+			// Convert C'tor from init list
+			cout << "	Calling Convert C'tor from init list" << endl;
+				{
+				CStack stackS1 = { CBlockVal0, CBlockVal1 };
+				}
+
+			// Conversion C'tor of type size_t
+				cout << "	Calling Conversion C'tor of type size_t" << endl;
+				{
+				CStack stackS2(3);
+				}
+			 
+			// Unary operator ++
+			cout << "	Calling unary operator ++" << endl;
+				{
+				CStack stackS3;
+				++stackS3;
+				}
+
+			// Binary operator -
+			cout << "	Calling binary operator -" << endl;
+			{
+				CStack stackS4;
+				CStack stackS5;
+				CStack stackRes;
+
+				stackS4.Push(CBlockVal0);
+				stackS4.Push(CBlockVal0);
+
+				stackS5.Push(CBlockVal0);
+				stackS5.Push(CBlockVal1);
+
+				stackRes = stackS4 - stackS5; // stoji to na operator=s
+				}	
+
+			// Operator size_t
+			cout << "	Calling operator size_t" << endl;
+				{
+				CStack stackS5;
+				}
+
+			// Relation operator <
+			cout << "	Calling relation operator <" << endl;
+				{
+				CStack stackS6;
+				}
+
+			// Function Reverzuj(aaa)
+			cout << "	Not calling function Reverzuj(aaa)" << endl;
+				{
+				CStack stackS7;
+				stackS7.Push(CBlockVal0);
+				stackS7.Push(CBlockVal1);
+				//CStack stackS8 = Reverzuj(stackS7);
+				}
+
+			// Method Stack Pop
+			cout << "	Calling method Stack Pop" << endl;
+				{
+				CStack stackS8;
+				stackS8.Push(CBlockVal0);
+				stackS8.Pop();
+				}
+
+			// Method Stack Top
+			cout << "	Calling method Stack Top" << endl;
+				{
+				CStack stackS9;
+				stackS9.Push(CBlockVal0);
+				stackS9.Top();
+				}
+
+			// Method Stack Search
+			cout << "	Calling method Stack Search" << endl;
+				{
+				CStack stackS10;
+				stackS10.Push(CBlockVal0);
+				stackS10.Push(CBlockVal1);
+				if(stackS10.Search(CBlockVal0))
+					{
+					cout << endl << "	JE TAM" << endl << endl;
+					}
+				else
+					cout << endl << "	NENI TAM" << endl << endl;
+				}
+
+			cout << "End of testing methods of author3 - Prasek" << endl;
+			cout << endl;
+		}// END author3 - PRASEK =======================
+
+
+
+		{// author4 - PESEK ============================
+
+			cout << "Testing methods of author4 - Pesek:" << endl;
+
+			
+
+			// Method Stack Push
+			cout << "	Calling method Stack Push" << endl;
+				{
+				CStack Stack3;
+				Stack3.Push(CBlockVal0);
+				}
+
+			// Method Stack Top
+			cout << "	Calling method Stack Top" << endl;
+				{
+				CStack Stack4(CBlockVal1);
+				cout << "		Value on Top of Stack = " << Stack4.Top()->Value() << endl;
+					
+				}
+
+			//CBlock array of known size conversion c'tor
+			cout << "	Calling conversion c'tor from CBlock array of known size" << endl;
+				{
+				size_t n1 = 3;
+				CStack Stack1 = CStack(n1, CStack::TestValue0(n1));
+				}
+
+			//operator +=
+			cout << "	Not calling binary operator +=" << endl;
+				{
+				CStack Stack5 = CStack(1, CStack::TestValue0(1));
+				CStack Stack6 = CStack(3, CStack::TestValue0(3));
+				size_t Stack5_old_size = Stack5.PocetPrvku();
+
+				//Stack5 += Stack6;
+				//cout << Stack5_old_size << " + " << Stack6.PocetPrvku() << " = " << Stack5.PocetPrvku();
+				}
+
+			cout << "	Calling method CStack::TestValue0" << endl;
+				
+				//size_t n = 5;
+				//CStack aa = CStack::TestValue0(n);
+				
+				//std::cout << "	CStack length = " << aa.PocetPrvku() << std::endl;
+
+			cout << "End of testing methods of author4 - Pesek" << endl;
+			cout << endl;
+
+
+		}// END author4 - PESEK ========================
+
+		cout << "Hotovo." << endl;
+		cout << "===============================================================================" << endl;
+		} /* try */
+
+	catch(std::invalid_argument &e)
+		{
+		cerr << "std::invalid_argument: " << e.what() << "!!!\n\a" << endl;
+		}
+	catch(std::length_error &e)
+		{
+		cerr << "std::length_error: " << e.what() << "!!!\n\a" << endl;
+		}
+	catch(std::out_of_range &e)
+		{
+		cerr << "std::out_of_range: " << e.what() << "!!!\n\a" << endl;
+		}
+	catch(std::range_error &e)
+		{
+		cerr << "std::range_error: " << e.what() << "!!!\n\a" << endl;
+		}
+	catch(std::runtime_error &e)
+		{
+		cerr << "std::runtime_error: " << e.what() << "!!!\n\a" << endl;
+		}
+
+	cout << endl << "Nyni existuje " << ClassInfo<CBlock>::Living() << " instanci tridy: " << DM(typeid(CBlock).name()) << endl;
+	cout << "V prubehu programu vzniklo celkem " << ClassInfo<CBlock>::Total() << " instanci tridy: " << DM(typeid(CBlock).name()) << endl;
+
+	cout << endl << "V prubehu programu vzniklo celkem " << ClassInfo<CBlock_bool::CBlock>::Total() << " instanci tridy: " << DM(typeid(CBlock_bool::CBlock).name()) << endl;
+	cout << "V prubehu programu vzniklo celkem " << ClassInfo<CBlock_long::CBlock>::Total() << " instanci tridy: " << DM(typeid(CBlock_long::CBlock).name()) << endl;
+	cout << "V prubehu programu vzniklo celkem " << ClassInfo<CBlock_TInterval::CBlock>::Total() << " instanci tridy: " << DM(typeid(CBlock_TInterval::CBlock).name()) << endl;
+	cout << "V prubehu programu vzniklo celkem " << ClassInfo<CBlock_TWeekDay::CBlock>::Total() << " instanci tridy: " << DM(typeid(CBlock_TWeekDay::CBlock).name()) << endl;
+
+	cout << endl << "Nyni existuje " << ClassInfo<CStack>::Living() << " instanci tridy: " << DM(typeid(CStack).name()) << endl;
+	cout << "V prubehu programu vzniklo celkem " << ClassInfo<CStack>::Total() << " instanci tridy: " << DM(typeid(CStack).name()) << endl;
+	
+
+	return 0;
+	}

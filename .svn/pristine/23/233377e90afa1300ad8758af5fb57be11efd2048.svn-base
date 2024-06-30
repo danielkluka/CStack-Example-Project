@@ -1,0 +1,248 @@
+\mainpage Úvod a zadání
+
+| Projekt BPC-PPC				| 2022															| Hodnocení zadání (max 6b)	| Hodnocení CBlock, hlavička max(14b)	| Hodnocení projektu max(20b)	|
+| ---							| ---															|							| ---									| ---							|
+| Autor 1:						| `230122`, __Majnuš__ Martin, xmajnu01@vut.cz					|							|										|								|
+| Autor 2:						| `203251`, __Kluka__ Daniel, xkluka00@vut.cz					|							|										|								|
+| Autor 3:						| `230159`, __Prasek__ Šimon, xprase08@vut.cz					|							|										|								|
+| Autor 4:						| `228732`, __Pešek__ David, xpesek13@vut.cz					|							|										|								|
+| Datum zadání:					| 25.10.2022													|							|										|								|
+| Datum odevzdání zadání:		| 10.11.2022 (včetně);upřesní stránky kurzu;					|							|										|								|
+| Datum odevzdání hlavička:		|  1.12.2022 (včetně);upřesní stránky kurzu;					|							|										|								|
+| Datum finálního odevzdání:	| 21.12.2022 (včetně);upřesní stránky kurzu;					|							|										|								|
+
+
+## Úvodní poznámky
+
+
+V následujícím textu je vzor zadání.
+Tučně jsou označeny prvky, které se mohou lišit obsahem, ale které platí obecně pro třídu kontejner.
+Tyto pasáže je nutné nahradit upraveným textem s významem pro konkrétní kontejner (tyto vámi upravené části zůstanou zvýrazněny).
+V tomto okamžiku nás nezajímá implementace pomocí jazyka, ale u metod a operátorů vždy slovně popište, 
+jak si představujete jejich činnost. _Činnost popište tak, aby byl popis dostatečný k realizaci_ = jak byste ji zadali externímu programátorovi, aby jasně věděl jak se má metoda/funkce chovat. 
+U metod a operátorů bude tedy uvedeno: název, parametry, popis činnosti (tj. jakým způsobem se ze vstupních proměnných vytvoří proměnné výstupní), popis použití, popis smyslu a významu funkce (anotace/synopsis). 
+Tento popis se později stane součástí komentáře/helpu ve zdrojovém textu (Doxygen).
+
+U každé metody/funkce zadání uveďte monogram jednoho z autorů, který daný kód bude realizovat. __Metody označené jako autor1
+jsou povinné metody (konstruktory, operátor=, streamy), použitelné ostatními metodami, a proto je vhodné je při tvorbě realizovat přednostně a kvalitně__. Každý student by měl realizovat část každého bodu zadání (pokud to zadání umožňuje).
+
+Uvedené poznámky (Note) v odevzdávaném zadání nebudou (= __vymažte je__), slouží pouze jako doporučení a upřesnění.
+U některých variant zadání kontejneru mohou nastat problémy s tím, že daná vlastnost (metoda) kontejneru nemá \em "nejlogičtější" využití – zkuste si nějaké (byť méně logické) využití vymyslet 
+(z hlediska programátorské praxe je to samozřejmě špatně, protože metody by měly být logické a snadno chápatelné, ale my zde dáme prioritu procvičení, výuce a použití daného typu metod). 
+Každý z autorů by měl napsat alespoň jednu metodu příp. operátor daného typu.
+
+Vývoj projektu je možný v libovolném prostředí a kompilátoru C++ ([g++](http://gcc.gnu.org/), [clang++](http://clang.llvm.org/), [XCode](https://developer.apple.com/xcode/download/)), 
+ale referenčním překladačem bude [Microsoft Visual Studio 2022](http://www.visualstudio.com/).
+
+Preferovaným jazykem C++ _zdrojových textů_ je angličtina, případně čeština bez diakritiky. Pro dokumentaci ve zdrojových souborech tedy používejte český jazyk bez háčků a čárek (tj. pouze ASCII znaky). 
+Popřípadě používejte jazyk anglický (pokud ho umíte na odpovídající úrovni).
+
+Ve zdrojových kódech (hlavička a kód kontejneru, funkce main, soubor testů) udržujte kód v blocích podle autorů, je-li to možné. Tyto bloky pouze prostorově vymezují prostor jednotlivých autorů a
+nebudou vymezovány či používány jiným způsobem (například podmíněný překlad pomocí ifdef apod.) Celý kód všech autorů bude vždy společný a přeložitelný bez errorů (a pokud možno i bez warningů - platí i pro 
+hlášení z generování dokumentace Doxygen) jako jednotlivý celek.
+
+__Pokud něčemu nerozumíte, ptejte se (především na cvičeních). Práce je snažší pokud víte co děláte.__
+
+
+## Zadání
+
+### Popis datové struktury a výběr datových typů pro realizaci projektu
+
+V rámci projektu se bude tvořit objektová knihovna zajišťující zásobníkové funkce pro prvky nesoucí hodnotu zvoleného typu.
+Vnitřní implementace zásobníku bude realizována jako tzv. [obousměrně vázaný lineární seznam (doubly linked list)](https://en.wikipedia.org/wiki/Linked_list#Doubly_linked_list) 
+tj. seznam prvků s hodnotami. 
+Tato datová struktura umožňuje časově efektivní přidávání, odebíraní a vyhledávání prvků. 
+_Snažte se tedy realizovat paměťově i časově úspornou implementaci zásobníku!_
+Prvky vkládané do datové struktury `CStack` budou instance třídy `CBlock`.
+
+Třída `CBlock` bude prvkem zásobníku.
+Ve výsledném projektu bude vytvořený zásobník schopen pracovat minimálně se čtyřmi různými 
+implementacemi třídy `CBlock`. 
+První dvě třídy `CBlock` Vám již byly dodány v rámci zadání a realizují zapouzdření typu 
+`bool` a výčtového typu `TWeekDay` a je v rámci řešení projektu zakázána jejich modifikace. 
+Podle těchto příkladů v rámci projektu vytvoříte dvě další třídy `CBlock`.
+
+Třída `CStack` je dodána v minimální podobě a v rámci projektu bude nutné ji dopracovat (přejmenovat, doplnit její funkčnost). 
+Třída `CBlockBase` bude sloužit jako pomocná, zajišťující tvorbu vázaného seznamu, a z ní bude dědit třída `CBlock`. 
+Třída `CBlockBase` bude obsahovat proměnnou \p iExtraInt (v `CBlock` realizující např. klíč či hodnotu). Zapouzdřovaná hodnota bude
+reprezentována pomocí prvku \p iValue třídy `CBlock`.
+Pomocné třídy budou nedílnou součástí projektu, ale v dalším textu budeme zmiňovat již pouze třídu `CBlock` a třídu reprezentující zásobník.
+
+\attention
+Zásobník budete realizovat bez podpory zásobníkových typů knihovny STL nebo jiných knihoven třetích stran. Prvky zásobníku budou realizovány
+pomocí seznamu typu lineární seznam a jeho prvky budou instance třídy `CBlock`.
+Zásobník bude realizován tak, aby uvnitř umožňoval práci s lineárními seznamy obecného rozměru. 
+Zásobník musí správně pracovat pro všechny čtyři vytvořené třídy `CBlock`, ale nemusí s nimi pracovat současně v rámci jednoho překladu.
+
+
+_Pozor! Nedodržení těchto podmínek znamená nesplnění základních požadavků zadání a hodnocení takového projektu bude bohužel 0 bodů!!!_
+
+
+-----------------------------------------------------------------------------------------------------------------
+
+
+
+\done V následujících třech částech ponechejte v seznamu vždy pouze ty položky, které odpovídají Vašemu zadání projektu. U položky 3 definujte 
+chování zásobníku. Datové typy z bodu 1 a 2 specifikujte též v prvním bodu zadání zásobníku.
+
+\done Místo všech názvů `CContainer` použijte v celé dokumentaci i kódu název zásobníku zvoleného v části zadání číslo 3.
+
+První Vámi realizovaná třída `CBlock_long` bude zapouzdřovat jeden ze základních typů, který si zvolte v části 1:
+
+_Zadání část 1: základní datový typ:_
+- __celočíselný typ__: `long`
+
+
+
+Druhá Vámi realizovaná třída `CBlock_TInterval` bude zapouzdřovat jeden ze složených datových typů, který si zvolte v části 2:
+
+_Zadání část 2: složený datový typ:_
+- __Číselný interval__ <min,max> 
+
+
+Třetí Vámi realizovaná třída bude samotný zásobník pracující s prvky třídy `CBlock`. Charakter a funkci zásobníku si zvolte v části 3:
+
+_Zadání část 3: typ kontejneru implementován pomocí lineárního seznamu:_
+- __Zásobník__ – jeden vstup, jeden výstup, architektura LIFO. Prvky jsou ve frontě v pořadí vstupu a při výskytu prvku je pořadí prvků na výstupu opačné oproti pořadí prvků na vstupu.
+
+
+-----------------------------------------------------------------------------------------------------------------
+
+
+### Vzorový text zadání:
+
+\done Od tohoto místa dále nahraďte tučně zapsané texty vhodnou modifikací pro Vaše zadání (značky pro tučné (tzv. Bold) zvýraznění neodstraňujte). Nezvýrazněný text nemažte - jedná se o povinné body zadání!!! 
+U jednotlivých metod popište činnost tak, aby podle ní bylo jasné, _co bude metoda dělat_ (tj. jak na základě vstupů vznikne výsledek).
+Dále viz úvodní poznámky.
+
+Navrhněte třídu __CStack__, která bude obsahovat prvky třídy `CBlock` a realizovat knihovnu pro práci s vybraným jednoduchým typem (__long__) a složeným datovým typem (__TInterval__), 
+který bude zapouzdřen ve třídě `CBlock`. 
+Třída `CBlock` (společně s dalšími pomocnými datovými typy) je připravena pro práci s lineárním seznamem a její využití při tvorbě zásobníku je povinnou součástí projektu. Celá knihovna bude realizovat činnost __zásobníku__ podle následujících bodů. 
+Pokud je to možné, bude splňovat očekávané chování (podobné jako u jednoduchých typů: `int`, `float`, atd.).
+Navržená třída __CStack__ splní následující:
+
+1. Třída `CBlock` zapouzdřuje dva dodané (`bool`, `TWeekDay`) a dva zvolené datové typy: jeden základní: __long__ a druhý složený: __TInterval__ (`class`), (__který reprezentuje číselný interval hodnot typu long, s vlastnostmi: kontrola správného pořadí parametrů určujícich hranice intervalů (min,max) a jejich případná výměna; ověření výskytu hodnoty v intervalu; vrací hodnoty typu long a výsledek nalezení bool__). 
+Tyto definované třídy budou vytvořeny ve svých jmenných prostorech: __CBlock_long__, __CBlock_TInterval__.
+
+\done Zde uveďte za NAZEV_TYPU typy zvolené pro třídy z části zadání č.1 a č.2.
+\done Pro oba nové datové typy (z části zadání č.1 a č.2) uveďte, jaký typ budou zapouzdřovat (u výčtového typu definujte i jednotlivé názvy hodnot). Pro datový typ č.2 uveďte název nově definovaného složeného typu s informaci, zda půjde o definici: `typedef`, `struct`, `union`, `class`.
+
+2. Vznik objektu třídy __CStack__:
+ - default konstruktor, __který vytvoří prázdný zásobník.__ ( __Majnuš__ )
+ - kopykonstruktor - vytvoří vlastní kopii všech dat (hluboka kopie jednotlivých instanci třídy CBlock), ale bude mít unikátní `iID`. ( __Majnuš__ )
+ - konverzní konstruktor z `CBlock`, __který vytvoří nový zásobník s klíčem CBlock.__ ( __Kluka__ ) 
+ - konverzní konstruktor z typu __size_t, který vytvoří nový zásobník, ve kterém bude tolik prvků CBlock vytvořených defaultním konstruktorem, kolik bude zadaných.__ ( __Prasek__ )
+ - konstruktor z dvojice hodnot reprezentujících: __počet prvků pole a samotné pole prvků CBlock - výsledný objekt se vytvoří způsobem, že prvky z pole se přiřadí k prvkům ze zásobníku na příslušné indexy ve stejném pořadí.__ ( __Pešek__ )
+ - konstruktor z initializer listu, __který se zeptá listu jak je velkej, zeptá se na jeho data a zavolá konverzní konstruktor z CBlock.__ ( __Prasek__ )
+ - konstruktor na základě C řetězce (_const char *_), jehož formát bude __hodnoty jednotlivých__ `CBlock` __oddělené čárkami. Řetězec bude mít tvar: stejný jako stream, "(hodnota-prvku1,hodnota-prvku2,hodnota-prvku3,...)".__ ( __Kluka__ )
+\done Celkem tedy – defaultní, kopykonstruktor, konverzní, konverzní z řetězce, s více parametry, ... – (minimální počet konstruktorů: 6ks)  = 6ks\n
+\done Autora v dalších bodech zadání doplňte stejně jako je to u metod v tomto bodu zadání.
+
+3. Počet vzniklých a aktuálních instancí třídy  __CStack__ bude možné sledovat pomocí členské proměnné třídy `ClassInfo`, a bude možné je získat 
+voláním metod této třídy `Total` a `Living`. Každá instance třídy __CStack__ bude v této proměnné třídy `ClassInfo` obsahovat proměnnou `iID` sloužící k identifikaci instance 
+ __CStack__ (odpovídající pořadí vzniku). Identifikační hodnota instance musí být přístupná mimo třídu pomocí vhodné metody - `ID()`. ( __Majnuš__ )
+4. Zánik objektu - destruktor __zásobníku__ bude implementován s mechanizmem odpočtu aktivních prvků pomocí proměnné třídy `ClassInfo`. 
+   Dynamické členské prvky __odalokuje (všechny CBlocky, které mu patří), tedy odalokuje celý zásobník.__ ( __Majnuš__ )
+5. Budou implementovány operátory __zásobníku__ s příslušnými činnostmi: 
+ - operátor = __pro přiřazení__, vytvářející kopii hodnot (mimo `iID`, které si ponechá původní). Původní hodnoty ve výsledné proměnné přepíše, dynamické odalokuje. ( __Majnuš__ )\n
+ \n
+ __Unární:__
+ - operátor __– jako__ unární operátor __prohodí pořadí CBlocků v zásobníku.__ ( __Kluka__ )
+ - operátor __+ jako__ unární operátor, __kerý nic nedělá.__ ( __Pešek__ )
+ - operátor __++ jako__ unární operátor, __který na konec zásobníku vloží nový CBlock vytvořený pomocí default konstruktoru (zasobnik++).__ ( __Prasek__ )
+ - operátor __-- jako__ unární operátor, __který z konce zásobníku odebere prvek CBlock.__ ( __Kluka__ ) 
+ - operátor __! jako__ unární operátor, __který, když je zásobník prázdný vrátí true a nastane výjimka.__ ( __Majnuš__ )\n
+ \n
+ __Binární:__
+ - operátor __– jako__ binární operátor __vznikne nový zásobník, který bude obsahovat všechny pvky z prvního zásobníku, které neobsahuje druhý zásobník a nebude ctít pořadí.__ ( __Prasek__ )
+ - operátor __+ jako__ binární operátor, __který sečte dva zásobníky a nebude komutativní, čili bude záležet na pořadí zásobníků.__ ( __Majnuš__ ) 
+ - operátor __-= realizující__ a = a-b; __tak, že zavolá sám sebe a odečte od všech hodnot zásobníku a hodnoty zásobníku b.__ ( __Kluka__ )
+ - operátor __+= realizující__ a = a+b; __tak, že zavolá sám sebe a přičte všem hodnotám zásobníku a hodnoty zásobníku b.__ ( __Pešek__ )\n
+\n
+ __Konverzní:__
+ - operátor (`operator size_t()`) pro konverzi zásobníku __na `size_t`, který bude reprezentovat počet prvků zásobníku.__ ( __Prasek__ )\n
+ \n
+ __Nečlenský:__
+ - nečlenský operátor __+__ (levý operátor není zásobník: prvek+zasobnik), využívající \c friend vlastností realizující __součet CBlock a zásobníku.__ ( __Pešek__ )\n
+ \n
+ __Relační:__
+ - relační operátory __!=, ==, <, > ,__ __pro porovnání dvou zásobníků. (Zásobníky jsou stejné, když mají stejný počet prvků a mají stejnou velikost. Ten zásobník, který má méně prvků je menší. Když mají stejný počet prvků, tak není žádný z nich menší.)__  Výsledek bude získán zpracováním návratové hodnoty funkce `CompareDeep`. ( __!= Majnuš, == Kluka, < Prasek, > Pešek__ )
+\n
+\done Celkem tedy – unárních (nejméně 3ks), binárních (nejméně 3ks), konverzní, nečlenský, relační (nejméně 3ks) – (celkem minimálně 12ks). U operátorů i metod z následujících bodů uveďte požadované informace (viz úvodní poznámky).   
+\n
+_Zadání bude obsahovat definici zvolené operace (tedy například co se myslí pod termínem odečtení zásobníků, jak se bude chovat k prvkům zásobníku, popřípadě ke zásobníkům prázdným)_
+6. Standardní vstup a výstup z instance třídy  __CStack__ bude realizován pomocí streamů (realizovaný "friend" funkcí s využitím jejích vlastností) – přetížením operátorů << a >> ve stejném formátu navrženém pro konstruktor z `char *` (tj. __čárkami oddělený seznam hodnot zásobníku ve tvaru "(hodnota-prvku1,hodnota-prvku2,hodnota-prvku3,...)"__). ( __Majnuš__ )
+7. Budou realizovány privátní a veřejné metody: 
+ - veřejná metoda `PocetPrvku` pro zjištění počtu prvků v __zásobníku__, která nebude mít parametry. ( __Kluka__ )
+ - Charakteristické metody pro daný __zásobník__ (např. pro vložení a vyzvednutí prvku) s názvy __Push__(Vložení hodnoty na konec zásobníku), __Pop__(Odebrání hodnoty z konce zásobníku.), __Top__(Zobrazení hodnoty z vrchu zásobníku.), __Search__(Zjistí, jestli je hledaná hodnota v zásobníku.), __Dup__(Duplikuje existující zásobník.) ( __Prasek a Pešek__ )
+ - Metoda `Usage()`, která vrátí `double` hodnotu [v procentech] reprezentující efektivnost využití paměti při použití lineárního seznamu 
+   prvků `CBlock` v poměru k reprezentaci zásobníku pomocí standardního C pole stejného počtu prvků jako je typ zapouzdřený ve třídě `CBlock`. ( __Prasek__ )
+ - Privátní metoda `Compare`, která porovná "velikost" dvou zásobníků, kde velikost je dána počtem prvků, a vrátí hodnotu -1,0 nebo 1 (první je kratší, stejné, první je delší). ( __Pešek__ )
+ - Privátní metoda `CompareDeep`, která porovná zásobníky i podle hodnot `CBlock` (návratové hodnoty jako u Compare). Výsledky získané voláním metod `Compare` a/nebo `CompareDeep` budou ke své činnosti používat relační operátory zásobníku. ( __Majnuš__ )
+\done Pro privátní metody jsou nejvýhodnější funkce typu „uprav“, „přepočítej“, „zkontroluj“. Celkem tedy – minimálně 2ks privátní a 6ks veřejné.
+\done U každé z metod definujte nejen její název, ale uveďte i informaci, co bude jejím úkolem z hlediska funkce __zásobníku__ (tj. textově popište její funkci, popř. smysl).   
+
+8. Budou realizovány metody, pro reverzaci (reverzace je __např. otočení pořadí prvků zásobníku__):
+ - umožňující volání `bbb=aaa.Reverzuj()`, která mění __zásobník__ `aaa` na __reverzovaný zásobník__ `bbb` (__Při postupném procházení zásobníku pomocí ukazatele, kdy se v každé iteraci prohodí hodnoty následujícího a předchozího prvku.__),
+ - umožňující volání `bbb=Reverzuj(aaa)`, která nechává __zásobník__ `aaa` nezměněn a vrací (temp objekt) __reverzovaný zásobník__ `bbb`. 
+9. Použití dynamických dat ve třídě – __předpokládáme__.
+10. Dědění ve třídě - __předpokládáme__ .
+11. Použití výjimek - __předpokládáme__.  
+  - Při zavolání metody POP na prázdný zásobník.
+  - V případě nevhodného tvaru stringu z c'toru z řetězce. Získali jsme neočekávaný vstup.
+  - Při vkládaní prvku dojde mallocu paměť.
+  - Při prázdném zásobníku po zavolání operátoru __!__.
+12. Ve vlastním projektu se předpokládá i implementace metod vytvářených překladačem implicitně.
+13. Ve třídě bude pro kontrolu korektní práce s pamětí implementována knihovna [Checker](http://www.uamt.fekt.vut.cz/~petyovsky/projects/checker/checker.zip).
+14. Každý z autorů napíše pro tři vybrané metody (nepatřící do stejného bodu zadání) unit testovou metodu (jednu pro každou vybranou metodu). 
+    Každá unit testová metoda bude obsahovat alespoň tři testy (assert...) pro vybranou metodu, z nichž alespoň dva nebudou pracovat s implicitně vytvořeným zásobníkem (tj. proměnná typu zásobník bude obsahovat prvky - alespoň čtyři). 
+    Jeden z testů od každého autora bude obsahovat i testy alokované paměti (vyberte metodu pracující s pamětí).
+
+
+### Poznámky k řešení (jsou součástí zadání):
+
+Odvozené třídy `CBLOCK_NAZEV_TYPU` vypracujte v projektu CBlock, kde je ve funkci `main` 
+demonstrována činnost `CBlock_bool`. 
+Po odladění je použijte ve vlastním projektu při tvorbě __zásobníku__, 
+kde vytvořte v `main` podobný testovací kód (pro třídu zásobníku) jako je ukázáno v projektu s CBlock.
+Projekt CBlock chápejte jako ukázkový projekt, který demonstruje principy práce s CBlock, a lineárními seznamy a všemi dodanými třídami. Věřím, že pro Vás bude cennou studnicí vědomostí a zároveň vhodným testovacím _pískovištěm_
+k pokusům a experimentům. Proto si jeho činnost prostudujte a snažte se ho pochopit do co nejmenších detailů. Pokud Vám tento testovací projekt přestane fungovat, obnovte poslední fungující verzi z repozitáře a zkuste to znovu. ;-)
+_Aneb kdo nic nerozbije, ten se nic nenaučí._
+
+Vytvořená implementace __zásobníku__ bude využívat vlastnosti třídy `CBlock` a musí 
+umožňovat bezchybný překlad s libovolnou třídou `CBlock` (zapouzdřující některý z 
+jednoduchých datových typů) bez nutnosti zásahu do zdrojových textů __zásobníku__!!!!
+Implementace zásobníku tedy nebude závislá na typu ukládaných hodnot, protože bude 
+využívat pouze definované rozhraní třídy `CBlock` (společné pro všechny typy), tak jak 
+je uvedeno v testovacím příkladu. 
+__CStack__ proto implementujte tak, aby přímo nevyužíval (nevolal) Setter ani Getter 
+metody třídy `CBlock`, jejichž hlavička je na zapouzdřujícím typu závislá!!! 
+
+Celá hierarchie souboru projektu je patrná na následujícím obrázku.
+\done _Nezapomeňte v obrázku upravit názvy tučně označených souborů._
+
+\dotfile project_hierarchy.gv "Obr.1 - Nákres hierarchie souborů v projektu"
+
+
+
+Vlastní realizace třídy pro __zásobník__ bude rozdělena na hlavičkový a zdrojový soubor (__CStack.h__, __CStack.cpp__). Další zdrojový soubor (main.cpp) bude reprezentovat program demonstrující vlastnosti a použití 
+definované třídy __CStack__. Všechny zdrojové a hlavičkové soubory budou obsahovat úvodní poznámku o svém názvu, stručném obsahu a řešitelích ve formátu pro systém Doxygen).
+
+Demonstrační program bude realizován jako konzolová aplikace přeložitelná ve Visual C++ (prázdný projekt, přísnost (stupeň) překladu 3 na detekci chybových a varovných hlášení). 
+Snažte se, aby demonstrační program byl napsán tak, aby při činnosti nevyžadoval zásahy obsluhy ani vstupní data z jiných speciálních souborů (s výjimkou operátoru pro standardní vstup). 
+Demonstrační/testovací program bude inicializovat proměnné (v něm definovanými daty nezadávanými uživatelem) a na jejich základě bude demonstrovat činnost třídy a dále zobrazovat data na konzolu, 
+nebo ukládat výsledky do souboru.
+\ref doc "Dokumentaci" výsledného projektu realizujte pomocí nástroje [Doxygen](http://www.doxygen.org).
+
+K tomuto odevzdávanému zadání nezapomeňte připsat do úvodu: (jména řešitelů, název projektu, datum zadání).
+
+Pro lepší orientaci uvádíme krátkou motivaci k pojmu třída na odkazu:
+[Motivace třída](http://www.uamt.fekt.vut.cz/~richter/vyuka/1920_XPPC/cviceni/motivace_trida.html).
+
+
+Pokud Vás trápí nastavení [Unit testů](https://en.wikipedia.org/wiki/Test-driven_development) ve VS2022 zkuste si projít [tento postup pro VS2019](http://www.evernote.com/l/AElAKsn_ps1ONbQRPVcvgmGPXcK76B0P0qs/).
+
+---
+$Id$
+
+Poslední změna: $Date: 2022-10-05$

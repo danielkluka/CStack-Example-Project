@@ -1,0 +1,2614 @@
+------------------------------------------------------------------------
+r3751 | petyovsky | 2023-01-05 11:46:14 +0100 (öt, 05 jan 2023) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/branches/oprava_final/Project/Project/CBlock.h
+   M /ct09_zasobnik1/branches/oprava_final/Project/Project/Introduction.md
+
+
+------------------------------------------------------------------------
+r3719 | petyovsky | 2023-01-02 14:22:38 +0100 (po, 02 jan 2023) | 1 line
+Changed paths:
+   A /ct09_zasobnik1/branches/oprava_final (from /ct09_zasobnik1/tags/final:3718)
+
+branch[ct09_zasobnik1/branches/oprava_final]: Pro ohodnoceni
+------------------------------------------------------------------------
+r3718 | petyovsky | 2023-01-02 14:22:37 +0100 (po, 02 jan 2023) | 1 line
+Changed paths:
+   A /ct09_zasobnik1/tags/final (from /ct09_zasobnik1/trunk:3717)
+
+tag[ct09_zasobnik1/tags/final]: Zaloha
+------------------------------------------------------------------------
+r3692 | xpesek13 | 2022-12-30 14:07:18 +0100 (pi, 30 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+
+doplneni dokumentace mych metod
+------------------------------------------------------------------------
+r3691 | xkluka00 | 2022-12-30 13:38:24 +0100 (pi, 30 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/Project/Documentation.md
+
+doplnenie dokumentacie
+------------------------------------------------------------------------
+r3673 | xkluka00 | 2022-12-29 21:14:59 +0100 (öt, 29 dec 2022) | 2 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Documentation.md
+
+opat doplnenie
+
+------------------------------------------------------------------------
+r3672 | xkluka00 | 2022-12-29 21:04:03 +0100 (öt, 29 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/Documentation.md
+
+doplnenie testovania IntegrityTest do mojich metod - vsetko preslo
+------------------------------------------------------------------------
+r3671 | xkluka00 | 2022-12-29 20:55:59 +0100 (öt, 29 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Documentation.md
+
+doplnenie autorov pridanych metod a doplnenie metody IntegrityTest do dokumentacie
+------------------------------------------------------------------------
+r3670 | xkluka00 | 2022-12-29 20:51:31 +0100 (öt, 29 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Documentation.md
+
+fix dokumentacie Documentation.md
+------------------------------------------------------------------------
+r3668 | xkluka00 | 2022-12-29 19:47:59 +0100 (öt, 29 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+kompletne dokoncenie dokumentacie mojich testov v UnitTests.cpp
+------------------------------------------------------------------------
+r3666 | xkluka00 | 2022-12-29 19:29:29 +0100 (öt, 29 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+ciastocne doplnenie dokumentacie mojich testov v UnitTests.cpp
+------------------------------------------------------------------------
+r3662 | xkluka00 | 2022-12-29 18:17:11 +0100 (öt, 29 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+zmena formatu dokumentacie unit testov v UnitTests.cpp - funkcne zobrazenie v test list
+------------------------------------------------------------------------
+r3661 | xkluka00 | 2022-12-29 17:57:41 +0100 (öt, 29 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Documentation.md
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+uprava dokumentacie, zadania a zmazanie nepotrebneho zakomentovaneho kodu v UnitTests.cpp
+------------------------------------------------------------------------
+r3496 | xkluka00 | 2022-12-21 23:57:36 +0100 (st, 21 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+oprava poslednej }
+------------------------------------------------------------------------
+r3494 | xkluka00 | 2022-12-21 23:56:29 +0100 (st, 21 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+
+za davida
+------------------------------------------------------------------------
+r3493 | xkluka00 | 2022-12-21 23:55:12 +0100 (st, 21 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+
+vypnutie KLUKA_PRINT
+------------------------------------------------------------------------
+r3469 | xkluka00 | 2022-12-21 23:39:46 +0100 (st, 21 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+https://www.youtube.com/watch?v=3_-a9nVZYjk&ab_channel=TrapNation
+------------------------------------------------------------------------
+r3458 | xkluka00 | 2022-12-21 23:29:53 +0100 (st, 21 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/Project/Documentation.md
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+FINAL VERZIA PROJEKTU, DAKUJEM ZA SPOLUPRACU (a po tolkych commitoch je to cest, aby som ja daval ten posledny commit) https://www.youtube.com/watch?v=3_-a9nVZYjk&ab_channel=TrapNation
+------------------------------------------------------------------------
+r3352 | xmajnu01 | 2022-12-21 21:15:11 +0100 (st, 21 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+
+odstranÏnÌ mrtv˝ch duöÌ z CSTACK_H a jemnÈ ˙pravy v CStack.cpp
+------------------------------------------------------------------------
+r3345 | xmajnu01 | 2022-12-21 21:03:00 +0100 (st, 21 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+jemn· ˙prava dokumentace, odkomentov·nÌ good u istreamu, jemnÈ uhlazenÌ mainu
+------------------------------------------------------------------------
+r3341 | xkluka00 | 2022-12-21 20:54:06 +0100 (st, 21 dec 2022) | 2 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Documentation.md
+
+uprava dokumentacie
+
+------------------------------------------------------------------------
+r3338 | xmajnu01 | 2022-12-21 20:48:22 +0100 (st, 21 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+˙prava a zavol·nÌ m˝ch metod i oper·tor˘ v mainu
+------------------------------------------------------------------------
+r3305 | xmajnu01 | 2022-12-21 19:24:19 +0100 (st, 21 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+
+znovu obnovenÌ funkËnÌho, aË sloûitÏji napsanÈho Popu
+------------------------------------------------------------------------
+r3298 | xmajnu01 | 2022-12-21 19:10:57 +0100 (st, 21 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+odstranÏnÌ h¯bitovu z CStack.cpp
+------------------------------------------------------------------------
+r3296 | xmajnu01 | 2022-12-21 19:04:04 +0100 (st, 21 dec 2022) | 2 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+unit test !=
+
+------------------------------------------------------------------------
+r3258 | xmajnu01 | 2022-12-21 17:20:28 +0100 (st, 21 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+rozsireni testu operatoru =, chyba v popu
+------------------------------------------------------------------------
+r3249 | xmajnu01 | 2022-12-21 16:45:21 +0100 (st, 21 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+unit test operator + hotov
+------------------------------------------------------------------------
+r3237 | xmajnu01 | 2022-12-21 16:15:38 +0100 (st, 21 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+p¯id·nÌ unit testu pro oper·tor = 
+------------------------------------------------------------------------
+r3225 | xmajnu01 | 2022-12-21 15:28:57 +0100 (st, 21 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+P¯id·nÌ popisk˘ v unit testech metod·m, kterÈ se testujÌ samy.
+------------------------------------------------------------------------
+r3217 | xpesek13 | 2022-12-21 14:57:55 +0100 (st, 21 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+
+uklid 
+------------------------------------------------------------------------
+r3215 | xpesek13 | 2022-12-21 14:55:35 +0100 (st, 21 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+vyjimka v CStack::TestValueRandom() a chytani vyjimek v main.cpp
+------------------------------------------------------------------------
+r3211 | xmajnu01 | 2022-12-21 14:44:37 +0100 (st, 21 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+unit test destruktoru
+------------------------------------------------------------------------
+r3203 | xpesek13 | 2022-12-21 14:26:58 +0100 (st, 21 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+Dup test v main.cpp a UnitTests.cpp
+------------------------------------------------------------------------
+r3141 | xkluka00 | 2022-12-21 00:38:53 +0100 (st, 21 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/Project/Documentation.md
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+finalizacia mojej prace, kontrola dokumentacie.. aj ja dakujem chalani
+------------------------------------------------------------------------
+r3075 | xprase08 | 2022-12-20 20:00:32 +0100 (ut, 20 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+Ma cast main.cpp dokonecna, vse by melo fungovat. Snad jsem na neco nezapomnel. Asi nejspis muj posledni commit. Dane tobe diky za leadership, za trello a obecne za vsechnu praci, co jsi okolo tohodle projektu mel. Ostatnim clenum tymu dekuju, ze jsme se dokazali vzdy domluvit. Panove byla to jizda, dekuji. Pokud bych uz nic necommitoval, tak jsem folder 'blitky' uz na dobro smazal. :)
+------------------------------------------------------------------------
+r3051 | xpesek13 | 2022-12-20 18:41:32 +0100 (ut, 20 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+operator+ neni komutativni, takze jsem pridal dalsi metodu provadejici operaci CStack + CBlock
+------------------------------------------------------------------------
+r2949 | xkluka00 | 2022-12-19 18:01:54 +0100 (po, 19 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+dokonceny unit test, prepis niektorych funkcii podla rad doktora petyovskeho
+------------------------------------------------------------------------
+r2937 | xmajnu01 | 2022-12-19 16:32:08 +0100 (po, 19 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+uklizeno
+------------------------------------------------------------------------
+r2936 | xmajnu01 | 2022-12-19 16:26:45 +0100 (po, 19 dec 2022) | 2 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+input output funguje... teÔ jestli mÏ omluvÌte jdu odstranit chaos.
+jeötÏ jednou dÏkuji panu PetyovskÈmu a jmenuji ho ofici·lnÏ polobohem
+------------------------------------------------------------------------
+r2935 | xprase08 | 2022-12-19 15:45:52 +0100 (po, 19 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Project.vcxproj.user
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+jdu se ucit na rbm, brb tak za dva dny a ten den moji cast dokoncim hosi. gl hf hlavne ten main, pripadne UnitTests.cpp. finale utrpeni se blizi
+------------------------------------------------------------------------
+r2931 | xprase08 | 2022-12-19 15:30:23 +0100 (po, 19 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+
+Komentar k IntegrityTest, odstraneni tzv. hovnokodu
+------------------------------------------------------------------------
+r2926 | xkluka00 | 2022-12-19 14:50:51 +0100 (po, 19 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+finalna ukazka mojich metod v main.cpp
+------------------------------------------------------------------------
+r2922 | xpesek13 | 2022-12-19 14:21:50 +0100 (po, 19 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CBlock.h
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+uprava testu operatoru+ v main.cpp a v UnitTests.cpp
+------------------------------------------------------------------------
+r2919 | petyovsky | 2022-12-19 13:28:05 +0100 (po, 19 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CBlock.h
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+Konzultace. Uff. uff.
+------------------------------------------------------------------------
+r2912 | xkluka00 | 2022-12-19 12:09:35 +0100 (po, 19 dec 2022) | 2 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+zapnuty konzultacny rezim
+
+------------------------------------------------------------------------
+r2909 | xkluka00 | 2022-12-19 12:00:53 +0100 (po, 19 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Documentation.md
+
+az teraz
+------------------------------------------------------------------------
+r2906 | xkluka00 | 2022-12-19 11:43:23 +0100 (po, 19 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/Project/Documentation.md
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+MOJ POSLEDNY COMMIT
+------------------------------------------------------------------------
+r2905 | xkluka00 | 2022-12-19 11:28:44 +0100 (po, 19 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+zmena destroy, vypnutie konzultacneho rezimu
+------------------------------------------------------------------------
+r2894 | xkluka00 | 2022-12-19 01:04:32 +0100 (po, 19 dec 2022) | 1 line
+Changed paths:
+   D /ct09_zasobnik1/trunk/Project/UnitTests/pch.cpp
+
+bye bye 
+------------------------------------------------------------------------
+r2893 | xkluka00 | 2022-12-19 01:01:28 +0100 (po, 19 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+doplnenie tlace.. asi moj uplne posledny commit..
+------------------------------------------------------------------------
+r2892 | xkluka00 | 2022-12-19 00:49:45 +0100 (po, 19 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Documentation.md
+
+doplnenie dokumentacie
+------------------------------------------------------------------------
+r2891 | xkluka00 | 2022-12-19 00:46:27 +0100 (po, 19 dec 2022) | 2 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/Project/Documentation.md
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+odstranenie komentarov, pridanie poznamok
+
+------------------------------------------------------------------------
+r2887 | xkluka00 | 2022-12-18 22:46:14 +0100 (ne, 18 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+oprava unit testu binary subtr
+------------------------------------------------------------------------
+r2886 | xmajnu01 | 2022-12-18 22:41:38 +0100 (ne, 18 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+dalöÌ pokus o n·vrh inputu
+------------------------------------------------------------------------
+r2882 | xpesek13 | 2022-12-18 22:12:02 +0100 (ne, 18 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+
+Doplneni dokumentace k CStack::TestValueRandom()
+------------------------------------------------------------------------
+r2879 | xpesek13 | 2022-12-18 21:59:03 +0100 (ne, 18 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+Free pameti po pouziti metod CStack::TestValue0 a CSTack::TestValueRandom
+------------------------------------------------------------------------
+r2877 | xprase08 | 2022-12-18 21:38:03 +0100 (ne, 18 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+unit testy leakuji pamet tam kde se da, hahaha, tolik BYTU, ty by se mohly rozdavat mladym rodinam, aby meli kde bydlet. Uz jsem z toho marny, potrebuju pomoc psychiatricke lecebny z tohodle projektu a z tohodle semestru, jo sranda to je. 
+------------------------------------------------------------------------
+r2875 | xpesek13 | 2022-12-18 21:31:52 +0100 (ne, 18 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+odkomentovani testovani pameti v unit testech
+------------------------------------------------------------------------
+r2867 | xpesek13 | 2022-12-18 20:20:13 +0100 (ne, 18 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+testy v main.cpp
+------------------------------------------------------------------------
+r2862 | xpesek13 | 2022-12-18 19:52:52 +0100 (ne, 18 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+testy v main.cpp
+------------------------------------------------------------------------
+r2859 | xpesek13 | 2022-12-18 19:01:25 +0100 (ne, 18 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+Testy v main.cpp
+------------------------------------------------------------------------
+r2855 | xmajnu01 | 2022-12-18 17:19:37 +0100 (ne, 18 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+unit test copy konstruktoru
+------------------------------------------------------------------------
+r2853 | xpesek13 | 2022-12-18 16:52:28 +0100 (ne, 18 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+oprava operatoru+= a jeho unittestu
+------------------------------------------------------------------------
+r2844 | xpesek13 | 2022-12-18 15:17:14 +0100 (ne, 18 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+unittest unary operatoru+ 
+------------------------------------------------------------------------
+r2843 | xprase08 | 2022-12-18 15:08:11 +0100 (ne, 18 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+
+OPERATOR- JUP(I JUPI JUPI JDU SE UCIT RBM a AEI a projekt RR1 a semestralku, muj vedouci mi povedel, ze hmmm mate toho malo, rip ja, ale to pujde = 42
+------------------------------------------------------------------------
+r2842 | xkluka00 | 2022-12-18 15:07:51 +0100 (ne, 18 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+zapnutie rezimu konzultacie v main.cpp
+------------------------------------------------------------------------
+r2840 | xprase08 | 2022-12-18 15:05:15 +0100 (ne, 18 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+UnitTests binary operator- funguje jupi
+------------------------------------------------------------------------
+r2839 | xkluka00 | 2022-12-18 15:04:48 +0100 (ne, 18 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/Project/Documentation.md
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+debug a tak
+------------------------------------------------------------------------
+r2837 | xpesek13 | 2022-12-18 14:23:17 +0100 (ne, 18 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+hotovy UnitTest friend operator+ (Stack + CBlock)
+------------------------------------------------------------------------
+r2835 | xmajnu01 | 2022-12-18 14:22:43 +0100 (ne, 18 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+pokus o istream...
+------------------------------------------------------------------------
+r2829 | xkluka00 | 2022-12-18 13:34:05 +0100 (ne, 18 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/Project/Documentation.md
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+oprava metody Destroy, uspesna odalokacia az polovice pamate.. nova verzia Push a Pop
+------------------------------------------------------------------------
+r2825 | xmajnu01 | 2022-12-18 13:05:03 +0100 (ne, 18 dec 2022) | 3 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+poslednÌ dobou tr·vÌm vÌce Ëasu debugov·nÌm neûli se svou p¯ÌtelkynÌ.
+moûn· jsem öpatn˝ program·tor. moûn· öpatn˝ p¯Ìtel. nejspÌöe obojÌ.
+oper·tor = se zd· b˝ti funkËnÌ...
+------------------------------------------------------------------------
+r2821 | xprase08 | 2022-12-18 12:55:55 +0100 (ne, 18 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+testovani v main.cpp
+------------------------------------------------------------------------
+r2813 | xprase08 | 2022-12-18 12:09:51 +0100 (ne, 18 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+UnitTests.cpp z me strany hotovy, ale stoji na operator=, az bude hotov, checknu to a pripadne opravim. :) uz se blizime do finale kuci, a hlavne diky Dane <3
+------------------------------------------------------------------------
+r2807 | xprase08 | 2022-12-18 10:40:51 +0100 (ne, 18 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+
+vyjimka Pop
+------------------------------------------------------------------------
+r2772 | xkluka00 | 2022-12-17 19:03:01 +0100 (so, 17 dec 2022) | 3 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/Project/Documentation.md
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/project_hierarchy.gv
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+moj posledny commit, uzite si ho, teraz ste v tom sami, idem si konecne oddychnut
+
+dokoncene posledne veci, dokocena kompletna dokumentacia Documentation.md a Introduction.md, doplnene a opravene to, co chybalo.. kontrola vsetkeho..
+------------------------------------------------------------------------
+r2737 | xkluka00 | 2022-12-17 02:22:46 +0100 (so, 17 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+
+koniec
+------------------------------------------------------------------------
+r2736 | xkluka00 | 2022-12-17 02:20:59 +0100 (so, 17 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+deaktivacia mojej prace - priprava na konzultaciu
+------------------------------------------------------------------------
+r2735 | xkluka00 | 2022-12-17 02:16:15 +0100 (so, 17 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+
+uspesne ukoncenie celej mojej projektovej casti :)
+------------------------------------------------------------------------
+r2734 | xkluka00 | 2022-12-17 01:55:11 +0100 (so, 17 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CBlock.h
+
+zabudol som naspat aktivovat tinterval
+------------------------------------------------------------------------
+r2733 | xkluka00 | 2022-12-17 01:53:40 +0100 (so, 17 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CBlock.h
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+kontrola unit testov, oprava unit testov (nz david, obaja sme mali chybu).. oprava conv ctora z cblocku
+------------------------------------------------------------------------
+r2717 | xkluka00 | 2022-12-16 22:08:56 +0100 (pi, 16 dec 2022) | 2 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+
+oprava doxygen
+
+------------------------------------------------------------------------
+r2715 | xkluka00 | 2022-12-16 21:36:34 +0100 (pi, 16 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+pridany konzultacny rezim, aktualizacia niektorych metod
+------------------------------------------------------------------------
+r2713 | xmajnu01 | 2022-12-16 21:09:44 +0100 (pi, 16 dec 2022) | 2 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+nov· verze oper·toru +. debugov·no p·r chvil. zd· se funkËnÌ.
+
+------------------------------------------------------------------------
+r2708 | xmajnu01 | 2022-12-16 20:29:19 +0100 (pi, 16 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+
+naprosto zbyteËn˝ comit zbyteËnÈho ËlovÏka
+------------------------------------------------------------------------
+r2696 | xkluka00 | 2022-12-16 16:39:50 +0100 (pi, 16 dec 2022) | 2 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CBlock.h
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+pokus o opravu destruktora
+
+------------------------------------------------------------------------
+r2688 | xprase08 | 2022-12-16 11:42:13 +0100 (pi, 16 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+
+uprava operator<, bugifx
+------------------------------------------------------------------------
+r2683 | xkluka00 | 2022-12-16 01:52:50 +0100 (pi, 16 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+
+operator= ?
+------------------------------------------------------------------------
+r2681 | xkluka00 | 2022-12-16 01:13:08 +0100 (pi, 16 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+
+pridanie vynimiek
+------------------------------------------------------------------------
+r2680 | xkluka00 | 2022-12-16 00:35:59 +0100 (pi, 16 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+volanie operatora == v main.cpp, oprava formatovania UnitTests.cpp
+------------------------------------------------------------------------
+r2676 | xmajnu01 | 2022-12-15 23:44:36 +0100 (öt, 15 dec 2022) | 2 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+
+napadlo mÏ oöefovat destruktor pro p¯Ìpad, ûe nem·me adresu iTop. Tak zaËneme z iBottom. nevÌm jestli je to dobr· myölenka, ale asi to m˘ûe fungovat - jeötÏ ovÏ¯Ìm.
+moment·lnÌ stav: DÌky bohu za ALD
+------------------------------------------------------------------------
+r2674 | xkluka00 | 2022-12-15 23:07:57 +0100 (öt, 15 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+oprava metody Reverzuj, uz funguje.. plus osetrenie mojich metod
+------------------------------------------------------------------------
+r2673 | xmajnu01 | 2022-12-15 23:07:18 +0100 (öt, 15 dec 2022) | 2 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+opÏt debug destruktoru. 
+moment·lnÌ stav: takov· cesta z lesa, zatÌm se z nÌ nikdo nedostal, ale j· budu prvnÌ.
+------------------------------------------------------------------------
+r2667 | xmajnu01 | 2022-12-15 22:35:37 +0100 (öt, 15 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+koncim, deprese. zkousel jsem rozjet operator +, ale neda¯Ì se. drobnÈ ˙pravy, ale posun nic moc.
+------------------------------------------------------------------------
+r2662 | xmajnu01 | 2022-12-15 22:03:09 +0100 (öt, 15 dec 2022) | 2 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+
+dalöÌ ne˙spÏön˝ pokus o destruktor. uû na to nem·m nervy. debug nepom·h·. chyt·m z toho tenisov˝ loket.
+moment·lnÌ stav: »ech v tatr·ch.
+------------------------------------------------------------------------
+r2656 | xmajnu01 | 2022-12-15 20:57:32 +0100 (öt, 15 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+
+˙prava istream a n·st¯el ostream. öpatn· hlaviËka jak v kodu tak moje.
+------------------------------------------------------------------------
+r2649 | xmajnu01 | 2022-12-15 19:36:11 +0100 (öt, 15 dec 2022) | 2 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+
+˙prava copy c tor.
+umaz·nÌ delete funkce u oper·toru = 
+------------------------------------------------------------------------
+r2646 | xprase08 | 2022-12-15 19:24:26 +0100 (öt, 15 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+commitovani ve vlaku je fakt sranda, asi mi jede Search i druhym zpusobem, teoreticky jsem ho nemusel ani prepisovat, chyba neni asi na me strane, sere se to u Martinova operator=, takze na to prosim mrkni Martinku :*
+------------------------------------------------------------------------
+r2617 | xkluka00 | 2022-12-15 13:08:20 +0100 (öt, 15 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+
+osetrenie mojich metod + pridanie vypisu, Reverzuj pravedpodobne nie je dokoncena
+------------------------------------------------------------------------
+r2613 | xprase08 | 2022-12-15 10:58:59 +0100 (öt, 15 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+srandy v stackcpp a unit testech, musim na tom pracovat
+------------------------------------------------------------------------
+r2612 | xpesek13 | 2022-12-15 10:58:11 +0100 (öt, 15 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+jeste jedna uprava Push 
+------------------------------------------------------------------------
+r2611 | xpesek13 | 2022-12-15 10:44:00 +0100 (öt, 15 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+Prace na UnitTestu nonmember operatoru+ (CBlock + CStack)
+------------------------------------------------------------------------
+r2605 | xprase08 | 2022-12-15 09:33:07 +0100 (öt, 15 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+graficka uprava UnitTests.cpp
+------------------------------------------------------------------------
+r2575 | xmajnu01 | 2022-12-14 20:35:31 +0100 (st, 14 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+
+klasicky zmatek a jel jsem v kopykonstruktoru öpatn˝m smÏrem... jiû opraveno
+------------------------------------------------------------------------
+r2534 | xprase08 | 2022-12-14 15:57:35 +0100 (st, 14 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+hratky v unit testech a tak. ted smer RBM na robota s nozem 
+------------------------------------------------------------------------
+r2509 | xkluka00 | 2022-12-14 14:20:08 +0100 (st, 14 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+dokoncenie mojho posledneho unit testu - operator -=.. graficka uprava UnitTests.cpp a ostatnych suborov, uprava main.cpp
+------------------------------------------------------------------------
+r2506 | xkluka00 | 2022-12-14 10:50:29 +0100 (st, 14 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+oprava mojich testov.. vo vsetkych testoch je memory leak
+------------------------------------------------------------------------
+r2505 | xkluka00 | 2022-12-14 10:23:42 +0100 (st, 14 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+
+save final verzie operatora -= bez vypisu
+------------------------------------------------------------------------
+r2504 | xkluka00 | 2022-12-14 10:19:11 +0100 (st, 14 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+
+ulozenie operatora -= bez zbytocneho kodu s vypisom
+------------------------------------------------------------------------
+r2503 | xkluka00 | 2022-12-14 10:15:56 +0100 (st, 14 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+save operatora -= so vsetkymi komentarmi - pokus o delete prvku zasobnika, osetrenie vsetkych pointerov (menia sa stale ulozene miesta v pamati, preto bol vytvoreny novy zasobnik), vytvorenie noveho zasobnika s prvkami prveho a bez prvkov prveho z druheho
+------------------------------------------------------------------------
+r2499 | xkluka00 | 2022-12-13 23:47:18 +0100 (ut, 13 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+opravil som d'tor, bola tam chyba v podmienke... teraz d'tor nefunguje, ak je itop nullptr
+------------------------------------------------------------------------
+r2497 | xmajnu01 | 2022-12-13 23:19:35 +0100 (ut, 13 dec 2022) | 4 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+
+s poslednÌmi % baterie rychle commituji.
+pokrok v kÛdu nenÌ tak velk˝ jako pokrok ve znalostech, kterÈ jsem nabyl.
+zaË·tek istreamu. vykradenÌ kÛdu z tintervalu a n·sledn· aplikace. odkaz na literaturu, pro pochopenÌ. logicky vÌm jak na to, ale jeötÏ jsem to nikdy nepsal...
+uû to chci mÌt z krku, ale po¯·d lepöÌ jak dokola debugovat destruktor.
+------------------------------------------------------------------------
+r2496 | xprase08 | 2022-12-13 22:48:20 +0100 (ut, 13 dec 2022) | 2 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+
+uprava Pop()
+
+------------------------------------------------------------------------
+r2494 | xprase08 | 2022-12-13 22:43:39 +0100 (ut, 13 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+
+Konflikt zas a znova xD jdu to opravit, btw jinak jsem upravoval Pop, Push, Bottom apod.
+------------------------------------------------------------------------
+r2493 | xkluka00 | 2022-12-13 22:42:20 +0100 (ut, 13 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+
+uz jsem stary gandalfe
+------------------------------------------------------------------------
+r2492 | xkluka00 | 2022-12-13 22:34:20 +0100 (ut, 13 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+graficka uprava suborov, oprava metod, kontrola unit testov
+------------------------------------------------------------------------
+r2491 | xkluka00 | 2022-12-13 21:52:56 +0100 (ut, 13 dec 2022) | 2 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+oprava operatora -=, graficka uprava suborov
+
+------------------------------------------------------------------------
+r2490 | xmajnu01 | 2022-12-13 21:34:05 +0100 (ut, 13 dec 2022) | 3 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+
+˙prava destruktoru u oper·toru =
+dÏkuji za upozornÏnÌ od Davida, Bottom jiû by mÏl fungovat spr·vnÏ.
+PS. kdyby se V·m vizu·lko snaûilo nalhat, ûe û·dn˝ CSTACK_H nem·te, nevÏ¯te mu. VypnÏte, zapnÏte, on ho najde...
+------------------------------------------------------------------------
+r2489 | xmajnu01 | 2022-12-13 21:16:26 +0100 (ut, 13 dec 2022) | 4 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+
+zaËÌn·m se v tom topit jako Slov·k v brynze. Nic proti Dane.
+destruktor hotov˝. 
+pokud ne, vzd·v·m se veöker˝ch pr·v a svobod, jdu ûÌt do dûungle a toËit yt videa. 
+teÔ ho jdu aplikovat do metod, kde je star˝ destruktor.
+------------------------------------------------------------------------
+r2486 | xpesek13 | 2022-12-13 19:48:05 +0100 (ut, 13 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+Unittest operatoru+=
+------------------------------------------------------------------------
+r2485 | xpesek13 | 2022-12-13 18:41:22 +0100 (ut, 13 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+test operatoru+= v main.cpp
+------------------------------------------------------------------------
+r2484 | xpesek13 | 2022-12-13 18:18:15 +0100 (ut, 13 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+test metod(push, top, conv ctor z pole o zname velikosti, compare) v main.cpp. Prepsani CStack::TestValue0 aby vracelo pole CBlocku.
+------------------------------------------------------------------------
+r2483 | xkluka00 | 2022-12-13 18:10:09 +0100 (ut, 13 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+oprava unarneho operatora minus a metody Reverzuj
+------------------------------------------------------------------------
+r2480 | xpesek13 | 2022-12-13 17:30:55 +0100 (ut, 13 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+
+presun metod do CStack.cpp
+------------------------------------------------------------------------
+r2477 | xprase08 | 2022-12-13 16:22:07 +0100 (ut, 13 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+tak jsem neco necommitnul hehe
+------------------------------------------------------------------------
+r2476 | xprase08 | 2022-12-13 16:21:43 +0100 (ut, 13 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+
+ja uz ani nevim, co jsem tu delal, udelejte kuk do modified souboru :)
+------------------------------------------------------------------------
+r2472 | xmajnu01 | 2022-12-13 14:03:00 +0100 (ut, 13 dec 2022) | 3 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+dalöÌ ˙prava destruktoru. 
+uû toho m·m dost a to mÏ teÔ Ëek· uin. 
+
+------------------------------------------------------------------------
+r2471 | xmajnu01 | 2022-12-13 13:24:00 +0100 (ut, 13 dec 2022) | 2 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+debugov·nÌ destruktoru. 
+bolest.
+------------------------------------------------------------------------
+r2462 | xpesek13 | 2022-12-13 00:12:52 +0100 (ut, 13 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
++= operator done. unittest conv ctor z pole a size_t done. Taky jsem se asi na 2 hodiny zasekl u TestValue0 a stacilo napsat jediny slovo :) ale nevim proc mi to nefungovalo. Z nejakyho duvodu mi to random zavolalo destruktor a tim padem znicilo stack kterej se tam vytvarel.
+------------------------------------------------------------------------
+r2461 | xmajnu01 | 2022-12-12 23:22:44 +0100 (po, 12 dec 2022) | 4 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+svÏt nenÌ tak r˘ûov˝...
+destroy nefunguje. free nepom·h·, psychika se bortÌ, ale dneska si troufnu ¯Ìct, ûe jsem docela m·kl. 
+ZÌtra pokraËov·nÌ, oprava destruktoru naps·nÌ jiû zmÌnÏnÌ iostream a ostream oper·tor˘. 
+
+------------------------------------------------------------------------
+r2460 | xmajnu01 | 2022-12-12 22:11:41 +0100 (po, 12 dec 2022) | 4 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+
+operator = 
+prakticky vykraden˝ copykonstruktor a destruktor. dalöÌ aha momenty
+nynÌ p¯Ìprava na konzultaci deepcompare.
+zÌtra uû ale opravdu iostram a ostream
+------------------------------------------------------------------------
+r2459 | xmajnu01 | 2022-12-12 21:23:25 +0100 (po, 12 dec 2022) | 2 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+
+1001 a jeden aha moment˘. 
+tÏlÌËko oper·toru!
+------------------------------------------------------------------------
+r2458 | xmajnu01 | 2022-12-12 20:58:09 +0100 (po, 12 dec 2022) | 3 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+
+copy konstruktor. nefunguje push. Karta se obr·tila: äIMONE OKAMéIZÃ SI OPRAV PUSH METODU, Davide ty taky prosÌm <3.
+äIMONE: upravil jsem ti while, kdyû jdeö z topu musÌö pouûÌvat PrevItem.
+äIMONE, tohle r˝p·nÌ jsem si musel uûÌt, promiÚ. Ty sis ho taky uûÌval.
+------------------------------------------------------------------------
+r2456 | xpesek13 | 2022-12-12 20:52:53 +0100 (po, 12 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+
+Uprava push - ted uz jsou spravne nastaveny pointery na next, prev.
+------------------------------------------------------------------------
+r2455 | xpesek13 | 2022-12-12 20:15:10 +0100 (po, 12 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+
+hehe, dalsi compare fix
+------------------------------------------------------------------------
+r2454 | xpesek13 | 2022-12-12 20:10:56 +0100 (po, 12 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+
+dalsi oprava Compare
+------------------------------------------------------------------------
+r2453 | xmajnu01 | 2022-12-12 20:06:53 +0100 (po, 12 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+
+musÌm hodit update, simon psal do skupiny, ze upravil compare.
+------------------------------------------------------------------------
+r2452 | xprase08 | 2022-12-12 20:05:19 +0100 (po, 12 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+
+oprava funkci, aby to jelo, upravte s ito kuci
+------------------------------------------------------------------------
+r2451 | xprase08 | 2022-12-12 20:00:28 +0100 (po, 12 dec 2022) | 2 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+hratky s certem, dodelal jsem binary-, upraivl Search, graficke upravy, hratky v mainu
+
+------------------------------------------------------------------------
+r2450 | xpesek13 | 2022-12-12 19:54:28 +0100 (po, 12 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+
+Pridani iBottom inicializace v Push metode. Dodelani Usage metody. Zacatek prace na += operatoru
+------------------------------------------------------------------------
+r2449 | xmajnu01 | 2022-12-12 19:21:25 +0100 (po, 12 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+
+neËtu po¯·dnÏ zad·nÌ... p¯id·n aktivnÌ odpoËet poËet prvk˘ u destruktoru.
+------------------------------------------------------------------------
+r2448 | xmajnu01 | 2022-12-12 19:14:13 +0100 (po, 12 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+
+destruktor. nevÌm proË m·m pot¯ebu st·le vöude rv·t for, kdyû to jde hezky pomoci while...
+------------------------------------------------------------------------
+r2446 | xkluka00 | 2022-12-12 17:21:46 +0100 (po, 12 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+
+save compare deep
+------------------------------------------------------------------------
+r2440 | xkluka00 | 2022-12-12 02:18:18 +0100 (po, 12 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+debug comparedeep a push
+------------------------------------------------------------------------
+r2439 | xmajnu01 | 2022-12-11 23:47:14 +0100 (ne, 11 dec 2022) | 3 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+pilov·nÌ metody compare deep, pomoc od naöeho Top G, jsme na spr·vnÈ cestÏ.
+neproöel equal unit test, zÌtra bude snad opraveno a vrhnu se na stream oper·tory.
+Dobrou noc.
+------------------------------------------------------------------------
+r2437 | xprase08 | 2022-12-11 23:00:09 +0100 (ne, 11 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+
+presun Conversion c'tor from init list do cpp
+------------------------------------------------------------------------
+r2436 | xmajnu01 | 2022-12-11 22:48:43 +0100 (ne, 11 dec 2022) | 3 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+
+bylo mi namluveno, ûe m·m z hlaviËkovÈho souboru hlaviËky s tÏlÌËky d·t do .cpp - tak jsem to udÏlal. kdo by to byl tuöil, ûe se musÌ u iostreamu a ostreamu smazat friend...
+p¯idal jsem si pozn·mky v mainu, nemaûte mi je prosÌm - dÏkuji, postupnÏ si je budu mazat. 
+nenÌ jdu zpÏt na compare deep, zÌtra dopoledne zkusÌm destruktor - nic neslibuji, musÌm makat i na RR.
+------------------------------------------------------------------------
+r2433 | xprase08 | 2022-12-11 22:00:26 +0100 (ne, 11 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+uprava v zadani, jen lehoucka, neni se ceho bat :) a potom neco malo udelano v CStack.cpp
+------------------------------------------------------------------------
+r2431 | xmajnu01 | 2022-12-11 21:45:45 +0100 (ne, 11 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+formov·nÌ novÈ deepcompare - p¯id·nÌ throw u vyjÌmky oper·toru !,avöak jeötÏ ji nechyt·m.
+------------------------------------------------------------------------
+r2430 | xkluka00 | 2022-12-11 21:44:22 +0100 (ne, 11 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+oprava operatora -=, treba dokoncit previazanie pointerov pri odstraneni prvku
+------------------------------------------------------------------------
+r2429 | xprase08 | 2022-12-11 21:43:41 +0100 (ne, 11 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+Size_t ctor CStack.h -> CStack.cpp. dodelan, opraven unary operator++
+------------------------------------------------------------------------
+r2426 | xmajnu01 | 2022-12-11 20:47:17 +0100 (ne, 11 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+
+nakonec jsem si vymyslel jednoduööÌ compare deep, snad bude podle zad·nÌ - pot¯eba konzultace, zda-li V·m to vyhovuje. jinak po delöÌ odmlce je komitujÌcÌ monstrum zpÏt, p¯ipravte se solidnÌ n·loû kÛd˘.
+------------------------------------------------------------------------
+r2421 | xprase08 | 2022-12-11 18:23:26 +0100 (ne, 11 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+
+operator size_t presunut do CStack.cpp, upraven
+------------------------------------------------------------------------
+r2420 | xprase08 | 2022-12-11 17:50:38 +0100 (ne, 11 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+Uprava v Introduction.md - chybelo slovo Prvek, dale nastrel unary operator++ - treba prokonzultovat s tymem
+------------------------------------------------------------------------
+r2419 | xprase08 | 2022-12-11 17:07:44 +0100 (ne, 11 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+
+Funkce Reverzuj(aaa) pridana do main.cpp
+------------------------------------------------------------------------
+r2418 | xprase08 | 2022-12-11 15:25:48 +0100 (ne, 11 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+funkce Reverzuj presunuta do Stack.cpp, priprava testu v main.cpp
+------------------------------------------------------------------------
+r2417 | xkluka00 | 2022-12-11 15:12:30 +0100 (ne, 11 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+
+aktualizacia komentarov
+------------------------------------------------------------------------
+r2416 | xkluka00 | 2022-12-11 14:34:46 +0100 (ne, 11 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+
+graficka uprava suboru
+------------------------------------------------------------------------
+r2414 | xkluka00 | 2022-12-11 14:08:00 +0100 (ne, 11 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+
+graficka uprava suborov CBlock_TInterval.h a CStack.h
+------------------------------------------------------------------------
+r2413 | xkluka00 | 2022-12-11 13:30:12 +0100 (ne, 11 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h
+   M /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+
+graficka uprava suborov
+------------------------------------------------------------------------
+r2412 | xprase08 | 2022-12-11 13:20:13 +0100 (ne, 11 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+
+Presun kodu metod zasobniku z .h do .cpp
+------------------------------------------------------------------------
+r2411 | xkluka00 | 2022-12-11 12:30:43 +0100 (ne, 11 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+nova verzia main.cpp
+------------------------------------------------------------------------
+r2410 | xkluka00 | 2022-12-11 12:24:15 +0100 (ne, 11 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+uprava main.cpp - vylepsenie kontroly pre classu CStack
+------------------------------------------------------------------------
+r2409 | xkluka00 | 2022-12-11 11:49:31 +0100 (ne, 11 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+oprava, dokoncenie.. opravoval som Push a Pop, kontroloval to v main.cpp a dokoncil som unit test operatora --
+------------------------------------------------------------------------
+r2408 | xkluka00 | 2022-12-11 11:00:50 +0100 (ne, 11 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+chcel som spravit unit test, ale opat vam nieco nefunguje..
+------------------------------------------------------------------------
+r2397 | xkluka00 | 2022-12-10 18:20:27 +0100 (so, 10 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+unit test string conversion c'tor
+------------------------------------------------------------------------
+r2392 | xkluka00 | 2022-12-10 15:05:40 +0100 (so, 10 dec 2022) | 7 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+rozpracovane unit testy:
+ - oper·tor ñ jako un·rnÌ oper·tor prohodÌ po¯adÌ CBlock˘ v z·sobnÌku. (3.) a teda aj:
+    - umoûÚujÌcÌ vol·nÌ bbb=aaa.Reverzuj(), kter· mÏnÌ z·sobnÌk aaa na reverzovan˝ z·sobnÌk bbb (P¯i postupnÈm proch·zenÌ z·sobnÌku pomocÌ ukazatele, kdy se v kaûdÈ iteraci prohodÌ hodnoty n·sledujÌcÌho a p¯edchozÌho prvku.), (8.)
+
+ - relaËnÌ oper·tory == pro porovn·nÌ dvou z·sobnÌk˘. (6.)
+
+uprava UnitTests.cpp a aj CStack.h a CStack.cpp, aktivoval som operator ==
+------------------------------------------------------------------------
+r2391 | xkluka00 | 2022-12-10 14:01:19 +0100 (so, 10 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+uprava chyb CStack.cpp a celkova uprava UnitTests.cpp
+------------------------------------------------------------------------
+r2389 | xkluka00 | 2022-12-10 12:17:39 +0100 (so, 10 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+uprava main.cpp
+------------------------------------------------------------------------
+r2388 | xkluka00 | 2022-12-10 12:08:48 +0100 (so, 10 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+
+drobne opravy
+------------------------------------------------------------------------
+r2386 | xkluka00 | 2022-12-10 01:08:18 +0100 (so, 10 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+
+presun niektorych metod z CStack.h do CStack.cpp a celkova uprava oboch suborov, upratanie v CStack.cpp
+------------------------------------------------------------------------
+r2385 | xkluka00 | 2022-12-10 00:22:43 +0100 (so, 10 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+
+oprava anglickej gramatiky v CStack.h
+------------------------------------------------------------------------
+r2384 | xkluka00 | 2022-12-10 00:17:15 +0100 (so, 10 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h
+
+oprava anglickej gramatiky v CBlock_TInterval.h (dakujem ReSharper)
+------------------------------------------------------------------------
+r2383 | xkluka00 | 2022-12-10 00:09:32 +0100 (so, 10 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+
+oprava dokumentacie konstruktora - odstranenie warningu, ktory generoval Doxygen a zmena dokumentacie streamu konstruktora
+------------------------------------------------------------------------
+r2382 | xkluka00 | 2022-12-09 23:58:46 +0100 (pi, 09 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+
+doplnenie pointera iBottom v mojich konstruktoroch
+------------------------------------------------------------------------
+r2381 | xkluka00 | 2022-12-09 23:51:33 +0100 (pi, 09 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+
+presunutie telicok mojich konstruktorov z CStack.h do CStack.cpp
+------------------------------------------------------------------------
+r2380 | xkluka00 | 2022-12-09 23:14:12 +0100 (pi, 09 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+
+presun telicok mojich metod z CStack.h do CStack.cpp
+------------------------------------------------------------------------
+r2377 | xkluka00 | 2022-12-09 22:04:52 +0100 (pi, 09 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+dokoncenie operatora -=, uprava main.cpp
+------------------------------------------------------------------------
+r2374 | xkluka00 | 2022-12-09 20:48:12 +0100 (pi, 09 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+   M /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h
+
+kontrola testov s metodou Values() v classe TInterval, odstranenie volania z defaultneho konstruktora (test by bol neuspesny) a celkova uprava suboru CBlock_TInterval.h
+------------------------------------------------------------------------
+r2372 | xkluka00 | 2022-12-09 20:30:00 +0100 (pi, 09 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+   M /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h
+
+doplnenie volania metody Values v classe TInterval, nie je vsak defaultne aktivovana.. pridane osetrenie a dokumentacia
+------------------------------------------------------------------------
+r2371 | xkluka00 | 2022-12-09 19:59:15 +0100 (pi, 09 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+   M /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+zmena nazvu metody Fill() na Values, zmena jej vyuzitia a dokoncenie vyskumu tejto metody (zvazene bolo pole, vektor aj zmena celkovej triedy a konstruktorov na plnenie premennej iValues (ktora bola testovana private aj public).. metoda bola dokoncena a jej volanie bolo otestovane (volanie z main.cpp bolo rovnako X-krat testovane roznymi sposobmi, castokrat to zlyhavalo na kompatibilite typov a pointerov, dochadzalo ku extremnej strate udajov a viacerym zmenam parametrov, ktore bolo treba osetrovat.. preto boli zvazovane samostatne metody na tlacenie, ale to by opat extremne skomplikovalo cely kod.. a zvazovane boli aj aktivacie kodu cez ifdefy, ale to by opat znepriehladnilo kod).. na zaver boli odstranene vsetky zakomentovane casti kodu, ktore s metodou Fill suviseli a neboli by vyuzite..
+------------------------------------------------------------------------
+r2358 | xkluka00 | 2022-12-09 10:38:03 +0100 (pi, 09 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+
+uprava operatora >> v CBlock_TInterval.h - osetrenie kvality streamu novo vytvorenych pomocnych premennych tmp_aLeft a tmp_aRight a ich pridelenie premennym TInterval.iLeft a TInterval.iRight v pripade dobreho vstupu
+------------------------------------------------------------------------
+r2357 | xprase08 | 2022-12-08 22:20:29 +0100 (öt, 08 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+oprava bugu - prejmenovani metod a funkce Reverse na Reverzuj, dynamic_cast -> static_cast, uprava funkce Reverzuj, aby byla friend. Prejmenovani vsech Reverse na Reverzuj
+------------------------------------------------------------------------
+r2318 | xkluka00 | 2022-12-07 21:00:13 +0100 (st, 07 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+merge
+------------------------------------------------------------------------
+r2316 | petyovsky | 2022-12-07 20:18:39 +0100 (st, 07 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/branches/oprava_hlavicka_CBlock/Project/Project/CStack.h
+   M /ct09_zasobnik1/branches/oprava_hlavicka_CBlock/Project/Project/Introduction.md
+
+
+------------------------------------------------------------------------
+r2253 | xpesek13 | 2022-12-06 23:17:01 +0100 (ut, 06 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+
+Prace na Usage metode. 
+------------------------------------------------------------------------
+r2252 | xmajnu01 | 2022-12-06 21:53:35 +0100 (ut, 06 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+
+n·st¯el metody compare deep, up¯ÌmnÏ jsem zapomnÏl jestli budu porovn·vat prvek po prvku nebo pouze Actual a iTop i iBottom. vytvo¯il jsem alespoÚ funkci Bottom vracejÌcÌ iBottom. Dneska je to vöe. pac a pusu, zÌtra pokraËuji.
+------------------------------------------------------------------------
+r2246 | petyovsky | 2022-12-05 13:46:29 +0100 (po, 05 dec 2022) | 1 line
+Changed paths:
+   A /ct09_zasobnik1/branches/oprava_hlavicka_CBlock (from /ct09_zasobnik1/tags/hlavicka_CBlock:2245)
+
+branch[ct09_zasobnik1/branches/oprava_hlavicka_CBlock]: Pro ohodnoceni
+------------------------------------------------------------------------
+r2245 | petyovsky | 2022-12-05 13:46:28 +0100 (po, 05 dec 2022) | 1 line
+Changed paths:
+   A /ct09_zasobnik1/tags/hlavicka_CBlock (from /ct09_zasobnik1/trunk:2244)
+
+tag[ct09_zasobnik1/tags/hlavicka_CBlock]: Zaloha
+------------------------------------------------------------------------
+r2228 | xkluka00 | 2022-12-04 11:38:39 +0100 (ne, 04 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+aktivacia unarneho operatora -- v main.cpp v projekte Project
+------------------------------------------------------------------------
+r2227 | xpesek13 | 2022-12-04 11:32:33 +0100 (ne, 04 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+Pridani return value k Pop funkci. CStack::TestValue0 uz funguje. UnitTest > taky.
+------------------------------------------------------------------------
+r2222 | xpesek13 | 2022-12-03 13:51:01 +0100 (so, 03 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+prace na TestValue0 metode v CStack.h pro testovani. Doplneni smazani temporary uzlu v Push metode pomoci delete.
+------------------------------------------------------------------------
+r2221 | xkluka00 | 2022-12-03 13:44:29 +0100 (so, 03 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+
+doplnenie autora v projekte project podla projektu cblock
+------------------------------------------------------------------------
+r2220 | xkluka00 | 2022-12-03 13:43:26 +0100 (so, 03 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_long.h
+   M /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h
+   M /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h
+
+update dokumentacie oboch projektov
+------------------------------------------------------------------------
+r2209 | xkluka00 | 2022-12-03 11:03:00 +0100 (so, 03 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+
+pokus o fix operatora -=
+------------------------------------------------------------------------
+r2199 | xkluka00 | 2022-12-03 00:45:04 +0100 (so, 03 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+update unit test conv c'tora z cblocku
+------------------------------------------------------------------------
+r2196 | xpesek13 | 2022-12-02 23:46:02 +0100 (pi, 02 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+UnitTest operator_greater_than description 
+------------------------------------------------------------------------
+r2189 | xmajnu01 | 2022-12-02 22:54:49 +0100 (pi, 02 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+znovu ˙prava mÈho unit testu (neukl·d·m si ˙pravu kÛdu) + velk˝ aha moment ve vytvÈ¯enÌ unit test˘. + jsem vöude kde jsem mohl (ve svÈm unit testu, ostatnÌ jsem jiû upozornil) jsem narval const, jelikoû jak ¯ekl pan Petyovsk˝ na cviËenÌch kam m˘ûete narvÏte const nebo referenci. Tak jsem tam narval const. 
+------------------------------------------------------------------------
+r2183 | xkluka00 | 2022-12-02 22:07:20 +0100 (pi, 02 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/main.cpp
+
+odstranenie #include CStack.h z main.cpp
+------------------------------------------------------------------------
+r2156 | xmajnu01 | 2022-12-02 20:15:41 +0100 (pi, 02 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+P¯id·nÌ popisu pro unit test od äimona Praska, jelikoû nenÌ u PC a bylo tam nÏco naps·no. Jelikoû to nenÌ m˘j unit test, nechci do jeho pr·ce moc zasahovat.
+------------------------------------------------------------------------
+r2144 | xmajnu01 | 2022-12-02 19:28:14 +0100 (pi, 02 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+P¯id·nÌ unit testu, oprava n·zv˘ unit test˘ u Praska a Peöka jelikoû se jiû dnes nebudou nach·zet na pc. N·slednÈho proch·zenÌ a studov·nÌ kÛdu s p¯id·nÌm v˝pisu jmÈna v main.cpp pro ohraniËenÌ v˝pisu n·slednÏ implementov·nÌ "implementation ofCStack class methods created and sorted by each autors"
+------------------------------------------------------------------------
+r2134 | xpesek13 | 2022-12-02 18:09:24 +0100 (pi, 02 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+unit test operatoru > v  UnitTests.cpp. Pokus metody pro vytvoreni stacku o n prvku(soubor CStack.h) pro testovani velikosti stacku. 
+------------------------------------------------------------------------
+r2132 | xprase08 | 2022-12-02 18:03:01 +0100 (pi, 02 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+unit test >
+------------------------------------------------------------------------
+r2131 | xkluka00 | 2022-12-02 17:40:21 +0100 (pi, 02 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+uprava mÙjho conv c'tora, zakomentovanie simonovho
+------------------------------------------------------------------------
+r2128 | xkluka00 | 2022-12-02 17:26:39 +0100 (pi, 02 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+CStack_ctor_conv
+------------------------------------------------------------------------
+r2127 | xprase08 | 2022-12-02 16:50:52 +0100 (pi, 02 dec 2022) | 2 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+unit test conversion ctor - Prasek
+
+------------------------------------------------------------------------
+r2125 | xpesek13 | 2022-12-02 16:41:41 +0100 (pi, 02 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+unit test greater_than
+------------------------------------------------------------------------
+r2121 | xmajnu01 | 2022-12-02 16:30:37 +0100 (pi, 02 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+p¯id·nÌ unit testu z cblocku
+------------------------------------------------------------------------
+r2120 | xprase08 | 2022-12-02 16:24:16 +0100 (pi, 02 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/UnitTests/CBlockUnitTests.h
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+
+hratky s unit testy v projectu
+------------------------------------------------------------------------
+r2089 | xprase08 | 2022-12-02 16:14:04 +0100 (pi, 02 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+uprava bugfixu, unit testy jedou jupiii, volejme 3x hura Microsoftu :)
+------------------------------------------------------------------------
+r2088 | xmajnu01 | 2022-12-02 16:13:55 +0100 (pi, 02 dec 2022) | 2 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+Test unit test˘ i z jineho pc neû Danova - funguje
+⁄prava bugfixu
+------------------------------------------------------------------------
+r2087 | xkluka00 | 2022-12-02 16:11:39 +0100 (pi, 02 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.vcxproj
+
+oprava nastaveni unit testov pre projekt Project
+------------------------------------------------------------------------
+r2086 | xkluka00 | 2022-12-02 15:36:03 +0100 (pi, 02 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+test commitu pre simona
+------------------------------------------------------------------------
+r2085 | xprase08 | 2022-12-02 15:22:22 +0100 (pi, 02 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.vcxproj
+
+P¯enastavenÌ projektu Project a jeho Unit Test˘ na nejnovÏjöÌ normu C++. RETARDOVANY MICROSOFT, FUJ BLE - default byla C++ 14 :-) 
+------------------------------------------------------------------------
+r2082 | xkluka00 | 2022-12-02 15:07:29 +0100 (pi, 02 dec 2022) | 1 line
+Changed paths:
+   D /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.cpp
+   D /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+odstranenie suborov z cblock
+------------------------------------------------------------------------
+r2080 | xkluka00 | 2022-12-02 15:03:35 +0100 (pi, 02 dec 2022) | 1 line
+Changed paths:
+   A /ct09_zasobnik1/trunk/Project/Project/CBlock_TInterval.h
+   A /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h
+   A /ct09_zasobnik1/trunk/Project/UnitTests/CBlockUnitTests.h
+
+pridanie suborov
+------------------------------------------------------------------------
+r2079 | xprase08 | 2022-12-02 14:52:51 +0100 (pi, 02 dec 2022) | 2 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CBlock.h
+
+snaha o opravu unit testu
+
+------------------------------------------------------------------------
+r2077 | xkluka00 | 2022-12-02 14:06:46 +0100 (pi, 02 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.vcxproj
+   M /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.vcxproj.filters
+
+pripravoval som unit testy pre project.. nejde to
+------------------------------------------------------------------------
+r2076 | xkluka00 | 2022-12-02 13:40:03 +0100 (pi, 02 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock.vcxproj
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock.vcxproj.filters
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_long.h
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/Doxyfile
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/main.cpp
+
+oprava doxyfile a generacia doxygen dokumentacie, zmena autorov pre CBlock_long.h a CBlock_TInterval.h
+------------------------------------------------------------------------
+r2070 | xkluka00 | 2022-12-02 13:26:47 +0100 (pi, 02 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_long.h
+   M /ct09_zasobnik1/trunk/Project/Project/CBlock.h
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+   M /ct09_zasobnik1/trunk/Project/Project/Project.vcxproj
+   M /ct09_zasobnik1/trunk/Project/Project/Project.vcxproj.filters
+   M /ct09_zasobnik1/trunk/Project/Project/main.cpp
+
+priprava na odovzdanie podla zadania
+------------------------------------------------------------------------
+r1977 | xkluka00 | 2022-12-01 23:42:37 +0100 (öt, 01 dec 2022) | 6 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/main.cpp
+
+doplnenie volania mojich metod, report: 
+ - potrebujeme destruktor, ktory pouziva delete - preto sa neodalokovala vsetka pamat v main.cpp
+ - nejde mi operator --, pretoze Pop potrebujeme opravit
+ - nejde mi operator -=, pretoze neviem preco
+
+uprava CStack.h, kontrola unit testov pre CBlock_TInterval.h - funguju spravne, uprava main.cpp
+------------------------------------------------------------------------
+r1778 | xkluka00 | 2022-12-01 13:00:11 +0100 (öt, 01 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project.sln
+
+aktualizacia unit testov v projekte Project
+------------------------------------------------------------------------
+r1777 | xkluka00 | 2022-12-01 12:56:07 +0100 (öt, 01 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/main.cpp
+   M /ct09_zasobnik1/trunk/Project/Project.sln
+   A /ct09_zasobnik1/trunk/Project/UnitTests
+   A /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp
+   A /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.vcxproj
+   A /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.vcxproj.filters
+   A /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.vcxproj.user
+   A /ct09_zasobnik1/trunk/Project/UnitTests/pch.cpp
+
+oprava unit testov - oba projekty CBlock a Project
+------------------------------------------------------------------------
+r1769 | xkluka00 | 2022-12-01 11:43:01 +0100 (öt, 01 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project.sln
+
+pridanie unit testov pre Project
+------------------------------------------------------------------------
+r1763 | xkluka00 | 2022-12-01 10:42:53 +0100 (öt, 01 dec 2022) | 1 line
+Changed paths:
+   D /ct09_zasobnik1/trunk/CBlock/UnitTest1
+
+odstranenie suborov pre unit testy
+------------------------------------------------------------------------
+r1761 | xkluka00 | 2022-12-01 10:41:05 +0100 (öt, 01 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock.sln
+
+odstranenie unit testov z projektu CBlock....
+------------------------------------------------------------------------
+r1752 | xpesek13 | 2022-12-01 10:28:20 +0100 (öt, 01 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock.sln
+   A /ct09_zasobnik1/trunk/CBlock/UnitTest1
+   A /ct09_zasobnik1/trunk/CBlock/UnitTest1/UnitTest1.cpp
+   A /ct09_zasobnik1/trunk/CBlock/UnitTest1/UnitTest1.vcxproj
+   A /ct09_zasobnik1/trunk/CBlock/UnitTest1/UnitTest1.vcxproj.filters
+   A /ct09_zasobnik1/trunk/CBlock/UnitTest1/UnitTest1.vcxproj.user
+   A /ct09_zasobnik1/trunk/CBlock/UnitTest1/pch.cpp
+
+UnitTest1 created
+------------------------------------------------------------------------
+r1745 | xprase08 | 2022-12-01 09:47:19 +0100 (öt, 01 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+uprava v Ctoru size_t
+------------------------------------------------------------------------
+r1741 | xprase08 | 2022-12-01 09:40:34 +0100 (öt, 01 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+iBottom, uprava {}
+------------------------------------------------------------------------
+r1737 | xpesek13 | 2022-12-01 09:33:01 +0100 (öt, 01 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/main.cpp
+
+stack.Push v main.cpp
+------------------------------------------------------------------------
+r1736 | xprase08 | 2022-12-01 09:30:44 +0100 (öt, 01 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/Doxyfile
+
+uprava v Doxyfile
+------------------------------------------------------------------------
+r1735 | xkluka00 | 2022-12-01 09:30:17 +0100 (öt, 01 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+
+uprava poznamok v CBlock_TInterval.h ku vsetkemu, co sa tyka metody Fill()
+------------------------------------------------------------------------
+r1732 | xkluka00 | 2022-12-01 09:26:41 +0100 (öt, 01 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+
+osetrenie input streamu (operator>>) v classe TInterval, pridanie vynimky, zmena dokumentacie CBlock_TInterval.h
+------------------------------------------------------------------------
+r1712 | xkluka00 | 2022-12-01 07:40:05 +0100 (öt, 01 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/main.cpp
+
+dokumentacia main.cpp, doplnenie autorov a pridanie poznamok
+------------------------------------------------------------------------
+r1710 | xkluka00 | 2022-12-01 07:19:51 +0100 (öt, 01 dec 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.cpp
+
+aktualizacia suboru CStack.cpp - dokumentacia
+------------------------------------------------------------------------
+r1663 | xkluka00 | 2022-11-30 21:52:03 +0100 (st, 30 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+poznamka v CStack.h
+------------------------------------------------------------------------
+r1656 | xkluka00 | 2022-11-30 21:34:37 +0100 (st, 30 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_long.h
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+finalna uprava CBlock_long.h, uprava dokumentacie unit testov CBlock_TInterval.h, doplnenie poznamky CStack.h.. finalna kontrola unit testov CBlock_long.h a CBlock_TInterval.h
+------------------------------------------------------------------------
+r1653 | xmajnu01 | 2022-11-30 21:29:48 +0100 (st, 30 nov 2022) | 3 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+˙prava popis˘ m˝ch hlaviËek
+˙prava friend std::istream& operator<<(std::istream& aIStream, CBlock& aStack); - bylo tam >>
+nalezenÌ jednÈ reference, kter· byla opÏt vpravo...
+------------------------------------------------------------------------
+r1648 | xkluka00 | 2022-11-30 21:15:08 +0100 (st, 30 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+
+uprava dokumentacie unit testov v CBlock_TInterval.h
+------------------------------------------------------------------------
+r1642 | xmajnu01 | 2022-11-30 20:39:59 +0100 (st, 30 nov 2022) | 2 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+pridani standardniho vstupu a vystupu instance tridy CStack - pomocÌ stream˘ (friend funkcÌ) pomocÌ oper·tor˘ << a >>
+zmÏna pozice kopy konstruktoru, posunutÌ referencÌ
+------------------------------------------------------------------------
+r1635 | xprase08 | 2022-11-30 20:03:04 +0100 (st, 30 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+oprava v Introduction.md -> pvky -> prvky
+------------------------------------------------------------------------
+r1634 | xpesek13 | 2022-11-30 19:56:03 +0100 (st, 30 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.cpp
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+definice metod Dup, Compare
+------------------------------------------------------------------------
+r1630 | xprase08 | 2022-11-30 19:52:16 +0100 (st, 30 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.cpp
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+formalni upravy CStack.h <3
+------------------------------------------------------------------------
+r1629 | xmajnu01 | 2022-11-30 19:46:50 +0100 (st, 30 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+n·st¯el copy konstruktoru.
+------------------------------------------------------------------------
+r1613 | xpesek13 | 2022-11-30 19:12:30 +0100 (st, 30 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+
+uprava dokumentace CBlock_TInterval.h - doplneni tecek, umazani s u authors
+------------------------------------------------------------------------
+r1611 | xprase08 | 2022-11-30 19:09:29 +0100 (st, 30 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+uprava dokumentace - doplneni tecek za return a details v CStack.h
+------------------------------------------------------------------------
+r1608 | xprase08 | 2022-11-30 18:59:03 +0100 (st, 30 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.cpp
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+Oprava u operator++, vytvorene komentovane funkce v .cpp
+------------------------------------------------------------------------
+r1606 | xmajnu01 | 2022-11-30 18:49:07 +0100 (st, 30 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+˙prava bin·rnÌho oper·toru = a p¯id·nÌ jeho popisu
+------------------------------------------------------------------------
+r1599 | xmajnu01 | 2022-11-30 18:06:21 +0100 (st, 30 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+˙prava destruktoru a jeho p¯emÌstÏnÌ do sekce d¥tor - odstranÏnÌ operatoru + z vrchnÌ Ë·sti CStack.h
+------------------------------------------------------------------------
+r1598 | xprase08 | 2022-11-30 17:57:18 +0100 (st, 30 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+uprava {}, vymazani komentaru u operator++
+------------------------------------------------------------------------
+r1589 | xkluka00 | 2022-11-30 17:45:47 +0100 (st, 30 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+
+uprava unit testov CBlock_TInterval.h - znazornenie osetrenia zleho poradia vstupnych parametrov
+------------------------------------------------------------------------
+r1578 | xmajnu01 | 2022-11-30 17:24:37 +0100 (st, 30 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+bug -> bugfix - ˙silÌ nav˝öeno.
+------------------------------------------------------------------------
+r1566 | xprase08 | 2022-11-30 17:07:41 +0100 (st, 30 nov 2022) | 2 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+⁄prava relaËnÌch oper·tor˘ -> CompareDeep. ⁄prava dokumentace
+
+------------------------------------------------------------------------
+r1564 | xmajnu01 | 2022-11-30 17:06:30 +0100 (st, 30 nov 2022) | 6 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+P¯id·nÌ do public destruktor, kter˝ si zavol· funkci ActiveCountDownOfElements a odpoËÌt· aktivnÌ prvky.
+
+@David @äimon nejspÌöe m·te po¯·d öpatnÏ relaËnÌ oper·tory, zkuste na to mrknout.
+
+PS: na 60% kl·vesnici se fakt öpatnÏ hled· ~ , tak kdyby s tÌm mÏl nÏkdo problÈm jako j· ho najÌt tak tady je. Nebo je taky v p¯edn·ök·ch.
+
+------------------------------------------------------------------------
+r1561 | xkluka00 | 2022-11-30 17:02:05 +0100 (st, 30 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+
+attention fix
+------------------------------------------------------------------------
+r1560 | xkluka00 | 2022-11-30 17:00:26 +0100 (st, 30 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+
+Minimum method attention
+------------------------------------------------------------------------
+r1559 | xkluka00 | 2022-11-30 16:57:40 +0100 (st, 30 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+
+poznamky CBlock_TInterval.h, neboj Martin, nebude konflikt, robis v inom subore
+------------------------------------------------------------------------
+r1521 | xkluka00 | 2022-11-30 15:41:14 +0100 (st, 30 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+
+CBlock_TInterval.h attention
+------------------------------------------------------------------------
+r1495 | xkluka00 | 2022-11-30 13:30:03 +0100 (st, 30 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+
+oprava dokumentacie gettera Value v CBlock_TInterval.h v classe CBlock
+------------------------------------------------------------------------
+r1494 | xkluka00 | 2022-11-30 13:20:29 +0100 (st, 30 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+
+final build a commit CBlock_TInterval.h + generacia doxygen
+------------------------------------------------------------------------
+r1493 | xkluka00 | 2022-11-30 13:15:12 +0100 (st, 30 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+
+definicia TInterval iValue - oprava dokumentacie
+------------------------------------------------------------------------
+r1492 | xkluka00 | 2022-11-30 13:14:13 +0100 (st, 30 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+
+uprava chyb v dokumentacii CBlock_TInterval.h
+------------------------------------------------------------------------
+r1490 | xkluka00 | 2022-11-30 12:58:39 +0100 (st, 30 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+
+uprava TInterval tak, aby to vypisovalo stream v tvare <min,max>, pravdepodobne vdaka tomuto nebude potrebne plnenie ciselneho intervalu cislami.. nevyuzite casti kodu pre plnenie nie su odladene a su zakomentovane poznamkou //(not used at this stage of development).. test intervalu OK
+------------------------------------------------------------------------
+r1487 | xkluka00 | 2022-11-30 12:08:52 +0100 (st, 30 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+
+doplnenie intervalu o plnenie hodnot medzi hranicami, zatial nefunguje
+------------------------------------------------------------------------
+r1464 | xkluka00 | 2022-11-29 22:50:11 +0100 (ut, 29 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+uprava konverzneho konstruktora zo stringu
+------------------------------------------------------------------------
+r1461 | xkluka00 | 2022-11-29 22:16:09 +0100 (ut, 29 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+
+CBlock_TInterval.h kompletne hotovy
+------------------------------------------------------------------------
+r1459 | xmajnu01 | 2022-11-29 22:03:19 +0100 (ut, 29 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+uprava plus zakomentovani a vlozeni operator=, kteremu se budu venovat zitra
+------------------------------------------------------------------------
+r1458 | xprase08 | 2022-11-29 21:23:29 +0100 (ut, 29 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+Conversion c'tor of type size_t
+------------------------------------------------------------------------
+r1444 | xkluka00 | 2022-11-29 20:29:40 +0100 (ut, 29 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+
+test
+------------------------------------------------------------------------
+r1439 | xkluka00 | 2022-11-29 20:06:25 +0100 (ut, 29 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+
+oprava threeway operatora a oprava unit testov, vsetko v CBlock_TInterval.h
+------------------------------------------------------------------------
+r1432 | xkluka00 | 2022-11-29 19:35:44 +0100 (ut, 29 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+
+pravdepodobne finalna uprava CBlock_TInterval.h
+------------------------------------------------------------------------
+r1427 | xkluka00 | 2022-11-29 19:15:43 +0100 (ut, 29 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock.h
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.cpp
+
+doplnenie unit testov CBlock_TInterval.h a aktualizacia projektu do stavu, kedy je spustitelny
+------------------------------------------------------------------------
+r1387 | xkluka00 | 2022-11-29 15:02:38 +0100 (ut, 29 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+
+uprava CBlock_TInterval.h a jeho kontrola
+------------------------------------------------------------------------
+r1385 | xkluka00 | 2022-11-29 14:05:45 +0100 (ut, 29 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.cpp
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+osetrenie operatora --
+------------------------------------------------------------------------
+r1383 | xkluka00 | 2022-11-29 13:55:32 +0100 (ut, 29 nov 2022) | 5 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+oprava mojich metod: unarny operator - (osetrenie v pripade prazdneho zasobnika - nebolo by mozne reverzovat) a opravil som vracanie hodnoty pomocou return this->Reverse(), volal som to vtedy zle a neuvedomil som si to.. unarny operator --, opat zle volanie a vracanie.. upravena metoda Reverse(), osetrenie proti prazdnemu zasobniku
+
+oprava cudzich metod: Pop(), nemohol som ju volat, dostala parameter, ale ten parameter v kode nebol vyuzity a doplnil som referenciu CStack&
+
+aktivoval som operator <=>
+------------------------------------------------------------------------
+r1375 | xkluka00 | 2022-11-29 12:16:29 +0100 (ut, 29 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+uprava CStack.h, oprava referencii
+------------------------------------------------------------------------
+r1369 | xmajnu01 | 2022-11-29 10:28:51 +0100 (ut, 29 nov 2022) | 3 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+commituji o 106, protoûe nerad vyvol·v·m konfliky.
+Upraveno: CStack.h - rozdÏlenÌ sekcÌ oper·tor˘ pro lepöÌ rozliöitelnost, p¯id·nÌ relaËnÌho oper·toru !=, p¯emÌstÏnÌ rel. oper·toru od Dana do sekce rel oper·tor˘ a drobnÈ ˙pravy
+
+------------------------------------------------------------------------
+r1359 | xpesek13 | 2022-11-29 00:09:16 +0100 (ut, 29 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.cpp
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+zadefinovani hlavicek - conversion c'tor z size_t a pole, useless unary operator+, Binary operator+=, operator >, Usage getter, compare method, binary non-member operator+
+------------------------------------------------------------------------
+r1357 | xkluka00 | 2022-11-28 23:14:39 +0100 (po, 28 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+opat doriesenie konflitu, diki martin :)
+------------------------------------------------------------------------
+r1356 | xprase08 | 2022-11-28 23:10:08 +0100 (po, 28 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+Dodelani metody Pop(), Top(), doreseni konflikftu - diky Martine ;) xD, unarni opperator -- odkomentovani a doplneni metody Pop(), uprava zadani
+------------------------------------------------------------------------
+r1350 | xmajnu01 | 2022-11-28 22:37:10 +0100 (po, 28 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+operator ! a +
+------------------------------------------------------------------------
+r1349 | xmajnu01 | 2022-11-28 22:36:27 +0100 (po, 28 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.cpp
+
+operator ! operator + uprava chyb
+------------------------------------------------------------------------
+r1305 | xprase08 | 2022-11-28 20:04:51 +0100 (po, 28 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.cpp
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+Dodelana metoda Search a byly udelany zmeny v definicich
+------------------------------------------------------------------------
+r1293 | xmajnu01 | 2022-11-28 19:13:56 +0100 (po, 28 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_long.h
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+˙prava dokumentace a referencÌ
+------------------------------------------------------------------------
+r1285 | xpesek13 | 2022-11-28 17:51:17 +0100 (po, 28 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.cpp
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+Doplneni parametru a dokumentace funkci Push, Pop, Top, Dup, Search.
+------------------------------------------------------------------------
+r1279 | xprase08 | 2022-11-28 15:44:05 +0100 (po, 28 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.cpp
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+Zadefinovani metod Stacku (Push, Pop, Top, Search, Dup) bez jednotlivych parametru - nutne DOPLNIT
+------------------------------------------------------------------------
+r1275 | xkluka00 | 2022-11-28 14:31:49 +0100 (po, 28 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+
+doplnenie threeway operatora a nasledne spustenie vsetkych porovnavacich operatorov v classe TInterval
+------------------------------------------------------------------------
+r1273 | xkluka00 | 2022-11-28 14:10:52 +0100 (po, 28 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+
+zmena aValue na aInterval v classe TInterval a doplnenie dokumentacie, popripade opravene typograficke chyby
+------------------------------------------------------------------------
+r1272 | xkluka00 | 2022-11-28 13:54:55 +0100 (po, 28 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+
+zmena datoveho typu Minimum a Maximum z long na TType
+------------------------------------------------------------------------
+r1271 | xkluka00 | 2022-11-28 13:53:26 +0100 (po, 28 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+
+doplnenie mien autorov a oprava typografickych chyb
+------------------------------------------------------------------------
+r1270 | xkluka00 | 2022-11-28 13:47:26 +0100 (po, 28 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+
+doplnene komparacne operatory TInterval, gettery Left() a Right() a charakteristicka metoda Location
+------------------------------------------------------------------------
+r1266 | xkluka00 | 2022-11-28 12:46:47 +0100 (po, 28 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+
+oprava konverzneho konstruktora TInterval, oprava definicie inverzneho operatora TInterval, oprava konverzneho konstruktora CBlock, doplnenie destruktora CBlock, doplnenie ID gettera CBlock, oprava definicie settera CBlock Setvalue a oprava jeho telicka, doplnenie operatora - CBlock
+------------------------------------------------------------------------
+r1264 | xkluka00 | 2022-11-28 12:10:51 +0100 (po, 28 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+
+dokumentacia TInterval metod Minimum a Maximum, oprava Conversion c'tor from plain C string (striped string) v classe CBlock, celkova uprava suboru
+------------------------------------------------------------------------
+r1262 | xkluka00 | 2022-11-28 11:58:10 +0100 (po, 28 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+
+osetrenie minimalnej a maximalnej hranice classy TInterval
+------------------------------------------------------------------------
+r1252 | xkluka00 | 2022-11-28 00:45:21 +0100 (po, 28 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+
+rozpÌsan· class TInterval, doplnenÈ metÛdy do classy
+------------------------------------------------------------------------
+r1200 | xprase08 | 2022-11-27 00:44:34 +0100 (ne, 27 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+Ne Funkce xD ale metoda, zmeneno
+------------------------------------------------------------------------
+r1198 | xprase08 | 2022-11-27 00:38:11 +0100 (ne, 27 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+Hotova funkce Reveryuj(aaa) a ctor z init listu
+------------------------------------------------------------------------
+r1171 | xpesek13 | 2022-11-26 16:16:23 +0100 (so, 26 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock.h
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+
+Prace na hlavicce TInterval - default c'tor, copy c'tor, konverzni c'tor z CBlock
+------------------------------------------------------------------------
+r1154 | xkluka00 | 2022-11-26 13:55:32 +0100 (so, 26 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+
+commit CBlock_TInterval.h pre Davida
+------------------------------------------------------------------------
+r1153 | xkluka00 | 2022-11-26 13:40:14 +0100 (so, 26 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_long.h
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+upravena definicia CBlock_TInterval.h tak, aby fungovala
+------------------------------------------------------------------------
+r1145 | xkluka00 | 2022-11-26 01:29:47 +0100 (so, 26 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/main.cpp
+
+zadefinovanie priestorov pre kazdeho autora, ktory bude testovat svoje metody v main.cpp
+------------------------------------------------------------------------
+r1144 | xkluka00 | 2022-11-26 01:11:05 +0100 (so, 26 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+upraveny unarny operator - (spraveny pomocou metody Reverse) a metoda Reverse, ktora spravi bbb=aaa.Reverse()
+------------------------------------------------------------------------
+r1141 | xkluka00 | 2022-11-25 22:54:47 +0100 (pi, 25 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+dokonceny unarny operator -
+------------------------------------------------------------------------
+r1140 | xkluka00 | 2022-11-25 21:03:14 +0100 (pi, 25 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+hotovy binarny operator -=
+------------------------------------------------------------------------
+r1137 | xkluka00 | 2022-11-25 20:29:06 +0100 (pi, 25 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+
+uprava TInterval, pravdepodobne uz funguje, ale nie je typu long.. co ak to bude interval s X prvkami, kde v prvkoch moze byù ulozene napriklad true/false, long..?
+------------------------------------------------------------------------
+r1115 | xkluka00 | 2022-11-25 11:08:11 +0100 (pi, 25 nov 2022) | 1 line
+Changed paths:
+   D /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInvertval.h
+
+delete CBlock/CBlock_TInvertval.h
+------------------------------------------------------------------------
+r1114 | xkluka00 | 2022-11-25 11:07:31 +0100 (pi, 25 nov 2022) | 1 line
+Changed paths:
+   A /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInterval.h
+
+oprava nazvu CBlock_TInterval.h
+------------------------------------------------------------------------
+r1113 | xkluka00 | 2022-11-25 11:06:20 +0100 (pi, 25 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock.vcxproj
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock.vcxproj.filters
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_long.h
+
+nacrt TInterval, nefunguje
+------------------------------------------------------------------------
+r1102 | xkluka00 | 2022-11-24 19:38:24 +0100 (öt, 24 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+Martinov defaultny konstruktor presunuty na zaciatok konstruktorov, kedze sa jedna o ten najdolezitejsi a najzakladnejsi konstruktor... prepisana dokumentacia ku konverznemu konstruktoru z CBlock, doplneny konverzny konstruktor z C stringu (je hotovy, ale caka sa na operatory << a >>), doplnena metoda PocetPrvku(), doplneny unarny operator --, doplneny operator == a spravena celkova uprava suboru CStack.h
+------------------------------------------------------------------------
+r1101 | xkluka00 | 2022-11-24 17:41:26 +0100 (öt, 24 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+este raz, neviem, preco ten konstruktor necommitlo..
+------------------------------------------------------------------------
+r1100 | xkluka00 | 2022-11-24 17:38:39 +0100 (öt, 24 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_long.h
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+dokonceny konverzny konstruktor z CBlock a zadukomentovane parametre CStack.h
+------------------------------------------------------------------------
+r1079 | xkluka00 | 2022-11-24 10:53:40 +0100 (öt, 24 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/Introduction.md
+
+fix hlavicky CBlock
+------------------------------------------------------------------------
+r1078 | xkluka00 | 2022-11-24 10:45:28 +0100 (öt, 24 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_long.h
+
+pridal som si poznamku ku SetValue v CBlock_long.h
+------------------------------------------------------------------------
+r1076 | xkluka00 | 2022-11-24 10:32:30 +0100 (öt, 24 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInvertval.h
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.cpp
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+uprava dokumentacie CStack.h, doplneny threeway operator - zatial nepouzity, spravena celkova uprava CStack.h - opat rozdelenie do kategorii, aby bolo lepsie vidno, co sa kam dopisuje
+------------------------------------------------------------------------
+r1072 | xmajnu01 | 2022-11-24 09:48:44 +0100 (öt, 24 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+znovu oprava zad·nÌ, öpatnÏ jsem pochopil bugfix
+------------------------------------------------------------------------
+r1071 | xmajnu01 | 2022-11-24 09:46:30 +0100 (öt, 24 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+˙prava zad·nÌ bugfixu u un·rnÌho
+------------------------------------------------------------------------
+r1070 | xprase08 | 2022-11-24 09:41:10 +0100 (öt, 24 nov 2022) | 2 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+buxfix - konverzni konstruktor: klÌË -> prvek
+       - dopsani zadani unarniho +
+------------------------------------------------------------------------
+r1068 | xkluka00 | 2022-11-24 09:37:13 +0100 (öt, 24 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+merge zadania
+------------------------------------------------------------------------
+r1062 | xprase08 | 2022-11-24 09:13:58 +0100 (öt, 24 nov 2022) | 3 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+Uprava zadani dne opravy - klic prepsan na prvek, unarni + nic nedela, ale vraci identicky zasobnik
+
+
+------------------------------------------------------------------------
+r1034 | petyovsky | 2022-11-24 06:54:23 +0100 (öt, 24 nov 2022) | 1 line
+Changed paths:
+   A /ct09_zasobnik1/tags/zadani_opraveno (from /ct09_zasobnik1/branches/oprava_zadani:1033)
+
+tag[ct09_zasobnik1/tags/zadani_opraveno]: Revize pro spojeni s trunk
+------------------------------------------------------------------------
+r1026 | petyovsky | 2022-11-24 06:49:40 +0100 (öt, 24 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/branches/oprava_zadani/Project/Project/Introduction.md
+
+
+------------------------------------------------------------------------
+r1020 | xmajnu01 | 2022-11-23 20:44:54 +0100 (st, 23 nov 2022) | 4 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+1.default konstruktor - vytvo¯enÌ pr·zdnÈho z·sobnÌku
+3. Total, actual, id 
+Pracuji na priv·tnÌ metodÏ compare deep - dynamic_cast?
+ChybÌ 2,4,5,6,7,8,9 - pokraËuji zÌtra dobrou noc
+------------------------------------------------------------------------
+r997 | xprase08 | 2022-11-23 18:02:15 +0100 (st, 23 nov 2022) | 3 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.cpp
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+Zadefinovani operatoru -,++, 
+Dokonceni operatoru <, size_t
+
+------------------------------------------------------------------------
+r947 | xmajnu01 | 2022-11-21 21:13:23 +0100 (po, 21 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock.vcxproj
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock.vcxproj.filters
+   A /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.cpp
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+   D /ct09_zasobnik1/trunk/CBlock/CBlock/TStack.cpp
+
+N·hrada TStack.cpp za CStack.cpp a definice comparedeep a compare
+------------------------------------------------------------------------
+r870 | xkluka00 | 2022-11-16 13:48:26 +0100 (st, 16 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+
+definicia konverzneho konstruktora z CBlock
+------------------------------------------------------------------------
+r869 | xkluka00 | 2022-11-16 11:13:18 +0100 (st, 16 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock.h
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInvertval.h
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_long.h
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/Introduction.md
+
+dokoncenie CBlock/CBlock/CBlock_long.h, doplenie typov 1 a 2 do CBlock/CBlock/Introduction.md, skuska unit testov CBlock/CBlock/CBlock_long.h
+------------------------------------------------------------------------
+r847 | petyovsky | 2022-11-14 17:47:36 +0100 (po, 14 nov 2022) | 1 line
+Changed paths:
+   A /ct09_zasobnik1/tags/vanilla (from /ct09_zasobnik1/trunk:27)
+
+tag[ct09_zasobnik1/tags/vanilla]: Vanilla zaloha
+------------------------------------------------------------------------
+r809 | petyovsky | 2022-11-14 17:45:05 +0100 (po, 14 nov 2022) | 1 line
+Changed paths:
+   A /ct09_zasobnik1/branches/oprava_zadani (from /ct09_zasobnik1/tags/zadani:808)
+
+branch[ct09_zasobnik1/branches/oprava_zadani]: Pro ohodnoceni
+------------------------------------------------------------------------
+r808 | petyovsky | 2022-11-14 17:45:04 +0100 (po, 14 nov 2022) | 1 line
+Changed paths:
+   A /ct09_zasobnik1/tags/zadani (from /ct09_zasobnik1/trunk:782)
+
+tag[ct09_zasobnik1/tags/zadani]: Zaloha
+------------------------------------------------------------------------
+r792 | xkluka00 | 2022-11-12 23:59:04 +0100 (so, 12 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_long.h
+
+fix dokumentacie CBlock_long.h
+------------------------------------------------------------------------
+r791 | xkluka00 | 2022-11-12 23:55:13 +0100 (so, 12 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_long.h
+
+odstranenie ExtraIntu z konstruktorov, doplnenie destruktorov, InstanceInfo gettera a settero/getterov
+------------------------------------------------------------------------
+r790 | xpesek13 | 2022-11-12 22:40:28 +0100 (so, 12 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock.vcxproj
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock.vcxproj.filters
+   A /ct09_zasobnik1/trunk/CBlock/CBlock/CStack.h
+   A /ct09_zasobnik1/trunk/CBlock/CBlock/TStack.cpp
+
+presun push funkce do CBlock projektu
+------------------------------------------------------------------------
+r789 | xkluka00 | 2022-11-12 22:29:09 +0100 (so, 12 nov 2022) | 1 line
+Changed paths:
+   A /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_TInvertval.h
+   A /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock_long.h
+
+vsetky konstruktory CBlock_long.h
+------------------------------------------------------------------------
+r788 | xpesek13 | 2022-11-12 19:36:18 +0100 (so, 12 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.cpp
+   M /ct09_zasobnik1/trunk/Project/Project/CStack.h
+
+Prvni nastrel funkce Push
+------------------------------------------------------------------------
+r782 | xkluka00 | 2022-11-11 11:44:23 +0100 (pi, 11 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock.h
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock.vcxproj
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/CBlock.vcxproj.filters
+
+pridanÈ CBlock_long.h a CBlock_TInvertval.h so z·kladnou definÌciou triedy
+------------------------------------------------------------------------
+r774 | xkluka00 | 2022-11-11 00:39:02 +0100 (pi, 11 nov 2022) | 2 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+uprava autorov v bode 8, Kluka, Prasek
+
+------------------------------------------------------------------------
+r773 | xkluka00 | 2022-11-11 00:30:16 +0100 (pi, 11 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+oprava autora 4 pri metode Usage(): Prasek->Peöek
+------------------------------------------------------------------------
+r744 | xkluka00 | 2022-11-10 21:14:51 +0100 (öt, 10 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+oprava operatora --
+------------------------------------------------------------------------
+r742 | xkluka00 | 2022-11-10 21:02:31 +0100 (öt, 10 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+fix zadania
+------------------------------------------------------------------------
+r731 | xkluka00 | 2022-11-10 20:41:19 +0100 (öt, 10 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+finalna uprava zadania - prepis jednotlivych metod, oprava chyb a oprava typografickych chyb 
+------------------------------------------------------------------------
+r670 | xkluka00 | 2022-11-10 10:39:06 +0100 (öt, 10 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+prepis poslednÈho Note na Done
+------------------------------------------------------------------------
+r666 | xkluka00 | 2022-11-10 10:20:36 +0100 (öt, 10 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+kontejner -> zasobnik
+------------------------------------------------------------------------
+r663 | xprase08 | 2022-11-10 10:08:08 +0100 (öt, 10 nov 2022) | 2 lines
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+todo -> done, uprava zadani
+
+------------------------------------------------------------------------
+r658 | xkluka00 | 2022-11-10 09:36:42 +0100 (öt, 10 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/Documentation.md
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/Doxyfile
+   M /ct09_zasobnik1/trunk/CBlock/CBlock/Introduction.md
+
+uprava hlavicky zadania projektu CBlock, nie projektu Projekt.. + doplnenie aliasu "done" do doxyfile
+------------------------------------------------------------------------
+r655 | xmajnu01 | 2022-11-10 09:23:29 +0100 (öt, 10 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+uprava autora
+------------------------------------------------------------------------
+r482 | xpesek13 | 2022-11-08 21:14:53 +0100 (ut, 08 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+uprava zadani podle Petyho
+------------------------------------------------------------------------
+r481 | xpesek13 | 2022-11-08 20:52:55 +0100 (ut, 08 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+uprava zadani podle Petyho
+------------------------------------------------------------------------
+r409 | petyovsky | 2022-11-07 18:08:19 +0100 (po, 07 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+Konzultace zadani
+------------------------------------------------------------------------
+r384 | xprase08 | 2022-11-06 10:01:23 +0100 (ne, 06 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+Uprava zadani
+------------------------------------------------------------------------
+r375 | xpesek13 | 2022-11-05 18:21:00 +0100 (so, 05 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+Uprava zadani
+------------------------------------------------------------------------
+r372 | xkluka00 | 2022-11-05 15:49:51 +0100 (so, 05 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+aktualiz·cia Done, To-do, Note
+------------------------------------------------------------------------
+r371 | xkluka00 | 2022-11-05 15:41:17 +0100 (so, 05 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+moje n·vrhy zadania vol. 2
+------------------------------------------------------------------------
+r369 | xkluka00 | 2022-11-04 22:17:02 +0100 (pi, 04 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+moje n·vrhy zadania
+------------------------------------------------------------------------
+r349 | xmajnu01 | 2022-11-04 18:20:00 +0100 (pi, 04 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+dalöÌ commit s boizs
+------------------------------------------------------------------------
+r348 | xmajnu01 | 2022-11-04 17:53:07 +0100 (pi, 04 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+uprava zadani s mymi chlapci
+------------------------------------------------------------------------
+r324 | xprase08 | 2022-11-03 10:13:56 +0100 (öt, 03 nov 2022) | 1 line
+Changed paths:
+   A /ct09_zasobnik1/trunk/Project/Project/CStack.cpp (from /ct09_zasobnik1/trunk/Project/Project/CZasobnik.cpp:323)
+   A /ct09_zasobnik1/trunk/Project/Project/CStack.h (from /ct09_zasobnik1/trunk/Project/Project/CZasobnik.h:323)
+   D /ct09_zasobnik1/trunk/Project/Project/CZasobnik.cpp
+   D /ct09_zasobnik1/trunk/Project/Project/CZasobnik.h
+   M /ct09_zasobnik1/trunk/Project/Project/Documentation.md
+   M /ct09_zasobnik1/trunk/Project/Project/Doxyfile
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+   M /ct09_zasobnik1/trunk/Project/Project/Project.vcxproj
+   M /ct09_zasobnik1/trunk/Project/Project/Project.vcxproj.filters
+   M /ct09_zasobnik1/trunk/Project/Project/project_hierarchy.gv
+
+Prejmenovani CZasobnik na CStack
+------------------------------------------------------------------------
+r313 | xprase08 | 2022-11-03 09:58:26 +0100 (öt, 03 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+done CContainer
+------------------------------------------------------------------------
+r310 | xprase08 | 2022-11-03 09:56:29 +0100 (öt, 03 nov 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Doxyfile
+
+DONE DONE DONE
+------------------------------------------------------------------------
+r94 | xpesek13 | 2022-10-29 20:08:16 +0200 (so, 29 okt 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+oprava mail adresy autora 4
+------------------------------------------------------------------------
+r93 | xkluka00 | 2022-10-29 19:12:38 +0200 (so, 29 okt 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Documentation.md
+   M /ct09_zasobnik1/trunk/Project/Project/Doxyfile
+
+BPC-PPC 2022: CZasobnik Example Project
+------------------------------------------------------------------------
+r92 | xkluka00 | 2022-10-29 18:49:44 +0200 (so, 29 okt 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/project_hierarchy.gv
+
+uprava grafu pre graphviz
+------------------------------------------------------------------------
+r91 | xkluka00 | 2022-10-29 18:34:18 +0200 (so, 29 okt 2022) | 1 line
+Changed paths:
+   D /ct09_zasobnik1/trunk/Project/Project/CContainer.cpp
+   D /ct09_zasobnik1/trunk/Project/Project/CContainer.h
+
+delete CContainer.h a CContainer.cpp
+------------------------------------------------------------------------
+r90 | xkluka00 | 2022-10-29 18:30:16 +0200 (so, 29 okt 2022) | 1 line
+Changed paths:
+   A /ct09_zasobnik1/trunk/Project/Project/CZasobnik.cpp
+   A /ct09_zasobnik1/trunk/Project/Project/CZasobnik.h
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+   M /ct09_zasobnik1/trunk/Project/Project/Project.vcxproj
+   M /ct09_zasobnik1/trunk/Project/Project/Project.vcxproj.filters
+
+prepis suborov CContainer.h a CContainer.cpp na CZasobnik.h a CZasobnik.cpp - povodne CContainery su teda nepouzite.. oprava drobnosti v dokumentacii v Introduction.md
+------------------------------------------------------------------------
+r89 | xkluka00 | 2022-10-29 17:52:01 +0200 (so, 29 okt 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+prva aktualizacia zadania (prepisy datovych typov, kontajnerov a pridelenie autorov k metodam)
+------------------------------------------------------------------------
+r81 | xpesek13 | 2022-10-27 10:54:34 +0200 (öt, 27 okt 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+oprava konfliktu 
+------------------------------------------------------------------------
+r78 | xprase08 | 2022-10-27 10:52:41 +0200 (öt, 27 okt 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+test konfliktu -bitka 
+------------------------------------------------------------------------
+r73 | xkluka00 | 2022-10-27 10:48:14 +0200 (öt, 27 okt 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+ajoj nazdar
+------------------------------------------------------------------------
+r70 | xmajnu01 | 2022-10-27 10:45:08 +0200 (öt, 27 okt 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+ahoj, plus nÏjake prikazy
+------------------------------------------------------------------------
+r62 | xkluka00 | 2022-10-27 10:25:54 +0200 (öt, 27 okt 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+oprava dokumentacie 
+------------------------------------------------------------------------
+r57 | xkluka00 | 2022-10-27 10:20:30 +0200 (öt, 27 okt 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+aktualizacia autora 2 v Introduction.md
+------------------------------------------------------------------------
+r53 | xpesek13 | 2022-10-27 10:20:00 +0200 (öt, 27 okt 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+My name Jeff (Autor 4 uprava jmena)
+------------------------------------------------------------------------
+r50 | xprase08 | 2022-10-27 10:19:44 +0200 (öt, 27 okt 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+⁄prava pojmenov·nÌ Autor 3 :-)
+------------------------------------------------------------------------
+r45 | xmajnu01 | 2022-10-27 10:18:37 +0200 (öt, 27 okt 2022) | 1 line
+Changed paths:
+   M /ct09_zasobnik1/trunk/Project/Project/Introduction.md
+
+MÏnil jsem jmÈno, jelikoû se jmenuji jinak, neûli m˘j vyuËujÌcÌ 
+------------------------------------------------------------------------
+r11 | petyovsky | 2022-10-26 19:11:03 +0200 (st, 26 okt 2022) | 1 line
+Changed paths:
+   A /ct09_zasobnik1
+
+
+------------------------------------------------------------------------

@@ -1,0 +1,42 @@
+## Simple CBlock makefile example by: Pety 2022
+## $Id: Makefile 1 2022-10-26 16:54:35Z petyovsky $
+
+##CXX = clang++
+CXX = g++
+CXXFLAGS = -c -O3 -std=c++20 -frtti -Wall -Wextra -pedantic -Wno-keyword-macro -Wno-stringop-truncation
+LDFLAGS =
+RM = rm -f
+
+.PHONY: all docs opendocs run clean cleandocs
+
+all: CBlock
+
+CBlock: main.o CBlock_TWeekDay.o check.o demagle.o
+	$(CXX) $(LDFLAGS) -o CBlock main.o CBlock_TWeekDay.o check.o demagle.o
+
+main.o: main.cpp CBlock.h CBlock_bool.h CBlock_TWeekDay.h CBlockBase.h ClassInfo.h demagle.h check.h
+	$(CXX) $(CXXFLAGS) main.cpp
+
+CBlock_TWeekDay.o: CBlock_TWeekDay.cpp CBlock.h CBlock_TWeekDay.h CBlockBase.h ClassInfo.h demagle.h check.h
+	$(CXX) $(CXXFLAGS) CBlock_TWeekDay.cpp
+
+check.o: check.cpp check.h
+	$(CXX) $(CXXFLAGS) check.cpp
+
+demagle.o: demagle.cpp demagle.h
+	$(CXX) $(CXXFLAGS) demagle.cpp
+
+docs: Doxyfile ClassInfo.h demagle.cpp demagle.h CBlock_TWeekDay.cpp CBlock_TWeekDay.h CBlock_bool.h CBlock.h main.cpp Introduction.md Documentation.md
+	export LC_CTYPE="en_US.UTF-8"; doxygen Doxyfile
+
+opendocs: docs
+	open html/index.html
+
+run: CBlock
+	./CBlock
+
+clean:
+	-$(RM) CBlock main.o CBlock_bool.o CBlock_TWeekDay.o check.o demagle.o
+
+cleandocs:
+	-$(RM) -r html latex

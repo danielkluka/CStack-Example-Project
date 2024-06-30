@@ -1,0 +1,30 @@
+  line   rev      merged   date                           path                                                         author                         content 
+
+       0       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock.h               petyovsky                      #ifndef CBLOCK_H
+       1       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock.h               petyovsky                      #define CBLOCK_H
+       2       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock.h               petyovsky                      /** \file CBlock.h
+       3       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock.h               petyovsky                       *  \brief General header for CBlock
+       4       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock.h               petyovsky                       *  \details Header file for switching CBlock variant.
+       5       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock.h               petyovsky                       *  \authors Petyovsky, Richter
+       6       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock.h               petyovsky                       *  $Id$
+       7       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock.h               petyovsky                       */
+       8       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock.h               petyovsky                      
+       9       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock.h               petyovsky                      // Always include all available (4 variants) header files here (never include just one file)!!!
+      10       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock.h               petyovsky                      #include "CBlock_bool.h"
+      11     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/CBlock.h               xkluka00                       #include "CBlock_long.h"
+      12       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock.h               petyovsky                      #include "CBlock_TWeekDay.h"
+      13     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/CBlock.h               xkluka00                       #include "CBlock_TInterval.h"
+      14       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock.h               petyovsky                      
+      15       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock.h               petyovsky                      /** \brief CBlock variant selector
+      16       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock.h               petyovsky                       *  \note Only one variant of `using` can be selected at once. Project must work for all 4 variants of `CBlock`.
+      17       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock.h               petyovsky                       */
+      18       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock.h               petyovsky                      using CBlock =
+      19     2922     2922 19. 12. 2022 14:21:50          /ct09_zasobnik1/trunk/Project/Project/CBlock.h               xpesek13                       //		CBlock_bool::CBlock;
+      20     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/CBlock.h               xkluka00                       //		CBlock_long::CBlock;
+      21       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock.h               petyovsky                      //		CBlock_TWeekDay::CBlock;
+      22     2922     2922 19. 12. 2022 14:21:50          /ct09_zasobnik1/trunk/Project/Project/CBlock.h               xpesek13                       		CBlock_TInterval::CBlock;
+      23       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock.h               petyovsky                      
+      24     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/CBlock.h               xkluka00                       
+      25       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock.h               petyovsky                      constexpr bool KTWeekDaySupplementTests = false;	///< Enable TWeekDay Additional (Suplemental) Tests
+      26       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock.h               petyovsky                      
+      27       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock.h               petyovsky                      #endif /* CBLOCK_H */

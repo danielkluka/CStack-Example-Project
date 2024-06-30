@@ -1,0 +1,116 @@
+#ifndef CBLOCK_TINTERVAL_H
+#define CBLOCK_TINTERVAL_H
+/** \file CBlock_TInterval.h
+ *  \brief CBlock_TInterval class header
+ *  \details File contain CBlock_TInterval::CBlock definition
+ *  \authors Kluka, Pesek
+ *  \version 2022
+ *  $Id$
+ */
+
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <stdexcept>
+#include <typeinfo>
+#include <utility>		// Due to: std::declval<CBlockBase>
+
+#include "ClassInfo.h"
+#include "CBlockBase.h"
+#include "check.h"
+
+/** \brief Namespace for encapsulating of \c TInterval variant of CBlock class
+ *  \details For selecting this variant of CBlock class uncomment \c using \c namespace section in the CBlock.h
+ */
+namespace CBlock_TInterval
+	{
+	using TType = long;						///< Defined \c long \c TType of Interval
+
+	/** \brief Basic definition of enumeration type for searching location of element in TInterval.
+	 */
+	enum TLocation
+	{
+		ELess = -1, EWithin = 0, EGreater = 1
+	};
+
+	/** \brief TInterval class (\c TInterval variant)
+	 *  \details Definition of TInterval class (\c TInterval variant). There are defined all common methods and attributes.
+	 */
+	class TInterval
+	{
+	public:
+		TType* ELeft;						///< Defined \c TType left boundary of Interval
+		TType* ERight;						///< Defined \c TType right boundary of Interval
+	};
+
+	/** \brief CBlock class (\c TInterval variant)
+	 *  \details Definition of CBlock class (\c TInterval variant). There are defined all common methods and attributes.
+	 */
+	class CBlock: public CBlockBase
+		{
+		ClassInfo<CBlock> iInstanceInfo;	///< Instance of the class info for usage statistics
+		TType iValue;						///< Encapsulated \c TType value
+		
+	public:
+		// test funkcnosti premennych - tuto metodu vobec neberte vazne, iba som skusal, ci sa da pristupit ku vsetkym premennym :) 
+		long SetInterval(TInterval jou)
+		{
+			jou.ELeft = &iValue;
+			jou.ERight = &iValue;
+
+			if((&iValue > jou.ELeft) && (&iValue < jou.ERight))
+				return EWithin;
+
+			if (jou.ELeft > jou.ERight)
+			{
+				TType* mou = jou.ERight;
+				jou.ERight = jou.ELeft;
+				jou.ELeft = mou;
+			}
+			return 0;
+		}
+
+
+
+		// c'tors
+
+
+
+		// d'tor
+
+
+
+		// InstanceInfo getters
+
+
+
+		// setter/getter
+		/** \brief Value setter
+		 *  \param[in]	aValue	New Value
+		 *  \author Kluka
+		 *  \attention Method generate \c std::range_error exception if parameters \p aValue is out of the \c enum \c class TInterval range.
+		 */
+		void SetValue(const TInterval aValue)
+			{
+			//iValue = CheckRangeWithException(static_cast<size_t>(aValue));
+			}
+
+		/** \brief Value getter
+		 *  \return Actual \c TInterval \p Value
+		 *  \author Kluka
+		 */
+		TInterval Value() const
+			{
+			return iValue;
+			}
+
+
+
+		// operators
+
+
+
+		};
+	}
+
+#endif /* __CBLOCK_TINTERVAL_H__ */

@@ -1,0 +1,559 @@
+#ifndef CBLOCK_TINTERVAL_H
+#define CBLOCK_TINTERVAL_H
+/** \file CBlock_TInterval.h
+ *  \brief CBlock_TInterval class header
+ *  \details File contain CBlock_TInterval::CBlock definition
+ *  \authors Kluka
+ *  \version 2022
+ *  $Id$
+ */
+
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <stdexcept>
+#include <typeinfo>
+#include <utility>		// Due to: std::declval<CBlockBase>
+
+#include "ClassInfo.h"
+#include "CBlockBase.h"
+#include "check.h"
+
+/** \brief Namespace for encapsulating of \c TInterval variant of CBlock class
+ *  \details For selecting this variant of CBlock class uncomment \c using \c namespace section in the CBlock.h
+ */
+namespace CBlock_TInterval
+	{
+	/** \brief Basic definition of \c long type used for class \c TInterval.
+	 */
+	using TType = long;						///< Defined \c long \c TType of Interval
+
+	/** \brief Basic definition of enumeration type for searching location of element in TInterval.
+	 */
+	enum TLocation
+	{
+		ELess = -1, EWithin = 0, EGreater = 1
+	};
+
+	/** \brief Minimum method for searching minimum TType boundary of Interval.
+	 *  \param[in]	aLeft	Left boundary of Interval
+	 *  \param[in]	aRight	Right boundary of Interval
+	 *  \details Definition of Minimum method, which returns lower boundary in case of bad input.
+	 *	\author Kluka
+	 */
+	inline TType Minimum(TType aLeft, TType aRight)
+		{
+		if(aLeft > aRight) return aRight;
+		else return aLeft;
+		}
+
+	/** \brief Minimum method for searching minimum TType boundary of Interval.
+	 *  \param[in]	aLeft	Left boundary of Interval
+	 *  \param[in]	aRight	Right boundary of Interval
+	 *  \details Definition of Maximum method, which returns bigger boundary in case of bad input.
+	 *	\author Kluka
+	 */
+	inline TType Maximum(TType aLeft, TType aRight)
+		{
+		if(aLeft > aRight) return aLeft;
+		else return aRight;
+		}
+
+	/** \brief TInterval class (\c TInterval variant)
+	 *  \details Definition of TInterval class (\c TInterval variant). There are defined all common methods and attributes.
+	 */
+	class TInterval
+	{
+		TType iLeft;						///< Defined \c TType left boundary of Interval
+		TType iRight;						///< Defined \c TType right boundary of Interval
+		//TType *iValues;					///< Defined \c TType array of Interval values (not used at this stage of development)
+	public:
+		// c'tors
+		/** \brief Default c'tor
+		 *  \details Value attributes are set to \c 0. 
+		 *  \authors Kluka
+		 */
+		TInterval(): iLeft(0), iRight(0)//, iValues{0}			//(not used at this stage of development)
+			{
+			}
+
+		/** \brief Conversion c'tor
+		 *  \details Pointer attributes are initialised by given values or by default to the \c this value.
+		 *  \param[in]	aLeft	Left boundary of Interval
+		 *  \param[in]	aRight	Right boundary of Interval
+		 *  \authors Kluka
+		 *  \attention Method checks if boundaries were set at the right order and switches them in case if not.
+		 */
+		TInterval(TType aLeft, TType aRight): iLeft(Minimum(aLeft,aRight)), iRight(Maximum(aLeft,aRight))
+			{
+			//Fill(iLeft, iRight);								//(not used at this stage of development)
+			}
+
+		/** \brief Copy c'tor
+		 *  \details Create new instance by copying only \p aInterval parameter.
+		 *  \param[in]	aInterval	Interval which parameters will be copied by copy c'tor.
+		 *  \authors Kluka
+		 *  \attention Method checks if boundaries were set at the right order and switches them in case if not.
+		 */
+		TInterval(const TInterval& aInterval): iLeft(Minimum(aInterval.iLeft,aInterval.iRight)), iRight(Maximum(aInterval.iLeft,aInterval.iRight))
+			{
+			//Fill(iLeft, iRight);								//(not used at this stage of development)
+			}
+
+		// operators
+		/** \brief Assignment operator
+		 *  \details Create new instance by copying only \p aInterval parameter.
+		 *  \param[in]	aInterval	Interval, which contains parameters iLeft and iRight that will be used for setting new parameters iLeft and iRight
+		 *  \authors Kluka
+		 *  \attention Method checks if boundaries were set at the right order and switches them in case if not.
+		 */
+		TInterval& operator=(const TInterval& aInterval)
+			{
+			iLeft = Minimum(aInterval.iLeft,aInterval.iRight);
+			iRight = Maximum(aInterval.iLeft,aInterval.iRight);
+			//iValues = aInterval.iValues;						//(not used at this stage of development)
+			return *this;
+			}
+
+		/** \brief Inversion operator
+		 *  \details Operator makes inversion of iLeft and iRight boundary and switches them to make inverted Interval.
+		 *	\return Inverted interval with switched boundaries.
+		 *  \authors Kluka
+		 */
+		TInterval operator-() const
+			{
+			return TInterval(-iRight, -iLeft);
+			}
+
+		/** \brief Comparing by Value operator
+		 *  \return Return \c bool result of comparation
+		 *  \author Kluka
+		 */
+		bool operator==(const TInterval& aInterval) const
+			{
+			return (iLeft == aInterval.iLeft) && (iRight == aInterval.iRight);
+			}
+
+#ifdef CBLOCK_THREE_WAY_COMPARISON
+		/** \brief Threeway comparison operator
+		 *  \return Return \c std::strong_ordering result of comparation
+		 *  \author Kluka
+		 */
+		std::strong_ordering operator<=>(const TInterval& aInterval) const
+			{
+			const TType aSize1 = (iRight - iLeft);
+			const TType aSize2 = (aInterval.iRight - aInterval.iLeft);
+			return aSize1 <=> aSize2;
+			}
+
+#else
+		/** \brief Comparing by Value operator
+		 *  \return Return \c bool result of comparation
+		 *  \author Kluka
+		 */
+		bool operator!=(const TInterval& aInterval) const
+			{
+			TType aSize1 = (iRight - iLeft);
+			TType aSize2 = (aInterval.iRight - aInterval.iLeft);
+			return aSize1 != aSize2;
+			}
+
+		/** \brief Comparing by Value operator
+		 *  \return Return \c bool result of comparation
+		 *  \author Kluka
+		 */
+		bool operator<(const TInterval& aInterval) const
+			{
+			TType aSize1 = (iRight - iLeft);
+			TType aSize2 = (aInterval.iRight - aInterval.iLeft);
+			return aSize1 < aSize2;
+			}
+
+		/** \brief Comparing by Value operator
+		 *  \return Return \c bool result of comparation
+		 *  \author Kluka
+		 */
+		bool operator>(const TInterval& aInterval) const
+			{
+			TType aSize1 = (iRight - iLeft);
+			TType aSize2 = (aInterval.iRight - aInterval.ileft);
+			return aSize1 > aSize2;
+			}
+
+#endif /* CBLOCK_THREE_WAY_COMPARISON */
+
+		/** \brief Comparing by TType Value operator
+		 *  \return Return \c bool result of comparation
+		 *  \author Kluka
+		 */
+		/*bool operator!=(const TType &aValue) const
+			{
+			return *this != aValue;
+			}*/
+
+		/** \brief Output to the stream operator. (\em serialization)
+		 *  \param[in]	aOStream	Output stream
+		 *  \param[in]	aInterval	Serialized instantion of CBlock
+		 *  \return Return \c std::ostream with serialized Value
+		 *  \authors Kluka
+		 */
+		friend std::ostream& operator<<(std::ostream& aOStream, const TInterval& aInterval)
+			{
+			aOStream << '<' << aInterval.iLeft << ',' << aInterval.iRight << '>';
+			return aOStream;
+			/*TInterval *aValues;								//(not used at this stage of development)
+			aValues->Fill(aInterval.iLeft, aInterval.iRight);
+			size_t i = 0;
+			while(aValues[i] != aInterval.iRight)
+				{
+				aOStream << aValues[i] << ' ';
+				++i;
+				}
+			return aOStream;*/
+			}
+
+		/** \brief Input from the stream operator. (\em deserialization)
+		 *  \param[in]	aIStream	Input stream
+		 *  \param[out]	aInterval	Place for deserialized instantion of CBlock
+		 *  \return Return rest of \c std::istream
+		 *  \authors Kluka
+		 */
+		friend std::istream& operator>>(std::istream& aIStream, TInterval& aInterval)
+			{
+			char ch = '\0';
+			aIStream >> std::skipws >> ch;
+			if(!aIStream.good() || ch != '<')
+				throw std::runtime_error("Input stream data integrity error!");
+
+			aIStream >> aInterval.iLeft;
+
+			aIStream >> std::noskipws >> ch;
+			if(!aIStream.good() || ch != ',')
+				throw std::runtime_error("Input stream data integrity error!");
+
+			aIStream >> aInterval.iRight;
+
+			aIStream >> std::noskipws >> ch;
+			if(!aIStream.good() || ch != '>')
+				throw std::runtime_error("Input stream data integrity error!");
+
+			return aIStream;
+			}
+
+		// CStack characteristic methods
+		/** \brief Interval value location
+		 *  \param[in]	aValue	Checking if value lies on the left side outside the Interval, on the right side outside the Interval or within the boundaries of the Interval
+		 *  \return Boundaries comparation result using \c enum type TLocation 
+		 *  \authors Kluka
+		 */
+		TLocation Location(TType aValue) const
+			{
+			if(aValue > Right()) return EGreater;
+			if(aValue < Left())	return ELess;
+			if(aValue >= Left() && aValue <= Right()) return EWithin;
+			}
+
+		/** \brief Interval filling method
+		 *  \param[in]	aStart	Start of Interval which represents minimum value of Interval - left boundary
+		 *  \param[in]	aEnd	End of Interval which represents maximum value of Interval - right boundary
+		 *  \return Array of values representing Interval
+		 *  \authors Kluka
+		 *  \attention Method not used at this stage of development, further research needed (if Interval will consist only from iLeft and iRight elements - Values between may not be needed; debug of filling needed).
+		 */
+		TType Fill(TType aStart, TType aEnd)
+			{
+			//TType aSize = (aEnd - aStart);					//(not used at this stage of development)
+			TType aValues[]={0};
+			TType aValue = aStart;
+			size_t i = 0;
+			
+			while((aStart != aEnd) && (Location(aValue) == 0))
+				{
+					aValues[i] = aValue;
+					++aValue;
+				}
+			//iValues = aValues;								//(not used at this stage of development)
+			//return *iValues;
+			}
+
+		// getters
+		/** \brief Left Interval boundary getter
+		 *  \return Actual \c TType \p Value iLeft
+		 *  \author Kluka
+		 */
+		TType Left() const
+			{
+			return iLeft;
+			}
+
+		/** \brief Right Interval boundary getter
+		 *  \return Actual \c TType \p Value iRight
+		 *  \author Kluka
+		 */
+		TType Right() const
+			{
+			return iRight;
+			}
+	};
+
+	/** \brief CBlock class (\c TInterval variant)
+	 *  \details Definition of CBlock class (\c TInterval variant). There are defined all common methods and attributes.
+	 */
+	class CBlock: public CBlockBase
+		{
+		ClassInfo<CBlock> iInstanceInfo;	///< Instance of the class info for usage statistics
+		TInterval iValue;					///< Encapsulated \c TInterval value
+		
+	public:
+		// c'tors
+		/** \brief Default c'tor
+		 *  \details Sets Interval boundaries to iLeft = 0 and iRight = 0
+		 *  \author Kluka
+		 */
+		CBlock() : CBlockBase(), iValue()
+			{
+			}
+
+		/** \brief Copy c'tor
+		 *  \details Create new instance by copying only \p iValue parameter. Pointer attributes are initialised to the \c this value (CBlockBase definition).
+		 *  \param[in]	aValue	Original instance for copying
+		 *  \author Kluka
+		 */
+		CBlock(const CBlock& aValue) : CBlockBase(), iValue(aValue.Value())
+			{
+			}
+
+		/** \brief Conversion c'tor
+		 *  \details Value is set. Pointer attributes are initialised by given values or by default to the \c this value (CBlockBase definition).
+		 *  \param[in]	aValue	New TInterval Value
+		 *  \param[in]	aPrev	Connection with previous node (when needed)
+		 *  \param[in]	aNext	Connection with next node (when needed)
+		 *  \author Kluka
+		 */
+		explicit CBlock(const TInterval& aValue, CBlock* aPrev = nullptr, CBlock* aNext = nullptr) : CBlockBase(aPrev, aNext), iValue(aValue)
+			{
+			}
+
+		/** \brief Conversion c'tor from std::string
+		 *  \details Create new instance of CStack. Pointer attributes are initialised by given values or by default to the \c this value (CBlockBase definition).
+		 *  \param[in]	aString	std::string with long value
+		 *  \param[in]	aPrev	Connection with previous node (when needed)
+		 *  \param[in]	aNext	Connection with next node (when needed)
+		 *  \author Kluka
+		 */
+		explicit CBlock(const std::string& aString, CBlock* aPrev = nullptr, CBlock* aNext = nullptr) : CBlock(aString.c_str(), aPrev, aNext)
+			{		
+			}
+
+		/** \brief Conversion c'tor from plain C string (striped string)
+		 *  \details Create new instance from Value in the string. Pointer attributes are initialised by given values or by default to the \c this value (CBlockBase definition).
+		 *  \param[in]	aStr	Plain C string with long value
+		 *  \param[in]	aPrev	Connection with previous node (when needed)
+		 *  \param[in]	aNext	Connection with next node (when needed)
+		 *  \author Kluka
+		 */
+		explicit CBlock(const char* aStr, CBlock* aPrev = nullptr, CBlock* aNext = nullptr) : CBlockBase(aPrev, aNext), iValue()
+			{
+			std::istringstream iss(aStr, std::istringstream::in); iss >> iValue;
+			}
+
+		// d'tor:
+		/** \brief Virtual d'tor
+		 *  \authors Kluka
+		 */
+		virtual ~CBlock() noexcept(noexcept(std::declval<CBlockBase>().~CBlockBase()))
+			{
+			iValue = { 0,0 };
+			}
+
+		// InstanceInfo getter:
+		/** \brief ID getter
+		 *  \return Unique instance ID
+		 *  \author Kluka
+		 */
+		size_t ID() const
+			{
+			return iInstanceInfo.ID();
+			}
+
+		// setter/getter
+		/** \brief Value setter
+		 *  \param[in]	aValue	New Value
+		 *  \author Kluka
+		 *  \attention Method generate \c std::range_error exception if parameters \p aValue is out of the \c enum \c class TInterval range.
+		 */
+		void SetValue(const TInterval& aValue)
+			{
+			iValue = aValue;
+			}
+
+		/** \brief Value getter
+		 *  \return iValue of CBlock
+		 *  \author Kluka
+		 */
+		TInterval Value() const
+			{
+			return iValue;
+			}
+
+		// operators
+		/** \brief Complement operator
+		 *  \return CBlock instance with complemented attribute Value.
+		 *  \author Kluka
+		 */
+		CBlock operator-() const
+			{
+			return CBlock(-iValue);
+			}
+
+		/** \brief Assigment operator
+		 *  \return CBlock instance with copied attribute Value.
+		 *  \author Kluka
+		 */
+		CBlock& operator=(const CBlock& aValue)
+			{
+			SetValue(aValue.Value());
+			return *this;
+			}
+
+		/** \brief Comparing by Value operator
+		 *  \return Return \c bool result of comparation
+		 *  \author Kluka
+		 */
+		bool operator==(const CBlock& aValue) const
+			{
+			return iValue == aValue.Value();
+			}
+
+#ifdef CBLOCK_THREE_WAY_COMPARISON
+		/** \brief Threeway comparison by Value operator
+		 *  \return Return \c std::strong_ordering result of comparation
+		 *  \author Kluka
+		 */
+		std::strong_ordering operator<=>(const CBlock& aValue) const
+			{
+			return iValue <=> aValue.Value();
+			}
+
+#else
+		/** \brief Comparing by Value operator
+		 *  \return Return \c bool result of comparation
+		 *  \author Kluka
+		 */
+		bool operator!=(const CBlock& aValue) const
+			{
+			return iValue != aValue.Value();
+			}
+
+		/** \brief Comparing by Value operator
+		 *  \return Return \c bool result of comparation
+		 *  \author Kluka
+		 */
+		bool operator<(const CBlock& aValue) const
+			{
+			return iValue < aValue.Value();
+			}
+
+		/** \brief Comparing by Value operator
+		 *  \return Return \c bool result of comparation
+		 *  \author Kluka
+		 */
+		bool operator>(const CBlock& aValue) const
+			{
+			return iValue > aValue.Value();
+			}
+
+#endif /* CBLOCK_THREE_WAY_COMPARISON */
+
+		/** \brief Output to the stream operator. (\em serialization)
+		 *  \param[in]	aOStream	Output stream
+		 *  \param[in]	aValue	Serialized instantion of CBlock
+		 *  \return Return \c std::ostream with serialized Value
+		 *  \author Kluka
+		 */
+		friend std::ostream& operator<<(std::ostream &aOStream, const CBlock &aValue)
+			{
+			aOStream << aValue.iValue;
+			return aOStream;
+			}
+
+		/** \brief Input from the stream operator. (\em deserialization)
+		 *  \param[in]	aIStream	Input stream
+		 *  \param[out]	aValue	Place for deserialized instantion of CBlock
+		 *  \return Return rest of \c std::istream
+		 *  \author Kluka
+		 */
+		friend std::istream& operator>>(std::istream &aIStream, CBlock &aValue)
+			{
+			aIStream >> aValue.iValue;
+			return aIStream;
+			}
+
+#ifdef CBLOCK_TEST_API
+
+		// constants for testing CBlock functionalities:
+		/** \brief First test value
+		 *  \return Return \c TInterval value (\c 0 0)
+		 *  \author Kluka
+		 *  \note Useful for automated testing of CBlock functionality
+		 */
+		static TInterval TestValue0()
+			{
+			return TInterval(0,0);
+			}
+
+		/** \brief First test string value
+		 *  \return Return string with \c TInterval value (\c "<0,0>")
+		 *  \author Kluka
+		 *  \note Useful for automated testing of CBlock functionality
+		 */
+		static std::string TestStringValue0()
+			{
+			return std::string("<0,0>");
+			}
+
+		/** \brief Second test value
+		 *  \return Return \c long value (\c -5, 4)
+		 *  \author Kluka
+		 *  \note Useful for automated testing of CBlock functionality
+		 */
+		static TInterval TestValue1()
+			{
+			return TInterval(-5,4);
+			}
+
+		/** \brief Second test string value
+		 *  \return Return string with \c long value (\c "<-5,4>")
+		 *  \author Kluka
+		 *  \note Useful for automated testing of CBlock functionality
+		 */
+		static std::string TestStringValue1()
+			{
+			return std::string("<-5,4>");
+			}
+
+		/** \brief Random test value
+		 *  \return Return random \c long value
+		 *  \author Kluka
+		 *  \note Useful for automated testing of CBlock functionality
+		 */
+		static TInterval TestValueRandom()
+			{
+			return TInterval(std::rand() % 100, std::rand() % 100);
+			}
+
+		/** \brief Random test string value
+		 *  \return Return string with random \c long value
+		 *  \author Kluka
+		 *  \note Useful for automated testing of CBlock functionality
+		 */
+		static std::string TestStringValueRandom()
+			{
+			std::string aStr = std::to_string(std::rand() % 100) + "," + std::to_string(std::rand() % 100);
+			return "<" + aStr + ">";
+			}
+#endif /* CBLOCK_TEST_API */
+
+		}; /* class CBlock */
+	} /* namespace CBlock_TInterval */
+#endif /* __CBLOCK_TINTERVAL_H__ */

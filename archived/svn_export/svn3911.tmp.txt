@@ -1,0 +1,351 @@
+  line   rev      merged   date                           path                                                         author                         content 
+
+       0       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      #ifndef CBLOCK_TWEEKDAY_H
+       1       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      #define CBLOCK_TWEEKDAY_H
+       2       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      /** \file CBlock_TWeekDay.h
+       3       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                       *  \brief CBlock_TWeekDay class header
+       4       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                       *  \details File contain CBlock_TWeekDay::CBlock definition.
+       5       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                       *  \warning Don't modify this file
+       6       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                       *  \authors Petyovsky, Richter
+       7       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                       *  \version 2022
+       8       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                       *  $Id$
+       9       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                       */
+      10       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      
+      11       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      #include <iostream>
+      12       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      #include <sstream>
+      13       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      #include <string>
+      14       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      #include <stdexcept>
+      15       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      #include <typeinfo>
+      16       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      #include <utility>		// Due to: std::declval<CBlockBase>
+      17       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      
+      18       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      #include "ClassInfo.h"
+      19       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      #include "CBlockBase.h"
+      20       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      #include "check.h"
+      21       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      
+      22       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      /** \brief Namespace for encapsulating of \c TWeekDay variant of CBlock class
+      23       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                       *  \details For selecting this variant of CBlock class uncomment \c using \c namespace section in the CBlock.h
+      24       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                       */
+      25       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      namespace CBlock_TWeekDay
+      26       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	{
+      27       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	/** \brief Basic definition of enumeration type for representing day of week.
+      28       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	 */
+      29       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	enum class TWeekDay
+      30       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		{
+      31       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		EMonday = 0, ETuesday, EWednesday, EThursday, EFriday, ESaturday, ESunday
+      32       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		};
+      33       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      
+      34       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	/** \brief Constant defining numbers of day in the week
+      35       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	 */
+      36       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	constexpr size_t KTWeekDaysCount = 7;
+      37       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      
+      38       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	// Definition of support functions a global operators for type enum class TWeekDay
+      39       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      
+      40       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	/** \brief Conversion and range checking function. Convert \c unsigned value to the TWeekDay
+      41       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	 *  \param[in]	aDayNum	Number of day
+      42       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	 *  \return Return TWeekDay value
+      43       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	 *  \authors Petyovsky, Richter
+      44       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	 *  \attention Method generate \c std::range_error exception if argument \a aDayNum is out of numbers of the day
+      45       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	 */
+      46       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	TWeekDay CheckRangeWithException(size_t aDayNum);
+      47       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      
+      48       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	/** \brief Conversion Day number to the Day name
+      49       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	 *  \param[in]	aWeekDay	Day enumeration
+      50       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	 *  \return Return Day name
+      51       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	 *  \authors Petyovsky, Richter
+      52       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	 */
+      53       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	const char* TWeekStringName(TWeekDay aWeekDay);
+      54       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      
+      55       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	/** \brief Output to the stream operator. (\em serialization)
+      56       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	 *  \param[in]	aOStream	Output stream
+      57       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	 *  \param[in]	aWeekDay	Serialized instantion of TWeekDay
+      58       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	 *  \return Return \c std::ostream with serialized aWeekDay
+      59       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	 *  \authors Petyovsky, Richter
+      60       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	 */
+      61       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	std::ostream& operator<<(std::ostream& aOStream, const TWeekDay& aWeekDay);
+      62       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      
+      63       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	/** \brief Input from the stream operator. (\em deserialization)
+      64       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	 *  \param[in]	aIStream	Input stream
+      65       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	 *  \param[out]	aWeekDay	Place for deserialized instantion of TWeekDay
+      66       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	 *  \return Return rest of \c std::istream
+      67       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	 *  \authors Petyovsky, Richter
+      68       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	 *  \attention Method generate \c std::range_error exception if stream doesn't contains correct name of the day
+      69       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	 *  \attention Method generate \c std::runtime_error exception if stream isn't in good state
+      70       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	 */
+      71       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	std::istream& operator>>(std::istream& aIStream, TWeekDay& aWeekDay);
+      72       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      
+      73       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      
+      74       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	/** \brief CBlock class (\c TWeekDay variant)
+      75       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	 *  \details Definition of CBlock class (\c TWeekDay variant). There is defined all common methods and attributes.
+      76       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	 */
+      77       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	class CBlock: public CBlockBase
+      78       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		{
+      79       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		ClassInfo<CBlock> iInstanceInfo;	///< Instance of the class info for usage statistics
+      80       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		TWeekDay iValue;	///< Encapsulated \c enum \c class TWeekDay value
+      81       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      
+      82       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	public:
+      83       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		// c'tors:
+      84       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		/** \brief Default c'tor
+      85       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \details Value attributes is set to \c EMonday. Pointer attributes are initialised to the \c this value (CBlockBase definition).
+      86       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \authors Petyovsky, Richter
+      87       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 */
+      88       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		CBlock(): CBlockBase(), iValue(CheckRangeWithException(static_cast<size_t>(TWeekDay::EMonday)))
+      89       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			{
+      90       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			}
+      91       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      
+      92       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		/** \brief Conversion c'tor
+      93       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \details Pointer attributes are initialised by given values or by default to the \c this value (CBlockBase definition).
+      94       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \param[in]	aValue	New TWeekDay value
+      95       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \param[in]	aPrev	Connection with previous node (when needed)
+      96       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \param[in]	aNext	Connection with next node (when needed)
+      97       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \param[in]	aExtraInt	Special value used for some container types
+      98       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \authors Petyovsky, Richter
+      99       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \attention Method generate \c std::range_error exception if parameters \p aValue is out of the \c enum \c class TWeekDay range.
+     100       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 */
+     101       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		explicit CBlock(const TWeekDay aValue, CBlock* aPrev = nullptr, CBlock *aNext = nullptr, int aExtraInt = 0): CBlockBase(aPrev, aNext, aExtraInt), iValue(CheckRangeWithException(static_cast<size_t>(aValue)))
+     102       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			{
+     103       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			}
+     104       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      
+     105       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		/** \brief Copy c'tor
+     106       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \details Create new instance by copying only \p iValue parameter. Pointer attributes are initialised to the \c this value (CBlockBase definition).
+     107       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \param[in]	aValue	Original instance for copying
+     108       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \authors Petyovsky, Richter
+     109       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 */
+     110       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		CBlock(const CBlock& aValue): CBlockBase(), iValue(aValue.Value())
+     111       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			{
+     112       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			}
+     113       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      
+     114       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		/** \brief Conversion c'tor from plain C string (striped string)
+     115       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \details Create new instance from Value in the string. Pointer attributes are initialised by given values or by default to the \c this value (CBlockBase definition).
+     116       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \param[in]	aStr	Plain C string with string value convertable to the TWeekDay value
+     117       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \param[in]	aPrev	Connection with previous node (when needed)
+     118       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \param[in]	aNext	Connection with next node (when needed)
+     119       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \param[in]	aExtraInt	Special value used for some container types
+     120       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \authors Petyovsky, Richter
+     121       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 */
+     122       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		explicit CBlock(const char* aStr, CBlock* aPrev = nullptr, CBlock* aNext = nullptr, int aExtraInt = 0): CBlockBase(aPrev, aNext, aExtraInt), iValue(TWeekDay::EMonday)
+     123       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			{
+     124       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			std::istringstream iss(aStr, std::istringstream::in);
+     125       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			iss >> *this;
+     126       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			}
+     127       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      
+     128       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		/** \brief Conversion c'tor from std::string 
+     129       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \details Create new instance from Value in the string. Pointer attributes are initialised by given values or by default to the \c this value (CBlockBase definition).
+     130       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \param[in]	aString	std::string with string value convertable to the TWeekDay value
+     131       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \param[in]	aPrev	Connection with previous node (when needed)
+     132       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \param[in]	aNext	Connection with next node (when needed)
+     133       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \param[in]	aExtraInt	Special value used for some container types
+     134       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \authors Petyovsky, Richter
+     135       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 */
+     136       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		explicit CBlock(const std::string& aString, CBlock* aPrev = nullptr, CBlock* aNext = nullptr, int aExtraInt = 0): CBlock(aString.c_str(), aPrev, aNext, aExtraInt)
+     137       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			{
+     138       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			}
+     139       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      
+     140       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		// d'tor:
+     141       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		/** \brief Virtual d'tor
+     142       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \authors Petyovsky, Richter
+     143       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 */
+     144       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		virtual ~CBlock() noexcept( noexcept(std::declval<CBlockBase>().~CBlockBase()) )	// noexcept(KCBlockDtorNoException)
+     145       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			{
+     146       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			iValue = TWeekDay::EMonday;
+     147       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			}
+     148       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      
+     149       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		// InstanceInfo getter:
+     150       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		/** \brief ID getter
+     151       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \return Unique instance ID
+     152       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \author Petyovsky
+     153       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 */
+     154       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		size_t ID() const
+     155       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			{
+     156       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			return iInstanceInfo.ID();
+     157       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			}
+     158       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      
+     159       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		// setters/getters:
+     160       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		/** \brief Value setter
+     161       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \param[in]	aValue	New Value
+     162       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \author Petyovsky
+     163       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \attention Method generate \c std::range_error exception if parameters \p aValue is out of the \c enum \c class TWeekDay range.
+     164       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 */
+     165       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		void SetValue(const TWeekDay aValue)
+     166       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			{
+     167       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			iValue = CheckRangeWithException(static_cast<size_t>(aValue));
+     168       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			}
+     169       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      
+     170       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		/** \brief Value getter
+     171       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \return Actual \c bool \p Value
+     172       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \author Petyovsky
+     173       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 */
+     174       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		TWeekDay Value() const
+     175       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			{
+     176       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			return iValue;
+     177       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			}
+     178       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      
+     179       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		// operators:
+     180       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		/** \brief Complement operator
+     181       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \return CBlock instance with complemented attribute Value.
+     182       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \author Petyovsky
+     183       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 */
+     184       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		CBlock operator-() const
+     185       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			{
+     186       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			size_t val = static_cast<size_t>(TWeekDay::ESunday) - static_cast<size_t>(Value());
+     187       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			return CBlock(TWeekDay(val));
+     188       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			}
+     189       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      
+     190       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		/** \brief Assigment operator
+     191       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \return CBlock instance with copied attribute Value.
+     192       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \author Petyovsky
+     193       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 */
+     194       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		CBlock& operator=(const CBlock& aValue)
+     195       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			{
+     196       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			SetValue(aValue.Value());
+     197       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			return *this;
+     198       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			}
+     199       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      
+     200       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		/** \brief Comparing by Value operator
+     201       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \return Return \c bool result of comparation
+     202       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \author Petyovsky
+     203       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 */
+     204       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		bool operator==(const CBlock& aValue) const
+     205       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			{
+     206       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			return iValue == aValue.Value();
+     207       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			}
+     208       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      
+     209       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      #ifdef CBLOCK_THREE_WAY_COMPARISON
+     210       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		/** \brief Threeway comparison by Value operator
+     211       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \return Return \c std::strong_ordering result of comparation
+     212       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \author Petyovsky
+     213       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 */
+     214       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		std::strong_ordering operator<=>(const CBlock& aValue) const
+     215       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			{
+     216       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			return iValue <=> aValue.Value();
+     217       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			}
+     218       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      #else
+     219       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		/** \brief Comparing by Value operator
+     220       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \return Return \c bool result of comparation
+     221       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \author Petyovsky
+     222       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 */
+     223       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		bool operator!=(const CBlock& aValue) const
+     224       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			{
+     225       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			return (iValue != aValue.Value());
+     226       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			}
+     227       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      
+     228       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		/** \brief Comparing by Value operator
+     229       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \return Return \c bool result of comparation
+     230       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \author Petyovsky
+     231       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 */
+     232       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		bool operator<(const CBlock& aValue) const
+     233       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			{
+     234       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			return (iValue < aValue.Value());
+     235       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			}
+     236       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      
+     237       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		/** \brief Comparing by Value operator
+     238       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \return Return \c bool result of comparation
+     239       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \author Petyovsky
+     240       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 */
+     241       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		bool operator>(const CBlock& aValue) const
+     242       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			{
+     243       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			return (iValue > aValue.Value());
+     244       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			}
+     245       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      #endif /* CBLOCK_THREE_WAY_COMPARISON */
+     246       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      
+     247       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		/** \brief Output to the stream operator. (\em serialization)
+     248       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \param[in]	aOStream	Output stream
+     249       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \param[in]	aValue	Serialized instantion of CBlock
+     250       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \return Return \c std::ostream with serialized Value
+     251       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \author Petyovsky
+     252       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 */
+     253       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		friend std::ostream& operator<<(std::ostream& aOStream, const CBlock& aValue)
+     254       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			{
+     255       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			aOStream << '(' << aValue.Value() << ')';
+     256       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			return aOStream;
+     257       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			}
+     258       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      
+     259       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		/** \brief Input from the stream operator. (\em deserialization)
+     260       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \param[in]	aIStream	Input stream
+     261       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \param[out]	aValue	Place for deserialized instantion of CBlock
+     262       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \return Return rest of \c std::istream
+     263       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \author Petyovsky
+     264       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 */
+     265       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		friend std::istream& operator>>(std::istream& aIStream, CBlock& aValue)
+     266       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			{
+     267       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			char ch = '\0';
+     268       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			aIStream >> std::skipws >> ch;
+     269       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			if(!aIStream.good() || ch != '(')
+     270       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      				throw std::runtime_error("Input stream data integrity error!");
+     271       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      
+     272       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			aIStream >> aValue.iValue;
+     273       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      
+     274       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			aIStream >> std::noskipws >> ch;
+     275       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			if(!aIStream.good() || ch != ')')
+     276       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      				throw std::runtime_error("Input stream data integrity error!");
+     277       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      
+     278       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			return aIStream;
+     279       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			}
+     280       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      
+     281       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      #ifdef CBLOCK_TEST_API
+     282       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      
+     283       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		// constants for testing CBlock functionalities:
+     284       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		/** \brief First test value
+     285       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \return Return TWeekDay value (EMonday)
+     286       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \authors Petyovsky, Richter
+     287       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \note Useful for automated testing of CBlock functionality
+     288       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 */
+     289       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		static TWeekDay TestValue0()
+     290       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			{
+     291       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			return TWeekDay::EMonday;
+     292       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			}
+     293       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      
+     294       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		/** \brief First test string value
+     295       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \return Return string with TWeekDay value (EMonday)
+     296       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \authors Petyovsky, Richter
+     297       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \note Useful for automated testing of CBlock functionality
+     298       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 */
+     299       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		static std::string TestStringValue0()
+     300       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			{
+     301       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			return std::string("(Monday)");
+     302       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			}
+     303       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      
+     304       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		/** \brief Second test value
+     305       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \return Return TWeekDay value (ETuesday)
+     306       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \authors Petyovsky, Richter
+     307       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \note Useful for automated testing of CBlock functionality
+     308       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 */
+     309       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		static TWeekDay TestValue1()
+     310       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			{
+     311       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			return TWeekDay::ETuesday;
+     312       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			}
+     313       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      
+     314       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		/** \brief Second test string value
+     315       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \return Return string with TWeekDay value (ETuesday)
+     316       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \authors Petyovsky, Richter
+     317       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \note Useful for automated testing of CBlock functionality
+     318       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 */
+     319       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		static std::string TestStringValue1()
+     320       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			{
+     321       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			return std::string("(Tuesday)");
+     322       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			}
+     323       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      
+     324       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		/** \brief Random test value
+     325       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \return Return random TWeekDay value
+     326       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \authors Petyovsky, Richter
+     327       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \note Useful for automated testing of CBlock functionality
+     328       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 */
+     329       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		static TWeekDay TestValueRandom()
+     330       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			{
+     331       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			return CheckRangeWithException(std::rand() % KTWeekDaysCount);
+     332       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			}
+     333       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      
+     334       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		/** \brief Random test string value
+     335       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \return Return string with random TWeekDay value
+     336       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \authors Petyovsky, Richter
+     337       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 *  \note Useful for automated testing of CBlock functionality
+     338       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		 */
+     339       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		static std::string TestStringValueRandom()
+     340       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			{
+     341       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			return '(' + std::string(TWeekStringName(TestValueRandom())) + ')';
+     342       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      			}
+     343       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      
+     344       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      #endif /* CBLOCK_TEST_VALUES */
+     345       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      
+     346       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      		}; /* class CBlock */
+     347       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      	} /* namespace CBlock_TWeekDay */
+     348       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.h      petyovsky                      #endif /* CBLOCK_TWEEKDAY_H */

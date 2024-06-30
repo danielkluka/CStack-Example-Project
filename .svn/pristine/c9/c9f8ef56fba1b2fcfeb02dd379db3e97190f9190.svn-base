@@ -1,0 +1,110 @@
+#ifndef __CBLOCK_LONG_H__
+#define __CBLOCK_LONG_H__
+/** \file CBlock_long.h
+*   \brief CBlock_long class header
+*   \details File contain CBlock_long::CBlock definition
+*   \author Kluka
+*/
+
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <stdexcept>
+#include <typeinfo>
+#include <utility>		// Due to: std::declval<CBlockBase>
+
+#include "ClassInfo.h"
+#include "CBlockBase.h"
+#include "check.h"
+
+/** \brief Namespace for encapsulating of \c long variant of CBlock class
+ *  \details For selecting this variant of CBlock class uncomment \c using \c namespace section in the CBlock.h
+ */
+namespace CBlock_bool
+	{
+	/** \brief CBlock class (\c long variant)
+	 *  \details Definition of CBlock class (\c long variant). There are defined all common methods and attributes.
+	 */
+	class CBlock: public CBlockBase
+		{
+		ClassInfo<CBlock> iInstanceInfo;	///< Instance of the class info for usage statistics
+		bool iValue; ///< Encapsulated \c long value
+
+		public:
+			// c'tors
+			/** \brief Default c'tor
+			 *  \details Value attribute is set to \c 0.
+			 *  \author Kluka
+			 */
+			CBlock(): CBlockBase(), iValue(0)
+				{
+				}
+
+			/** \brief Conversion c'tor
+			 *  \details Value is set. Pointer attributes are initialised by given values or by default to the \c this value (CBlockBase definition).
+			 *  \param[in]	aValue	New encapsulated \c long Value
+			 *  \param[in]	aPrev	Connection with previous node (when needed)
+			 *  \param[in]	aNext	Connection with next node (when needed)
+			 *  \param[in]	aExtraInt	Special value used for some container types
+			 *  \author Kluka
+			 */
+			explicit CBlock(const long aValue, CBlock *aPrev = nullptr, CBlock *aNext = nullptr, int aExtraInt = 0): CBlockBase(aPrev, aNext, aExtraInt), iValue(aValue)
+				{
+				}
+
+			/** \brief Copy c'tor
+			 *  \details Create new instance by copying only \p iValue parameter. Pointer attributes are initialised to the \c this value (CBlockBase definition).
+			 *  \param[in]	aValue	Original instance for copying
+			 *  \author Kluka
+			 */
+			CBlock(const CBlock& aValue): CBlockBase(), iValue(aValue.Value())
+				{
+				}
+
+			/** \brief Conversion c'tor from plain C string (striped string)
+			 *  \details Create new instance from Value in the string. Pointer attributes are initialised by given values or by default to the \c this value (CBlockBase definition).
+			 *  \param[in]	aStr	Plain C string with long value
+			 *  \param[in]	aPrev	Connection with previous node (when needed)
+			 *  \param[in]	aNext	Connection with next node (when needed)
+			 *  \param[in]	aExtraInt	Special value used for some container types
+			 *  \author Kluka
+			 */
+			explicit CBlock(const char* aStr, CBlock* aPrev = nullptr, CBlock* aNext = nullptr, int aExtraInt = 0): CBlockBase(aPrev, aNext, aExtraInt), iValue(0)
+				{
+				std::istringstream iss(aStr, std::istringstream::in); iss >> iValue;
+				}
+
+			/** \brief Conversion c'tor from std::string
+			 *  \details Create new instance from Value in the string. Pointer attributes are initialised by given values or by default to the \c this value (CBlockBase definition).
+			 *  \param[in]	aString	std::string with long value
+			 *  \param[in]	aPrev	Connection with previous node (when needed)
+			 *  \param[in]	aNext	Connection with next node (when needed)
+			 *  \param[in]	aExtraInt	Special value used for some container types
+			 *  \author Kluka
+			 */
+			explicit CBlock(const std::string& aString, CBlock* aPrev = nullptr, CBlock* aNext = nullptr, int aExtraInt = 0): CBlock(aString.c_str(), aPrev, aNext, aExtraInt)
+				{
+				}
+
+
+			// d'tor
+
+
+			// InstanceInfo getters
+
+
+			// setter/getter
+			/** \brief Value getter
+			 *  \return Actual \c bool \p Value
+			 *  \author Kluka
+			 */
+			long Value() const
+				{
+				return iValue;
+				}
+
+			// operators
+		};
+	}
+
+#endif /* __CBLOCK_LONG_H__ */

@@ -1,0 +1,654 @@
+  line   rev      merged   date                           path                                                         author                         content 
+
+       0       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      /** \file main.cpp
+       1       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                       *  \brief Main source
+       2       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                       *  \details Simple CContainer example of usage
+       3     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                        *  \author Kluka, Majnus, Pesek, Prasek, Pety 20XX / 2022 modified Richter
+       4       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                       *  $Id$
+       5       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                       */
+       6       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      
+       7       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      #include <ctime>
+       8       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      #include <iostream>
+       9       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      #include <stdexcept>
+      10       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      #include <typeinfo>
+      11       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      #include <type_traits>		// Due to: std::is_same_v<>
+      12       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      
+      13       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      #include "demagle.h"
+      14       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      #include "CBlock.h"
+      15       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      #include "check.h"
+      16     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       #include "CStack.h"
+      17       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      
+      18       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      using std::endl;
+      19       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      using std::cout;
+      20       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      using std::cin;
+      21       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      using std::cerr;
+      22       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      
+      23       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      int main(int argc, char *argv[])
+      24       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      	{
+      25       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      #ifdef NDEBUG
+      26       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      	std::srand(unsigned(std::time(nullptr)));	// Initialize random generator by actual time
+      27       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      #else
+      28       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      	std::srand(unsigned(42));					// Initialize random generator by fixed value useful for debugging
+      29       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      #endif
+      30       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      
+      31       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      	cout << "Pocet parametru: " << argc << endl;
+      32       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      	for(int i = 0; i < argc; i++)
+      33       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      		cout << "Parametr #" << i << ": " << argv[i] << endl;
+      34       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      	
+      35       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      	cout << endl << "Nyni existuje " << ClassInfo<CBlock>::Living() << " instanci tridy: " << DM(typeid(CBlock).name()) << endl;
+      36       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      	cout << "Velikost jedne instance tridy " << DM(typeid(CBlock).name()) << " je: " << sizeof(CBlock) << " bajtu." << endl;
+      37       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      
+      38     2410     2410 11. 12. 2022 12:24:15          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       	cout << endl << "Nyni existuje " << ClassInfo<CStack>::Living() << " instanci tridy: " << DM(typeid(CStack).name()) << endl;
+      39     2410     2410 11. 12. 2022 12:24:15          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       	cout << "Velikost jedne instance tridy " << DM(typeid(CStack).name()) << " je: " << sizeof(CStack) << " bajtu." << endl;
+      40     2410     2410 11. 12. 2022 12:24:15          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       	cout << endl;
+      41     2410     2410 11. 12. 2022 12:24:15          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+      42       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      	try
+      43       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      		{
+      44     2411     2411 11. 12. 2022 12:30:43          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       		cout << "===============================================================================" << endl;
+      45       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      		cout << "Nyni existuje " << ClassInfo<CBlock>::Living() << " instanci tridy: " << DM(typeid(CBlock).name()) << endl;
+      46     2410     2410 11. 12. 2022 12:24:15          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       		cout << "Nyni existuje " << ClassInfo<CStack>::Living() << " instanci tridy: " << DM(typeid(CStack).name()) << endl;
+      47     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       		cout << endl;
+      48       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      
+      49     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       		CBlock EmptyCBlock;
+      50     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       		CBlock CBlockVal0(CBlock::TestValue0());
+      51     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       		CBlock CBlockVal1(CBlock::TestValue1());
+      52     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       		CBlock CBlockValRand(CBlock::TestValueRandom());
+      53     2715     2715 16. 12. 2022 21:36:34          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       		CBlock CBlockString(CBlock::TestStringValue1());
+      54     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       		std::string string;
+      55       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      
+      56     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       		//(implementation of CStack class methods created and sorted by each author - author1, author2, author3, author4)
+      57     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       		{// author1 - MAJNUS ===========================
+      58     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       			cout << endl << "Testing methods of author1 - Majnus:" << endl ;
+      59     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       			
+      60     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       			cout << endl << "	Calling default c'tor" << endl;
+      61     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       
+      62     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				CStack Stack1;
+      63     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				cout << endl << "		"<< Stack1 << " - Empty Stack1 " << endl;
+      64     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       			
+      65     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       			cout << endl << "	Calling copy c'tor" << endl;
+      66     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				cout << endl << "		Pushing 3 values to stack1 " << endl;
+      67     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				Stack1.Push(CBlockVal0);
+      68     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				Stack1.Push(CBlockVal1);
+      69     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				Stack1.Push(CBlockVal0);
+      70     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				cout << "		" << Stack1 << " - Stack1 with 3 values pushed inside" << endl;
+      71     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+      72     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				cout << endl << "		Starting copying Stack1 into the Stack2" << endl;
+      73     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				CStack Stack2(Stack1);
+      74     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				cout << "		" << Stack2 << "Stack2 with copied values from Stack1" << endl;
+      75     2389     2389 10. 12. 2022 12:17:39          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+      76     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       			cout << endl << "	Calling unary Operator !" << endl;
+      77     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				!Stack1;
+      78     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				cout << endl << "		For exception, please uncomment comment section" << endl;
+      79     2825     2825 18. 12. 2022 13:05:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       
+      80     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				/* For exception, please uncomment
+      81     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				CStack Stack3;
+      82     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				!Stack3;
+      83     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				*/
+      84     2886     2886 18. 12. 2022 22:41:38          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       
+      85     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       			cout << endl << "	Calling binary Operator +" << endl;
+      86     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				CStack Stack4 = Stack1 + Stack2;
+      87     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				cout << endl << "		" << Stack4 << " - Stack4 = Stack1+Stack2" << endl;
+      88     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				
+      89     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       			cout << endl << "	Calling binary Operator =" << endl;
+      90     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				Stack1 = Stack4;
+      91     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				cout << endl << "		" << Stack1 << " - Stack1 = Stack4" << endl;
+      92     2667     2667 15. 12. 2022 22:35:37          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       
+      93     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       			cout << endl << "	Calling Actual getter =" << endl;
+      94     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				cout << endl << "		" << Stack1.Actual() << " - Stack1 Actual" << endl;
+      95     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				cout << "		" << Stack2.Actual() << " - Stack2 Actual" << endl;
+      96     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				cout << "		" << Stack4.Actual() << " - Stack4 Actual" << endl;
+      97     2667     2667 15. 12. 2022 22:35:37          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       
+      98     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       			cout << endl << "	Calling ID getter =" << endl;
+      99     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				cout << endl << "		" << Stack1.ID() << " - Stack1 ID" << endl;
+     100     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				cout << "		" << Stack2.ID() << " - Stack2 ID" << endl;
+     101     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				cout << "		" << Stack4.ID() << " - Stack4 ID" << endl;
+     102     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       
+     103     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       			cout << endl << "	Calling Total getter =" << endl;
+     104     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				cout << endl << "		" << Stack1.Total() << " - Stack1 Total" << endl;
+     105     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				cout << "		" << Stack2.Total() << " - Stack2 Total" << endl;
+     106     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				cout << "		" << Stack4.Total() << " - Stack4 Total" << endl;
+     107     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       
+     108     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       			cout << endl << "	Calling Top =" << endl;
+     109     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				cout << endl << "		" << Stack1.Top() << " - Stack1 Top adress" << endl;
+     110     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				cout << "		" << Stack2.Top() << " - Stack2 Top adress" << endl;
+     111     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				cout << "		" << Stack4.Top() << " - Stack4 Top adress" << endl;
+     112     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				cout << endl << "		" << Stack1.Top()->Value() << " - Stack1 Top value" << endl;
+     113     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				cout << "		" << Stack2.Top()->Value() << " - Stack2 Top value" << endl;
+     114     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				cout << "		" << Stack4.Top()->Value() << " - Stack4 Top value" << endl;
+     115     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       
+     116     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       			cout << endl << "	Calling Bottom =" << endl;
+     117     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				cout << endl << "		" << Stack1.Bottom() << " - Stack1 Bottom adress" << endl;
+     118     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				cout << "		" << Stack2.Bottom() << " - Stack2 Bottom adress" << endl;
+     119     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				cout << "		" << Stack4.Bottom() << " - Stack4 Bottom adress" << endl;
+     120     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				cout << endl << "		" << Stack1.Bottom()->Value() << " - Stack1 Bottom value" << endl;
+     121     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				cout << "		" << Stack2.Bottom()->Value() << " - Stack2 Bottom value" << endl;
+     122     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				cout << "		" << Stack4.Bottom()->Value() << " - Stack4 Bottom value" << endl;
+     123     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       
+     124     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       			cout << endl << "End of testing methods of author1 - Majnus" << endl;
+     125     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       
+     126     2389     2389 10. 12. 2022 12:17:39          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       			cout << endl;
+     127     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       		}// END author1 - MAJNUS =======================
+     128     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     129     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       		{// author2 - KLUKA ============================
+     130     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       			cout << "Testing methods of author2 - Kluka:" << endl;
+     131     2715     2715 16. 12. 2022 21:36:34          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       #ifdef KLUKA_PRINT
+     132     2715     2715 16. 12. 2022 21:36:34          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       			cout << endl << "	KLUKA_PRINT is enabled." << endl;
+     133     2715     2715 16. 12. 2022 21:36:34          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       #else
+     134     2736     2736 17. 12. 2022 2:20:59           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       			cout << endl <<
+     135     2715     2715 16. 12. 2022 21:36:34          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				   "	KLUKA_PRINT mode in CStack.h is not enabled. To see each step of my methods in detail, please," << endl
+     136     2715     2715 16. 12. 2022 21:36:34          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				<< "	enable this mode defined in the CStack.h file at the top of this file. This also gives you extra" << endl
+     137     2949     2949 19. 12. 2022 18:01:54          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				<< "	control of methods of other authors. Formated well only for author Kluka; CBLOCK LEVEL." << endl;
+     138     2715     2715 16. 12. 2022 21:36:34          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       #endif
+     139     2408     2408 11. 12. 2022 11:00:50          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       			// CBlock conversion c'tor
+     140     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       			cout << endl << "	Calling CBlock conversion c'tor" << endl;
+     141     2389     2389 10. 12. 2022 12:17:39          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				{
+     142     2926     2926 19. 12. 2022 14:50:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				CStack stack1(CBlockVal0);
+     143     2949     2949 19. 12. 2022 18:01:54          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     144     2926     2926 19. 12. 2022 14:50:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				cout << "		CStack stack1("<<CBlockVal0<<"): " << stack1 << endl;
+     145     2389     2389 10. 12. 2022 12:17:39          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				}
+     146     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     147     2408     2408 11. 12. 2022 11:00:50          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       			// String conversion c'tor
+     148     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       			cout << endl << "	Calling string conversion c'tor" << endl;
+     149     2389     2389 10. 12. 2022 12:17:39          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				{
+     150     2949     2949 19. 12. 2022 18:01:54          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				std::cout << "		stream: " << "(" + CBlock::TestStringValue0() + "," + CBlock::TestStringValue1() + ")" << endl;
+     151     2949     2949 19. 12. 2022 18:01:54          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     152     2949     2949 19. 12. 2022 18:01:54          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				CStack stack2("("+CBlock::TestStringValue0()+","+ CBlock::TestStringValue1() + ")");
+     153     2949     2949 19. 12. 2022 18:01:54          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     154     2949     2949 19. 12. 2022 18:01:54          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				cout << "		stack2: " << stack2 << endl;
+     155     2389     2389 10. 12. 2022 12:17:39          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				}
+     156     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     157     2408     2408 11. 12. 2022 11:00:50          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       			// PocetPrvku getter
+     158     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       			cout << endl << "	Calling PocetPrvku getter" << endl;
+     159     2389     2389 10. 12. 2022 12:17:39          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				{
+     160     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				CStack stack3;
+     161     2926     2926 19. 12. 2022 14:50:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				size_t count;
+     162     2772     2772 17. 12. 2022 19:03:01          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     163     2926     2926 19. 12. 2022 14:50:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				count = stack3.PocetPrvku();
+     164     2949     2949 19. 12. 2022 18:01:54          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     165     2926     2926 19. 12. 2022 14:50:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				cout << "		Empty Stack: " << stack3 << endl;
+     166     2926     2926 19. 12. 2022 14:50:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				cout << "		stack3.PocetPrvku(): " << count << endl;
+     167     2949     2949 19. 12. 2022 18:01:54          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     168     2926     2926 19. 12. 2022 14:50:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				stack3.Push(CBlockVal0);
+     169     2926     2926 19. 12. 2022 14:50:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				stack3.Push(CBlockVal0);
+     170     2926     2926 19. 12. 2022 14:50:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				stack3.Push(CBlockVal0);
+     171     2926     2926 19. 12. 2022 14:50:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     172     2926     2926 19. 12. 2022 14:50:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				count = stack3.PocetPrvku();
+     173     2949     2949 19. 12. 2022 18:01:54          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     174     2926     2926 19. 12. 2022 14:50:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				cout << endl << "		Stack with 3 values: " << stack3 << endl;
+     175     2926     2926 19. 12. 2022 14:50:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				cout << "		stack3.PocetPrvku(): " << count << endl;
+     176     2389     2389 10. 12. 2022 12:17:39          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				}
+     177     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     178     2408     2408 11. 12. 2022 11:00:50          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       			// Unary operator -
+     179     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       			cout << endl << "	Calling unary operator -" << endl;
+     180     2389     2389 10. 12. 2022 12:17:39          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				{
+     181     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				CStack stack4;
+     182     2772     2772 17. 12. 2022 19:03:01          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     183     2472     2472 13. 12. 2022 14:03:00          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xmajnu01                       				stack4.Push(CBlockVal0);
+     184     2477     2477 13. 12. 2022 16:22:07          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				stack4.Push(CBlockVal0);
+     185     2477     2477 13. 12. 2022 16:22:07          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				stack4.Push(CBlockVal1);
+     186     2949     2949 19. 12. 2022 18:01:54          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     187     2926     2926 19. 12. 2022 14:50:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				cout << "		stack4: " << stack4 << endl;
+     188     2949     2949 19. 12. 2022 18:01:54          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     189     2829     2829 18. 12. 2022 13:34:05          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				-stack4;
+     190     2949     2949 19. 12. 2022 18:01:54          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     191     2926     2926 19. 12. 2022 14:50:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				cout << "		-stack4: " << stack4 << endl;
+     192     2389     2389 10. 12. 2022 12:17:39          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				}
+     193     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     194     2408     2408 11. 12. 2022 11:00:50          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       			// Unary operator --
+     195     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       			cout << endl << "	Calling unary operator --" << endl;
+     196     2389     2389 10. 12. 2022 12:17:39          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				{
+     197     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				CStack stack5;
+     198     2772     2772 17. 12. 2022 19:03:01          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     199     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				stack5.Push(CBlockVal0);
+     200     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				stack5.Push(CBlockVal0);
+     201     2949     2949 19. 12. 2022 18:01:54          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     202     2926     2926 19. 12. 2022 14:50:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				cout << "		stack5: " << stack5 << endl;
+     203     2949     2949 19. 12. 2022 18:01:54          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     204     2926     2926 19. 12. 2022 14:50:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				--stack5;
+     205     2949     2949 19. 12. 2022 18:01:54          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     206     2926     2926 19. 12. 2022 14:50:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				cout << "		--stack5: " << stack5 << endl;
+     207     2389     2389 10. 12. 2022 12:17:39          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				}
+     208     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     209     2408     2408 11. 12. 2022 11:00:50          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       			// Binary operator -=
+     210     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       			cout << endl << "	Calling binary operator -=" << endl;
+     211     2389     2389 10. 12. 2022 12:17:39          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				{
+     212     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				CStack stack6;
+     213     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				CStack stack7;
+     214     2491     2491 13. 12. 2022 21:52:56          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     215     2491     2491 13. 12. 2022 21:52:56          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				stack6.Push(CBlockVal0);
+     216     2503     2503 14. 12. 2022 10:15:56          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				stack6.Push(CBlockVal1);
+     217     2503     2503 14. 12. 2022 10:15:56          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				stack6.Push(CBlockVal0);
+     218     2949     2949 19. 12. 2022 18:01:54          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     219     2926     2926 19. 12. 2022 14:50:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				cout << "		stack6: " << stack6 << endl;
+     220     2503     2503 14. 12. 2022 10:15:56          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     221     2503     2503 14. 12. 2022 10:15:56          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				stack7.Push(CBlockVal1);
+     222     2503     2503 14. 12. 2022 10:15:56          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     223     2926     2926 19. 12. 2022 14:50:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				cout << "		stack7: " << stack7 << endl;
+     224     2949     2949 19. 12. 2022 18:01:54          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     225     2887     2887 18. 12. 2022 22:46:14          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				stack6 -= stack7;
+     226     2949     2949 19. 12. 2022 18:01:54          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     227     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				cout << endl << "		stack6 after stack6 -= stack7: " << stack6 << endl;
+     228     2389     2389 10. 12. 2022 12:17:39          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				}
+     229     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     230     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       			// Relational Operator ==
+     231     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       			cout << endl << "	Calling relational operator ==" << endl;
+     232     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				{
+     233     2829     2829 18. 12. 2022 13:34:05          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				CStack stack8;
+     234     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				CStack stack9;
+     235     2926     2926 19. 12. 2022 14:50:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				bool result;
+     236     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     237     2829     2829 18. 12. 2022 13:34:05          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				stack8.Push(CBlockVal0);
+     238     2949     2949 19. 12. 2022 18:01:54          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     239     2926     2926 19. 12. 2022 14:50:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				cout << "		stack8: " << stack8 << endl;
+     240     2949     2949 19. 12. 2022 18:01:54          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     241     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				stack9.Push(CBlockVal0);
+     242     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     243     2926     2926 19. 12. 2022 14:50:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				result = stack8 == stack9;
+     244     2926     2926 19. 12. 2022 14:50:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     245     2949     2949 19. 12. 2022 18:01:54          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				cout << "		stack9: " << stack9 << endl << endl;
+     246     2926     2926 19. 12. 2022 14:50:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				cout << "		stack8 == stack9: " << result << endl;
+     247     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				}
+     248     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     249     2893     2893 19. 12. 2022 1:01:28           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       			// Three-way comparison by Value operator
+     250     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       			cout << endl << "	Calling three-way comparison by Value operator" << endl;
+     251     2389     2389 10. 12. 2022 12:17:39          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				{
+     252     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				CStack stack10;
+     253     2829     2829 18. 12. 2022 13:34:05          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				CStack stack11;
+     254     2926     2926 19. 12. 2022 14:50:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				bool result1, result2, result3;
+     255     2772     2772 17. 12. 2022 19:03:01          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     256     2926     2926 19. 12. 2022 14:50:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				stack10.Push(CBlockVal0);
+     257     2926     2926 19. 12. 2022 14:50:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     258     2926     2926 19. 12. 2022 14:50:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				cout << "		stack10: " << stack10 << endl;
+     259     2949     2949 19. 12. 2022 18:01:54          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     260     2926     2926 19. 12. 2022 14:50:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				stack11.Push(CBlockVal1);
+     261     2949     2949 19. 12. 2022 18:01:54          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     262     2949     2949 19. 12. 2022 18:01:54          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				cout << "		stack11: " << stack11 << endl << endl;
+     263     2949     2949 19. 12. 2022 18:01:54          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     264     2926     2926 19. 12. 2022 14:50:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				result1 = (stack10 < stack11);
+     265     2926     2926 19. 12. 2022 14:50:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				result2 = (stack10 > stack11);
+     266     2926     2926 19. 12. 2022 14:50:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				result3 = (stack10 <= stack11);
+     267     2949     2949 19. 12. 2022 18:01:54          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     268     2926     2926 19. 12. 2022 14:50:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				cout << "		stack10 < stack11: " << result1 << endl;
+     269     2926     2926 19. 12. 2022 14:50:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				cout << "		stack10 > stack11: " << result2 << endl;
+     270     2926     2926 19. 12. 2022 14:50:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				cout << "		stack10 <= stack11: " << result3 << endl;
+     271     2389     2389 10. 12. 2022 12:17:39          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				}
+     272     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     273     2408     2408 11. 12. 2022 11:00:50          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       			// Method aaa.Reverzuj
+     274     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       			cout << endl << "	Calling method aaa.Reverzuj" << endl;
+     275     2389     2389 10. 12. 2022 12:17:39          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				{
+     276     2829     2829 18. 12. 2022 13:34:05          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				CStack stack12;
+     277     2772     2772 17. 12. 2022 19:03:01          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     278     2829     2829 18. 12. 2022 13:34:05          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				stack12.Push(CBlockVal0);
+     279     2829     2829 18. 12. 2022 13:34:05          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				stack12.Push(CBlockVal0);
+     280     2926     2926 19. 12. 2022 14:50:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				stack12.Push(CBlockVal1);
+     281     2949     2949 19. 12. 2022 18:01:54          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     282     2926     2926 19. 12. 2022 14:50:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				cout << "		stack12: " << stack12 << endl;
+     283     2949     2949 19. 12. 2022 18:01:54          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     284     2829     2829 18. 12. 2022 13:34:05          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				stack12.Reverzuj();
+     285     2949     2949 19. 12. 2022 18:01:54          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     286     2926     2926 19. 12. 2022 14:50:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				cout << "		stack12.Reverzuj(): " << stack12 << endl;
+     287     2389     2389 10. 12. 2022 12:17:39          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				}
+     288     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     289     2772     2772 17. 12. 2022 19:03:01          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       			cout << endl << "End of testing methods of author2 - Kluka" << endl;
+     290     2408     2408 11. 12. 2022 11:00:50          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       			cout << endl;
+     291     2408     2408 11. 12. 2022 11:00:50          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     292     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       		}// END author2 - KLUKA ========================
+     293     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     294     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       		{// author3 - PRASEK ===========================
+     295     2389     2389 10. 12. 2022 12:17:39          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       			cout << "Testing methods of author3 - Prasek:" << endl;
+     296     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     297     2418     2418 11. 12. 2022 15:25:48          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       			// Convert C'tor from init list
+     298     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       			cout << "\n	Calling Convert C'tor from init list" << endl;
+     299     2451     2451 12. 12. 2022 20:00:28          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				{
+     300     2451     2451 12. 12. 2022 20:00:28          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				CStack stackS1 = { CBlockVal0, CBlockVal1 };
+     301     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				cout << "		The stackS1 consists of an array of size: " << stackS1.PocetPrvku() << endl;
+     302     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				cout << "		stackS1 = " << stackS1 << endl;
+     303     2451     2451 12. 12. 2022 20:00:28          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				}
+     304     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     305     2418     2418 11. 12. 2022 15:25:48          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       			// Conversion C'tor of type size_t
+     306     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				cout << "\n	Calling Conversion C'tor of type size_t " << endl;
+     307     2451     2451 12. 12. 2022 20:00:28          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				{
+     308     2451     2451 12. 12. 2022 20:00:28          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				CStack stackS2(3);
+     309     2821     2821 18. 12. 2022 12:55:55          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				cout << "		The stackS2 consists of size of size_t: " << (size_t)stackS2 << endl;
+     310     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				cout << "		stackS2 = " << stackS2 << endl;
+     311     2451     2451 12. 12. 2022 20:00:28          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				}
+     312     2420     2420 11. 12. 2022 17:50:38          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       			 
+     313     2418     2418 11. 12. 2022 15:25:48          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       			// Unary operator ++
+     314     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       			cout << "\n	Calling unary operator ++" << endl;
+     315     2451     2451 12. 12. 2022 20:00:28          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				{
+     316     2451     2451 12. 12. 2022 20:00:28          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				CStack stackS3;
+     317     2451     2451 12. 12. 2022 20:00:28          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				++stackS3;
+     318     2821     2821 18. 12. 2022 12:55:55          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				cout << "		New CBlock element: " << stackS3.Top()->Value() << " was pushed on Top of the StackS3" << endl;
+     319     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				cout << "		stackS3 = " << stackS3 << endl;
+     320     2451     2451 12. 12. 2022 20:00:28          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				}
+     321     2418     2418 11. 12. 2022 15:25:48          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       
+     322     2418     2418 11. 12. 2022 15:25:48          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       			// Binary operator -
+     323     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       			cout << "\n	Calling binary operator -" << endl;
+     324     2772     2772 17. 12. 2022 19:03:01          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				{
+     325     2451     2451 12. 12. 2022 20:00:28          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				CStack stackS4;
+     326     2613     2613 15. 12. 2022 10:58:59          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				CStack stackS5;
+     327     2613     2613 15. 12. 2022 10:58:59          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				CStack stackRes;
+     328     2613     2613 15. 12. 2022 10:58:59          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       
+     329     2613     2613 15. 12. 2022 10:58:59          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				stackS4.Push(CBlockVal0);
+     330     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				cout << "		CBlock element:" << CBlockVal0 << " was pushed into the stackS4" << endl;
+     331     2613     2613 15. 12. 2022 10:58:59          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				stackS4.Push(CBlockVal0);
+     332     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				cout << "		CBlock element:" << CBlockVal0 << " was pushed into the stackS4" << endl;
+     333     2613     2613 15. 12. 2022 10:58:59          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       
+     334     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				cout << "		stackS4 = " << stackS4 << endl;
+     335     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       
+     336     2613     2613 15. 12. 2022 10:58:59          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				stackS5.Push(CBlockVal0);
+     337     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				cout << "		CBlock element:" << CBlockVal0 << " was pushed into the stackS5" << endl;
+     338     2613     2613 15. 12. 2022 10:58:59          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				stackS5.Push(CBlockVal1);
+     339     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				cout << "		CBlock element:" << CBlockVal1 << " was pushed into the stackS5" << endl;
+     340     2613     2613 15. 12. 2022 10:58:59          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       
+     341     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				cout << "		stackS5 = " << stackS5 << endl;
+     342     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       
+     343     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				stackRes = stackS4 - stackS5;
+     344     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				cout << "		Substracting stackS5 from stackS4" << endl;
+     345     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				cout <<	"		stackRes =" << stackRes << endl;
+     346     2451     2451 12. 12. 2022 20:00:28          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				}	
+     347     2418     2418 11. 12. 2022 15:25:48          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       
+     348     2418     2418 11. 12. 2022 15:25:48          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       			// Operator size_t
+     349     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       			cout << "\n	Calling operator size_t" << endl;
+     350     2451     2451 12. 12. 2022 20:00:28          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				{
+     351     2813     2813 18. 12. 2022 12:09:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				CStack stackS6;
+     352     2813     2813 18. 12. 2022 12:09:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				stackS6.Push(CBlockVal0);
+     353     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				cout << "		Size_t of stackS6 is: " <<(size_t)stackS6 << endl;
+     354     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				cout << "		stackS6 = " << stackS6 << endl;
+     355     2451     2451 12. 12. 2022 20:00:28          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				}
+     356     2418     2418 11. 12. 2022 15:25:48          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       
+     357     2418     2418 11. 12. 2022 15:25:48          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       			// Relation operator <
+     358     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       			cout << "\n	Calling relation operator <" << endl;
+     359     2451     2451 12. 12. 2022 20:00:28          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				{
+     360     2813     2813 18. 12. 2022 12:09:51          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				CStack stackS7;
+     361     2821     2821 18. 12. 2022 12:55:55          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				CStack stackS8;
+     362     2821     2821 18. 12. 2022 12:55:55          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       
+     363     2821     2821 18. 12. 2022 12:55:55          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				stackS7.Push(CBlockVal0);
+     364     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				cout << "		CBlock element:" << CBlockVal0 << " was pushed into the stackS7" << endl;
+     365     2821     2821 18. 12. 2022 12:55:55          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				stackS8.Push(CBlockVal1);
+     366     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				cout << "		CBlock element:" << CBlockVal1 << " was pushed into the stackS8" << endl;
+     367     2821     2821 18. 12. 2022 12:55:55          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				stackS8.Push(CBlockVal0);
+     368     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				cout << "		CBlock element:" << CBlockVal0 << " was pushed into the stackS8" << endl;
+     369     2821     2821 18. 12. 2022 12:55:55          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       
+     370     2821     2821 18. 12. 2022 12:55:55          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				if(stackS7 < stackS8)
+     371     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       					cout << "		StackS7" << stackS7 << "have less elements than stackS8"<< stackS8 << endl;
+     372     2821     2821 18. 12. 2022 12:55:55          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				else
+     373     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       					cout << "		StackS7" << stackS7 << "have more elements than stackS8" << stackS8 << endl;
+     374     2451     2451 12. 12. 2022 20:00:28          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				}
+     375     2418     2418 11. 12. 2022 15:25:48          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       
+     376     2418     2418 11. 12. 2022 15:25:48          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       			// Function Reverzuj(aaa)
+     377     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       			cout << "\n	Calling function Reverzuj(aaa)" << endl;
+     378     2451     2451 12. 12. 2022 20:00:28          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				{
+     379     2821     2821 18. 12. 2022 12:55:55          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				CStack stackS9;
+     380     2821     2821 18. 12. 2022 12:55:55          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				stackS9.Push(CBlockVal0);
+     381     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				cout << "		CBlock element:" << CBlockVal0 << " was pushed into the stackS9" << endl;
+     382     2821     2821 18. 12. 2022 12:55:55          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				stackS9.Push(CBlockVal1);
+     383     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				cout << "		CBlock element:" << CBlockVal1 << " was pushed into the stackS9" << endl;
+     384     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				cout << "		stackS9 = " << stackS9 << endl;
+     385     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				CStack stackS10 = Reverzuj(stackS9);
+     386     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				cout << "		Reversing stackS9" << endl;
+     387     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				cout << "		stackS10 = " << stackS10 << endl;
+     388     2451     2451 12. 12. 2022 20:00:28          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				}
+     389     2418     2418 11. 12. 2022 15:25:48          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       
+     390     2418     2418 11. 12. 2022 15:25:48          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       			// Method Stack Pop
+     391     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       			cout << "\n	Calling method Stack Pop" << endl;
+     392     2451     2451 12. 12. 2022 20:00:28          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				{
+     393     2821     2821 18. 12. 2022 12:55:55          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				CStack stackS11;
+     394     2821     2821 18. 12. 2022 12:55:55          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				stackS11.Push(CBlockVal0);
+     395     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				cout << "		CBlock element:" << CBlockVal0 << " was pushed into the stackS11" << endl;
+     396     2821     2821 18. 12. 2022 12:55:55          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				stackS11.Pop();
+     397     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				cout << "		Using Pop() on the stackS11" << endl;
+     398     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				cout << "		stackS11 = " << stackS11 << endl;
+     399     2451     2451 12. 12. 2022 20:00:28          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				}
+     400     2418     2418 11. 12. 2022 15:25:48          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       
+     401     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       			// Method Stack Top - Tested by author4
+     402     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       
+     403     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       			// Method Stack Search
+     404     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       			cout << "\n	Calling method Stack Search" << endl;
+     405     2451     2451 12. 12. 2022 20:00:28          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				{
+     406     2821     2821 18. 12. 2022 12:55:55          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				CStack stackS12;
+     407     2821     2821 18. 12. 2022 12:55:55          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				stackS12.Push(CBlockVal0);
+     408     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				cout << "		CBlock element:" << CBlockVal0 << " was pushed into the stackS12" << endl;
+     409     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				stackS12.Push(CBlockVal1);
+     410     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				cout << "		CBlock element:" << CBlockVal1 << " was pushed into the stackS12" << endl;
+     411     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				cout << "		Searching for CBlock element: " <<CBlockVal0<< endl;
+     412     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				if(stackS12.Search(CBlockVal0))
+     413     2451     2451 12. 12. 2022 20:00:28          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       					{
+     414     2821     2821 18. 12. 2022 12:55:55          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       					cout << "		CBlock element found" << endl;
+     415     2451     2451 12. 12. 2022 20:00:28          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       					}
+     416     2451     2451 12. 12. 2022 20:00:28          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				else
+     417     2821     2821 18. 12. 2022 12:55:55          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       					cout << "		CBlock element not found" << endl;
+     418     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				cout << "		stackS12 = " << stackS12 << endl;
+     419     2451     2451 12. 12. 2022 20:00:28          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       				}
+     420     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       			
+     421     2389     2389 10. 12. 2022 12:17:39          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       			cout << "End of testing methods of author3 - Prasek" << endl;
+     422     2389     2389 10. 12. 2022 12:17:39          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       			cout << endl;
+     423     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       		}// END author3 - PRASEK =======================
+     424     2484     2484 13. 12. 2022 18:18:15          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       
+     425     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       		{// author4 - PESEK ============================
+     426     2484     2484 13. 12. 2022 18:18:15          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       
+     427     2389     2389 10. 12. 2022 12:17:39          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       			cout << "Testing methods of author4 - Pesek:" << endl;
+     428     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     429     2484     2484 13. 12. 2022 18:18:15          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       			// Method Stack Push
+     430     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       			cout << "\n	Testing method Stack Push" << endl;
+     431     2484     2484 13. 12. 2022 18:18:15          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				{
+     432     2862     2862 18. 12. 2022 19:52:52          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				CStack Stack;
+     433     2867     2867 18. 12. 2022 20:20:13          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				Stack.Push(CBlockVal1);
+     434     2867     2867 18. 12. 2022 20:20:13          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				cout << "		Value to be pushed onto stack = " << CBlockVal1 << endl;
+     435     2867     2867 18. 12. 2022 20:20:13          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				cout << "		Value on Top of Stack = " << Stack.Top()->Value() << endl;
+     436     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				cout << "		Stack = " << Stack << endl;
+     437     2484     2484 13. 12. 2022 18:18:15          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				}
+     438     2484     2484 13. 12. 2022 18:18:15          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       
+     439     2484     2484 13. 12. 2022 18:18:15          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       			// Method Stack Top
+     440     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       			cout << "\n	Testing method Stack Top" << endl;
+     441     2484     2484 13. 12. 2022 18:18:15          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				{
+     442     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				size_t n = 2;
+     443     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				CBlock* Array = CStack::TestValueRandom(n);
+     444     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				CStack Stack = CStack(n, Array);
+     445     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				free(Array);
+     446     2862     2862 18. 12. 2022 19:52:52          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				cout << "		Value on Top of Stack = " << Stack.Top()->Value() << endl;
+     447     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				cout << "		Stack = " << Stack << endl;
+     448     2484     2484 13. 12. 2022 18:18:15          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				}
+     449     2484     2484 13. 12. 2022 18:18:15          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       
+     450     2485     2485 13. 12. 2022 18:41:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       			//CBlock array of known size conversion c'tor
+     451     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       			cout << "\n	Testing conversion c'tor from CBlock array of known size" << endl;
+     452     2485     2485 13. 12. 2022 18:41:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				{
+     453     2867     2867 18. 12. 2022 20:20:13          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				size_t n = 3;
+     454     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				CBlock* Array = CStack::TestValueRandom(n);
+     455     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				CStack Stack = CStack(n, Array);
+     456     2922     2922 19. 12. 2022 14:21:50          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				
+     457     2867     2867 18. 12. 2022 20:20:13          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       
+     458     2867     2867 18. 12. 2022 20:20:13          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				for (size_t i = 0; i < n; ++i)
+     459     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       					{
+     460     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       					cout << "		Array[" << i << "] = " << Array[i] << endl;
+     461     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       					}
+     462     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				free(Array);
+     463     2484     2484 13. 12. 2022 18:18:15          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       
+     464     2867     2867 18. 12. 2022 20:20:13          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				cout << "		Array size = " << n << endl;
+     465     2867     2867 18. 12. 2022 20:20:13          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				cout << "		Stack size = " << Stack.PocetPrvku() << endl;
+     466     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				cout << "		Stack = " << Stack << endl;
+     467     2867     2867 18. 12. 2022 20:20:13          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				}
+     468     2867     2867 18. 12. 2022 20:20:13          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       
+     469     2867     2867 18. 12. 2022 20:20:13          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       			//binary operator +=
+     470     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       			cout << "\n	Testing binary operator +="<< endl;
+     471     2485     2485 13. 12. 2022 18:41:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				{
+     472     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				CBlock* Array1 = CStack::TestValueRandom(2);
+     473     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				CBlock* Array2 = CStack::TestValueRandom(3);
+     474     2879     2879 18. 12. 2022 21:59:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       
+     475     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				CStack Stack1 = CStack(2, Array1);
+     476     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				CStack Stack2 = CStack(3, Array2);
+     477     2879     2879 18. 12. 2022 21:59:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       
+     478     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				free(Array1);
+     479     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				free(Array2);
+     480     2879     2879 18. 12. 2022 21:59:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       
+     481     2862     2862 18. 12. 2022 19:52:52          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				size_t Stack1_old_size = Stack1.PocetPrvku();
+     482     2485     2485 13. 12. 2022 18:41:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       
+     483     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				cout << "		" << Stack1 << "+ " << Stack2 << "= ";
+     484     2862     2862 18. 12. 2022 19:52:52          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				Stack1 += Stack2;
+     485     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				cout << Stack1 << "\n" << endl;
+     486     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       
+     487     2867     2867 18. 12. 2022 20:20:13          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				cout << "		       " << Stack1_old_size << "        +      " << Stack2.PocetPrvku() << "     " << " =       " << Stack1.PocetPrvku() << endl;
+     488     2867     2867 18. 12. 2022 20:20:13          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				cout << "		Stack5_old_size + Stack6_size = Stack5_new_size" << endl;
+     489     2485     2485 13. 12. 2022 18:41:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				}
+     490     2485     2485 13. 12. 2022 18:41:22          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       
+     491     2867     2867 18. 12. 2022 20:20:13          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       			//binary non member operator +
+     492     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       			cout << "\n	Testing binary CStack class non member operator +" << endl;
+     493     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				{
+     494     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				CBlock* Array = CStack::TestValueRandom(2);
+     495     2879     2879 18. 12. 2022 21:59:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       
+     496     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				CStack Stack = CStack(2, Array);
+     497     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				free(Array);
+     498     2879     2879 18. 12. 2022 21:59:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       
+     499     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				cout << "		Stack = " << Stack << endl;
+     500     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				cout << "		CBlock = " << CBlockVal1 << endl;
+     501     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				cout << "		CBlock + Stack = " << CBlockVal1 + Stack << "\n" << endl;
+     502     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       
+     503     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				cout << "		Stack = " << Stack << endl;
+     504     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				cout << "		CBlock = " << CBlockVal1 << endl;
+     505     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				cout << "		Stack + CBlock = " << Stack + CBlockVal1 << endl;
+     506     2859     2859 18. 12. 2022 19:01:25          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				}
+     507     2859     2859 18. 12. 2022 19:01:25          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       
+     508     2867     2867 18. 12. 2022 20:20:13          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       			//binary operator >
+     509     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       			cout << "\n	Testing binary operator >" << endl;
+     510     2862     2862 18. 12. 2022 19:52:52          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				{
+     511     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				CBlock* Array1 = CStack::TestValueRandom(2);
+     512     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				CBlock* Array2 = CStack::TestValueRandom(3);
+     513     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				CBlock* Array3 = CStack::TestValueRandom(3);
+     514     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				CBlock* Array4 = CStack::TestValueRandom(3);
+     515     2862     2862 18. 12. 2022 19:52:52          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       
+     516     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				CStack Stack1 = CStack(2, Array1);
+     517     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				CStack Stack2 = CStack(3, Array2);
+     518     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				CStack Stack3 = CStack(3, Array3);
+     519     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				CStack Stack4 = CStack(3, Array4);
+     520     2862     2862 18. 12. 2022 19:52:52          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       
+     521     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				free(Array1);
+     522     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				free(Array2);
+     523     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				free(Array3);
+     524     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				free(Array4);
+     525     2879     2879 18. 12. 2022 21:59:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       
+     526     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				cout << "		Stack1 = " << Stack1 << endl;
+     527     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				cout << "		Stack2 = " << Stack2 << endl;
+     528     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				cout << "		Stack3 = " << Stack3 << endl;
+     529     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				cout << "		Stack4 = " << Stack4 << endl;
+     530     2862     2862 18. 12. 2022 19:52:52          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       
+     531     2862     2862 18. 12. 2022 19:52:52          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				if (Stack2 > Stack1)
+     532     2862     2862 18. 12. 2022 19:52:52          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       					{
+     533     2867     2867 18. 12. 2022 20:20:13          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       					cout << "		Stack2 is bigger than Stack1" << endl;
+     534     2862     2862 18. 12. 2022 19:52:52          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       					}
+     535     2862     2862 18. 12. 2022 19:52:52          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				else
+     536     2862     2862 18. 12. 2022 19:52:52          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       					{
+     537     2867     2867 18. 12. 2022 20:20:13          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       					cout << "		Stack2 is not bigger than Stack1" << endl;
+     538     2862     2862 18. 12. 2022 19:52:52          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       					}
+     539     2862     2862 18. 12. 2022 19:52:52          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       
+     540     2862     2862 18. 12. 2022 19:52:52          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				if (Stack4 > Stack3)
+     541     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       					{
+     542     2867     2867 18. 12. 2022 20:20:13          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       					cout << "		Stack4 is bigger than Stack3" << endl;
+     543     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       					}
+     544     2862     2862 18. 12. 2022 19:52:52          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				else
+     545     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       					{
+     546     2867     2867 18. 12. 2022 20:20:13          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       					cout << "		Stack4 is not bigger than Stack3" << endl;
+     547     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       					}
+     548     2862     2862 18. 12. 2022 19:52:52          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				}
+     549     2862     2862 18. 12. 2022 19:52:52          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       
+     550     2867     2867 18. 12. 2022 20:20:13          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       			//Unary operator +
+     551     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       			cout << "\n	Testing unary operator+" << endl;
+     552     2867     2867 18. 12. 2022 20:20:13          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				{
+     553     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				CBlock* Array = CStack::TestValueRandom(3);
+     554     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				CStack Stack1 = CStack(3, Array);
+     555     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				free(Array);
+     556     2867     2867 18. 12. 2022 20:20:13          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				CStack Stack2 = +Stack1;
+     557     2862     2862 18. 12. 2022 19:52:52          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       
+     558     2867     2867 18. 12. 2022 20:20:13          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				cout << "		Stack1 size = Stack2 size" << endl;
+     559     2867     2867 18. 12. 2022 20:20:13          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				cout << "		     " << Stack1.PocetPrvku() << "      =      " << Stack2.PocetPrvku() << "     " << endl;
+     560     2867     2867 18. 12. 2022 20:20:13          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       
+     561     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				cout << "		Stack1 = " << Stack1 << endl;
+     562     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				cout << "		Stack2 = " << Stack2 << endl;
+     563     2867     2867 18. 12. 2022 20:20:13          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				}
+     564     2867     2867 18. 12. 2022 20:20:13          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       
+     565     2859     2859 18. 12. 2022 19:01:25          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       			//method Usage
+     566     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       			cout << "\n	Testing method Usage" << endl;
+     567     2859     2859 18. 12. 2022 19:01:25          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				{
+     568     3203     3203 21. 12. 2022 14:26:58          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				double Usage = CStack::Usage();
+     569     2859     2859 18. 12. 2022 19:01:25          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				cout <<
+     570     3203     3203 21. 12. 2022 14:26:58          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       					"		Stack uses " << Usage << " % more memory than array of the same amount of CBlock encapsulated values "
+     571     2862     2862 18. 12. 2022 19:52:52          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       					<< endl;
+     572     2859     2859 18. 12. 2022 19:01:25          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				}
+     573     2859     2859 18. 12. 2022 19:01:25          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       
+     574     3203     3203 21. 12. 2022 14:26:58          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       			//method Dup
+     575     3203     3203 21. 12. 2022 14:26:58          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       			cout << "\n	Testing method Dup" << endl;
+     576     3203     3203 21. 12. 2022 14:26:58          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				{
+     577     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				CBlock* Array = CStack::TestValueRandom(3);
+     578     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				CStack Stack1 = CStack(3, Array);
+     579     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				free(Array);
+     580     3203     3203 21. 12. 2022 14:26:58          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       
+     581     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				CStack Stack2 = Stack1.Dup();
+     582     3203     3203 21. 12. 2022 14:26:58          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       
+     583     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				cout << "		Stack1 = " << Stack1 << endl;
+     584     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       				cout << "		Stack2 = " << Stack2 << endl;
+     585     3203     3203 21. 12. 2022 14:26:58          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				}
+     586     3203     3203 21. 12. 2022 14:26:58          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       
+     587     2859     2859 18. 12. 2022 19:01:25          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       			//method TestValueRandom
+     588     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       			cout << "\n	Testing method CStack::TestValueRandom" << endl;
+     589     2859     2859 18. 12. 2022 19:01:25          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				{
+     590     2859     2859 18. 12. 2022 19:01:25          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				size_t n = 5;
+     591     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				CBlock* Array = CStack::TestValueRandom(n);
+     592     2859     2859 18. 12. 2022 19:01:25          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       
+     593     2859     2859 18. 12. 2022 19:01:25          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				for(size_t i = 0; i<n; ++i)
+     594     2859     2859 18. 12. 2022 19:01:25          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       					{
+     595     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       					cout << "		Array[" << i << "] = " << Array[i] << endl;
+     596     2859     2859 18. 12. 2022 19:01:25          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       					}
+     597     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				free(Array);
+     598     2484     2484 13. 12. 2022 18:18:15          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				//std::cout << "	CStack length = " << aa.PocetPrvku() << std::endl;
+     599     2859     2859 18. 12. 2022 19:01:25          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       				}
+     600     2484     2484 13. 12. 2022 18:18:15          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       
+     601     2389     2389 10. 12. 2022 12:17:39          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       			cout << "End of testing methods of author4 - Pesek" << endl;
+     602     2389     2389 10. 12. 2022 12:17:39          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       			cout << endl;
+     603     2484     2484 13. 12. 2022 18:18:15          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       
+     604     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       		}// END author4 - PESEK ========================
+     605     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     606       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      		cout << "Hotovo." << endl;
+     607     2389     2389 10. 12. 2022 12:17:39          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       		cout << "===============================================================================" << endl;
+     608       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      		} /* try */
+     609       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      
+     610       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      	catch(std::invalid_argument &e)
+     611       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      		{
+     612       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      		cerr << "std::invalid_argument: " << e.what() << "!!!\n\a" << endl;
+     613       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      		}
+     614       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      	catch(std::length_error &e)
+     615       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      		{
+     616       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      		cerr << "std::length_error: " << e.what() << "!!!\n\a" << endl;
+     617       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      		}
+     618       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      	catch(std::out_of_range &e)
+     619       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      		{
+     620       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      		cerr << "std::out_of_range: " << e.what() << "!!!\n\a" << endl;
+     621       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      		}
+     622       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      	catch(std::range_error &e)
+     623       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      		{
+     624       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      		cerr << "std::range_error: " << e.what() << "!!!\n\a" << endl;
+     625       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      		}
+     626       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      	catch(std::runtime_error &e)
+     627       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      		{
+     628       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      		cerr << "std::runtime_error: " << e.what() << "!!!\n\a" << endl;
+     629       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      		}
+     630     3215     3215 21. 12. 2022 14:55:35          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       	catch(std::bad_alloc &e)
+     631     3215     3215 21. 12. 2022 14:55:35          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       		{
+     632     3215     3215 21. 12. 2022 14:55:35          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       		cerr << "std::bad_alloc: " << e.what() << "!!!\n\a" << endl;
+     633     3215     3215 21. 12. 2022 14:55:35          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       		}
+     634     3215     3215 21. 12. 2022 14:55:35          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       	catch(char const *e)
+     635     3215     3215 21. 12. 2022 14:55:35          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       		{
+     636     3215     3215 21. 12. 2022 14:55:35          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       		cerr << "Exception detected: " << e << " !!!\n\a" << endl;
+     637     3215     3215 21. 12. 2022 14:55:35          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xpesek13                       		}
+     638     3075     3075 20. 12. 2022 20:00:32          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xprase08                       	
+     639       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      	cout << endl << "Nyni existuje " << ClassInfo<CBlock>::Living() << " instanci tridy: " << DM(typeid(CBlock).name()) << endl;
+     640       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      	cout << "V prubehu programu vzniklo celkem " << ClassInfo<CBlock>::Total() << " instanci tridy: " << DM(typeid(CBlock).name()) << endl;
+     641       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      
+     642       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      	cout << endl << "V prubehu programu vzniklo celkem " << ClassInfo<CBlock_bool::CBlock>::Total() << " instanci tridy: " << DM(typeid(CBlock_bool::CBlock).name()) << endl;
+     643     2411     2411 11. 12. 2022 12:30:43          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       	cout << "V prubehu programu vzniklo celkem " << ClassInfo<CBlock_long::CBlock>::Total() << " instanci tridy: " << DM(typeid(CBlock_long::CBlock).name()) << endl;
+     644     2411     2411 11. 12. 2022 12:30:43          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       	cout << "V prubehu programu vzniklo celkem " << ClassInfo<CBlock_TInterval::CBlock>::Total() << " instanci tridy: " << DM(typeid(CBlock_TInterval::CBlock).name()) << endl;
+     645       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      	cout << "V prubehu programu vzniklo celkem " << ClassInfo<CBlock_TWeekDay::CBlock>::Total() << " instanci tridy: " << DM(typeid(CBlock_TWeekDay::CBlock).name()) << endl;
+     646       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      
+     647     2410     2410 11. 12. 2022 12:24:15          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       	cout << endl << "Nyni existuje " << ClassInfo<CStack>::Living() << " instanci tridy: " << DM(typeid(CStack).name()) << endl;
+     648     2410     2410 11. 12. 2022 12:24:15          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       	cout << "V prubehu programu vzniklo celkem " << ClassInfo<CStack>::Total() << " instanci tridy: " << DM(typeid(CStack).name()) << endl;
+     649     2410     2410 11. 12. 2022 12:24:15          /ct09_zasobnik1/trunk/Project/Project/main.cpp               xkluka00                       
+     650       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      	return 0;
+     651       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/main.cpp               petyovsky                      	}

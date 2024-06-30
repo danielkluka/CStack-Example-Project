@@ -1,0 +1,50 @@
+#ifndef __CBLOCK_TINTERVAL_H__
+#define __CBLOCK_TINTERVAL_H__
+/** \file CBlock_TInterval.h
+*   \brief CBlock_TInterval class header
+*   \details File contain CBlock_TColor::CBlock definition
+*   \author Kluka, Majnus, Pesek, Prasek
+*/
+
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <stdexcept>
+#include <typeinfo>
+#include <utility>		// Due to: std::declval<CBlockBase>
+
+#include "ClassInfo.h"
+#include "CBlockBase.h"
+#include "check.h"
+
+/** \brief Namespace for encapsulating of \c TInterval variant of CBlock class
+ *  \details For selecting this variant of CBlock class uncomment \c using \c namespace section in the CBlock.h
+ */
+namespace CBlock_bool
+	{
+	/** \brief CBlock class (\c long variant)
+	 *  \details Definition of CBlock class (\c TInterval variant). There are defined all common methods and attributes.
+	 */
+	class CBlock: public CBlockBase
+		{
+		ClassInfo<CBlock> iInstanceInfo;	///< Instance of the class info for usage statistics
+		bool iValue; ///< Encapsulated \c bool value
+
+		public:
+			// c'tors
+
+
+			// d'tor
+
+
+			// InstanceInfo getters
+
+
+			// setter/getter
+
+
+			// operators
+		};
+	}
+
+#endif /* __CBLOCK_TINTERVAL_H__ */

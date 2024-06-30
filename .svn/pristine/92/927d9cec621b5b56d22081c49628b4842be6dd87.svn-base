@@ -1,0 +1,37 @@
+#ifndef CZASOBNIK_H
+#define CZASOBNIK_H
+/** \file CZasobnik.h
+ *  \brief CZasobnik class header
+ *  \details File contain CZasobnik class container definition.
+ *  \authors
+ *  \version 0.0.1
+ *  $Id$
+ */
+
+#include "CBlock.h"
+#include <initializer_list>		// Due to: std::initializer_list<CBlock>
+#include "check.h"
+
+/** \brief CZasobnik class
+ *  \details Definition of CZasobnik class. There are defined all common methods and attributes.
+ */
+class CZasobnik
+	{
+public:
+	/** \brief Conversion c'tor from CBlock array
+	 *  \details Constructor from the array of \c CBlock items
+	 *  \authors 
+	 */
+	CZasobnik(size_t aSize, const CBlock *aItems)
+		{
+		}
+	/** \brief Conversion c'tor from initializer list
+	 *  \details Constructor from an initializer list of \c CBlock use delegation to the c'tor from array of CBlock items
+	 *  \authors 
+	 */
+	CZasobnik(std::initializer_list<CBlock> aInitList): CZasobnik(aInitList.size(), std::data(aInitList))
+		{
+		}
+	}; /* class CZasobnik */
+
+#endif /* CZASOBNIK_H */

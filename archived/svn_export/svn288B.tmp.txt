@@ -1,0 +1,294 @@
+  line   rev      merged   date                           path                                                         author                         content 
+
+       0       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      #ifndef CBLOCK_BOOL_H
+       1       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      #define CBLOCK_BOOL_H
+       2       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      /** \file CBlock_bool.h
+       3       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                       *  \brief CBlock_bool class header
+       4       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                       *  \details File contain CBlock_bool::CBlock definition.
+       5       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                       *  \warning Don't modify this file
+       6       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                       *  \authors Petyovsky, Richter
+       7       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                       *  \version 2022
+       8       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                       *  $Id$
+       9       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                       */
+      10       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      
+      11       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      #include <iostream>
+      12       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      #include <sstream>
+      13       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      #include <string>
+      14       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      #include <stdexcept>
+      15       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      #include <typeinfo>
+      16       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      #include <utility>		// Due to: std::declval<CBlockBase>
+      17       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      
+      18       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      #include "ClassInfo.h"
+      19       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      #include "CBlockBase.h"
+      20       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      #include "check.h"
+      21       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      
+      22       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      /** \brief Namespace for encapsulating of \c bool variant of CBlock class
+      23       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                       *  \details For selecting this variant of CBlock class uncomment \c using \c namespace section in the CBlock.h
+      24       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                       */
+      25       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      namespace CBlock_bool
+      26       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      	{
+      27       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      	/** \brief CBlock class (\c bool variant)
+      28       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      	 *  \details Definition of CBlock class (\c bool variant). There are defined all common methods and attributes.
+      29       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      	 */
+      30       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      	class CBlock: public CBlockBase
+      31       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		{
+      32       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		ClassInfo<CBlock> iInstanceInfo;	///< Instance of the class info for usage statistics
+      33       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		bool iValue; ///< Encapsulated \c bool value
+      34       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      
+      35       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      	public:
+      36       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		// c'tors:
+      37       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		/** \brief Default c'tor
+      38       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \details Value attribute is set to \c false.
+      39       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \authors Petyovsky, Richter
+      40       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 */
+      41       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		CBlock(): CBlockBase(), iValue(false)
+      42       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			{
+      43       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			}
+      44       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      
+      45       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		/** \brief Conversion c'tor
+      46       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \details Value is set. Pointer attributes are initialised by given values or by default to the \c this value (CBlockBase definition).
+      47       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \param[in]	aValue	New encapsulated \c bool Value
+      48       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \param[in]	aPrev	Connection with previous node (when needed)
+      49       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \param[in]	aNext	Connection with next node (when needed)
+      50       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \param[in]	aExtraInt	Special value used for some container types
+      51       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \authors Petyovsky, Richter
+      52       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 */
+      53       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		explicit CBlock(const bool aValue, CBlock* aPrev = nullptr, CBlock *aNext = nullptr, int aExtraInt = 0): CBlockBase(aPrev, aNext, aExtraInt), iValue(aValue)
+      54       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			{
+      55       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			}
+      56       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      
+      57       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		/** \brief Copy c'tor
+      58       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \details Create new instance by copying only \p iValue parameter. Pointer attributes are initialised to the \c this value (CBlockBase definition).
+      59       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \param[in]	aValue	Original instance for copying
+      60       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \authors Petyovsky, Richter
+      61       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 */
+      62       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		CBlock(const CBlock& aValue): CBlockBase(), iValue(aValue.Value())
+      63       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			{
+      64       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			}
+      65       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      
+      66       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		/** \brief Conversion c'tor from plain C string (striped string)
+      67       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \details Create new instance from Value in the string. Pointer attributes are initialised by given values or by default to the \c this value (CBlockBase definition).
+      68       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \param[in]	aStr	Plain C string with value "0" or "1"
+      69       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \param[in]	aPrev	Connection with previous node (when needed)
+      70       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \param[in]	aNext	Connection with next node (when needed)
+      71       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \param[in]	aExtraInt	Special value used for some container types
+      72       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \authors Petyovsky, Richter
+      73       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 */
+      74       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		explicit CBlock(const char* aStr, CBlock* aPrev = nullptr, CBlock *aNext = nullptr, int aExtraInt = 0): CBlockBase(aPrev, aNext, aExtraInt), iValue(false)
+      75       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			{
+      76       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			std::istringstream iss(aStr, std::istringstream::in); iss >> std::boolalpha >> iValue;
+      77       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			}
+      78       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      
+      79       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		/** \brief Conversion c'tor from std::string 
+      80       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \details Create new instance from Value in the string. Pointer attributes are initialised by given values or by default to the \c this value (CBlockBase definition).
+      81       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \param[in]	aString	std::string with value "0" or "1"
+      82       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \param[in]	aPrev	Connection with previous node (when needed)
+      83       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \param[in]	aNext	Connection with next node (when needed)
+      84       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \param[in]	aExtraInt	Special value used for some container types
+      85       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \authors Petyovsky, Richter
+      86       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 */
+      87       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		explicit CBlock(const std::string& aString, CBlock* aPrev = nullptr, CBlock* aNext = nullptr, int aExtraInt = 0): CBlock(aString.c_str(), aPrev, aNext, aExtraInt)
+      88       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			{
+      89       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			}
+      90       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      
+      91       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		// d'tor
+      92       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		/** \brief Virtual d'tor
+      93       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \authors Petyovsky, Richter
+      94       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 */
+      95       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		virtual ~CBlock() noexcept( noexcept(std::declval<CBlockBase>().~CBlockBase()) )
+      96       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			{
+      97       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			iValue = false;
+      98       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			}
+      99       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      
+     100       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		// InstanceInfo getter:
+     101       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		/** \brief ID getter
+     102       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \return Unique instance ID
+     103       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \author Petyovsky
+     104       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 */
+     105       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		size_t ID() const
+     106       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			{
+     107       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			return iInstanceInfo.ID();
+     108       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			}
+     109       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      
+     110       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		// setters/getters:
+     111       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		/** \brief Value setter
+     112       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \param[in]	aValue	New Value
+     113       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \author Petyovsky
+     114       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 */
+     115       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		void SetValue(const bool aValue)
+     116       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			{
+     117       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			iValue = aValue;
+     118       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			}
+     119       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      
+     120       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		/** \brief Value getter
+     121       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \return Actual \c bool \p Value
+     122       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \author Petyovsky
+     123       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 */
+     124       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		bool Value() const
+     125       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			{
+     126       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			return iValue;
+     127       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			}
+     128       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      
+     129       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		// operators:
+     130       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		/** \brief Complement operator
+     131       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \return CBlock instance with complemented attribute Value.
+     132       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \author Petyovsky
+     133       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 */
+     134       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		CBlock operator-() const
+     135       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			{
+     136       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			return CBlock(!iValue);
+     137       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			}
+     138       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      
+     139       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		/** \brief Assigment operator
+     140       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \return CBlock instance with copied attribute Value.
+     141       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \author Petyovsky
+     142       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 */
+     143       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		CBlock& operator=(const CBlock& aValue)
+     144       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			{
+     145       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			SetValue(aValue.Value()); 
+     146       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			return *this;
+     147       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			}
+     148       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      
+     149       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		/** \brief Comparing by Value operator
+     150       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \return Return \c bool result of comparation
+     151       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \author Petyovsky
+     152       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 */
+     153       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		bool operator==(const CBlock& aValue) const
+     154       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			{
+     155       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			return iValue == aValue.Value();
+     156       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			}
+     157       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      
+     158       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      #ifdef CBLOCK_THREE_WAY_COMPARISON
+     159       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		/** \brief Threeway comparison by Value operator
+     160       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \return Return \c std::strong_ordering result of comparation
+     161       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \author Petyovsky
+     162       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 */
+     163       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		std::strong_ordering operator<=>(const CBlock& aValue) const
+     164       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			{
+     165       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			return iValue <=> aValue.Value();
+     166       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			}
+     167       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      
+     168       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      #else
+     169       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		/** \brief Comparing by Value operator
+     170       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \return Return \c bool result of comparation
+     171       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \author Petyovsky
+     172       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 */
+     173       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		bool operator!=(const CBlock& aValue) const
+     174       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			{
+     175       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			return iValue != aValue.Value();
+     176       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			}
+     177       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      
+     178       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		/** \brief Comparing by Value operator
+     179       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \return Return \c bool result of comparation
+     180       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \author Petyovsky
+     181       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 */
+     182       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		bool operator<(const CBlock& aValue) const
+     183       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			{
+     184       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			return iValue < aValue.Value();
+     185       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			}
+     186       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      
+     187       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		/** \brief Comparing by Value operator
+     188       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \return Return \c bool result of comparation
+     189       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \author Petyovsky
+     190       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 */
+     191       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		bool operator>(const CBlock& aValue) const
+     192       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			{
+     193       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			return iValue > aValue.Value();
+     194       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			}
+     195       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      #endif /* CBLOCK_THREE_WAY_COMPARISON */
+     196       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      
+     197       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		/** \brief Output to the stream operator. (\em serialization)
+     198       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \param[in]	aOStream	Output stream
+     199       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \param[in]	aValue	Serialized instantion of CBlock
+     200       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \return Return \c std::ostream with serialized Value
+     201       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \author Petyovsky
+     202       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 */
+     203       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		friend std::ostream& operator<<(std::ostream& aOStream, const CBlock& aValue)
+     204       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			{
+     205       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			std::ios_base::fmtflags fmtflags = aOStream.setf(std::ios_base::boolalpha); // Save the state of the boolalpha flag & set it
+     206       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			aOStream << aValue.Value();
+     207       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			aOStream.flags(fmtflags); 	// restore previous flags
+     208       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			return aOStream;
+     209       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			}
+     210       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      
+     211       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		/** \brief Input from the stream operator. (\em deserialization)
+     212       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \param[in]	aIStream	Input stream
+     213       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \param[out]	aValue	Place for deserialized instantion of CBlock
+     214       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \return Return rest of \c std::istream
+     215       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \author Petyovsky
+     216       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 */
+     217       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		friend std::istream& operator>>(std::istream& aIStream, CBlock& aValue)
+     218       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			{
+     219       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			std::ios_base::fmtflags fmtflags = aIStream.setf(std::ios_base::boolalpha); // Save the state of the boolalpha flag & set it
+     220       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			aIStream >> aValue.iValue;
+     221       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			aIStream.flags(fmtflags); 	// restore previous flags
+     222       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			return aIStream;
+     223       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			}
+     224       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      
+     225       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      #ifdef CBLOCK_TEST_API
+     226       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      
+     227       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		// constants for testing CBlock functionalities:
+     228       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		/** \brief First test value
+     229       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \return Return \c bool value (\c false)
+     230       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \authors Petyovsky, Richter
+     231       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \note Useful for automated testing of CBlock functionality
+     232       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 */
+     233       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		static bool TestValue0()
+     234       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			{
+     235       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			return false;
+     236       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			}
+     237       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      
+     238       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		/** \brief First test string value
+     239       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \return Return string with \c bool value (\c false)
+     240       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \authors Petyovsky, Richter
+     241       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \note Useful for automated testing of CBlock functionality
+     242       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 */
+     243       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		static std::string TestStringValue0()
+     244       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			{
+     245       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			return std::string("false");
+     246       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			}
+     247       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      
+     248       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		/** \brief Second test value
+     249       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \return Return \c bool value (\c true)
+     250       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \authors Petyovsky, Richter
+     251       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \note Useful for automated testing of CBlock functionality
+     252       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 */
+     253       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		static bool TestValue1()
+     254       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			{
+     255       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			return true;
+     256       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			}
+     257       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      
+     258       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		/** \brief Second test string value
+     259       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \return Return string with \c bool value (\c true)
+     260       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \authors Petyovsky, Richter
+     261       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \note Useful for automated testing of CBlock functionality
+     262       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 */
+     263       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		static std::string TestStringValue1()
+     264       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			{
+     265       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			return std::string("true");
+     266       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			}
+     267       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      
+     268       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		/** \brief Random test value
+     269       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \return Return random \c bool value
+     270       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \authors Petyovsky, Richter
+     271       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \note Useful for automated testing of CBlock functionality
+     272       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 */
+     273       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		static bool TestValueRandom()
+     274       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			{
+     275       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			return bool(std::rand() % 2) ? TestValue1() : TestValue0();
+     276       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			}
+     277       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      
+     278       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		/** \brief Random test string value
+     279       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \return Return string with random \c bool value
+     280       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \authors Petyovsky, Richter
+     281       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 *  \note Useful for automated testing of CBlock functionality
+     282       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		 */
+     283       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		static std::string TestStringValueRandom()
+     284       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			{
+     285       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			return bool(std::rand() % 2) ? TestStringValue1() : TestStringValue0();
+     286       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      			}
+     287       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      #endif /* CBLOCK_TEST_API */
+     288       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      
+     289       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      		}; /* class CBlock */
+     290       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      	} /* namespace CBlock_bool */
+     291       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_bool.h          petyovsky                      #endif /* CBLOCK_BOOL_H */

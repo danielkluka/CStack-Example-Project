@@ -1,0 +1,45 @@
+#include "CStack.h"
+
+CStack &CStack::operator++() const
+	{
+	// TODO: insert return statement here
+	}
+
+CStack& CStack::operator-() const
+	{
+	// TODO: insert return statement here
+	}
+
+CStack CStack::Push(const CBlock &aValue)
+	{
+	CBlock *node = new CBlock(aValue);
+
+	node->SetValue(aValue.Value());
+	node->SetNextItem(NULL);
+	node->SetPrevItem(this->iTop);
+
+	this->iTop = node;
+
+	return *this;
+	}
+
+CStack CStack::Pop()
+	{
+	return CStack();
+	}
+
+CStack CStack::Top(CBlock* aTop)
+	{
+	return CStack();
+	}
+
+CStack CStack::Search(CBlock& aValue, bool aResult)
+	{
+	return CStack();
+	}
+
+CStack CStack::Dup(CStack* aStack)
+	{
+	return CStack();
+	}
+

@@ -1,0 +1,466 @@
+#ifndef CSTACK_H
+#define CSTACK_H
+/** \file CStack.h
+ *  \brief CStack class header
+ *  \details File contain CStack class container definition.
+ *  \authors Kluka, Majnus, Pesek, Prasek
+ *  \version 2022
+ *  $Id$
+ */
+
+#include "CBlock.h"
+//#include <initializer_list>		// Due to: std::initializer_list<CBlock>
+#include "check.h"
+
+ /** \brief CStack class
+  *  \details Definition of CStack class. There are defined all common methods and attributes.
+  */
+class CStack
+	{
+	CBlock* iTop;						///< Pointer at the top of Stack
+	size_t iCount;						///< Number of totally created instances
+	ClassInfo<CStack> iInstanceInfo;	///< Instance of the class info for usage statistics
+
+	/** \brief Private method CompareDeep
+	 *  \details Compare stacks by according lenght and Cblock as well.
+	 *  \param[in] aStack	Element of CBlock
+	 *  \return -1 if first stack is shorter or 0 if both have same lenght or 1 if first stack is longer.
+	 *  \author Majnus
+	 */
+	bool CompareDeep(const CStack& aStack) const;
+
+	/** \brief Private method Compare
+	 *  \return		Returns an integer(-1,0,1) representing the result of comparison (Stack > aStack, Stack == aStack, Stack < aStack)
+	 *  \param[in] aStack to be compared with
+	 *  \return Returns an integer(-1,0,1) representing the result of comparison.
+	 *  \author Pesek
+	 */
+	int Compare(const CStack& aStack) const;
+
+	public:
+		// c'tors
+		/** \brief Default constructor
+		 *  \details Creates new instance. Set iTop = nullptr and iCount = 0.
+		 *  \author Majnus
+		 */
+		CStack(): iTop(nullptr), iCount(0) //vytvori novou instanci iTop nastavi na nullptr a icount nastavi na 0
+			{
+			}
+
+		/** \brief CBlock conversion c'tor
+		 *  \details Create new instance with CBlock element.
+		 *  \param[in]	aBlock	Element of CBlock
+		 *  \author Kluka
+		 */
+		CStack(const CBlock& aBlock)
+			{
+			iTop = new CBlock(aBlock.Value(), nullptr, nullptr);
+			iTop->SetPrevNext(iTop, iTop);
+			iCount = 1;
+			}
+
+		/** \brief String conversion c'tor
+		 *  \details Create new instance from C string.
+		 *  \param[in]	aString	C string in format: "(value-element1,value-element2,value-element3,...)"
+		 *  \author Kluka
+		 */
+		CStack(const char* aString): iTop(nullptr), iCount(0)
+			{
+			std::stringstream ss;
+			ss << aString;
+			//ss >> *this; // chyba Martinov operator >>
+
+			/*
+			ss << "(";
+			do
+				{
+				ss << aString;
+				}
+			while(aString != ")");
+			ss >> *this;
+			// potrebne operatory << a >>, inak hotovo.. a tiez cakam na Martina, aby som vedel, ako spravi stream*/
+			}
+
+		/** \brief CBlock conversion c'tor from array of known size
+		 *  \details Creates new Stack containing elements from input array.
+		 *  \param[in]	aSize	Size of input array
+		 *	\param[in]	aArray	Array of CBlock to be used for Stack creation
+		 *  \author Pesek
+		 */
+		CStack(size_t aSize, const CBlock* aArray)
+			{
+			}
+
+		/** \brief Convert c'tor from init list
+		 *  \details C'tor from an initializer list of CBlock use delegation to the c'tor from array of CBlock items.
+		 *  \author Prasek
+		 */
+		CStack(std::initializer_list<CBlock> aInitList): CStack(aInitList.size(), std::data(aInitList))
+			{
+			}
+
+		/** \brief Conversion c'tor of type size_t
+		 *  \details Creates a new stack containing as many CBlock elements created by the default constructor as the number of elements specified.
+		 *	\author Prasek
+		 */
+		CStack(const size_t aSize)
+			{
+			iTop = nullptr;
+			iCount = 1;
+
+			CBlock* iHead = iTop;
+			CBlock* iNext = nullptr;
+			CBlock* iPrev = nullptr;
+			CBlock* tmp = nullptr;
+
+			for(size_t i = 2; i <= aSize; ++i)
+				{
+				tmp = iHead;
+				iHead->SetNextItem(nullptr);
+				iNext = dynamic_cast<CBlock *>(iHead->NextItem());
+				iHead = iNext;
+				CBlock newnode;
+				iHead = &newnode;
+				iHead->SetPrevItem(tmp);
+				iCount = i;
+				}
+			// Predelat pomoci PUSH
+			}
+
+		// d'tor
+		/** \brief Destructor
+		 *  \details Destructor with active count down of elements with variable Classinfo. It will deallocate dynamic member elements (all CBlocks belonging to it), i.e. deallocate the entire stack.
+		 *  \author Majnus
+		 */
+		virtual ~CStack() noexcept(noexcept(std::declval<CBlockBase>().~CBlockBase()))
+			{
+			iTop = nullptr;
+			--iCount;
+			}
+		/** \brief Copy c'tor
+		 *  \details a
+		 *  \param[in]	a
+		 *  \author Majnus
+		 */
+		//CStack(const CStack &aValue){
+
+			//}
+		// InstanceInfo getters
+		/** \brief Actual getter
+		 *  \return Number of actually living instances.
+		 *  \author Majnus
+		 */
+		size_t Actual() const //iInstance living - pocet zijicich
+			{
+			return iInstanceInfo.Living(); //peak -> ptrdiff_t - zakladni funkce c++ vracejici pointer arithmetic and array indexing //pres classinfo? return ClassInfo<CStack>::Living();
+			}
+
+		/** \brief ID getter
+		 *  \return Unique instance ID.
+		 *  \author Majnus
+		 */
+		size_t ID() const
+			{
+			return iInstanceInfo.ID(); //taky peak
+			}
+		
+		/** \brief Total getter
+		 *  \return Number of totally created instances.
+		 *  \author Majnus
+		 */
+		size_t Total() const
+			{
+			return iInstanceInfo.Total(); //taky peak //taky class info?
+			}
+
+		// setter/getter
+		/** \brief PocetPrvku getter
+		 *  \details Number of totally created instances.
+		 *	\return Return number of totally created instances in Stack.
+		 *  \author Kluka
+		 */
+		size_t PocetPrvku() const
+			{
+			return iCount;
+			}
+
+		/** \brief Usage getter
+		 *  \details Finds out the linear list's of CBlock effectivity of memory usage compared to array of CBlock.
+		 *  \return Returns effectivity value in %.
+		 *  \author Pesek
+		 */
+		double Usage()
+			{
+			}
+
+		// unary operators
+		/** \brief Unary operator +
+		 *  \details Useless operator which returns used Stack.
+		 *  \author Pesek
+		 */
+		CStack& operator+()
+			{
+			return *this;
+			}
+
+		/** \brief Unary operator -
+		 *  \details Reversion of all CBlocks in Stack using Reverse method.
+		 *  \author Kluka
+		 */
+		CStack operator-()
+			{
+			if(iCount == 0 || iTop == nullptr)
+				return *this;
+			
+			return this->Reverse();
+			}
+		/** \brief Unary operator ++  
+		 *  \details Inserts a new CBlock created by the default c'tor at the end of the stack.
+		 *	\return Returns Stack with a new element on top.
+		 *  \author Prasek
+		 */
+		CStack& operator++()
+			{
+			return *this; //DODELAT
+			}
+
+		/** \brief Unary operator --
+		 *  \details Deletes CBlock element from the end of the Stack using CStack Pop() method.
+		 *	\return Returns Stack reduced by one element.
+		 *  \author Kluka
+		 */
+		CStack& operator--()
+			{
+			if(iCount == 0 || iTop == nullptr)
+				return *this;
+
+			return this->Pop();
+			}
+
+		/** \brief Unary operator !
+		 *  \details If stack is empty, return true and makes exceptation.
+		 *	\return True or false.
+		 *  \author Majnus
+		 */
+		bool operator!() const
+			{
+			if(iTop == NULL)
+				return true;
+			//nastane vyjímka - dopsat
+			return false;
+			}
+
+		// binary operators
+		/** \brief Binary operator +
+		 *  \details Adds two stacks, is not commutative, the order depends on the stack order.
+		 *  \return Two stacked stacks.
+		 *  \author Majnus
+		 */
+		CStack operator+(const CStack &aStack) const; //aStack - ten druhy - navrtat do cpp
+		//{
+		//std::initializer_list<CStack> tmp; //bruh -konzultace
+		//CStack tmp; //tmp typu CStack - matemìto - pøetìžování operátorù
+		//return tmp;
+		//}
+
+		/** \brief Binary operator =
+		 *  \details For assignment. Creates copy of values except the iID, that´s original. Overwrite original values in the result variable and dynamic deallocate deallocate. 
+		 *  \return Original overwrited values. Dealocate dynamic values.
+		 *  \author Majnus
+		 */ //reference vzdy vlevo!
+		CStack& operator=(const CStack& aStack) const;
+
+		/** \brief Binary non-member Operator +
+		 *  \details Appends CBlock element to top of the Stack.
+		 *  \return Returns Stack with appended element.
+		 *  \author Pesek
+		 */
+		friend CStack operator+(const CBlock& aBlock, const CStack& aStack);
+
+		/** \brief Binary operator -
+		 *  \details A new stack will be created that will contain all elements from the first stack that are not contained in the second stack and will not honor the order.
+		 *  \author Prasek
+		 */
+		CStack operator-(const CStack &aStack) const;
+			
+		/** \brief Binary operator -=
+		 *  \details Substracts two stacks by substracting all elements of Stack2 from Stack1.
+		 *  \param[in]	aStack	Stack2, that will be substracted from Stack1
+		 *  \return Substraction of two Stacks.
+		 *  \author Kluka
+		 */
+		CStack& operator-=(const CStack& aStack) 
+			{
+			*this -= -(static_cast<CStack>(aStack));
+			return *this;
+			}
+
+		/** \brief Binary operator +=
+		 *  \details Creates a stack of CBlock elements of Stack1 and Stack2.
+		 *  \param[in]	aStack	Stack2, that will be added to Stack1
+		 *  \return Addition of two Stacks.
+		 *  \author Pesek
+		 */
+		CStack& operator+=(const CStack& aStack);
+
+		/** \brief Operator size_t 
+		 *  \details Converts the stack to size_t, which will represent the number of stack elements.
+		 *  \author Prasek
+		 */
+		explicit operator size_t () const
+			{
+			return (size_t)(iCount);
+			}
+
+#ifdef CBLOCK_THREE_WAY_COMPARISON
+		/** \brief Threeway comparison by Value operator
+		 *  \return Return \c std::strong_ordering result of comparation.
+		 *  \author Kluka
+		 */
+		std::strong_ordering operator<=>(const CStack &aStack) const
+			{
+			return iCount <=> aStack.iCount;
+			}
+#else
+
+		// relational operators
+		/** \brief Relational Operator ==
+		 *  \details Comparison of two stacks using CompareDeep() method.
+		 *  \param[in]	aStack	Stack for comparison
+		 *	\return Return \c bool result of comparation.
+		 *  \author Kluka
+		 */
+		bool operator==(const CStack& aStack) const
+			{
+			return CompareDeep(aStack);
+			}
+
+		/** \brief Relational Operator !=
+		 *  \details Comparison of two stacks using CompareDeep() method.
+		 *  \param[in]	aStack	Stack for comparison
+		 *	\return Return \c bool result of comparation.
+		 *  \author Majnus
+		 */
+		bool operator!=(const CStack& aStack) const
+			{
+			return CompareDeep(aStack);
+			}
+
+		/** \brief Relational Operator <
+		 *  \details Comparison of two stacks using CompareDeep() method.
+		 *  \author Prasek
+		 */
+		bool operator<(const CStack& aStack) const
+			{
+			return CompareDeep(aStack);
+			//return (iCount < aStack.iCount); 
+			}
+
+		/** \brief Relational Operator >
+		 *  \details Comparison of two stacks using CompareDeep() method.
+		 *  \author Pesek
+		 */
+		bool operator>(const CStack& aStack) const
+			{
+			return CompareDeep(aStack);
+			//return (iCount > aStack.iCount);
+			}
+
+#endif /* CBLOCK_THREE_WAY_COMPARISON */
+
+		// CStack characteristic methods
+		/** \brief Method aaa.Reverse 
+		 *  \details Reversion of all CBlocks in Stack.
+		 *  \author Kluka
+		 */
+		CStack Reverse()
+			{
+			if(iCount == 0 || iTop == nullptr)
+				return *this;
+
+			CBlock *iHead = iTop;
+			CBlock *iPrev = NULL, *iNext = NULL;
+			while(iHead != NULL)
+				{
+				iNext = dynamic_cast<CBlock *>(iHead->NextItem());
+				iHead->SetNextItem(iPrev);
+				iPrev = iHead;
+				iHead = iNext;
+				}
+			iHead = iPrev;
+			return *this;
+			}
+
+		/** \brief Method Reverse(aaa)
+		 *  \details Leaves the aaa Stack unchanged and returns (temp object) the reversed bbb Stack. 
+		 *  \author Prasek
+		 */
+		CStack Reverse(const CStack& aValue) // Ma to byt static pane doktore Petyovsky? :D
+			{
+			CStack Reversed = aValue;
+			return Reversed.Reverse();
+			}
+
+		/** \brief Stack Push
+		 *  \details Pushes a CBlock element on top of the Stack.
+		 *	\param[in]	aValue	Reference to a value to be pushed onto the stack
+		 *	\return Returns used stack.
+		 *  \authors Pesek, Prasek
+		 */
+		CStack Push(const CBlock& aValue);
+
+		/** \brief Stack Pop
+		 *  \details Removes a CBlock element from top of the Stack.
+		 *	\return Returns used stack.
+		 *  \authors Prasek, Pesek
+		 */
+		CStack& Pop()
+			{
+			const CBlock* temp = iTop;
+			iTop = dynamic_cast<CBlock *>(iTop->NextItem());
+			delete temp;
+			}
+
+		/** \brief Stack Top
+		 *  \details Returns an element from top of the Stack.
+		 *	\return Returns used stack.
+		 *  \authors Prasek, Pesek
+		 */
+		CStack Top() const
+			{
+			return *iTop;
+			}
+
+		/** \brief Stack Search
+		 *  \details Determines if the searched value is in the Stack.
+		 *	\param[in]	aValue	Reference to a value to be searched for
+		 *	\return Returns true if the value was found or false if the value was not found.
+		 *  \authors Prasek, Pesek
+		 */
+		bool Search(const CBlock& aValue) const
+			{
+			const CBlock* iCurrent = iTop;
+
+			while (iCurrent != NULL)
+				{
+				if(iCurrent == aValue.NextItem())
+					return true;
+				iCurrent = dynamic_cast<CBlock*>(iTop->NextItem());
+				}
+			return false;
+			}
+
+		/** \brief Stack Dup
+		 *  \details Duplicates an existing Stack.
+		 *  \param[out]	aStack	Pointer to a new Stack, which is a duplicate of input Stack
+		 *	\return Returns stack used to duplicate.
+		 *  \authors Pesek, Prasek
+		 */
+		CStack Dup(CStack* aStack)
+		{
+			CStack iStack(*this);
+			aStack = &iStack;
+		}
+
+	}; /* class CStack */
+#endif /* CSTACK_H */

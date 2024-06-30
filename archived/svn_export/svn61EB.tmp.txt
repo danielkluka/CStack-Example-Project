@@ -1,0 +1,287 @@
+  line   rev      merged   date                           path                                                         author                         content 
+
+       0     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       #ifndef CBLOCK_LONG_H
+       1     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       #define CBLOCK_LONG_H
+       2     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       /** \file CBlock_long.h
+       3     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                        *  \brief CBlock_long class header
+       4     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                        *  \details File contain CBlock_long::CBlock definition
+       5     2220     2220 3. 12. 2022 13:43:26           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                        *  \author Kluka (source code and documentation in this file)
+       6     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                        *  \version 2022
+       7     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                        *  $Id$
+       8     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                        */
+       9     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       
+      10     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       #include <iostream>
+      11     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       #include <sstream>
+      12     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       #include <string>
+      13     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       #include <stdexcept>
+      14     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       #include <typeinfo>
+      15     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       #include <utility>		// Due to: std::declval<CBlockBase>
+      16     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       
+      17     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       #include "ClassInfo.h"
+      18     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       #include "CBlockBase.h"
+      19     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       #include "check.h"
+      20     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       
+      21     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       /** \brief Namespace for encapsulating of \c long variant of CBlock class
+      22     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                        *  \details For selecting this variant of CBlock class uncomment \c using \c namespace section in the CBlock.h.
+      23     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                        *  \author Kluka
+      24     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                        *	\attention CBlock_long.h is completely finished with working unit tests and class.
+      25     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                        */
+      26     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       namespace CBlock_long
+      27     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       	{
+      28     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       	/** \brief CBlock class (\c long variant)
+      29     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       	 *  \details Definition of CBlock class (\c long variant). There are defined all common methods and attributes.
+      30     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       	 */
+      31     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       	class CBlock: public CBlockBase
+      32     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		{
+      33     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		ClassInfo<CBlock> iInstanceInfo;	///< Instance of the class info for usage statistics
+      34     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		long iValue;						///< Encapsulated \c long value
+      35     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       
+      36     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       	public:
+      37     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		// c'tors
+      38     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		/** \brief Default c'tor
+      39     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \details Value attribute is set to \c 0.
+      40     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \author Kluka
+      41     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 */
+      42     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		CBlock(): CBlockBase(), iValue(0)
+      43     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			{
+      44     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			}
+      45     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       
+      46     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		/** \brief Conversion c'tor
+      47     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \details Value is set. Pointer attributes are initialised by given values or by default to the \c this value (CBlockBase definition).
+      48     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \param[in]	aValue	New encapsulated \c long Value
+      49     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \param[in]	aPrev	Connection with previous node (when needed)
+      50     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \param[in]	aNext	Connection with next node (when needed)
+      51     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \author Kluka
+      52     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 */
+      53     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		explicit CBlock(const long aValue, CBlock *aPrev = nullptr, CBlock *aNext = nullptr): CBlockBase(aPrev, aNext), iValue(aValue)
+      54     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			{
+      55     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			}
+      56     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       
+      57     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		/** \brief Copy c'tor
+      58     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \details Create new instance by copying only \p iValue parameter. Pointer attributes are initialised to the \c this value (CBlockBase definition).
+      59     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \param[in]	aValue	Original instance for copying
+      60     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \author Kluka
+      61     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 */
+      62     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		CBlock(const CBlock& aValue): CBlockBase(), iValue(aValue.Value())
+      63     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			{
+      64     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			}
+      65     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       
+      66     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		/** \brief Conversion c'tor from plain C string (striped string)
+      67     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \details Create new instance from Value in the string. Pointer attributes are initialised by given values or by default to the \c this value (CBlockBase definition).
+      68     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \param[in]	aStr	Plain C string with long value
+      69     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \param[in]	aPrev	Connection with previous node (when needed)
+      70     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \param[in]	aNext	Connection with next node (when needed)
+      71     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \author Kluka
+      72     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 */
+      73     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		explicit CBlock(const char* aStr, CBlock* aPrev = nullptr, CBlock* aNext = nullptr): CBlockBase(aPrev, aNext), iValue(0)
+      74     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			{
+      75     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			std::istringstream iss(aStr, std::istringstream::in); iss >> iValue;
+      76     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			}
+      77     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       
+      78     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		/** \brief Conversion c'tor from std::string
+      79     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \details Create new instance from Value in the string. Pointer attributes are initialised by given values or by default to the \c this value (CBlockBase definition).
+      80     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \param[in]	aString	std::string with long value
+      81     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \param[in]	aPrev	Connection with previous node (when needed)
+      82     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \param[in]	aNext	Connection with next node (when needed)
+      83     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \author Kluka
+      84     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 */
+      85     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		explicit CBlock(const std::string& aString, CBlock* aPrev = nullptr, CBlock* aNext = nullptr): CBlock(aString.c_str(), aPrev, aNext)
+      86     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			{
+      87     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			}
+      88     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       
+      89     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		// InstanceInfo getters
+      90     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		/** \brief ID getter
+      91     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \return Unique instance ID.
+      92     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \author Kluka
+      93     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 */
+      94     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		size_t ID() const
+      95     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			{
+      96     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			return iInstanceInfo.ID();
+      97     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			}
+      98     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       
+      99     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		// d'tor
+     100     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		/** \brief Virtual d'tor
+     101     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \author Kluka
+     102     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 */
+     103     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		virtual ~CBlock() noexcept(noexcept(std::declval<CBlockBase>().~CBlockBase()))
+     104     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			{
+     105     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			iValue = 0;
+     106     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			}
+     107     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       
+     108     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		// setter/getter
+     109     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		/** \brief Value setter
+     110     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \param[in]	aValue	New Value
+     111     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \author Kluka
+     112     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 */
+     113     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		void SetValue(const long aValue)// asi long aValue
+     114     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			{
+     115     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			iValue = aValue;
+     116     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			}
+     117     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       
+     118     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		/** \brief Value getter
+     119     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \return Actual \c long \p Value.
+     120     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \author Kluka
+     121     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 */
+     122     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		long Value() const
+     123     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			{
+     124     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			return iValue;
+     125     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			}
+     126     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       
+     127     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		// operators
+     128     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		/** \brief Complement operator
+     129     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \return CBlock instance with negative Value.
+     130     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \author Kluka
+     131     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 */
+     132     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		CBlock operator-() const
+     133     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			{
+     134     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			return CBlock(!iValue);
+     135     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			}
+     136     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       
+     137     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		/** \brief Assigment operator
+     138     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \return CBlock instance with copied attribute Value.
+     139     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \author Kluka
+     140     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 */
+     141     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		CBlock& operator=(const CBlock &aValue)
+     142     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			{
+     143     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			SetValue(aValue.Value());
+     144     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			return *this;
+     145     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			}
+     146     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       
+     147     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		/** \brief Comparing by Value operator
+     148     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \return Return \c bool result of comparation.
+     149     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \author Kluka
+     150     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 */
+     151     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		bool operator==(const CBlock &aValue) const
+     152     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			{
+     153     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			return iValue == aValue.Value();
+     154     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			}
+     155     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       
+     156     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       #ifdef CBLOCK_THREE_WAY_COMPARISON
+     157     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		/** \brief Threeway comparison by Value operator
+     158     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \return Return \c std::strong_ordering result of comparation.
+     159     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \author Kluka
+     160     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 */
+     161     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		std::strong_ordering operator<=>(const CBlock &aValue) const
+     162     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			{
+     163     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			return iValue <=> aValue.Value();
+     164     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			}
+     165     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       #else
+     166     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		/** \brief Comparing by Value operator
+     167     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \return Return \c bool result of comparation.
+     168     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \author Kluka
+     169     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 */
+     170     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		bool operator!=(const CBlock &aValue) const
+     171     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			{
+     172     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			return iValue != aValue.Value();
+     173     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			}
+     174     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       
+     175     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		/** \brief Comparing by Value operator
+     176     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \return Return \c bool result of comparation.
+     177     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \author Kluka
+     178     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 */
+     179     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		bool operator<(const CBlock &aValue) const
+     180     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			{
+     181     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			return iValue < aValue.Value();
+     182     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			}
+     183     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       
+     184     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		/** \brief Comparing by Value operator
+     185     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \return Return \c bool result of comparation.
+     186     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \author Kluka
+     187     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 */
+     188     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		bool operator>(const CBlock &aValue) const
+     189     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			{
+     190     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			return iValue > aValue.Value();
+     191     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			}
+     192     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       #endif /* CBLOCK_THREE_WAY_COMPARISON */
+     193     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       
+     194     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		/** \brief Output to the stream operator. (\em serialization)
+     195     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \param[in]	aOStream	Output stream
+     196     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \param[in]	aValue	Serialized instantion of CBlock
+     197     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \return Return \c std::ostream with serialized Value.
+     198     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \author Kluka
+     199     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 */
+     200     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		friend std::ostream &operator<<(std::ostream &aOStream, const CBlock &aValue)
+     201     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			{
+     202     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			aOStream << aValue.Value();
+     203     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			return aOStream;
+     204     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			}
+     205     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       
+     206     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		/** \brief Input from the stream operator. (\em deserialization)
+     207     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \param[in]	aIStream	Input stream
+     208     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \param[out]	aValue	Place for deserialized instantion of CBlock
+     209     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \return Return rest of \c std::istream.
+     210     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \author Kluka
+     211     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 */
+     212     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		friend std::istream &operator>>(std::istream &aIStream, CBlock &aValue)
+     213     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			{
+     214     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			aIStream >> aValue.iValue;
+     215     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			return aIStream;
+     216     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			}
+     217     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       
+     218     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       #ifdef CBLOCK_TEST_API
+     219     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       
+     220     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		// constants for testing CBlock functionalities:
+     221     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		/** \brief First test value
+     222     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \return Return \c long value (\c 0).
+     223     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \author Kluka
+     224     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \note Useful for automated testing of CBlock functionality.
+     225     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 */
+     226     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		static long TestValue0()
+     227     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			{
+     228     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			return 0;
+     229     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			}
+     230     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       
+     231     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		/** \brief First test string value
+     232     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \return Return string with \c bool value (\c "0").
+     233     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \author Kluka
+     234     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \note Useful for automated testing of CBlock functionality.
+     235     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 */
+     236     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		static std::string TestStringValue0()
+     237     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			{
+     238     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			return std::string("0");
+     239     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			}
+     240     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       
+     241     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		/** \brief Second test value
+     242     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \return Return \c long value (\c 1).
+     243     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \author Kluka
+     244     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \note Useful for automated testing of CBlock functionality.
+     245     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 */
+     246     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		static long TestValue1()
+     247     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			{
+     248     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			return 1;
+     249     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			}
+     250     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       
+     251     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		/** \brief Second test string value
+     252     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \return Return string with \c long value (\c "1").
+     253     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \author Kluka
+     254     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \note Useful for automated testing of CBlock functionality.
+     255     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 */
+     256     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		static std::string TestStringValue1()
+     257     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			{
+     258     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			return std::string("1");
+     259     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			}
+     260     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       
+     261     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		/** \brief Random test value
+     262     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \return Return random \c long value.
+     263     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \author Kluka
+     264     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \note Useful for automated testing of CBlock functionality.
+     265     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 */
+     266     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		static bool TestValueRandom()
+     267     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			{
+     268     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			return (std::rand() % 2) ? TestValue1() : TestValue0();
+     269     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			}
+     270     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       
+     271     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		/** \brief Random test string value
+     272     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \return Return string with random \c long value.
+     273     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \author Kluka
+     274     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 *  \note Useful for automated testing of CBlock functionality.
+     275     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		 */
+     276     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		static std::string TestStringValueRandom()
+     277     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			{
+     278     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			return (std::rand() % 2) ? TestStringValue1() : TestStringValue0();
+     279     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       			}
+     280     2413     2413 11. 12. 2022 13:30:12          /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       
+     281     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       #endif /* CBLOCK_TEST_API */
+     282     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       		}; /* class CBlock */
+     283     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       	} /* namespace CBlock_long */
+     284     2080     2080 2. 12. 2022 15:03:35           /ct09_zasobnik1/trunk/Project/Project/CBlock_long.h          xkluka00                       #endif /* __CBLOCK_LONG_H__ */

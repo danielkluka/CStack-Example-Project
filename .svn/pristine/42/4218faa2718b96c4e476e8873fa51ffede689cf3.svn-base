@@ -1,0 +1,22 @@
+#include "CStack.h"
+
+CStack &CStack::operator++() const
+	{
+	// TODO: insert return statement here
+	}
+
+CStack& CStack::operator-() const
+	{
+	// TODO: insert return statement here
+	}
+
+void CStack::Push(const CBlock &aKey)
+	{
+	CBlock *node = new CBlock(aKey);
+
+	node->SetValue(aKey.Value());
+	node->SetNextItem(NULL);
+	node->SetPrevItem(this->iTop);
+
+	this->iTop = node;
+	}

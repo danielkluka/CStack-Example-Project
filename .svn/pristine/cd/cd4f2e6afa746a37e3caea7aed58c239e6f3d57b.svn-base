@@ -1,0 +1,90 @@
+#ifndef CSTACK_H
+#define CSTACK_H
+/** \file CStack.h
+ *  \brief CStack class header
+ *  \details File contain CStack class container definition.
+ *  \authors Kluka, Majnus, Pesek, Prasek
+ *  \version 0.0.1
+ *  $Id$
+ */
+
+#include "CBlock.h"
+#include <initializer_list>		// Due to: std::initializer_list<CBlock>
+#include "check.h"
+
+ /** \brief CStack class
+  *  \details Definition of CStack class. There are defined all common methods and attributes.
+  */
+class CStack
+	{
+	
+	CBlock *iTop; // Ukazatel na vrchol zásobníku
+	
+	/**\ brief Private method CompareDeep
+		*\details
+		*\param[in]
+		*\return
+		*\author Majnus
+		*/
+		bool CompareDeep(const CStack & aStack) const;
+
+	/**\ brief Private method Compare
+		*\details
+		*\param[in]
+		*\return
+		*\author Pesek
+		*/
+		int Compare(const CStack & aStack) const;
+
+
+	public:
+
+
+		/** \brief Conversion c'tor from CBlock array
+		 *  \details Constructor from the array of \c CBlock items
+		 *  \authors Majnus
+		 */
+		CStack(size_t aSize, const CBlock *aItems)
+			{
+			}
+
+		/** \brief Conversion c'tor from initializer list
+		 *  \details Constructor from an initializer list of \c CBlock use delegation to the c'tor from array of CBlock items
+		 *  \authors 
+		 */
+		CStack(std::initializer_list<CBlock> aInitList): CStack(aInitList.size(), std::data(aInitList))
+			{
+			}
+
+
+		// c'tors
+		/** \brief CBlock conversion c'tor
+		 *  \details Create new instance with CBlock
+		 *  \param[in]	aValue	New encapsulated \c long Value
+		 *  \param[in]	aPrev	Connection with previous node (when needed)
+		 *  \param[in]	aNext	Connection with next node (when needed)
+		 *  \author Kluka
+		 */
+		CStack(const CBlock* aBlock)
+			{
+			}
+
+		// d'tor
+
+
+		// InstanceInfo getters
+
+
+		// setter/getter
+
+
+		// operators
+
+		// CStack characteristic methods
+		void Push(const CBlock &aValue);
+
+	}; /* class CStack */
+
+
+
+#endif /* CSTACK_H */

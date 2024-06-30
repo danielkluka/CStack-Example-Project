@@ -1,0 +1,236 @@
+/** \file CStack.cpp
+ *  \brief CStack class source
+ *  \details File contains implementation of CStack support functions
+ *  \authors Kluka, Majnus, Pesek, Prasek
+ *  \version 2022
+ *	\attention File CStack.cpp is in very early stage of development.
+ *  $Id$
+ */
+
+#include <cstring>
+#include "CStack.h"
+
+bool CStack::CompareDeep(const CStack &aStack) const // : následující slovem public - tøída bude dìdit všechny prkvy z tøídy za public
+	{
+	int poletmp[2];
+	auto tmp1 = 3;
+	auto tmp2 = 3;
+	auto tmp3 = 3;
+	if(CStack::Actual() < aStack.Actual())
+		 tmp1 = -1;
+
+	else if(CStack::Actual() == aStack.Actual())
+		 tmp1 = 0;
+
+	else
+		 tmp1 = 1;
+
+	poletmp[0] = tmp1;
+
+	//if(CStack::Top() < aStack.Top())
+	//	tmp2 = -1;
+	////else if(CStack::Top() == aStack.Top())
+	////	tmp2 = 0;
+	//else(CStack::Top() < aStack.Top())
+	//{
+	//	tmp2 = 1;
+	//}
+
+
+	//if(CStack::Bottom() < aStack.Bottom())
+	//	tmp2 = -1;
+	////else if(CStack::Bottom() == aStack.Bottom())
+	////	tmp2 = 0;
+	//else(CStack::Bottom() < aStack.Bottom())
+	//	tmp2 = 1;
+
+	return poletmp;
+	}
+
+int CStack::Compare(const CStack& aStack) const
+{
+	if (this->Actual() > aStack.Actual())
+	{
+		return 1;
+	}
+	else if (this->Actual() < aStack.Actual())
+	{
+		return -1;
+	}
+	else if (this->Actual() == aStack.Actual())
+	{
+		return 0;
+	}
+}
+
+// PocetPrvku getter; author Kluka
+size_t CStack::PocetPrvku() const
+	{
+	return iCount;
+	}
+
+// unary operator -; author Kluka
+CStack CStack::operator-() const
+	{
+	if (iCount == 0 || iTop == nullptr)
+		return *this;
+
+	CStack iStack(*this);
+	return iStack.Reverzuj();
+	}
+
+/*
+CStack &CStack::operator++() const
+	{
+	return;
+	// TODO: insert return statement here
+	}
+*/
+
+// unary operator --; author Kluka
+CStack& CStack::operator--()
+	{
+	if (iCount == 0 || iTop == nullptr)
+		return *this;
+
+	return this->Pop();
+	}
+
+/*
+CStack CStack::operator+(const CStack& aStack) const
+	{
+	return;
+	// TODO: insert return statement here
+	}
+*/
+
+/*
+CStack operator+(const CBlock& aBlock, const CStack& aStack)
+	{
+	return;
+	// TODO: insert return statement here
+	}
+*/
+
+/*
+CStack& CStack::operator-() const
+	{
+	// TODO: insert return statement here
+	}
+*/
+
+/*
+CStack& CStack::operator+=(const CStack& aStack)
+	{
+	// TODO: insert return statement here
+	}
+*/
+
+/*
+CStack &CStack::operator-(const CStack &aStack) const
+	{
+	// TODO: insert return statement here
+	}
+*/
+
+// binary operator -=; author Kluka
+CStack& CStack::operator-=(const CStack& aStack)
+	{
+	const CBlock* iCurrent = aStack.iTop;
+	for (size_t i = 0; i <= iCount; ++i)
+		{
+		iCurrent = aStack.iTop;
+		while (iCurrent != NULL)
+			{
+			if (this->iTop == iCurrent) this->Pop();
+			iCurrent = static_cast<CBlock*>(iCurrent->NextItem());
+			}
+		}
+	return *this;
+	}
+
+/*
+CStack &CStack::operator+=(const CStack &aStack)
+	{
+	// TODO: insert return statement here
+	}
+*/
+
+/*
+CStack CStack::operator-(const CStack &aStack) const
+	{
+	return CStack();
+	// TODO: insert return statement here
+	}
+*/
+
+/*
+CStack &CStack::operator+=(const CStack &aStack)
+	{
+	// TODO: insert return statement here
+	}
+*/
+
+// method aaa.Reverzuj; author Kluka
+CStack CStack::Reverzuj()
+	{
+	if (iCount == 0 || iTop == nullptr)
+		return *this;
+
+	CBlock* iHead = iTop;
+	CBlock* iPrev = NULL, * iNext = NULL;
+	while (iHead != NULL)
+		{
+		iNext = static_cast<CBlock*>(iHead->NextItem());
+		iHead->SetNextItem(iPrev);
+		iPrev = iHead;
+		iHead = iNext;
+		}
+	iHead = iPrev;
+	return *this;
+	}
+
+CStack& CStack::Push(const CBlock &aValue)
+	{
+	CBlock *node = new CBlock(aValue);
+
+	node->SetValue(aValue.Value());
+	node->SetNextItem(nullptr);
+	node->SetPrevItem(this->iTop);
+
+	this->iTop = node;
+
+	node->SetPrevItem(nullptr);
+	delete(node);
+
+	return *this;
+	}
+
+//CStack CStack::Bottom()
+//{
+//	return *iBottom;
+//}
+
+/*
+CStack& CStack::Pop()
+	{
+	return CStack();
+	// TODO: insert return statement here
+	}
+*/
+
+/*
+CStack CStack::Top(CBlock* aTop)
+	{
+	return CStack();
+	// TODO: insert return statement here
+	}
+*/
+
+/*
+CStack CStack::Dup(CStack* aStack)
+	{
+	return CStack();
+	// TODO: insert return statement here
+	}
+*/

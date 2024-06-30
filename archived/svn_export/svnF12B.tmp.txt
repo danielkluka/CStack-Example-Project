@@ -1,0 +1,70 @@
+  line   rev      merged   date                           path                                                         author                         content 
+
+       0       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      /** \file CBlock_TWeekDay.cpp
+       1       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                       *  \brief CBlock_TWeekDay class source
+       2       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                       *  \details File contains implementation of CBlock_TWeekDay support functions and global operators also for \c enum TWeekDay
+       3       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                       *  \warning Don't modify this file
+       4       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                       *  \authors Petyovsky, Richter
+       5       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                       *  \version 2022
+       6       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                       *  $Id$
+       7       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                       */
+       8       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      
+       9       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      #include <cstring>
+      10       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      #include "CBlock_TWeekDay.h"
+      11       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      
+      12       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      namespace CBlock_TWeekDay
+      13       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      	{
+      14       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      	// Definition of the TWeekDay support constants
+      15       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      	static const char* const KTWeekDaysName[KTWeekDaysCount] =
+      16       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      		{ 
+      17       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      		"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday" ///< Day name definition
+      18       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      		};
+      19       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      
+      20       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      	TWeekDay CheckRangeWithException(const size_t aDayNum)
+      21       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      		{
+      22       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      		if(aDayNum > static_cast<size_t>(TWeekDay::ESunday))
+      23       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      			{
+      24       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      			std::ostringstream oss; oss << "Value: " << aDayNum << " is out of range for type enum class TWeekDay!";
+      25       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      			throw std::range_error(oss.str());
+      26       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      			}
+      27       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      		return TWeekDay(aDayNum);
+      28       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      		} /* CheckingRangeWithException() */
+      29       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      
+      30       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      	const char* TWeekStringName(TWeekDay aWeekDay)
+      31       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      		{
+      32       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      		return KTWeekDaysName[static_cast<size_t>(aWeekDay)];
+      33       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      		} /* TWeekStringName() */
+      34       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      
+      35       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      	std::ostream& operator<<(std::ostream& aOStream, const TWeekDay& aWeekDay)
+      36       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      		{
+      37       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      		aOStream << KTWeekDaysName[static_cast<size_t>(aWeekDay)];
+      38       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      		return aOStream;
+      39       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      		} /* operator<<() */
+      40       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      
+      41       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      	std::istream& operator>>(std::istream& aIStream, TWeekDay& aWeekDay)
+      42       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      		{
+      43       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      		size_t daynum = 0;
+      44       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      
+      45       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      		for(size_t i = 0; KTWeekDaysName[daynum][i] != '\0'; ++i)
+      46       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      			{
+      47       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      			char ch = '\0';
+      48       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      			aIStream >> ch;
+      49       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      			if(!aIStream.good())
+      50       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      				throw std::runtime_error("Input stream data integrity error!");
+      51       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      
+      52       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      			while(KTWeekDaysName[daynum][i] != ch)
+      53       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      				{				
+      54       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      				for(const size_t orig_daynum = daynum++; (daynum < KTWeekDaysCount); ++daynum)
+      55       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      					if(std::strncmp(KTWeekDaysName[orig_daynum], KTWeekDaysName[daynum], i) == 0)
+      56       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      						break;
+      57       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      
+      58       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      				if(daynum >= KTWeekDaysCount)
+      59       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      					throw std::runtime_error("Input stream data integrity error!");
+      60       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      				}
+      61       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      			}
+      62       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      
+      63       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      		aWeekDay = CheckRangeWithException(daynum);
+      64       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      		return aIStream;
+      65       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      		} /* operator>>() */
+      66       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      
+      67       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlock_TWeekDay.cpp    petyovsky                      	} /* namespace CBlock_TWeekDay */

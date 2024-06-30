@@ -1,0 +1,123 @@
+  line   rev      merged   date                           path                                                         author                         content 
+
+       0       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      #ifndef CLASSINFO_H
+       1       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      #define CLASSINFO_H
+       2       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      /** \file ClassInfo.h
+       3       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                       *  \brief ClassInfo class header
+       4       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                       *  \details ClassInfo is class for statistical information about created and active objects of given class. 
+       5       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                       *  Inserting data parameter of ClassInfo as member of another class will (automaticaly) count creation and destruction of objects of these type.
+       6       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                       *  Due to this member is possible to find out number of objects (created and active) and unique ID for object (from creation order).
+       7       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                       *  Contain ClassInfo definition with 64bit counter support.
+       8       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                       *  \warning Don't modify this file
+       9       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                       *  \authors Petyovsky, Richter
+      10       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                       *  \version 2021
+      11       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                       *  $Id$
+      12       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                       */
+      13       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      
+      14       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      #include <cstddef>	// due size_t and ptrdiff_t (ssize_t) (unsigned and int better equivalent for x64 platforms)
+      15       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      
+      16       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      /** \brief ClassInfo class template
+      17       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                       *  \tparam	T	The class name of type that want to keep statistical information
+      18       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                       *  \details Definition of ClassInfo class template. There is defined all common methods and member variables.
+      19       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                       */
+      20       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      template <typename T>
+      21       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      	class ClassInfo
+      22       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		{
+      23       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		const size_t iID;					///< Constant value for simple runtime instance identification and debuging (unique in class T)
+      24       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		static size_t iTotalCounter;		///< Summary count of all created instances of T
+      25       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		static ptrdiff_t iLivingCounter;	///< Counter of actually existing instances of T .Probably `ssize_t` in [C++23](http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2020/p0330r8.html)
+      26       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      #if (__cplusplus >= 201103L) || (_MSC_VER >= 1600)
+      27       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		friend T;							///< Set Template argument class as friend. So no one (only class) have access to the private methods of ClassInfo instances. C++11 feature.
+      28       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      #else
+      29       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      	public:
+      30       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      #endif
+      31       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		// c'tors:
+      32       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      #define CLASSINFO_DEFAULT_CTOR_BODY :iID(iTotalCounter++) { iLivingCounter++; }
+      33       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      #if (__cplusplus >= 201103L) || (_MSC_VER >= 1800)
+      34       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      	#define CLASSINFO_DEFAULT_CTOR_BODY_DELEGATED :ClassInfo() {}
+      35       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      #else
+      36       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      	#define CLASSINFO_DEFAULT_CTOR_BODY_DELEGATED CLASSINFO_DEFAULT_CTOR_BODY
+      37       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      #endif
+      38       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      
+      39       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		/** \brief Default c'tor
+      40       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		 *  \details Initialise iID and increment counters.
+      41       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		 */
+      42       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		ClassInfo() CLASSINFO_DEFAULT_CTOR_BODY
+      43       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      
+      44       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		/** \brief Copy c'tor
+      45       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		 *  \details Initialise iID and increment counters.
+      46       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		 */
+      47       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		ClassInfo(const ClassInfo &) CLASSINFO_DEFAULT_CTOR_BODY_DELEGATED
+      48       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      
+      49       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		// d'tor
+      50       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		/** \brief d'tor
+      51       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		 *  \details Decrement Living instance counter only.
+      52       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		 */
+      53       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		~ClassInfo()
+      54       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      			{
+      55       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      			iLivingCounter--;
+      56       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      			}
+      57       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      
+      58       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		/** \brief Assigment operator
+      59       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		 *  \return Just return self
+      60       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		 */
+      61       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		ClassInfo& operator=(const ClassInfo &)
+      62       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      			{
+      63       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      			return *this;
+      64       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      			}
+      65       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      
+      66       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      #define CLASSINFO_MOVE_SEMANTICS
+      67       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      #ifdef CLASSINFO_MOVE_SEMANTICS
+      68       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		
+      69       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		/** \brief Move c'tor!
+      70       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		 *  \details Initialise new iID and increment counters.
+      71       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		 */
+      72       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		ClassInfo(ClassInfo &&) CLASSINFO_DEFAULT_CTOR_BODY_DELEGATED
+      73       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      
+      74       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		/** \brief Move operator
+      75       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		 *  \return Just return self
+      76       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		 */
+      77       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		ClassInfo& operator=(ClassInfo &&)
+      78       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      			{
+      79       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      			return *this;
+      80       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      			}
+      81       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      
+      82       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      #endif /* CLASSINFO_MOVE_SEMANTICS */
+      83       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      
+      84       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		/** \brief ID getter
+      85       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		 *  \return Unique instance ID
+      86       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		 */
+      87       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		size_t ID() const
+      88       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      			{
+      89       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      			return iID;
+      90       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      			}
+      91       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      
+      92       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      #if (__cplusplus >= 201103L) || (_MSC_VER >= 1600)
+      93       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      	public:
+      94       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      #endif
+      95       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		// counters getters:
+      96       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		/** \brief Getter for actual count of all created instances
+      97       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		 *  \return Actual count of all created instances
+      98       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		 */
+      99       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		static size_t Total()
+     100       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      			{
+     101       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      			return iTotalCounter;
+     102       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      			}
+     103       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      
+     104       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		/** \brief Getter for count of actually existing instances
+     105       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		 *  \return Count of actually existing instances
+     106       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		 */
+     107       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		static ptrdiff_t Living()		// ssize_t in C++23: http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2020/p0330r8.html
+     108       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      			{
+     109       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      			return iLivingCounter;
+     110       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      			}
+     111       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      
+     112       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      		}; /* class ClassInfo */
+     113       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      
+     114       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      template <typename T>
+     115       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      	size_t ClassInfo<T>::iTotalCounter = 0;
+     116       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      
+     117       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      template <typename T>
+     118       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      	ptrdiff_t ClassInfo<T>::iLivingCounter = 0;
+     119       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      
+     120       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/ClassInfo.h            petyovsky                      #endif /* CLASSINFO_H */

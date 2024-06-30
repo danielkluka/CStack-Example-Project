@@ -1,0 +1,10 @@
+/** \file CContainer.cpp
+ *  \brief CContainer class implementation
+ *  \details File contain CContainer class container implementation.
+ *  \authors 
+ *  \version 0.0.1
+ *  $Id$
+*/
+
+#include "CContainer.h"
+

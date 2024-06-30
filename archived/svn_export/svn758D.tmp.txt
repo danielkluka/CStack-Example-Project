@@ -1,0 +1,158 @@
+  line   rev      merged   date                           path                                                         author                         content 
+
+       0       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      #ifndef CBLOCKBASE_H
+       1       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      #define CBLOCKBASE_H
+       2       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      /** \file CBlockBase.h
+       3       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                       *  \brief CBlockBase class header
+       4       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                       *  \details File contain base class CBlockBase definition.
+       5       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                       *  \warning Don't modify this file
+       6       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                       *  \authors Petyovsky, Richter
+       7       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                       *  \version 2022
+       8       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                       *  $Id$
+       9       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                       */
+      10       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      
+      11       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      #define CBLOCK_TEST_API				///< If defined `CBlock` have special APIs for testing
+      12       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      
+      13       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      #define CBLOCK_THREE_WAY_COMPARISON	///< If defined `CBlock` support C++20 Threeway comparison operator
+      14       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      
+      15       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      #ifdef CBLOCK_THREE_WAY_COMPARISON
+      16       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	#include <compare>					///< Support `std` include for C++20 Threeway comparison operator
+      17       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      #endif /* CBLOCK_THREE_WAY_COMPARISON */
+      18       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      
+      19       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      // Change constexpr to false if you want generate exceptions from d'tors
+      20       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      constexpr bool KCBlockDtorNoException = true;		///< Set to `true` if you do not want generate exceptions from d'tors
+      21       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      
+      22       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      #include <iostream>
+      23       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      #include <sstream>
+      24       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      #include <stdexcept>
+      25       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      #include <typeinfo>
+      26       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      #include "ClassInfo.h"
+      27       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      #include "demagle.h"
+      28       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      #include "check.h"
+      29       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      
+      30       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      /** \brief CBlockBase class
+      31       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                       *  \details Definition of linked list class. There are defined all common methods and attributes.
+      32       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                       */
+      33       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      class CBlockBase
+      34       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	{
+      35       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	ClassInfo<CBlockBase> iInstanceInfo;	///< Instance of the class info for usage statistics
+      36     2471     2471 13. 12. 2022 13:24:00          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           xmajnu01                       	mutable CBlockBase* iNext;				///< Intrusive attribute - location of next node
+      37       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	mutable CBlockBase* iPrev;				///< Intrusive attribute - location of previous node
+      38       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	mutable int iExtraInt;					///< Intrusive attribute, useful for some projects only: multiset, priority queue
+      39       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      
+      40       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	CBlockBase(const CBlockBase& aItem);	///< Delete (or disable) automaticaly synthesized copy c'tor
+      41       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      
+      42       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      public:
+      43       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	// c'tors:
+      44       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	/** \brief EntityBase constructor
+      45       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	 *  \authors Petyovsky, Richter
+      46       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	 */
+      47       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	CBlockBase(CBlockBase* aPrev = nullptr, CBlockBase *aNext = nullptr,  int aExtraInt = 0): iNext(aNext), iPrev(aPrev), iExtraInt(aExtraInt)
+      48       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      		{		      
+      49       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      		}
+      50       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      
+      51       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	// d'tor
+      52       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	/** \brief Node destructor.
+      53       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	 *  \details To be correctly destructed, the object pointers must point to nullptr.
+      54       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	 *  \authors Petyovsky, Richter
+      55       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	 *  \attention It should generate exception (if not point to nullptr).
+      56       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	 */
+      57       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	virtual ~CBlockBase() noexcept(KCBlockDtorNoException)
+      58       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      		{
+      59       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      		if(NextItem() != nullptr || PrevItem() != nullptr)
+      60       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      			{
+      61       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      			std::ostringstream oss;
+      62       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      			oss << "Instance of class: \'" << DM(typeid(*this).name()) << '#' << ID() << "\' is destructed with pointers not nullptr!"; 
+      63       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      
+      64       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      			if constexpr(KCBlockDtorNoException)
+      65       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      				std::cerr << std::endl << "ERROR: \a" << oss.str() << std::endl;
+      66       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      			else
+      67       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      				throw std::runtime_error(oss.str());
+      68       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      			}
+      69       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      		}
+      70       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      
+      71       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	// Intrusive setter/getter:
+      72       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	/** \brief Setter of Next pointer
+      73       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	 *  \param[in]	aNext	New value of Next pointer (next node address)
+      74       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	 *  \authors Petyovsky, Richter
+      75       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	 */
+      76       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	CBlockBase* SetNextItem(CBlockBase *aNext) const
+      77       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      		{
+      78       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      		CBlockBase *oldNextItem(iNext);
+      79       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      		iNext = aNext;
+      80       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      		return oldNextItem;
+      81       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      		}
+      82       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      
+      83       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	// Intrusive setter/getter:
+      84       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	/** \brief Setter of iPrev pointer
+      85       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	 *  \param[in]	aPrev	New value of iPrev pointer (previous node address)
+      86       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	 *  \authors Petyovsky, Richter
+      87       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	 */
+      88       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	CBlockBase* SetPrevItem(CBlockBase* aPrev) const
+      89       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      		{
+      90       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      		CBlockBase* oldPrevItem(iPrev);
+      91       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      		iPrev = aPrev;
+      92       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      		return oldPrevItem;
+      93       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      		}
+      94       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      
+      95       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	/** \brief Getter of NextItem pointer
+      96       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	 *  \return Value of intrusive member iNext pointer (next node address)
+      97       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	 *  \authors Petyovsky, Richter
+      98       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	 */
+      99       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	CBlockBase* NextItem() const
+     100       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      		{
+     101       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      		return iNext;
+     102       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      		}
+     103       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      
+     104       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	/** \brief Getter of PrevItem pointer
+     105       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	 *  \return Value of intrusive member iPrev pointer (previous node address)
+     106       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	 *  \authors Petyovsky, Richter
+     107       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	 */
+     108       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	CBlockBase* PrevItem() const
+     109       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      		{
+     110       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      		return iPrev;
+     111       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      		}
+     112       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      
+     113       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	/** \brief Setter of iPrev and iNext pointers
+     114       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	 *  \param[in]	aPrev	New value of iPrev pointer (previous node address)
+     115       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	 *  \param[in]	aNext	New value of iNext pointer (next node address)
+     116       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	 *  \authors Petyovsky, Richter
+     117       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	 */
+     118       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	void SetPrevNext(CBlockBase* aPrev, CBlockBase* aNext)
+     119       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      		{
+     120       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      		iPrev = aPrev;
+     121       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      		iNext = aNext;
+     122       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      		}
+     123       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      
+     124       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	// Intrusive setter/getter, useful for some projects only: multiset, priority queue:
+     125       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	/** \brief Setter of ExtraInt value
+     126       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	 *  \param[in]	aExtraInt	New ExtraInt value
+     127       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	 *  \authors Petyovsky, Richter
+     128       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	 */
+     129       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	void SetExtraInt(const int aExtraInt) const
+     130       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      		{
+     131       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      		iExtraInt = aExtraInt;
+     132       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      		}
+     133       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      
+     134       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	/** \brief Getter of ExtraInt value
+     135       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	 *  \return Value of intrusive member ExtraInt
+     136       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	 *  \authors Petyovsky, Richter
+     137       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	 */
+     138       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	int ExtraInt() const
+     139       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      		{
+     140       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      		return iExtraInt;
+     141       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      		}
+     142       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      
+     143       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	// InstanceInfo getters:
+     144       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	/** \brief ID getter
+     145       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	 *  \return Unique instance ID
+     146       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	 *  \authors Petyovsky, Richter
+     147       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	 */
+     148       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	size_t ID() const
+     149       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      		{
+     150       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      		return iInstanceInfo.ID();
+     151       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      		}
+     152       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      
+     153       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      	}; /* class CBlockBase */
+     154       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      
+     155       11       11 26. 10. 2022 19:11:03          /ct09_zasobnik1/trunk/Project/Project/CBlockBase.h           petyovsky                      #endif /* CBLOCKBASE_H */

@@ -1,0 +1,156 @@
+#ifndef CBLOCKBASE_H
+#define CBLOCKBASE_H
+/** \file CBlockBase.h
+ *  \brief CBlockBase class header
+ *  \details File contain base class CBlockBase definition.
+ *  \warning Don't modify this file
+ *  \authors Petyovsky, Richter
+ *  \version 2022
+ *  $Id: CBlockBase.h 1 2022-10-26 16:54:35Z petyovsky $
+ */
+
+#define CBLOCK_TEST_API				///< If defined `CBlock` have special APIs for testing
+
+#define CBLOCK_THREE_WAY_COMPARISON	///< If defined `CBlock` support C++20 Threeway comparison operator
+
+#ifdef CBLOCK_THREE_WAY_COMPARISON
+	#include <compare>					///< Support `std` include for C++20 Threeway comparison operator
+#endif /* CBLOCK_THREE_WAY_COMPARISON */
+
+// Change constexpr to false if you want generate exceptions from d'tors
+constexpr bool KCBlockDtorNoException = true;		///< Set to `true` if you do not want generate exceptions from d'tors
+
+#include <iostream>
+#include <sstream>
+#include <stdexcept>
+#include <typeinfo>
+#include "ClassInfo.h"
+#include "demagle.h"
+#include "check.h"
+
+/** \brief CBlockBase class
+ *  \details Definition of linked list class. There are defined all common methods and attributes.
+ */
+class CBlockBase
+	{
+	ClassInfo<CBlockBase> iInstanceInfo;	///< Instance of the class info for usage statistics
+	mutable CBlockBase *iNext;				///< Intrusive attribute - location of next node
+	mutable CBlockBase* iPrev;				///< Intrusive attribute - location of previous node
+	mutable int iExtraInt;					///< Intrusive attribute, useful for some projects only: multiset, priority queue
+
+	CBlockBase(const CBlockBase& aItem);	///< Delete (or disable) automaticaly synthesized copy c'tor
+
+public:
+	// c'tors:
+	/** \brief EntityBase constructor
+	 *  \authors Petyovsky, Richter
+	 */
+	CBlockBase(CBlockBase* aPrev = nullptr, CBlockBase *aNext = nullptr,  int aExtraInt = 0): iNext(aNext), iPrev(aPrev), iExtraInt(aExtraInt)
+		{		      
+		}
+
+	// d'tor
+	/** \brief Node destructor.
+	 *  \details To be correctly destructed, the object pointers must point to nullptr.
+	 *  \authors Petyovsky, Richter
+	 *  \attention It should generate exception (if not point to nullptr).
+	 */
+	virtual ~CBlockBase() noexcept(KCBlockDtorNoException)
+		{
+		if(NextItem() != nullptr || PrevItem() != nullptr)
+			{
+			std::ostringstream oss;
+			oss << "Instance of class: \'" << DM(typeid(*this).name()) << '#' << ID() << "\' is destructed with pointers not nullptr!"; 
+
+			if constexpr(KCBlockDtorNoException)
+				std::cerr << std::endl << "ERROR: \a" << oss.str() << std::endl;
+			else
+				throw std::runtime_error(oss.str());
+			}
+		}
+
+	// Intrusive setter/getter:
+	/** \brief Setter of Next pointer
+	 *  \param[in]	aNext	New value of Next pointer (next node address)
+	 *  \authors Petyovsky, Richter
+	 */
+	CBlockBase* SetNextItem(CBlockBase *aNext) const
+		{
+		CBlockBase *oldNextItem(iNext);
+		iNext = aNext;
+		return oldNextItem;
+		}
+
+	// Intrusive setter/getter:
+	/** \brief Setter of iPrev pointer
+	 *  \param[in]	aPrev	New value of iPrev pointer (previous node address)
+	 *  \authors Petyovsky, Richter
+	 */
+	CBlockBase* SetPrevItem(CBlockBase* aPrev) const
+		{
+		CBlockBase* oldPrevItem(iPrev);
+		iPrev = aPrev;
+		return oldPrevItem;
+		}
+
+	/** \brief Getter of NextItem pointer
+	 *  \return Value of intrusive member iNext pointer (next node address)
+	 *  \authors Petyovsky, Richter
+	 */
+	CBlockBase* NextItem() const
+		{
+		return iNext;
+		}
+
+	/** \brief Getter of PrevItem pointer
+	 *  \return Value of intrusive member iPrev pointer (previous node address)
+	 *  \authors Petyovsky, Richter
+	 */
+	CBlockBase* PrevItem() const
+		{
+		return iPrev;
+		}
+
+	/** \brief Setter of iPrev and iNext pointers
+	 *  \param[in]	aPrev	New value of iPrev pointer (previous node address)
+	 *  \param[in]	aNext	New value of iNext pointer (next node address)
+	 *  \authors Petyovsky, Richter
+	 */
+	void SetPrevNext(CBlockBase* aPrev, CBlockBase* aNext)
+		{
+		iPrev = aPrev;
+		iNext = aNext;
+		}
+
+	// Intrusive setter/getter, useful for some projects only: multiset, priority queue:
+	/** \brief Setter of ExtraInt value
+	 *  \param[in]	aExtraInt	New ExtraInt value
+	 *  \authors Petyovsky, Richter
+	 */
+	void SetExtraInt(const int aExtraInt) const
+		{
+		iExtraInt = aExtraInt;
+		}
+
+	/** \brief Getter of ExtraInt value
+	 *  \return Value of intrusive member ExtraInt
+	 *  \authors Petyovsky, Richter
+	 */
+	int ExtraInt() const
+		{
+		return iExtraInt;
+		}
+
+	// InstanceInfo getters:
+	/** \brief ID getter
+	 *  \return Unique instance ID
+	 *  \authors Petyovsky, Richter
+	 */
+	size_t ID() const
+		{
+		return iInstanceInfo.ID();
+		}
+
+	}; /* class CBlockBase */
+
+#endif /* CBLOCKBASE_H */

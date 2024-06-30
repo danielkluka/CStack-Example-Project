@@ -1,0 +1,56 @@
+\page doc Dokumentace projektu CStack, autor Kluka
+
+| Project BPC-PPC				| 2022															| List of methods of each author	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| ---							| ---															| ---					                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Author 1:						| `230122`, __Majnuš__ Martin, xmajnu01@vut.cz					|	From class `CStack`: [Private method CompareDeep](\ref CStack::CompareDeep), [Default c'tor](\ref CStack::CStack), [Copy c'tor](\ref CStack::CStack), `Destructor`, [Actual getter](\ref CStack::Actual), [ID getter](\ref CStack::ID), [Total getter](\ref CStack::Total), [Unary Operator !](\ref CStack::operator!), [Binary Operator +](\ref CStack::operator+), [Binary Operator =](\ref CStack::operator=), `Relational Operator !=`, [Output to the stream operator](\ref CStack::operator<<), [Input from the stream operator](\ref CStack::operator>>), [Stack Bottom](\ref CStack::Bottom)						                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |	
+| Author 2:						| `203251`, __Kluka__ Daniel, xkluka00@vut.cz					|	Team leader and admin of Trello team board; Author of entire file `CBlock_long` and its documentation; Author of entire file `CBlock_TInterval` with class [TInterval](\ref CBlock_TInterval::TInterval) and its documentation; Documentation of files `main.cpp`, `CStack.cpp` and `Documentation.md`; From class `CStack`: [CBlock conversion c'tor](\ref CStack::CStack), [String conversion c'tor](\ref CStack::CStack), [Destroy](\ref CStack::Destroy), [PocetPrvku getter](\ref CStack::PocetPrvku), [Unary Operator -](\ref CStack::operator-), [Unary Operator --](\ref CStack::operator--), [Binary Operator -=](\ref CStack::operator-=), [Relational Operator ==](\ref CStack::operator==), [Three-way comparison by Value Operator](\ref CStack::operator<=>), [Method aaa.Reverzuj](\ref CStack::Reverzuj) and added [Destroy](\ref CStack::Destroy); Helped with methods of author 1: [Private method CompareDeep](\ref CStack::CompareDeep), `Destructor`, [Input from the stream operator](\ref CStack::operator>>) and methods of author 3 and 4: [Stack Push](\ref CStack::Push), [Stack Pop](\ref CStack::Pop), [Stack Search](\ref CStack::Search) |
+| Author 3:						| `230159`, __Prasek__ Šimon, xprase08@vut.cz					|	From class `CStack`: [Conversion c'tor from init list](\ref CStack::CStack), [Conversion c'tor of type size_t](\ref CStack::CStack), [Unary Operator ++](\ref CStack::operator++), [Binary Operator -](\ref CStack::operator-), `Operator size_t`, `Relational Operator <`, [Function Reverzuj(aaa)](\ref CStack::Reverzuj), [Stack Push](\ref CStack::Push) (with author 4), [Stack Pop](\ref CStack::Pop) (with author 4), [Stack Top](\ref CStack::Top) (with author 4), [Stack Search](\ref CStack::Search) (with author 4), [Stack Dup](\ref CStack::Dup) (with author 4)	                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Author 4:						| `228732`, __Pešek__ David, xpesek13@vut.cz					|	From class `CStack`: [Private method Compare](\ref CStack::Compare), [CBlock conversion c'tor from array of known size](\ref CStack::CStack), [Usage getter](\ref CStack::Usage), [Unary Operator +](\ref CStack::operator+), [Binary non-member Operator +](\ref CStack::operator+), [Binary Operator +=](\ref CStack::operator+=), `Relational Operator >`, [Stack Push](\ref CStack::Push) (with author 3), [Stack Pop](\ref CStack::Pop) (with author 3), [Stack Top](\ref CStack::Top) (with author 3), [Stack Search](\ref CStack::Search) (with author 3), [Stack Dup](\ref CStack::Dup) (with author 3)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |	
+
+## Stack
+Stack is a type of container adaptors with LI-FO (Last In - First Out) type of working, where a new element is added at one end (Top) and an element is removed from that end only.
+
+### Class CStack
+Class `CStack` implements all characteristic methods of Stack using double linked list. Each element is created using class `CBlock`.
+Number of all created and actually living instances of class `CStack` is possible to monitor using class `ClassInfo` and its internal variables and methods `Total` and `Living`.
+Every instance of class `CStack` has in class `ClassInfo` its uniqe `iID`, which serves as identification of this `CStack` instance in order in which instances where created. This `iID` is also accessible outside class `CStack` using `ID()` method.
+
+Object of class CStack includes pointer at the first item of Stack - `iTop` (last inserted) - and `iBottom` - pointer at the last item of Stack (first inserted).
+Every inserted item in Stack is defined as `CBlock`, specifically `CBlock_bool`, `CBlock_long`, `CBlock_TInterval` and `CBlock_TWeekDay`, which have their own separate classes with their own characteristic methods and all of them are completely working and class CStack completely works with all of them.
+More detailed and accurate informations are included in documentation in every of these `CBlock`s and `CStack`. In file main.cpp were created 
+
+### Unit Tests
+For testing of most methods of class CStack were created unit test and some of them are testing more than one method. For that reason weren't created extra unit test for those methods. For special reasons were created modes `KLUKA_PRINT` and `CONSULTATION`, both can be activated and deactivated at any times.
+Both modes are documented in `main.cpp` with manual how to use them and where are their definitions.
+
+## Conclusion and Rating
+If Formula 1 is pinnacle of motorsport, this project is pinnacle of programming. And I love them both.
+
+Whole progress of this project: https://trello.com/invite/b/wVg5QW7U/ATTI2d60d8c727decd8442ac5a48e537d76d9D2E9C9B/ppc-projekt
+
+You Are Invited.
+
+## Changes in Introduction.md
+
+### Old
+- operátor __– jako__ binární operátor __vznikne nový zásobník, který bude obsahovat všechny prvky z prvního zásobníku, které neobsahuje druhý zásobník a nebude ctít pořadí.__ ( __Prasek__ )
+- operátor __-= realizující__ a = a-b; __tak, že zavolá sám sebe a odečte od všech hodnot zásobníku a hodnoty zásobníku b.__ ( __Kluka__ )
+- operátor __+= realizující__ a = a+b; __tak, že zavolá sám sebe a přičte všem hodnotám zásobníku a hodnoty zásobníku b.__ ( __Pešek__ )
+
+### New
+- operátor __– jako__ binární operátor, __který vytvoří nový zásobník obsahujíci hodnoty zásobníku a - ty, které nejsou v zásobníku b - tento nový zásobník vrátí a nebude ctít pořadí.__ ( __Prasek__ )
+- operátor __-= realizující__ a = a-b; __tak, že vytvoří nový zásobník, který obsahuje hodnoty zásobníku a - ty, které nejsou v zásobníku b - a tento zásobník přiřadí this.__ ( __Kluka__ )
+- operátor __+= realizující__ a = a+b; __tak, že zásobníku a hodnoty zásobníku b.__ ( __Pešek__ )
+
+### Added
+- Methods:
+  - [Destroy](\ref CStack::Destroy)
+ 
+- Exceptions:
+  - "Error: iCount is 0 or iTop is nullptr"
+  - "Error: Pop is not working correctly"
+  - "Error: One of iTops is nullptr"
+  - "Error: Operator = is not working correctly"
+
+
+$Id$

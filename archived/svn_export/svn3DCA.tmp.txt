@@ -1,0 +1,968 @@
+  line   rev      merged   date                           path                                                         author                         content 
+
+       0     2077     2077 2. 12. 2022 14:06:46           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       #include "CBlockUnitTests.h"
+       1     1777     1777 1. 12. 2022 12:56:07           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+       2     1777     1777 1. 12. 2022 12:56:07           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+       3     1777     1777 1. 12. 2022 12:56:07           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+       4     1777     1777 1. 12. 2022 12:56:07           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       namespace UnitTests
+       5     2534     2534 14. 12. 2022 15:57:35          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       	{
+       6     1777     1777 1. 12. 2022 12:56:07           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       	TEST_CLASS(UnitTests)
+       7     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       	{
+       8     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       	public:
+       9     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       	// c'tors
+      10     3662     3662 29. 12. 2022 18:17:11          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		/**
+      11     3666     3666 29. 12. 2022 19:29:29          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 \test **Test of Default c'tor**. **Author:** `Majnus`.
+      12     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 */
+      13     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		TEST_METHOD(CStack_default_ctor)
+      14     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			{
+      15     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			const size_t alloc_count_before = get_alloc_count();
+      16     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			const size_t dealloc_count_before = get_dealloc_count();
+      17     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			const size_t realloc_count_before = get_realloc_count();
+      18     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			const ptrdiff_t living_before = ClassInfo<CStack>::Living();
+      19     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			CStack val0;
+      20     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			const ptrdiff_t living_after = ClassInfo<CStack>::Living();
+      21     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			const size_t alloc_count_after = get_alloc_count();
+      22     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			const size_t dealloc_count_after = get_dealloc_count();
+      23     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			const size_t realloc_count_after = get_realloc_count();
+      24     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsTrue(living_before + 1 == living_after, L"Wrong number of instances", LINE_INFO());
+      25     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::AreEqual(alloc_count_before, alloc_count_after, L"Default c'tor allocate", LINE_INFO());
+      26     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::AreEqual(dealloc_count_before, dealloc_count_after, L"Default c'tor deallocate", LINE_INFO());
+      27     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::AreEqual(realloc_count_before, realloc_count_after, L"Default c'tor reallocate", LINE_INFO());
+      28     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			CStack val1;
+      29     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsTrue(val1.ID() > val0.ID(), L"Wrong ClassInfo ID initialization", LINE_INFO());
+      30     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			}
+      31     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+      32     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		/**
+      33     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 \test **Test of CBlock conversion c'tor**. **Author:** `Kluka`.
+      34     3668     3668 29. 12. 2022 19:47:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - Instance can be correctly inicialized with `CBlock::TestValue0` and `CBlock::TestValue1`.
+      35     3668     3668 29. 12. 2022 19:47:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - Counter `ClassInfo::Living` was incremented.
+      36     3668     3668 29. 12. 2022 19:47:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - Each new CBlock instance have unique `ClassInfo::ID`.
+      37     3668     3668 29. 12. 2022 19:47:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - C'tor allocate, reallocate od deallocate dynamic memory if it was defined by `KCBlock_allocate` predicate.
+      38     3668     3668 29. 12. 2022 19:47:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - Destruction of constructed instance deallocate memory if it was defined by `KCBlock_allocate` predicate.
+      39     3668     3668 29. 12. 2022 19:47:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - Destruction of constructed instance decrement counter `ClassInfo::Living`.
+      40     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  */
+      41     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		TEST_METHOD(CStack_bloc_conv_ctor)
+      42     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			{
+      43     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			size_t allocsize_before = get_alloc_actual_size();
+      44     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			ptrdiff_t living_before = ClassInfo<CStack>::Living();
+      45     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			ptrdiff_t living_after;
+      46     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			size_t allocsize_after;
+      47     2391     2391 10. 12. 2022 14:01:19          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				{
+      48     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				const CBlock val0(CBlock::TestValue0());
+      49     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				const CBlock val1(CBlock::TestValue1());
+      50     2077     2077 2. 12. 2022 14:06:46           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+      51     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				const CStack stack0(val0);
+      52     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				const CStack stack1(val1);
+      53     2128     2128 2. 12. 2022 17:26:39           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+      54     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				living_after = ClassInfo<CStack>::Living();
+      55     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				allocsize_after = get_alloc_actual_size();
+      56     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(CBlock::TestValue0() == val0.Value(), L"Wrong value", LINE_INFO());
+      57     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(CBlock::TestValue1() == val1.Value(), L"Wrong value", LINE_INFO());
+      58     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsFalse(val0.Value() == val1.Value(), L"Wrong value", LINE_INFO());
+      59     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(living_before + 2 == living_after, L"Wrong number of instances", LINE_INFO());
+      60     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(val1.ID() > val0.ID(), L"Wrong ClassInfo ID initialization", LINE_INFO());
+      61     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(stack1.ID() > stack0.ID(), L"Wrong ClassInfo ID initialization", LINE_INFO());
+      62     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				if constexpr(KCBlock_allocate)
+      63     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       					Assert::IsTrue(allocsize_before < allocsize_after, L"No memory allocation", LINE_INFO());
+      64     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				}
+      65     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			ptrdiff_t living_after2 = ClassInfo<CStack>::Living();
+      66     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			size_t allocsize_after2 = get_alloc_actual_size();
+      67     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsTrue(living_before == living_after2, L"Wrong number of instances", LINE_INFO());
+      68     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::AreEqual(allocsize_before, allocsize_after2, L"Memory leaking", LINE_INFO());
+      69     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			}
+      70     2391     2391 10. 12. 2022 14:01:19          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+      71     3662     3662 29. 12. 2022 18:17:11          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		/**
+      72     3666     3666 29. 12. 2022 19:29:29          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 \test **Test of Copy c'tor**. **Author:** `Majnus`.
+      73     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 */
+      74     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		TEST_METHOD(CStack_copy_ctor)
+      75     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			{
+      76     3661     3661 29. 12. 2022 17:57:41          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			CBlock CBlockVal0(CBlock::TestValue0());
+      77     2855     2855 18. 12. 2022 17:19:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			CBlock CBlockVal1(CBlock::TestValue1());
+      78     2855     2855 18. 12. 2022 17:19:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			CStack stack1;
+      79     2855     2855 18. 12. 2022 17:19:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+      80     2855     2855 18. 12. 2022 17:19:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			stack1.Push(CBlockVal1);
+      81     2855     2855 18. 12. 2022 17:19:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			stack1.Push(CBlockVal1);
+      82     2855     2855 18. 12. 2022 17:19:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+      83     2855     2855 18. 12. 2022 17:19:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			CStack stack2(stack1);
+      84     2855     2855 18. 12. 2022 17:19:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			
+      85     2855     2855 18. 12. 2022 17:19:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			while (stack1.Top() != nullptr)
+      86     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				{
+      87     2855     2855 18. 12. 2022 17:19:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       				Assert::IsTrue(stack1.Top()->Value() == stack2.Top()->Value(), L"Copy isnt the same!", LINE_INFO());
+      88     2855     2855 18. 12. 2022 17:19:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       				stack1.Pop();
+      89     2855     2855 18. 12. 2022 17:19:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       				stack2.Pop();
+      90     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				}
+      91     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			}
+      92     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+      93     3662     3662 29. 12. 2022 18:17:11          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		/**
+      94     3666     3666 29. 12. 2022 19:29:29          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 \test **Test of String conversion c'tor**. **Author:** `Kluka`.
+      95     3668     3668 29. 12. 2022 19:47:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - Instance can be correctly inicialized with `CBlock::TestValue0` and `CBlock::TestValue1`.
+      96     3668     3668 29. 12. 2022 19:47:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - New Stacks are created using streams `"("+CBlock::TestStringValue0()+")"` and `"("+CBlock::TestStringValue1()+")"`.
+      97     3668     3668 29. 12. 2022 19:47:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - `CBlock::TestStringValue0` at the top of `stack0` is then compared with `CBlock::TestValue0` in instance `val0`, values must be same.
+      98     3668     3668 29. 12. 2022 19:47:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - `CBlock::TestStringValue1` at the top of `stack1` is then compared with `CBlock::TestValue1` in instance `val1`, values must be same.
+      99     3668     3668 29. 12. 2022 19:47:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - This is also test, if streams were given at the right format.
+     100     3668     3668 29. 12. 2022 19:47:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - Counter `ClassInfo::Living` was incremented.
+     101     3668     3668 29. 12. 2022 19:47:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - Each new CBlock instance have unique `ClassInfo::ID`.
+     102     3668     3668 29. 12. 2022 19:47:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - C'tor allocate, reallocate od deallocate dynamic memory if it was defined by `KCBlock_allocate` predicate.
+     103     3668     3668 29. 12. 2022 19:47:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - Destruction of constructed instance deallocate memory if it was defined by `KCBlock_allocate` predicate.
+     104     3668     3668 29. 12. 2022 19:47:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - Destruction of constructed instance decrement counter `ClassInfo::Living`.
+     105     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 */
+     106     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		TEST_METHOD(CStack_str_conv_ctor)
+     107     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			{
+     108     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			size_t allocsize_before = get_alloc_actual_size();
+     109     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			ptrdiff_t living_before = ClassInfo<CStack>::Living();
+     110     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			ptrdiff_t living_after;
+     111     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			size_t allocsize_after;
+     112     2397     2397 10. 12. 2022 18:20:27          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				{
+     113     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				const CBlock val0(CBlock::TestValue0());
+     114     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				const CBlock val1(CBlock::TestValue1());
+     115     2391     2391 10. 12. 2022 14:01:19          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     116     2949     2949 19. 12. 2022 18:01:54          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				const CStack stack0("("+CBlock::TestStringValue0()+")");
+     117     2949     2949 19. 12. 2022 18:01:54          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				const CStack stack1("("+CBlock::TestStringValue1()+")");
+     118     2397     2397 10. 12. 2022 18:20:27          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     119     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				living_after = ClassInfo<CStack>::Living();
+     120     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				allocsize_after = get_alloc_actual_size();
+     121     2949     2949 19. 12. 2022 18:01:54          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(stack0.Top()->Value() == val0.Value(), L"Value isn't same", LINE_INFO());
+     122     2949     2949 19. 12. 2022 18:01:54          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(stack1.Top()->Value() == val1.Value(), L"Value isn't same", LINE_INFO());
+     123     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsFalse(val0.Value() == val1.Value(), L"Wrong value", LINE_INFO());
+     124     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(living_before + 2 == living_after, L"Wrong number of instances", LINE_INFO());
+     125     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(stack1.ID() > stack0.ID(), L"Wrong ClassInfo ID initialization", LINE_INFO());
+     126     2949     2949 19. 12. 2022 18:01:54          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(allocsize_before < allocsize_after, L"No memory allocation", LINE_INFO());
+     127     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				}
+     128     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			ptrdiff_t living_after2 = ClassInfo<CStack>::Living();
+     129     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			size_t allocsize_after2 = get_alloc_actual_size();
+     130     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsTrue(living_before == living_after2, L"Wrong number of instances", LINE_INFO());
+     131     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::AreEqual(allocsize_before, allocsize_after2, L"Memory leaking", LINE_INFO());
+     132     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			}
+     133     2391     2391 10. 12. 2022 14:01:19          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     134     3662     3662 29. 12. 2022 18:17:11          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		/**
+     135     3666     3666 29. 12. 2022 19:29:29          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 \test **Test of CBlock conversion c'tor from array of known size**. **Author:** `Pesek`.
+     136     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 */
+     137     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		TEST_METHOD(CStack_array_conv_ctor)
+     138     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			{
+     139     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			size_t allocsize_before = get_alloc_actual_size();
+     140     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			ptrdiff_t living_before = ClassInfo<CStack>::Living();
+     141     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			ptrdiff_t living_after;
+     142     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			size_t allocsize_after;
+     143     2462     2462 13. 12. 2022 0:12:52           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				{
+     144     2879     2879 18. 12. 2022 21:59:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				CBlock* iArray3 = CStack::TestValue0(3);
+     145     2879     2879 18. 12. 2022 21:59:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				CBlock* iArray4 = CStack::TestValue0(4);
+     146     2391     2391 10. 12. 2022 14:01:19          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     147     2879     2879 18. 12. 2022 21:59:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				const CStack val03 = CStack(3, iArray3);
+     148     2879     2879 18. 12. 2022 21:59:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				const CStack val04 = CStack(4, iArray4);
+     149     2879     2879 18. 12. 2022 21:59:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       
+     150     2879     2879 18. 12. 2022 21:59:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				free(iArray3);
+     151     2879     2879 18. 12. 2022 21:59:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				free(iArray4);
+     152     2879     2879 18. 12. 2022 21:59:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       
+     153     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				living_after = ClassInfo<CStack>::Living();
+     154     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				allocsize_after = get_alloc_actual_size();
+     155     2462     2462 13. 12. 2022 0:12:52           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       
+     156     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(val03.PocetPrvku() == 3, L"Wrong size of Stack", LINE_INFO());
+     157     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(val04.PocetPrvku() == 4, L"Wrong size of Stack", LINE_INFO());
+     158     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(living_before + 2 == living_after, L"Wrong number of instances", LINE_INFO());
+     159     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(val04.ID() > val03.ID(), L"Wrong ClassInfo ID initialization", LINE_INFO());
+     160     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(allocsize_before < allocsize_after, L"No memory allocation", LINE_INFO());
+     161     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				}
+     162     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			ptrdiff_t living_after2 = ClassInfo<CStack>::Living();
+     163     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			size_t allocsize_after2 = get_alloc_actual_size();
+     164     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsTrue(living_before == living_after2, L"Wrong number of instances", LINE_INFO());
+     165     2875     2875 18. 12. 2022 21:31:52          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			Assert::AreEqual(allocsize_before, allocsize_after2, L"Memory leaking", LINE_INFO());
+     166     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			}
+     167     2462     2462 13. 12. 2022 0:12:52           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       
+     168     3662     3662 29. 12. 2022 18:17:11          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		/**
+     169     3666     3666 29. 12. 2022 19:29:29          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 \test **Test of Conversion c'tor from init list**. **Author:** `Prasek`.
+     170     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 */
+     171     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		TEST_METHOD(CStack_initl_conv_ctor)
+     172     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			{
+     173     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			size_t allocsize_before = get_alloc_actual_size();
+     174     2935     2935 19. 12. 2022 15:45:52          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			ptrdiff_t living_before = ClassInfo<CStack>::Living();
+     175     2935     2935 19. 12. 2022 15:45:52          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			ptrdiff_t living_after;
+     176     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			size_t allocsize_after;
+     177     2935     2935 19. 12. 2022 15:45:52          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       				{
+     178     2935     2935 19. 12. 2022 15:45:52          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       				const CBlock val0(CBlock::TestValue0());
+     179     2935     2935 19. 12. 2022 15:45:52          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       				const CBlock val1(CBlock::TestValue1());
+     180     2935     2935 19. 12. 2022 15:45:52          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       				CStack const stack = { val0, val1 };
+     181     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       
+     182     2935     2935 19. 12. 2022 15:45:52          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       				living_after = ClassInfo<CStack>::Living();
+     183     2935     2935 19. 12. 2022 15:45:52          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       				allocsize_after = get_alloc_actual_size();
+     184     2935     2935 19. 12. 2022 15:45:52          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       				
+     185     2935     2935 19. 12. 2022 15:45:52          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       				Assert::IsTrue(stack.PocetPrvku() == 2, L"Wrong size of Stack", LINE_INFO());
+     186     2935     2935 19. 12. 2022 15:45:52          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       				Assert::IsTrue(stack.Top()->Value() == val1.Value(), L"Wrong element on top of Stack", LINE_INFO());
+     187     2935     2935 19. 12. 2022 15:45:52          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       				Assert::IsTrue(stack.Bottom()->Value() == val0.Value(), L"Wrong element on bottom of Stack", LINE_INFO());
+     188     2935     2935 19. 12. 2022 15:45:52          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       				Assert::IsTrue(living_before + 1 == living_after, L"Wrong number of instances", LINE_INFO());
+     189     2935     2935 19. 12. 2022 15:45:52          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			
+     190     2935     2935 19. 12. 2022 15:45:52          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       				if constexpr (KCBlock_allocate)
+     191     2935     2935 19. 12. 2022 15:45:52          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       					Assert::IsTrue(allocsize_before < allocsize_after, L"No memory allocation", LINE_INFO());
+     192     2935     2935 19. 12. 2022 15:45:52          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       				}
+     193     2935     2935 19. 12. 2022 15:45:52          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			ptrdiff_t living_after1 = ClassInfo<CStack>::Living();
+     194     2935     2935 19. 12. 2022 15:45:52          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			size_t allocsize_after1 = get_alloc_actual_size();
+     195     2935     2935 19. 12. 2022 15:45:52          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			Assert::IsTrue(living_before == living_after1, L"Wrong number of instances", LINE_INFO());
+     196     2935     2935 19. 12. 2022 15:45:52          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			Assert::AreEqual(allocsize_before, allocsize_after1, L"Memory leaking", LINE_INFO());
+     197     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			}
+     198     2391     2391 10. 12. 2022 14:01:19          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     199     3662     3662 29. 12. 2022 18:17:11          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		/**
+     200     3666     3666 29. 12. 2022 19:29:29          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 \test **Test of Conversion c'tor of type size_t**. **Author:** `Prasek`.
+     201     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 */
+     202     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		TEST_METHOD(CStack_sizet_conv_ctor)
+     203     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			{
+     204     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			size_t allocsize_before = get_alloc_actual_size();
+     205     2935     2935 19. 12. 2022 15:45:52          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			ptrdiff_t living_before = ClassInfo<CStack>::Living();
+     206     2935     2935 19. 12. 2022 15:45:52          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			ptrdiff_t living_after;
+     207     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			size_t allocsize_after;
+     208     2935     2935 19. 12. 2022 15:45:52          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       				{
+     209     2935     2935 19. 12. 2022 15:45:52          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       				CStack stack(3);
+     210     2935     2935 19. 12. 2022 15:45:52          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       				living_after = ClassInfo<CStack>::Living();
+     211     2935     2935 19. 12. 2022 15:45:52          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       				allocsize_after = get_alloc_actual_size();
+     212     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       
+     213     2935     2935 19. 12. 2022 15:45:52          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       				Assert::IsTrue(stack.PocetPrvku() == 3, L"Wrong size of Stack", LINE_INFO());
+     214     2935     2935 19. 12. 2022 15:45:52          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       				Assert::IsTrue(living_before + 1 == living_after, L"Wrong number of instances", LINE_INFO());
+     215     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       
+     216     2935     2935 19. 12. 2022 15:45:52          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       				if constexpr (KCBlock_allocate)
+     217     2935     2935 19. 12. 2022 15:45:52          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       					Assert::IsTrue(allocsize_before < allocsize_after, L"No memory allocation", LINE_INFO());
+     218     2935     2935 19. 12. 2022 15:45:52          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       				}
+     219     2935     2935 19. 12. 2022 15:45:52          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			ptrdiff_t living_after1 = ClassInfo<CStack>::Living();
+     220     2935     2935 19. 12. 2022 15:45:52          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			size_t allocsize_after1 = get_alloc_actual_size();
+     221     2935     2935 19. 12. 2022 15:45:52          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			Assert::IsTrue(living_before == living_after1, L"Wrong number of instances", LINE_INFO());
+     222     2935     2935 19. 12. 2022 15:45:52          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			Assert::AreEqual(allocsize_before, allocsize_after1, L"Memory leaking", LINE_INFO());
+     223     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			}
+     224     2391     2391 10. 12. 2022 14:01:19          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     225     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       	// d'tor
+     226     3662     3662 29. 12. 2022 18:17:11          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		/**
+     227     3666     3666 29. 12. 2022 19:29:29          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 \test **Test of Destructor**. **Author:** `Majnus`.
+     228     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 */
+     229     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		TEST_METHOD(CStack_dtor)
+     230     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			{
+     231     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			size_t alocbefore1 = get_alloc_actual_size();
+     232     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			CBlock CBlockVal0(CBlock::TestValue1());
+     233     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			CBlock CBlockVal1(CBlock::TestValue1());
+     234     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			CStack stack1;
+     235     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+     236     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			stack1.Push(CBlockVal1);
+     237     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			stack1.Push(CBlockVal1);
+     238     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			stack1.Push(CBlockVal1);
+     239     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			stack1.Push(CBlockVal1);
+     240     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			stack1.Push(CBlockVal1);
+     241     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+     242     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			auto pocet1 = stack1.PocetPrvku();
+     243     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			auto living1 = stack1.Actual();
+     244     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+     245     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			stack1.Destroy();
+     246     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+     247     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			auto pocet12 = stack1.PocetPrvku();
+     248     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			auto living12 = stack1.Actual();
+     249     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+     250     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			size_t alocafter1 = get_alloc_actual_size();
+     251     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+     252     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			Assert::IsTrue(pocet12 == 0, L"Memory leaking for stack with more than 1 element", LINE_INFO());
+     253     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			Assert::IsTrue(stack1.Bottom() == nullptr, L"Bottom is not nullptr for stack with more than 1 element", LINE_INFO());
+     254     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			Assert::IsTrue(stack1.Top() == nullptr, L"Top is not nullptr for stack with more than 1 element", LINE_INFO());
+     255     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			Assert::IsTrue(living1 == living12, L"Number of instances are not the same for stack with more than 1 element", LINE_INFO());
+     256     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			Assert::AreEqual(alocbefore1, alocafter1, L"Number of instances are not the same for stack with more than 1 element", LINE_INFO());
+     257     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+     258     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			size_t alocbefore2 = get_alloc_actual_size();
+     259     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+     260     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			CStack stack2;
+     261     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+     262     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			stack2.Push(CBlockVal1);
+     263     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+     264     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			auto pocet2 = stack1.PocetPrvku();
+     265     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			auto living2 = stack1.Actual();
+     266     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+     267     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			stack2.Destroy();
+     268     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+     269     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			auto pocet22 = stack1.PocetPrvku();
+     270     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			auto living22 = stack1.Actual();
+     271     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+     272     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			size_t alocafter2 = get_alloc_actual_size();
+     273     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			Assert::IsTrue(pocet22 == 0, L"Memory leaking for stack with 1 element", LINE_INFO());
+     274     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			Assert::IsTrue(stack1.Bottom() == nullptr, L"Bottom is not nullptr for stack with 1 element", LINE_INFO());
+     275     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			Assert::IsTrue(stack1.Top() == nullptr, L"Top is not nullptr for stack with 1 element", LINE_INFO());
+     276     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			Assert::IsTrue(living2 == living22, L"Number of instances are not the same for stack with 1 element", LINE_INFO());
+     277     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			Assert::AreEqual(alocbefore2, alocafter2, L"Number of instances are not the same for stack with 1 element", LINE_INFO());
+     278     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+     279     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			size_t alocbefore3 = get_alloc_actual_size();
+     280     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			
+     281     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			CStack stack3;
+     282     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+     283     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			auto pocet3 = stack1.PocetPrvku();
+     284     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			auto living3 = stack1.Actual();
+     285     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+     286     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			stack2.Destroy();
+     287     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+     288     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			auto pocet32 = stack1.PocetPrvku();
+     289     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			auto living32 = stack1.Actual();
+     290     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+     291     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			size_t alocafter3 = get_alloc_actual_size();
+     292     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			Assert::IsTrue(pocet32 == 0, L"Memory leaking for stack without element", LINE_INFO());
+     293     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			Assert::IsTrue(stack1.Bottom() == nullptr, L"Bottom is not nullptr for stack without element", LINE_INFO());
+     294     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			Assert::IsTrue(stack1.Top() == nullptr, L"Top is not nullptr for stack without element", LINE_INFO());
+     295     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			Assert::IsTrue(living3 == living32, L"Number of instances are not the same for stack without element", LINE_INFO());
+     296     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			Assert::AreEqual(alocbefore2, alocafter2, L"Number of instances are not the same for stack without element", LINE_INFO());
+     297     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			}
+     298     3211     3211 21. 12. 2022 14:44:37          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+     299     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       	// unary operators
+     300     3662     3662 29. 12. 2022 18:17:11          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		/**
+     301     3666     3666 29. 12. 2022 19:29:29          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 \test **Test of Unary Operator +**. **Author:** `Pesek`.
+     302     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 */
+     303     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		TEST_METHOD(CStack_unary_plus)
+     304     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			{
+     305     2844     2844 18. 12. 2022 15:17:14          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			size_t allocsize_before = get_alloc_actual_size();
+     306     2844     2844 18. 12. 2022 15:17:14          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			ptrdiff_t living_before = ClassInfo<CStack>::Living();
+     307     2844     2844 18. 12. 2022 15:17:14          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			ptrdiff_t living_after;
+     308     2844     2844 18. 12. 2022 15:17:14          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			size_t allocsize_after;
+     309     2844     2844 18. 12. 2022 15:17:14          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				{
+     310     2879     2879 18. 12. 2022 21:59:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				CBlock* iArray = CStack::TestValueRandom(2);
+     311     2879     2879 18. 12. 2022 21:59:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				CStack Stack = CStack(2, iArray);
+     312     2879     2879 18. 12. 2022 21:59:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				free(iArray);
+     313     2844     2844 18. 12. 2022 15:17:14          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				CStack Stack1 = +Stack;
+     314     2844     2844 18. 12. 2022 15:17:14          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       
+     315     2844     2844 18. 12. 2022 15:17:14          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				allocsize_after = get_alloc_actual_size();
+     316     2844     2844 18. 12. 2022 15:17:14          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				living_after = ClassInfo<CStack>::Living();
+     317     2844     2844 18. 12. 2022 15:17:14          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       
+     318     2844     2844 18. 12. 2022 15:17:14          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				Assert::IsTrue(Stack == Stack1, L"Wrong Stack value returned by unary operator+", LINE_INFO());
+     319     2844     2844 18. 12. 2022 15:17:14          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				Assert::IsTrue(living_before + 2 == living_after, L"Wrong number of instances", LINE_INFO());
+     320     2844     2844 18. 12. 2022 15:17:14          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				Assert::IsTrue(allocsize_before < allocsize_after, L"No memory allocated", LINE_INFO());
+     321     2844     2844 18. 12. 2022 15:17:14          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				}
+     322     2844     2844 18. 12. 2022 15:17:14          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			allocsize_after = get_alloc_actual_size();
+     323     2844     2844 18. 12. 2022 15:17:14          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			living_after = ClassInfo<CStack>::Living();
+     324     2844     2844 18. 12. 2022 15:17:14          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			Assert::IsTrue(living_before == living_after, L"Wrong number of instances", LINE_INFO());
+     325     2875     2875 18. 12. 2022 21:31:52          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			Assert::IsTrue(allocsize_before == allocsize_after, L"No memory allocated", LINE_INFO());
+     326     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			}
+     327     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     328     3662     3662 29. 12. 2022 18:17:11          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		/**
+     329     3666     3666 29. 12. 2022 19:29:29          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 \test **Test of Unary Operator -**. **Author:** `Kluka`.
+     330     3668     3668 29. 12. 2022 19:47:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - Instance can be correctly inicialized with `CBlock::TestValue0` and `CBlock::TestValue1`.
+     331     3666     3666 29. 12. 2022 19:29:29          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - Unary Operator - uses mainly Method `aaa.Reverzuj` to do its job, so this test is also testing Method `aaa.Reverzuj`.
+     332     3668     3668 29. 12. 2022 19:47:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - If new Stacks have the same `Top` value after Operator - was used, Stacks weren't reversed.
+     333     3666     3666 29. 12. 2022 19:29:29          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - Method `Push` is also used in this test.
+     334     3668     3668 29. 12. 2022 19:47:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - Counter `ClassInfo::Living` was incremented.
+     335     3668     3668 29. 12. 2022 19:47:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - Each new CBlock instance have unique `ClassInfo::ID`.
+     336     3668     3668 29. 12. 2022 19:47:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - C'tor allocate, reallocate od deallocate dynamic memory if it was defined by `KCBlock_allocate` predicate.
+     337     3668     3668 29. 12. 2022 19:47:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - Destruction of constructed instance deallocate memory if it was defined by `KCBlock_allocate` predicate.
+     338     3668     3668 29. 12. 2022 19:47:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - Destruction of constructed instance decrement counter `ClassInfo::Living`.
+     339     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 */
+     340     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		TEST_METHOD(CStack_unary_minus)
+     341     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			{
+     342     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			size_t allocsize_before = get_alloc_actual_size();
+     343     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			ptrdiff_t living_before = ClassInfo<CStack>::Living();
+     344     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			ptrdiff_t living_after;
+     345     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			size_t allocsize_after;
+     346     2392     2392 10. 12. 2022 15:05:40          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				{
+     347     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				const CBlock val0(CBlock::TestValue0());
+     348     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				const CBlock val1(CBlock::TestValue1());
+     349     2391     2391 10. 12. 2022 14:01:19          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     350     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				CStack stack0;
+     351     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				CStack stack1;
+     352     2392     2392 10. 12. 2022 15:05:40          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     353     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				living_after = ClassInfo<CStack>::Living();
+     354     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				allocsize_after = get_alloc_actual_size();
+     355     2506     2506 14. 12. 2022 10:50:29          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     356     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				stack0.Push(val0);
+     357     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				stack0.Push(val0);
+     358     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				stack0.Push(val1);
+     359     2506     2506 14. 12. 2022 10:50:29          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     360     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				stack1.Push(val0);
+     361     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				stack1.Push(val0);
+     362     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				stack1.Push(val1);
+     363     2506     2506 14. 12. 2022 10:50:29          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     364     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				size_t ID_before = stack1.ID();
+     365     2392     2392 10. 12. 2022 15:05:40          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     366     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(CBlock::TestValue0() == val0.Value(), L"Wrong value", LINE_INFO());
+     367     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(living_before + 2 == living_after, L"Wrong number of instances", LINE_INFO());
+     368     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(stack0.Top()->Value() == stack1.Top()->Value(), L"Stacks are not the same", LINE_INFO());
+     369     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsFalse(stack0 < stack1, L"Must be false", LINE_INFO());
+     370     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(stack1.ID() > stack0.ID(), L"Wrong ClassInfo ID initialization", LINE_INFO());
+     371     2392     2392 10. 12. 2022 15:05:40          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     372     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				-stack0;
+     373     2534     2534 14. 12. 2022 15:57:35          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       
+     374     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				ptrdiff_t living_after2 = ClassInfo<CStack>::Living();
+     375     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				size_t allocsize_after2 = get_alloc_actual_size();
+     376     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(living_after == living_after2, L"Wrong number of instances", LINE_INFO());
+     377     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsFalse(stack0.Top()->Value() == stack1.Top()->Value(), L"Stacks are the same", LINE_INFO());
+     378     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsFalse(stack0 < stack1, L"Must be false", LINE_INFO());
+     379     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				if constexpr(KCBlock_allocate)
+     380     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       					Assert::IsTrue(allocsize_before < allocsize_after, L"No memory allocation", LINE_INFO());
+     381     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				else
+     382     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       					Assert::IsTrue(allocsize_before == allocsize_after, L"Memory allocated", LINE_INFO());
+     383     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				if constexpr(KCBlock_allocate)
+     384     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       					Assert::IsTrue(allocsize_before == allocsize_after2, L"Memory allocated", LINE_INFO());
+     385     2534     2534 14. 12. 2022 15:57:35          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       				}
+     386     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			ptrdiff_t living_after3 = ClassInfo<CStack>::Living();
+     387     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			size_t allocsize_after3 = get_alloc_actual_size();
+     388     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsTrue(living_before == living_after3, L"Wrong number of instances", LINE_INFO());
+     389     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::AreEqual(allocsize_before, allocsize_after3, L"Memory leaking", LINE_INFO());
+     390     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			}
+     391     2391     2391 10. 12. 2022 14:01:19          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     392     3662     3662 29. 12. 2022 18:17:11          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		/**
+     393     3666     3666 29. 12. 2022 19:29:29          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 \test **Test of Unary Operator ++**. **Author:** `Prasek`.
+     394     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 */
+     395     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		TEST_METHOD(CStack_unary_plus_plus)
+     396     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			{
+     397     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			size_t allocsize_before = get_alloc_actual_size();
+     398     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			size_t allocsize_after;
+     399     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       
+     400     2813     2813 18. 12. 2022 12:09:51          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			CStack stack;
+     401     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			allocsize_after = get_alloc_actual_size();
+     402     2813     2813 18. 12. 2022 12:09:51          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			Assert::IsTrue(stack.PocetPrvku() == 0, L"Wrong size of Stack", LINE_INFO());
+     403     2813     2813 18. 12. 2022 12:09:51          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			++stack;
+     404     2813     2813 18. 12. 2022 12:09:51          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			Assert::IsTrue(stack.PocetPrvku() == 1, L"Wrong size of Stack", LINE_INFO());
+     405     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       
+     406     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			if constexpr (KCBlock_allocate)
+     407     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       				Assert::IsTrue(allocsize_before < allocsize_after, L"No memory allocation", LINE_INFO());
+     408     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			else
+     409     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       				Assert::IsTrue(allocsize_before == allocsize_after, L"Memory allocated", LINE_INFO());
+     410     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			}
+     411     2391     2391 10. 12. 2022 14:01:19          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     412     3662     3662 29. 12. 2022 18:17:11          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		/**
+     413     3666     3666 29. 12. 2022 19:29:29          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 \test **Test of Unary Operator --**. **Author:** `Kluka`.
+     414     3668     3668 29. 12. 2022 19:47:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - Instance can be correctly inicialized with `CBlock::TestValue0` and `CBlock::TestValue1`.
+     415     3666     3666 29. 12. 2022 19:29:29          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - Unary Operator -- uses mainly Method `Pop` to do its job, so this test is also testing Method `Pop`.
+     416     3668     3668 29. 12. 2022 19:47:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - Methods `Push` and `PocetPrvku` are also used in this test.
+     417     3668     3668 29. 12. 2022 19:47:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - Counter `ClassInfo::Living` was incremented.
+     418     3668     3668 29. 12. 2022 19:47:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - Each new CBlock instance have unique `ClassInfo::ID`.
+     419     3668     3668 29. 12. 2022 19:47:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - C'tor allocate, reallocate od deallocate dynamic memory if it was defined by `KCBlock_allocate` predicate.
+     420     3668     3668 29. 12. 2022 19:47:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - Destruction of constructed instance deallocate memory if it was defined by `KCBlock_allocate` predicate.
+     421     3668     3668 29. 12. 2022 19:47:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - Destruction of constructed instance decrement counter `ClassInfo::Living`.
+     422     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 */
+     423     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		TEST_METHOD(CStack_unary_minus_minus)
+     424     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			{
+     425     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			size_t allocsize_before = get_alloc_actual_size();
+     426     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			ptrdiff_t living_before = ClassInfo<CStack>::Living();
+     427     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			ptrdiff_t living_after;
+     428     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			size_t allocsize_after;
+     429     2509     2509 14. 12. 2022 14:20:08          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				{
+     430     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				CBlock val0(CBlock::TestValue0());
+     431     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				CBlock val1(CBlock::TestValue1());
+     432     2534     2534 14. 12. 2022 15:57:35          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       
+     433     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				CStack stack0;
+     434     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				living_after = ClassInfo<CStack>::Living();
+     435     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				allocsize_after = get_alloc_actual_size();
+     436     2506     2506 14. 12. 2022 10:50:29          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     437     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				stack0.Push(val0);
+     438     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				stack0.Push(val1);
+     439     2391     2391 10. 12. 2022 14:01:19          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     440     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				size_t stack_size = stack0.PocetPrvku();
+     441     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(CBlock::TestValue0() == val0.Value(), L"Wrong value", LINE_INFO());
+     442     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(CBlock::TestValue1() == val1.Value(), L"Value isn't same", LINE_INFO());
+     443     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(stack0.Top()->Value() == val1.Value(), L"Wrong value", LINE_INFO());
+     444     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsFalse(val0.Value() == val1.Value(), L"Wrong value", LINE_INFO());
+     445     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(stack_size == 2, L"Wrong number of instances", LINE_INFO());
+     446     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(living_before + 1 == living_after, L"Wrong number of instances", LINE_INFO());
+     447     2408     2408 11. 12. 2022 11:00:50          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     448     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				--stack0;
+     449     2408     2408 11. 12. 2022 11:00:50          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     450     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				stack_size = stack0.PocetPrvku();
+     451     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				living_after = ClassInfo<CStack>::Living();
+     452     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(CBlock::TestValue0() == val0.Value(), L"Wrong value", LINE_INFO());
+     453     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(stack_size == 1, L"Wrong number of instances", LINE_INFO());
+     454     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(living_before + 1 == living_after, L"Wrong number of instances", LINE_INFO());
+     455     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				if constexpr(KCBlock_allocate)
+     456     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       					Assert::IsTrue(allocsize_before < allocsize_after, L"No memory allocation", LINE_INFO());
+     457     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				else
+     458     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       					Assert::IsTrue(allocsize_before == allocsize_after, L"Memory allocated", LINE_INFO());
+     459     2534     2534 14. 12. 2022 15:57:35          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       				}
+     460     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			ptrdiff_t living_after3 = ClassInfo<CStack>::Living();
+     461     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			size_t allocsize_after3 = get_alloc_actual_size();
+     462     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsTrue(living_before == living_after3, L"Wrong number of instances", LINE_INFO());
+     463     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::AreEqual(allocsize_before, allocsize_after3, L"Memory leaking", LINE_INFO());
+     464     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			}
+     465     2391     2391 10. 12. 2022 14:01:19          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     466     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       	// binary operators
+     467     3662     3662 29. 12. 2022 18:17:11          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		/**
+     468     3666     3666 29. 12. 2022 19:29:29          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 \test **Test of Binary Operator +**. **Author:** `Majnus`.
+     469     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 */
+     470     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		TEST_METHOD(CStack_binary_plus)
+     471     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			{
+     472     3249     3249 21. 12. 2022 16:45:21          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			CBlock CBlockVal0(CBlock::TestValue0());
+     473     3249     3249 21. 12. 2022 16:45:21          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			CBlock CBlockVal1(CBlock::TestValue1());
+     474     3249     3249 21. 12. 2022 16:45:21          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+     475     3249     3249 21. 12. 2022 16:45:21          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			CStack stack, stack1, newstack;
+     476     3249     3249 21. 12. 2022 16:45:21          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+     477     3249     3249 21. 12. 2022 16:45:21          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			stack.Push(CBlockVal0);
+     478     3249     3249 21. 12. 2022 16:45:21          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			stack.Push(CBlockVal1);
+     479     3249     3249 21. 12. 2022 16:45:21          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+     480     3249     3249 21. 12. 2022 16:45:21          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			stack1.Push(CBlockVal1);
+     481     3249     3249 21. 12. 2022 16:45:21          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			stack1.Push(CBlockVal0);
+     482     3249     3249 21. 12. 2022 16:45:21          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+     483     3249     3249 21. 12. 2022 16:45:21          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			newstack = stack + stack1;
+     484     3249     3249 21. 12. 2022 16:45:21          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+     485     3249     3249 21. 12. 2022 16:45:21          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			Assert::IsTrue(stack.PocetPrvku() + stack1.PocetPrvku() == newstack.PocetPrvku(), L"Wrong number of instances - push or push in method is not working correctly", LINE_INFO());
+     486     3249     3249 21. 12. 2022 16:45:21          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+     487     3249     3249 21. 12. 2022 16:45:21          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			auto *tmp = newstack.Bottom();
+     488     3249     3249 21. 12. 2022 16:45:21          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			Assert::IsTrue(*tmp == CBlockVal0, L"Value is not the same as pushed value", LINE_INFO());
+     489     3249     3249 21. 12. 2022 16:45:21          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+     490     3249     3249 21. 12. 2022 16:45:21          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			tmp = static_cast<CBlock *>(tmp->PrevItem());
+     491     3249     3249 21. 12. 2022 16:45:21          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			Assert::IsTrue(*tmp == CBlockVal1, L"Value is not the same as pushed value", LINE_INFO());
+     492     3249     3249 21. 12. 2022 16:45:21          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+     493     3249     3249 21. 12. 2022 16:45:21          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			tmp = static_cast<CBlock *>(tmp->PrevItem());
+     494     3249     3249 21. 12. 2022 16:45:21          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			Assert::IsTrue(*tmp == CBlockVal1, L"Value is not the same as pushed value", LINE_INFO());
+     495     3249     3249 21. 12. 2022 16:45:21          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+     496     3249     3249 21. 12. 2022 16:45:21          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			tmp = static_cast<CBlock *>(tmp->PrevItem());
+     497     3249     3249 21. 12. 2022 16:45:21          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			Assert::IsTrue(*tmp == CBlockVal0, L"Value is not the same as pushed value", LINE_INFO());
+     498     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			}
+     499     2391     2391 10. 12. 2022 14:01:19          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     500     3662     3662 29. 12. 2022 18:17:11          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		/**
+     501     3666     3666 29. 12. 2022 19:29:29          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 \test **Test of Binary Operator =**. **Author:** `Majnus`.
+     502     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 */
+     503     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		TEST_METHOD(CStack_binary_assign)
+     504     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			{
+     505     3237     3237 21. 12. 2022 16:15:38          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			CBlock CBlockVal0(CBlock::TestValue0());
+     506     3237     3237 21. 12. 2022 16:15:38          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			CBlock CBlockVal1(CBlock::TestValue1());
+     507     3237     3237 21. 12. 2022 16:15:38          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+     508     3237     3237 21. 12. 2022 16:15:38          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			
+     509     3237     3237 21. 12. 2022 16:15:38          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			CStack stack, stack1;
+     510     3237     3237 21. 12. 2022 16:15:38          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			stack.Push(CBlockVal0);
+     511     3237     3237 21. 12. 2022 16:15:38          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+     512     3258     3258 21. 12. 2022 17:20:28          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			stack.Push(CBlockVal1);
+     513     3258     3258 21. 12. 2022 17:20:28          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			stack.Push(CBlockVal1);
+     514     3258     3258 21. 12. 2022 17:20:28          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			stack.Push(CBlockVal1);
+     515     3258     3258 21. 12. 2022 17:20:28          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+     516     3237     3237 21. 12. 2022 16:15:38          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			stack1.Push(CBlockVal1);
+     517     3237     3237 21. 12. 2022 16:15:38          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			stack1.Push(CBlockVal0);
+     518     3237     3237 21. 12. 2022 16:15:38          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			stack1.Push(CBlockVal1);
+     519     3237     3237 21. 12. 2022 16:15:38          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+     520     3237     3237 21. 12. 2022 16:15:38          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			stack = stack1;
+     521     3237     3237 21. 12. 2022 16:15:38          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+     522     3237     3237 21. 12. 2022 16:15:38          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			Assert::IsTrue(stack.PocetPrvku() == 3, L"Wrong number of instances", LINE_INFO());
+     523     3237     3237 21. 12. 2022 16:15:38          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+     524     3237     3237 21. 12. 2022 16:15:38          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			auto *tmp = stack1.Bottom();
+     525     3237     3237 21. 12. 2022 16:15:38          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+     526     3237     3237 21. 12. 2022 16:15:38          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			Assert::IsTrue(*tmp == CBlockVal1, L"Value is not the same as pushed value", LINE_INFO());
+     527     3237     3237 21. 12. 2022 16:15:38          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+     528     3237     3237 21. 12. 2022 16:15:38          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			tmp = static_cast<CBlock *>(stack.Bottom()->PrevItem());
+     529     3237     3237 21. 12. 2022 16:15:38          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			Assert::IsTrue(*tmp == CBlockVal0, L"Value is not the same as pushed value", LINE_INFO());
+     530     3237     3237 21. 12. 2022 16:15:38          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+     531     3237     3237 21. 12. 2022 16:15:38          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			tmp = static_cast<CBlock *>(tmp->PrevItem());
+     532     3237     3237 21. 12. 2022 16:15:38          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			Assert::IsTrue(*tmp == CBlockVal1, L"Value is not the same as pushed value", LINE_INFO());
+     533     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			}
+     534     2612     2612 15. 12. 2022 10:58:11          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       
+     535     3662     3662 29. 12. 2022 18:17:11          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		/**
+     536     3666     3666 29. 12. 2022 19:29:29          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 \test **Test of Binary non-member Operator+ (CBlock + CStack)**. **Author:** `Pesek`.
+     537     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 */
+     538     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       		TEST_METHOD(CStack_binary_nonmem_CBlock_plus_CStack)
+     539     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			{
+     540     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			size_t allocsize_before = get_alloc_actual_size();
+     541     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			ptrdiff_t living_CStack_before = ClassInfo<CStack>::Living();
+     542     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			ptrdiff_t living_CStack_after;
+     543     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			size_t allocsize_after;
+     544     2612     2612 15. 12. 2022 10:58:11          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       
+     545     2922     2922 19. 12. 2022 14:21:50          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			ptrdiff_t living_CBlock_before = ClassInfo<CBlock>::Living();
+     546     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			ptrdiff_t living_CBlock_after;
+     547     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				{
+     548     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				CBlock Block0(CBlock::TestValue0());
+     549     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				CBlock Block1(CBlock::TestValue1());
+     550     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				CStack Stack = CStack(Block0);
+     551     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     552     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				size_t old_Stack_size = Stack.PocetPrvku();
+     553     2837     2837 18. 12. 2022 14:23:17          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       
+     554     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Stack = Block1 + Stack;
+     555     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     556     2837     2837 18. 12. 2022 14:23:17          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				living_CBlock_after = ClassInfo<CBlock>::Living();
+     557     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				allocsize_after = get_alloc_actual_size();
+     558     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				living_CStack_after = ClassInfo<CStack>::Living();
+     559     2837     2837 18. 12. 2022 14:23:17          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				
+     560     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(living_CStack_before + 1 == living_CStack_after, L"Wrong number of CStack instances", LINE_INFO());
+     561     2922     2922 19. 12. 2022 14:21:50          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				Assert::IsTrue(living_CBlock_before + 4 == living_CBlock_after, L"Wrong number of CBlock instances", LINE_INFO());
+     562     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(allocsize_before < allocsize_after, L"No memory allocation", LINE_INFO());
+     563     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(Stack.Top()->Value() == Block1.Value(), L"Wrong value on top of Stack", LINE_INFO());
+     564     2837     2837 18. 12. 2022 14:23:17          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				Assert::IsTrue(Stack.PocetPrvku() == old_Stack_size+1, L"Wrong size of Stack", LINE_INFO());
+     565     2534     2534 14. 12. 2022 15:57:35          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       				}
+     566     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			ptrdiff_t living_CStack_after1 = ClassInfo<CStack>::Living();
+     567     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			ptrdiff_t living_CBlock_after1 = ClassInfo<CBlock>::Living();
+     568     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			size_t allocsize_after1 = get_alloc_actual_size();
+     569     2391     2391 10. 12. 2022 14:01:19          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     570     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsTrue(living_CStack_before == living_CStack_after1, L"Wrong number of CStack instances", LINE_INFO());
+     571     2922     2922 19. 12. 2022 14:21:50          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			Assert::IsTrue(living_CBlock_before == living_CBlock_after1, L"Wrong number of CBlock instances", LINE_INFO());
+     572     2875     2875 18. 12. 2022 21:31:52          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			Assert::IsTrue(allocsize_before == allocsize_after1, L"Wrong memory deallocation", LINE_INFO());
+     573     2922     2922 19. 12. 2022 14:21:50          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			}
+     574     2391     2391 10. 12. 2022 14:01:19          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     575     3662     3662 29. 12. 2022 18:17:11          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		/**
+     576     3666     3666 29. 12. 2022 19:29:29          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 \test **Test of Binary non-member Operator+ (CStack + CBlock)**. **Author:** `Pesek`.
+     577     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       		 */
+     578     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       		TEST_METHOD(CStack_binary_nonmem_CStack_plus_CBlock)
+     579     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			{
+     580     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			size_t allocsize_before = get_alloc_actual_size();
+     581     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			ptrdiff_t living_CStack_before = ClassInfo<CStack>::Living();
+     582     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			ptrdiff_t living_CStack_after;
+     583     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			size_t allocsize_after;
+     584     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       
+     585     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			ptrdiff_t living_CBlock_before = ClassInfo<CBlock>::Living();
+     586     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			ptrdiff_t living_CBlock_after;
+     587     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				{
+     588     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				CBlock Block0(CBlock::TestValue0());
+     589     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				CBlock Block1(CBlock::TestValue1());
+     590     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				CStack Stack = CStack(Block0);
+     591     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       
+     592     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				size_t old_Stack_size = Stack.PocetPrvku();
+     593     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       
+     594     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				Stack = Stack + Block1;
+     595     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       
+     596     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				living_CBlock_after = ClassInfo<CBlock>::Living();
+     597     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				allocsize_after = get_alloc_actual_size();
+     598     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				living_CStack_after = ClassInfo<CStack>::Living();
+     599     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       
+     600     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				Assert::IsTrue(living_CStack_before + 1 == living_CStack_after, L"Wrong number of CStack instances", LINE_INFO());
+     601     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				Assert::IsTrue(living_CBlock_before + 4 == living_CBlock_after, L"Wrong number of CBlock instances", LINE_INFO());
+     602     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				Assert::IsTrue(allocsize_before < allocsize_after, L"No memory allocation", LINE_INFO());
+     603     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				Assert::IsTrue(Stack.Bottom()->Value() == Block1.Value(), L"Wrong value on Bottom of Stack", LINE_INFO());
+     604     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				Assert::IsTrue(Stack.PocetPrvku() == old_Stack_size + 1, L"Wrong size of Stack", LINE_INFO());
+     605     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				}
+     606     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			ptrdiff_t living_CStack_after1 = ClassInfo<CStack>::Living();
+     607     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			ptrdiff_t living_CBlock_after1 = ClassInfo<CBlock>::Living();
+     608     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			size_t allocsize_after1 = get_alloc_actual_size();
+     609     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       
+     610     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			Assert::IsTrue(living_CStack_before == living_CStack_after1, L"Wrong number of CStack instances", LINE_INFO());
+     611     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			Assert::IsTrue(living_CBlock_before == living_CBlock_after1, L"Wrong number of CBlock instances", LINE_INFO());
+     612     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			Assert::IsTrue(allocsize_before == allocsize_after1, L"Wrong memory deallocation", LINE_INFO());
+     613     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			}
+     614     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       
+     615     3662     3662 29. 12. 2022 18:17:11          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		/**
+     616     3666     3666 29. 12. 2022 19:29:29          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 \test **Test of Binary Operator -**. **Author:** `Prasek`.
+     617     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 */
+     618     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		TEST_METHOD(CStack_binary_minus)
+     619     2613     2613 15. 12. 2022 10:58:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			{
+     620     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			size_t allocsize_before = get_alloc_actual_size();
+     621     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			size_t allocsize_after;
+     622     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       
+     623     2840     2840 18. 12. 2022 15:05:15          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			CBlock val0(CBlock::TestValue0());
+     624     2840     2840 18. 12. 2022 15:05:15          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			CBlock val1(CBlock::TestValue1());
+     625     2613     2613 15. 12. 2022 10:58:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       
+     626     2840     2840 18. 12. 2022 15:05:15          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			CStack stackS1;
+     627     2840     2840 18. 12. 2022 15:05:15          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			CStack stackS2;
+     628     2840     2840 18. 12. 2022 15:05:15          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			CStack stackRes;
+     629     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			allocsize_after = get_alloc_actual_size();
+     630     2613     2613 15. 12. 2022 10:58:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       
+     631     2840     2840 18. 12. 2022 15:05:15          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			stackS1.Push(val0);
+     632     2840     2840 18. 12. 2022 15:05:15          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			stackS1.Push(val0);
+     633     2840     2840 18. 12. 2022 15:05:15          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			stackS1.Push(val0);
+     634     2613     2613 15. 12. 2022 10:58:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       
+     635     2840     2840 18. 12. 2022 15:05:15          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			stackS2.Push(val0);
+     636     2840     2840 18. 12. 2022 15:05:15          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			stackS2.Push(val1);
+     637     2613     2613 15. 12. 2022 10:58:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       
+     638     2840     2840 18. 12. 2022 15:05:15          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			stackRes = stackS1 - stackS2;
+     639     2613     2613 15. 12. 2022 10:58:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       
+     640     2840     2840 18. 12. 2022 15:05:15          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			size_t stack_size1 = stackS1.PocetPrvku();
+     641     2840     2840 18. 12. 2022 15:05:15          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			Assert::IsTrue(CBlock::TestValue0() == val0.Value(), L"Wrong value", LINE_INFO());
+     642     2840     2840 18. 12. 2022 15:05:15          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			Assert::IsTrue(stackS1.Top()->Value() == val0.Value(), L"Wrong value", LINE_INFO());
+     643     2840     2840 18. 12. 2022 15:05:15          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			Assert::IsFalse(val0.Value() == val1.Value(), L"Wrong value", LINE_INFO());
+     644     2840     2840 18. 12. 2022 15:05:15          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			Assert::IsTrue(stack_size1 == 3, L"Wrong number of instances", LINE_INFO());
+     645     2840     2840 18. 12. 2022 15:05:15          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			
+     646     2840     2840 18. 12. 2022 15:05:15          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			size_t stack_size2 = stackS2.PocetPrvku();
+     647     2840     2840 18. 12. 2022 15:05:15          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			Assert::IsTrue(CBlock::TestValue0() == val0.Value(), L"Wrong value", LINE_INFO());
+     648     2840     2840 18. 12. 2022 15:05:15          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			Assert::IsTrue(CBlock::TestValue1() == val1.Value(), L"Value isn't same", LINE_INFO());
+     649     2840     2840 18. 12. 2022 15:05:15          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			Assert::IsTrue(stackS2.Top()->Value() == val1.Value(), L"Wrong value", LINE_INFO());
+     650     2840     2840 18. 12. 2022 15:05:15          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			Assert::IsFalse(val0.Value() == val1.Value(), L"Wrong value", LINE_INFO());
+     651     2840     2840 18. 12. 2022 15:05:15          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			Assert::IsTrue(stack_size2 == 2, L"Wrong number of instances", LINE_INFO());
+     652     2840     2840 18. 12. 2022 15:05:15          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       		
+     653     2840     2840 18. 12. 2022 15:05:15          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			size_t stack_size3 = stackRes.PocetPrvku();
+     654     2840     2840 18. 12. 2022 15:05:15          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			Assert::IsTrue(CBlock::TestValue0() == val0.Value(), L"Wrong value", LINE_INFO());
+     655     2840     2840 18. 12. 2022 15:05:15          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			Assert::IsTrue(CBlock::TestValue1() == val1.Value(), L"Value isn't same", LINE_INFO());
+     656     2840     2840 18. 12. 2022 15:05:15          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			Assert::IsTrue(stackRes.Top()->Value() == val1.Value(), L"Wrong value", LINE_INFO());
+     657     2840     2840 18. 12. 2022 15:05:15          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			Assert::IsFalse(val0.Value() == val1.Value(), L"Wrong value", LINE_INFO());
+     658     2840     2840 18. 12. 2022 15:05:15          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			Assert::IsTrue(stack_size3 == 1, L"Wrong number of instances", LINE_INFO());
+     659     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       
+     660     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			if constexpr (KCBlock_allocate)
+     661     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       				Assert::IsTrue(allocsize_before < allocsize_after, L"No memory allocation", LINE_INFO());
+     662     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			else
+     663     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       				Assert::IsTrue(allocsize_before == allocsize_after, L"Memory allocated", LINE_INFO());
+     664     2613     2613 15. 12. 2022 10:58:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			}
+     665     2391     2391 10. 12. 2022 14:01:19          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     666     3662     3662 29. 12. 2022 18:17:11          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		/**
+     667     3666     3666 29. 12. 2022 19:29:29          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 \test **Test of Binary Operator -=**. **Author:** `Kluka`.
+     668     3668     3668 29. 12. 2022 19:47:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - Instance can be correctly inicialized with `CBlock::TestValue0` and `CBlock::TestValue1`.
+     669     3666     3666 29. 12. 2022 19:29:29          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - Unary Operator -= uses Operator - (which uses Method `aaa.Reverzuj`), Operator == (which uses Method `CompareDeep`), Operator = (which uses Methods `Push` and `Pop`) to do its job.
+     670     3668     3668 29. 12. 2022 19:47:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - Methods `Push`, `Search` and 'PocetPrvku' are also used in this test.
+     671     3668     3668 29. 12. 2022 19:47:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - Counter `ClassInfo::Living` was incremented.
+     672     3668     3668 29. 12. 2022 19:47:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - Each new CBlock instance have unique `ClassInfo::ID`.
+     673     3668     3668 29. 12. 2022 19:47:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - C'tor allocate, reallocate od deallocate dynamic memory if it was defined by `KCBlock_allocate` predicate.
+     674     3668     3668 29. 12. 2022 19:47:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - Destruction of constructed instance deallocate memory if it was defined by `KCBlock_allocate` predicate.
+     675     3668     3668 29. 12. 2022 19:47:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - Destruction of constructed instance decrement counter `ClassInfo::Living`.
+     676     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 */
+     677     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		TEST_METHOD(CStack_binary_subtr)
+     678     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			{
+     679     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			size_t allocsize_before = get_alloc_actual_size();
+     680     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			ptrdiff_t living_before = ClassInfo<CStack>::Living();
+     681     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			ptrdiff_t living_after;
+     682     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			size_t allocsize_after;
+     683     2509     2509 14. 12. 2022 14:20:08          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				{
+     684     2887     2887 18. 12. 2022 22:46:14          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				const CBlock val0(CBlock::TestValue0());
+     685     2887     2887 18. 12. 2022 22:46:14          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				const CBlock val1(CBlock::TestValue1());
+     686     2391     2391 10. 12. 2022 14:01:19          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     687     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				CStack stack0;
+     688     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				CStack stack1;
+     689     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				living_after = ClassInfo<CStack>::Living();
+     690     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				allocsize_after = get_alloc_actual_size();
+     691     2509     2509 14. 12. 2022 14:20:08          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     692     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				stack0.Push(val0);
+     693     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				stack0.Push(val1);
+     694     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				stack0.Push(val0);
+     695     2509     2509 14. 12. 2022 14:20:08          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     696     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				stack1.Push(val1);
+     697     2509     2509 14. 12. 2022 14:20:08          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     698     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				size_t stack_size = stack0.PocetPrvku();
+     699     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(CBlock::TestValue0() == val0.Value(), L"Wrong value", LINE_INFO());
+     700     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(CBlock::TestValue1() == val1.Value(), L"Value isn't same", LINE_INFO());
+     701     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(stack0.Top()->Value() == val0.Value(), L"Wrong value", LINE_INFO());
+     702     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsFalse(val0.Value() == val1.Value(), L"Wrong value", LINE_INFO());
+     703     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(stack_size == 3, L"Wrong number of instances", LINE_INFO());
+     704     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(living_before + 2 == living_after, L"Wrong number of instances", LINE_INFO());
+     705     2509     2509 14. 12. 2022 14:20:08          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     706     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				stack0 -= stack1;
+     707     2509     2509 14. 12. 2022 14:20:08          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     708     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				living_after = ClassInfo<CStack>::Living();
+     709     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(CBlock::TestValue0() == val0.Value(), L"Wrong value", LINE_INFO());
+     710     2887     2887 18. 12. 2022 22:46:14          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(stack0.Search(val1) == false, L"Node not deleted", LINE_INFO());
+     711     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(stack_size == 3, L"Wrong number of instances", LINE_INFO());
+     712     2839     2839 18. 12. 2022 15:04:48          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				stack_size = stack0.PocetPrvku();
+     713     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(living_before + 2 == living_after, L"Wrong number of instances", LINE_INFO());
+     714     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				if constexpr(KCBlock_allocate)
+     715     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       					Assert::IsTrue(allocsize_before < allocsize_after, L"No memory allocation", LINE_INFO());
+     716     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				else
+     717     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       					Assert::IsTrue(allocsize_before == allocsize_after, L"Memory allocated", LINE_INFO());
+     718     2534     2534 14. 12. 2022 15:57:35          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       				}
+     719     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			ptrdiff_t living_after3 = ClassInfo<CStack>::Living();
+     720     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			size_t allocsize_after3 = get_alloc_actual_size();
+     721     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsTrue(living_before == living_after3, L"Wrong number of instances", LINE_INFO());
+     722     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::AreEqual(allocsize_before, allocsize_after3, L"Memory leaking", LINE_INFO());
+     723     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			}
+     724     2391     2391 10. 12. 2022 14:01:19          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     725     3662     3662 29. 12. 2022 18:17:11          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		/**
+     726     3666     3666 29. 12. 2022 19:29:29          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 \test **Test of Binary Operator +=**. **Author:** `Pesek`.
+     727     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 */
+     728     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		TEST_METHOD(CStack_binary_add)
+     729     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			{
+     730     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			size_t allocsize_before = get_alloc_actual_size();
+     731     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			ptrdiff_t living_before = ClassInfo<CStack>::Living();
+     732     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			ptrdiff_t living_after;
+     733     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			size_t allocsize_after;
+     734     2509     2509 14. 12. 2022 14:20:08          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				{
+     735     2879     2879 18. 12. 2022 21:59:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				CBlock* iArray2 = CStack::TestValueRandom(2);
+     736     2879     2879 18. 12. 2022 21:59:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				CBlock* iArray3 = CStack::TestValueRandom(3);
+     737     2879     2879 18. 12. 2022 21:59:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       
+     738     2879     2879 18. 12. 2022 21:59:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				CStack Stack02 = CStack(2, iArray2);
+     739     2879     2879 18. 12. 2022 21:59:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				CStack Stack03 = CStack(3, iArray3);
+     740     2879     2879 18. 12. 2022 21:59:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				free(iArray2);
+     741     2879     2879 18. 12. 2022 21:59:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				free(iArray3);
+     742     2879     2879 18. 12. 2022 21:59:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       
+     743     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				size_t Stack02_old_size = Stack02.PocetPrvku();
+     744     2853     2853 18. 12. 2022 16:52:28          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				CBlock *Stack02_old_bottom = Stack02.Bottom();
+     745     2391     2391 10. 12. 2022 14:01:19          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     746     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				allocsize_after = get_alloc_actual_size();
+     747     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				living_after = ClassInfo<CStack>::Living();
+     748     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(living_before + 2 == living_after, L"Wrong number of instances", LINE_INFO());
+     749     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(allocsize_before < allocsize_after, L"No memory allocation", LINE_INFO());
+     750     2486     2486 13. 12. 2022 19:48:05          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       
+     751     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Stack02 += Stack03;
+     752     2486     2486 13. 12. 2022 19:48:05          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       
+     753     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				size_t allocsize_after1 = get_alloc_actual_size();
+     754     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				ptrdiff_t living_after1 = ClassInfo<CStack>::Living();
+     755     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(living_after1 == living_after, L"Wrong number of instances", LINE_INFO());
+     756     2837     2837 18. 12. 2022 14:23:17          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				Assert::IsTrue(allocsize_after1 > allocsize_after, L"Wrong memory allocation/deallocation", LINE_INFO());
+     757     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				Assert::IsTrue(Stack02.PocetPrvku() == Stack02_old_size + Stack03.PocetPrvku(), L"Wrong size of modified stack", LINE_INFO());
+     758     2853     2853 18. 12. 2022 16:52:28          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				Assert::IsTrue(Stack02.Top()->Value() == Stack03.Top()->Value(), L"Wrong Top of modified Stack", LINE_INFO());
+     759     2853     2853 18. 12. 2022 16:52:28          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				Assert::IsTrue(Stack02.Bottom()->Value() == Stack02_old_bottom->Value(), L"Wrong Bottom of modified Stack", LINE_INFO());
+     760     2509     2509 14. 12. 2022 14:20:08          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       				}
+     761     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			size_t allocsize_after2 = get_alloc_actual_size();
+     762     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			ptrdiff_t living_after2 = ClassInfo<CStack>::Living();
+     763     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsTrue(living_before == living_after2, L"Wrong number of instances", LINE_INFO());
+     764     2875     2875 18. 12. 2022 21:31:52          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			Assert::IsTrue(allocsize_before == allocsize_after2, L"No memory allocation", LINE_INFO());
+     765     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			}
+     766     2391     2391 10. 12. 2022 14:01:19          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     767     3662     3662 29. 12. 2022 18:17:11          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		/**
+     768     3666     3666 29. 12. 2022 19:29:29          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 \test **Test of Operator size_t**. **Author:** `Prasek`.
+     769     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 */
+     770     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		TEST_METHOD(CStack_sizet)
+     771     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			{
+     772     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			size_t allocsize_before = get_alloc_actual_size();
+     773     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			size_t allocsize_after;
+     774     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       
+     775     2813     2813 18. 12. 2022 12:09:51          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			const CBlock val0(CBlock::TestValue0());
+     776     2813     2813 18. 12. 2022 12:09:51          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			CStack stack;
+     777     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			allocsize_after = get_alloc_actual_size();
+     778     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       
+     779     2813     2813 18. 12. 2022 12:09:51          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			Assert::IsTrue((size_t)stack == 0, L"Wrong size of Stack", LINE_INFO());
+     780     2813     2813 18. 12. 2022 12:09:51          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			stack.Push(val0);
+     781     2813     2813 18. 12. 2022 12:09:51          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			Assert::IsTrue((size_t)stack == 1, L"Wrong size of Stack", LINE_INFO());
+     782     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       
+     783     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			if constexpr (KCBlock_allocate)
+     784     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       				Assert::IsTrue(allocsize_before < allocsize_after, L"No memory allocation", LINE_INFO());
+     785     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			else
+     786     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       				Assert::IsTrue(allocsize_before == allocsize_after, L"Memory allocated", LINE_INFO());
+     787     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			}
+     788     2391     2391 10. 12. 2022 14:01:19          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     789     3662     3662 29. 12. 2022 18:17:11          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		/**
+     790     3666     3666 29. 12. 2022 19:29:29          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 \test **Test of Relational Operator ==**. **Author:** `Kluka`.
+     791     3668     3668 29. 12. 2022 19:47:59          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - Instance can be correctly inicialized with `CBlock::TestValue0` and `CBlock::TestValue1`.
+     792     3666     3666 29. 12. 2022 19:29:29          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		  - Operator == uses Method `CompareDeep` to do its job, so this test is also testing Method `CompareDeep`.
+     793     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 */
+     794     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		TEST_METHOD(CStack_equal)
+     795     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			{
+     796     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			const CBlock val1_0(CBlock::TestValue0()), val2_0(CBlock::TestValue0());
+     797     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			const CBlock val3_1(CBlock::TestValue1()), val4_1(CBlock::TestValue1());
+     798     2392     2392 10. 12. 2022 15:05:40          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     799     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			const CStack stack1_0(val1_0), stack2_0(val2_0);
+     800     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			const CStack stack3_1(val3_1), stack4_1(val4_1);
+     801     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     802     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsTrue(stack1_0.ID() < stack2_0.ID(), L"Wrong ClassInfo ID", LINE_INFO());
+     803     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsTrue(stack2_0.ID() < stack3_1.ID(), L"Wrong ClassInfo ID", LINE_INFO());
+     804     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsTrue(stack3_1.ID() < stack4_1.ID(), L"Wrong ClassInfo ID", LINE_INFO());
+     805     2392     2392 10. 12. 2022 15:05:40          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     806     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsTrue(stack1_0 == stack1_0, L"Must be true", LINE_INFO());
+     807     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsTrue(stack3_1 == stack4_1, L"Must be true", LINE_INFO());
+     808     2392     2392 10. 12. 2022 15:05:40          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     809     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsTrue(stack1_0 == stack2_0, L"Must be true", LINE_INFO());
+     810     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsTrue(stack2_0 == stack1_0, L"Must be true", LINE_INFO());
+     811     2392     2392 10. 12. 2022 15:05:40          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     812     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsTrue(stack3_1 == stack4_1, L"Must be true", LINE_INFO());
+     813     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsTrue(stack3_1 == stack4_1, L"Must be true", LINE_INFO());
+     814     2391     2391 10. 12. 2022 14:01:19          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     815     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsFalse(stack1_0 == stack3_1, L"Must be false", LINE_INFO());
+     816     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsFalse(stack3_1 == stack1_0, L"Must be false", LINE_INFO());
+     817     2391     2391 10. 12. 2022 14:01:19          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     818     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsFalse(stack2_0 == stack4_1, L"Must be false", LINE_INFO());
+     819     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsFalse(stack4_1 == stack2_0, L"Must be false", LINE_INFO());
+     820     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			}
+     821     2156     2156 2. 12. 2022 20:15:41           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+     822     3662     3662 29. 12. 2022 18:17:11          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		/**
+     823     3666     3666 29. 12. 2022 19:29:29          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 \test **Test of Relational Operator !=**. **Author:** `Majnus`.
+     824     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 */
+     825     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		TEST_METHOD(CStack_not_equal)
+     826     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			{
+     827     3296     3296 21. 12. 2022 19:04:04          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			const CBlock val1_0(CBlock::TestValue0()), val2_0(CBlock::TestValue0()), val3_1(CBlock::TestValue1()), val4_1(CBlock::TestValue1());
+     828     3296     3296 21. 12. 2022 19:04:04          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+     829     3296     3296 21. 12. 2022 19:04:04          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			const CStack stack1_0(val1_0), stack2_0(val2_0), stack3_1(val3_1), stack4_1(val4_1);
+     830     3296     3296 21. 12. 2022 19:04:04          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       						
+     831     3296     3296 21. 12. 2022 19:04:04          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			Assert::IsFalse(stack1_0 != stack2_0, L"Must be same", LINE_INFO());
+     832     3296     3296 21. 12. 2022 19:04:04          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			Assert::IsFalse(stack3_1 != stack4_1, L"Must be same", LINE_INFO());
+     833     3296     3296 21. 12. 2022 19:04:04          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       
+     834     3296     3296 21. 12. 2022 19:04:04          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			Assert::IsTrue(stack1_0 != stack3_1, L"Must be true", LINE_INFO());
+     835     3296     3296 21. 12. 2022 19:04:04          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xmajnu01                       			Assert::IsTrue(stack2_0 != stack4_1, L"Must be false", LINE_INFO());
+     836     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			}
+     837     2132     2132 2. 12. 2022 18:03:01           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       
+     838     3662     3662 29. 12. 2022 18:17:11          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		/**
+     839     3666     3666 29. 12. 2022 19:29:29          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 \test **Test of Relational Operator <**. **Author:** `Prasek`.
+     840     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 */
+     841     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		TEST_METHOD(CStack_operator_less_than)
+     842     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			{
+     843     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			const CBlock val1_0(CBlock::TestValue0()), val2_0(CBlock::TestValue0());
+     844     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			const CBlock val3_1(CBlock::TestValue1()), val4_1(CBlock::TestValue1());
+     845     2132     2132 2. 12. 2022 18:03:01           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       
+     846     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			const CStack stack1_0(val1_0), stack2_0(val2_0);
+     847     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			const CStack stack3_1(val3_1), stack4_1(val4_1);
+     848     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     849     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsTrue(val1_0.ID() < val2_0.ID(), L"Wrong ClassInfo ID", LINE_INFO());
+     850     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsTrue(val2_0.ID() < val3_1.ID(), L"Wrong ClassInfo ID", LINE_INFO());
+     851     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsTrue(val3_1.ID() < val4_1.ID(), L"Wrong ClassInfo ID", LINE_INFO());
+     852     2131     2131 2. 12. 2022 17:40:21           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     853     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsFalse(val1_0 < val1_0, L"Must be false", LINE_INFO());
+     854     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsFalse(val3_1 < val4_1, L"Must be false", LINE_INFO());
+     855     2125     2125 2. 12. 2022 16:41:41           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       
+     856     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsFalse(val1_0 < val2_0, L"Must be false", LINE_INFO());
+     857     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsFalse(val2_0 < val1_0, L"Must be false", LINE_INFO());
+     858     2227     2227 4. 12. 2022 11:32:33           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       
+     859     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsFalse(val3_1 < val4_1, L"Must be false", LINE_INFO());
+     860     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsFalse(val3_1 < val4_1, L"Must be false", LINE_INFO());
+     861     2134     2134 2. 12. 2022 18:09:24           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       
+     862     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsTrue(val1_0 < val3_1, L"Must be true", LINE_INFO());
+     863     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsFalse(val3_1 < val1_0, L"Must be false", LINE_INFO());
+     864     2134     2134 2. 12. 2022 18:09:24           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       
+     865     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsTrue(val2_0 < val4_1, L"Must be true", LINE_INFO());
+     866     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsFalse(val4_1 < val2_0, L"Must be false", LINE_INFO());
+     867     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			}
+     868     2391     2391 10. 12. 2022 14:01:19          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     869     3662     3662 29. 12. 2022 18:17:11          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		/**
+     870     3666     3666 29. 12. 2022 19:29:29          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 \test **Test of Relational Operator >**. **Author:** `Pesek`.
+     871     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 */
+     872     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		TEST_METHOD(CStack_operator_greater_than)
+     873     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			{
+     874     2879     2879 18. 12. 2022 21:59:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			CBlock* iArray1 = CStack::TestValue0(2);
+     875     2879     2879 18. 12. 2022 21:59:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			CBlock* iArray2 = CStack::TestValue0(3);
+     876     2391     2391 10. 12. 2022 14:01:19          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     877     2879     2879 18. 12. 2022 21:59:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			const CStack val1_0 = CStack(2, iArray1);
+     878     2879     2879 18. 12. 2022 21:59:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			const CStack val2_0 = CStack(2, iArray1);
+     879     2879     2879 18. 12. 2022 21:59:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			const CStack val3_1 = CStack(3, iArray2);
+     880     2879     2879 18. 12. 2022 21:59:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			const CStack val4_1 = CStack(3, iArray2);
+     881     2879     2879 18. 12. 2022 21:59:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			free(iArray2);
+     882     2879     2879 18. 12. 2022 21:59:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			free(iArray1);
+     883     2879     2879 18. 12. 2022 21:59:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       
+     884     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsTrue(val1_0.ID() < val2_0.ID(), L"Wrong ClassInfo ID", LINE_INFO());
+     885     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsTrue(val2_0.ID() < val3_1.ID(), L"Wrong ClassInfo ID", LINE_INFO());
+     886     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsTrue(val3_1.ID() < val4_1.ID(), L"Wrong ClassInfo ID", LINE_INFO());
+     887     2391     2391 10. 12. 2022 14:01:19          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     888     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsFalse(val1_0 > val1_0, L"Must be false", LINE_INFO());
+     889     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsFalse(val3_1 > val4_1, L"Must be false", LINE_INFO());
+     890     2391     2391 10. 12. 2022 14:01:19          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     891     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsFalse(val1_0 > val2_0, L"Must be false", LINE_INFO());
+     892     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsFalse(val2_0 > val1_0, L"Must be false", LINE_INFO());
+     893     2391     2391 10. 12. 2022 14:01:19          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     894     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsFalse(val3_1 > val4_1, L"Must be false", LINE_INFO());
+     895     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsFalse(val3_1 > val4_1, L"Must be false", LINE_INFO());
+     896     2391     2391 10. 12. 2022 14:01:19          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     897     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsFalse(val1_0 > val3_1, L"Must be false", LINE_INFO());
+     898     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsTrue(val3_1 > val1_0, L"Must be true", LINE_INFO());
+     899     2534     2534 14. 12. 2022 15:57:35          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       
+     900     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsFalse(val2_0 > val4_1, L"Must be false", LINE_INFO());
+     901     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			Assert::IsTrue(val4_1 > val2_0, L"Must be true", LINE_INFO());
+     902     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			}
+     903     2534     2534 14. 12. 2022 15:57:35          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       
+     904     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       	// CStack characteristic methods
+     905     3662     3662 29. 12. 2022 18:17:11          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		/**
+     906     3666     3666 29. 12. 2022 19:29:29          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 \test **Test of Function Reverzuj(aaa)**. **Author:** `Prasek`.
+     907     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 */
+     908     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		TEST_METHOD(CStack_reverzujaaa)
+     909     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			{
+     910     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			size_t allocsize_before = get_alloc_actual_size();
+     911     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       
+     912     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			size_t allocsize_after;
+     913     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       
+     914     2813     2813 18. 12. 2022 12:09:51          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			const CBlock val0(CBlock::TestValue0());
+     915     2813     2813 18. 12. 2022 12:09:51          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			const CBlock val1(CBlock::TestValue0());
+     916     2813     2813 18. 12. 2022 12:09:51          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       
+     917     2813     2813 18. 12. 2022 12:09:51          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			CStack stack_aaa;
+     918     2813     2813 18. 12. 2022 12:09:51          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			CStack stack_bbb;
+     919     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			allocsize_after = get_alloc_actual_size();
+     920     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       
+     921     2813     2813 18. 12. 2022 12:09:51          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			stack_aaa.Push(val0);
+     922     2813     2813 18. 12. 2022 12:09:51          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			stack_aaa.Push(val1);
+     923     2813     2813 18. 12. 2022 12:09:51          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			Assert::IsTrue(stack_aaa.PocetPrvku() == 2, L"Wrong size of Stack", LINE_INFO());
+     924     2813     2813 18. 12. 2022 12:09:51          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			Assert::IsTrue(*stack_aaa.Top() == val1, L"Wrong element on top of Stack", LINE_INFO());
+     925     2813     2813 18. 12. 2022 12:09:51          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			Assert::IsTrue(*stack_aaa.Bottom() == val0, L"Wrong element on top of Stack", LINE_INFO());
+     926     2813     2813 18. 12. 2022 12:09:51          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			stack_bbb = Reverzuj(stack_aaa);
+     927     2813     2813 18. 12. 2022 12:09:51          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			Assert::IsTrue(stack_bbb.PocetPrvku() == 2, L"Wrong size of Stack", LINE_INFO());
+     928     2813     2813 18. 12. 2022 12:09:51          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			Assert::IsTrue(*stack_bbb.Top() == val0, L"Wrong element on top of Stack", LINE_INFO());
+     929     2813     2813 18. 12. 2022 12:09:51          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			Assert::IsTrue(*stack_bbb.Bottom() == val1, L"Wrong element on top of Stack", LINE_INFO());
+     930     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       
+     931     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			if constexpr (KCBlock_allocate)
+     932     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       				Assert::IsTrue(allocsize_before < allocsize_after, L"No memory allocation", LINE_INFO());
+     933     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       			else
+     934     2877     2877 18. 12. 2022 21:38:03          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xprase08                       				Assert::IsTrue(allocsize_before == allocsize_after, L"Memory allocated", LINE_INFO());
+     935     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			}
+     936     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       
+     937     3662     3662 29. 12. 2022 18:17:11          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		/**
+     938     3666     3666 29. 12. 2022 19:29:29          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 \test **Test of Stack Dup**. **Authors:** `Pesek, Prasek`.
+     939     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		 */
+     940     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       		TEST_METHOD(CStack_dup)
+     941     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			{
+     942     3203     3203 21. 12. 2022 14:26:58          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			size_t allocsize_before = get_alloc_actual_size();
+     943     3203     3203 21. 12. 2022 14:26:58          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			ptrdiff_t living_before = ClassInfo<CStack>::Living();
+     944     3203     3203 21. 12. 2022 14:26:58          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			ptrdiff_t living_after;
+     945     3203     3203 21. 12. 2022 14:26:58          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			size_t allocsize_after;
+     946     3203     3203 21. 12. 2022 14:26:58          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				{
+     947     3203     3203 21. 12. 2022 14:26:58          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				CBlock* Array = CStack::TestValueRandom(3);
+     948     3203     3203 21. 12. 2022 14:26:58          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				CStack Stack1 = CStack(3, Array);
+     949     3203     3203 21. 12. 2022 14:26:58          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				free(Array);
+     950     3203     3203 21. 12. 2022 14:26:58          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       
+     951     3203     3203 21. 12. 2022 14:26:58          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				CStack Stack2 = Stack1.Dup();
+     952     3203     3203 21. 12. 2022 14:26:58          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       
+     953     3203     3203 21. 12. 2022 14:26:58          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				allocsize_after = get_alloc_actual_size();
+     954     3203     3203 21. 12. 2022 14:26:58          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				living_after = ClassInfo<CStack>::Living();
+     955     3203     3203 21. 12. 2022 14:26:58          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				Assert::IsTrue(living_before + 2 == living_after, L"Wrong number of instances", LINE_INFO());
+     956     3203     3203 21. 12. 2022 14:26:58          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				Assert::IsTrue(allocsize_before < allocsize_after, L"No memory allocation", LINE_INFO());
+     957     3203     3203 21. 12. 2022 14:26:58          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				Assert::IsTrue(Stack1 == Stack2, L"Stack2 isn't a duplicate of Stack1", LINE_INFO());
+     958     3203     3203 21. 12. 2022 14:26:58          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       				}
+     959     3203     3203 21. 12. 2022 14:26:58          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			allocsize_after = get_alloc_actual_size();
+     960     3203     3203 21. 12. 2022 14:26:58          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			living_after = ClassInfo<CStack>::Living();
+     961     3203     3203 21. 12. 2022 14:26:58          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			Assert::IsTrue(living_before == living_after, L"Wrong number of instances", LINE_INFO());
+     962     3203     3203 21. 12. 2022 14:26:58          /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xpesek13                       			Assert::IsTrue(allocsize_before == allocsize_after, L"Wrong memory deallocation", LINE_INFO());
+     963     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       			}
+     964     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       	};
+     965     1777     1777 1. 12. 2022 12:56:07           /ct09_zasobnik1/trunk/Project/UnitTests/UnitTests.cpp        xkluka00                       }

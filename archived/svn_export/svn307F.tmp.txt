@@ -1,0 +1,994 @@
+  line   rev      merged   date                           path                                                         author                         content 
+
+       0      324      324 3. 11. 2022 10:13:56           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       /** \file CStack.cpp
+       1     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *  \brief CStack class source
+       2     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *  \details File contains implementation of CStack support functions
+       3     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *  \authors Kluka, Majnus, Pesek, Prasek
+       4     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *  \version 2022
+       5     2715     2715 16. 12. 2022 21:36:34          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	\attention File CStack.cpp is in last stage of development.
+       6       90       90 29. 10. 2022 18:30:16          /ct09_zasobnik1/trunk/Project/Project/CZasobnik.cpp          xkluka00                        *  $Id$
+       7     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+       8       90       90 29. 10. 2022 18:30:16          /ct09_zasobnik1/trunk/Project/Project/CZasobnik.cpp          xkluka00                       
+       9     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #include <cstring>
+      10      324      324 3. 11. 2022 10:13:56           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       #include "CStack.h"
+      11       90       90 29. 10. 2022 18:30:16          /ct09_zasobnik1/trunk/Project/Project/CZasobnik.cpp          xkluka00                       
+      12     2386     2386 10. 12. 2022 1:08:18           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       // comparison methods
+      13     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	Private method CompareDeep
+      14     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	authors	Majnus
+      15     2906     2906 19. 12. 2022 11:43:23          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	helped Kluka (whole source code)
+      16     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+      17     3691     3691 30. 12. 2022 13:38:24          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       int CStack::CompareDeep(const CStack& aStack) const 
+      18     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	{
+      19     2446     2446 12. 12. 2022 17:21:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	size_t aStack1_Count = iCount;
+      20     3691     3691 30. 12. 2022 13:38:24          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	size_t aStack2_Count = aStack.iCount;
+      21     2252     2252 6. 12. 2022 21:53:35           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       
+      22     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	if (!aStack2_Count && !aStack1_Count)
+      23     2461     2461 12. 12. 2022 23:22:44          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		return 0;
+      24     2439     2439 11. 12. 2022 23:47:14          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       
+      25     2696     2696 16. 12. 2022 16:39:50          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	if (aStack1_Count < aStack2_Count) return -1;
+      26     2696     2696 16. 12. 2022 16:39:50          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	if (aStack1_Count > aStack2_Count) return 1;
+      27     2440     2440 12. 12. 2022 2:18:18           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	if (aStack1_Count == aStack2_Count)
+      28     2431     2431 11. 12. 2022 21:45:45          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		{
+      29     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		CBlock* Current_Stack1 = iTop;
+      30     3691     3691 30. 12. 2022 13:38:24          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		CBlock* Current_Stack2 = aStack.iTop;
+      31     2426     2426 11. 12. 2022 20:47:17          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       
+      32     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		while (Current_Stack1 != NULL)
+      33     2431     2431 11. 12. 2022 21:45:45          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       			{
+      34     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       			if (Current_Stack1->Value() < Current_Stack2->Value()) return -1;
+      35     3298     3298 21. 12. 2022 19:10:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       			if (Current_Stack1->Value() > Current_Stack2->Value()) return 1;
+      36     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       			if (Current_Stack1->Value() == Current_Stack2->Value())
+      37     2440     2440 12. 12. 2022 2:18:18           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       				{
+      38     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       				Current_Stack1 = static_cast<CBlock*>(Current_Stack1->NextItem());
+      39     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       				Current_Stack2 = static_cast<CBlock*>(Current_Stack2->NextItem());
+      40     2440     2440 12. 12. 2022 2:18:18           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       				}
+      41     2431     2431 11. 12. 2022 21:45:45          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       			}
+      42     2431     2431 11. 12. 2022 21:45:45          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		}
+      43     2696     2696 16. 12. 2022 16:39:50          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+      44     2696     2696 16. 12. 2022 16:39:50          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	return 0;
+      45     2439     2439 11. 12. 2022 23:47:14          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	}
+      46     2426     2426 11. 12. 2022 20:47:17          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       
+      47     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	Private method Compare
+      48     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	author Pesek
+      49     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+      50     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       int CStack::Compare(const CStack& aStack) const
+      51     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	{
+      52     2454     2454 12. 12. 2022 20:10:56          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       	if (this->PocetPrvku() > aStack.PocetPrvku())
+      53     2386     2386 10. 12. 2022 1:08:18           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		{
+      54     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		return 1;
+      55     2386     2386 10. 12. 2022 1:08:18           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		}
+      56     2454     2454 12. 12. 2022 20:10:56          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       	else if (this->PocetPrvku() < aStack.PocetPrvku())
+      57     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		{
+      58     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		return -1;
+      59     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		}
+      60     2455     2455 12. 12. 2022 20:15:10          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       	else
+      61     2454     2454 12. 12. 2022 20:10:56          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       		return 0;
+      62     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	}
+      63      788      788 12. 11. 2022 19:36:18          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       
+      64     2386     2386 10. 12. 2022 1:08:18           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       // c'tors
+      65     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	Default c'tor
+      66     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	author Majnus
+      67     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+      68     2436     2436 11. 12. 2022 22:48:43          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       CStack::CStack(): iTop(nullptr), iBottom(nullptr),iCount(0)
+      69     2492     2492 13. 12. 2022 22:34:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	{
+      70     2492     2492 13. 12. 2022 22:34:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	}
+      71     2381     2381 9. 12. 2022 23:51:33           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+      72     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	CBlock conversion c'tor
+      73     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	author Kluka
+      74     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+      75     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       CStack::CStack(const CBlock& aBlock)
+      76     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	{
+      77     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #ifdef KLUKA_PRINT
+      78     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << "		CBlock conversion c'tor was called" << std::endl;
+      79     2772     2772 17. 12. 2022 19:03:01          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << std::endl << "		C'tor loaded value: " << aBlock.Value() << std::endl;
+      80     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #endif
+      81     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+      82     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	iTop = new CBlock(aBlock.Value(), nullptr, nullptr);
+      83     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	iTop->SetPrevNext(nullptr, nullptr);
+      84     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	iBottom = iTop;
+      85     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	iCount = 1;
+      86     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+      87     3672     3672 29. 12. 2022 21:04:03          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #ifndef NDEBUG
+      88     3672     3672 29. 12. 2022 21:04:03          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	IntegrityTest();
+      89     3672     3672 29. 12. 2022 21:04:03          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #endif
+      90     3672     3672 29. 12. 2022 21:04:03          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+      91     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #ifdef KLUKA_PRINT
+      92     2772     2772 17. 12. 2022 19:03:01          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << std::endl << "		C'tor set values: " << std::endl;
+      93     2772     2772 17. 12. 2022 19:03:01          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << "		iTop: " << iTop->Value() << std::endl;
+      94     2772     2772 17. 12. 2022 19:03:01          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << "		iBottom: " << iTop->Value() << std::endl;
+      95     2772     2772 17. 12. 2022 19:03:01          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << "		iCount: " << iCount << std::endl;
+      96     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << std::endl << "		CBlock conversion c'tor was called successfully" << std::endl;
+      97     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #endif
+      98     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	}
+      99     2386     2386 10. 12. 2022 1:08:18           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     100     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	Copy c'tor
+     101     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	author Majnus
+     102     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+     103     3298     3298 21. 12. 2022 19:10:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       CStack::CStack(const CStack& aStack) : iTop(nullptr), iBottom(nullptr), iCount(0) 
+     104     2492     2492 13. 12. 2022 22:34:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	{
+     105     2919     2919 19. 12. 2022 13:28:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             petyovsky                      	const CBlock *tmp = aStack.iBottom;
+     106     2458     2458 12. 12. 2022 20:58:09          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	while(tmp != nullptr)
+     107     2696     2696 16. 12. 2022 16:39:50          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		{
+     108     2919     2919 19. 12. 2022 13:28:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             petyovsky                      		Push(*tmp);
+     109     2919     2919 19. 12. 2022 13:28:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             petyovsky                      		tmp = dynamic_cast<const CBlock *>(tmp->PrevItem());
+     110     2696     2696 16. 12. 2022 16:39:50          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		}
+     111     2458     2458 12. 12. 2022 20:58:09          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	}
+     112     2458     2458 12. 12. 2022 20:58:09          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       
+     113     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	String conversion c'tor
+     114     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	author Kluka
+     115     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+     116     2715     2715 16. 12. 2022 21:36:34          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       CStack::CStack(const std::string& aString) : iTop(nullptr), iBottom(nullptr), iCount(0)
+     117     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	{
+     118     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #ifdef KLUKA_PRINT
+     119     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << "		String conversion c'tor was called" << std::endl;
+     120     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #endif
+     121     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     122     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::stringstream ss;
+     123     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     124     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #ifdef KLUKA_PRINT
+     125     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << std::endl << "		C'tor is calling operator << " << std::endl;
+     126     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #endif
+     127     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     128     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	ss << aString;
+     129     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     130     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #ifdef KLUKA_PRINT
+     131     2715     2715 16. 12. 2022 21:36:34          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << "			Operator loaded stream: " << aString << std::endl;
+     132     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #endif
+     133     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     134     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #ifdef KLUKA_PRINT
+     135     2735     2735 17. 12. 2022 2:16:15           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << std::endl << "		C'tor is calling operator >> " << std::endl;
+     136     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #endif
+     137     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     138     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	ss >> *this;
+     139     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #ifdef KLUKA_PRINT
+     140     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << "		String conversion c'tor was called succesfully" << std::endl;
+     141     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #endif
+     142     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	}
+     143     2381     2381 9. 12. 2022 23:51:33           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     144     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	CBlock conversion c'tor from array of known size
+     145     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	author Pesek
+     146     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+     147     2480     2480 13. 12. 2022 17:30:55          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       CStack::CStack(size_t aSize, const CBlock* aArray) : iTop(nullptr), iBottom(nullptr), iCount(0)
+     148     2492     2492 13. 12. 2022 22:34:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	{
+     149     2480     2480 13. 12. 2022 17:30:55          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       	for (size_t i = 0; i < aSize; ++i)
+     150     2696     2696 16. 12. 2022 16:39:50          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		{
+     151     2480     2480 13. 12. 2022 17:30:55          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       		Push(aArray[i]);
+     152     2696     2696 16. 12. 2022 16:39:50          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		}
+     153     2480     2480 13. 12. 2022 17:30:55          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       	}
+     154     2380     2380 9. 12. 2022 23:14:12           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     155     2509     2509 14. 12. 2022 14:20:08          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	Conversion c'tor from init list
+     156     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	author Prasek
+     157     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+     158     2437     2437 11. 12. 2022 23:00:09          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       CStack::CStack(std::initializer_list<CBlock> aInitList) : CStack(aInitList.size(), std::data(aInitList))
+     159     2437     2437 11. 12. 2022 23:00:09          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       	{
+     160     2437     2437 11. 12. 2022 23:00:09          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       	}
+     161     2380     2380 9. 12. 2022 23:14:12           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     162     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	Conversion c'tor of type size_t
+     163     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	author Prasek
+     164     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+     165     2429     2429 11. 12. 2022 21:43:41          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       CStack::CStack(const size_t aSize) : iTop(nullptr), iBottom(nullptr), iCount(0)
+     166     2429     2429 11. 12. 2022 21:43:41          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       	{
+     167     2429     2429 11. 12. 2022 21:43:41          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       	for(size_t i = 0; i < aSize; ++i)
+     168     2429     2429 11. 12. 2022 21:43:41          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       		{
+     169     2429     2429 11. 12. 2022 21:43:41          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       		this->Push(CBlock());
+     170     2429     2429 11. 12. 2022 21:43:41          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       		}
+     171     2429     2429 11. 12. 2022 21:43:41          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       	}
+     172     2380     2380 9. 12. 2022 23:14:12           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     173     2386     2386 10. 12. 2022 1:08:18           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       // d'tor
+     174     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	Destructor
+     175     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	author Majnus
+     176     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	helped Kluka
+     177     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+     178     2696     2696 16. 12. 2022 16:39:50          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       CStack::~CStack() noexcept(false)
+     179     2662     2662 15. 12. 2022 22:03:09          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	{
+     180     2696     2696 16. 12. 2022 16:39:50          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	Destroy();
+     181     2696     2696 16. 12. 2022 16:39:50          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	}
+     182     2696     2696 16. 12. 2022 16:39:50          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     183     2696     2696 16. 12. 2022 16:39:50          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	Destroy
+     184     2696     2696 16. 12. 2022 16:39:50          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	author Kluka
+     185     2696     2696 16. 12. 2022 16:39:50          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+     186     2696     2696 16. 12. 2022 16:39:50          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       void CStack::Destroy()
+     187     2696     2696 16. 12. 2022 16:39:50          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	{
+     188     2919     2919 19. 12. 2022 13:28:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             petyovsky                      	if(!iCount && !iTop)
+     189     2696     2696 16. 12. 2022 16:39:50          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		return;
+     190     2696     2696 16. 12. 2022 16:39:50          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     191     2919     2919 19. 12. 2022 13:28:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             petyovsky                      	CBlock *node = iTop;
+     192     2919     2919 19. 12. 2022 13:28:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             petyovsky                      	while(node)
+     193     2696     2696 16. 12. 2022 16:39:50          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		{
+     194     2919     2919 19. 12. 2022 13:28:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             petyovsky                      		iTop = static_cast<CBlock *>(node->NextItem());
+     195     2919     2919 19. 12. 2022 13:28:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             petyovsky                      		node->SetPrevNext(nullptr, nullptr);
+     196     2919     2919 19. 12. 2022 13:28:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             petyovsky                      		delete node;
+     197     2919     2919 19. 12. 2022 13:28:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             petyovsky                      		node = iTop;
+     198     2919     2919 19. 12. 2022 13:28:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             petyovsky                      		}
+     199     2696     2696 16. 12. 2022 16:39:50          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     200     2919     2919 19. 12. 2022 13:28:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             petyovsky                      	iTop = iBottom = nullptr;
+     201     2919     2919 19. 12. 2022 13:28:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             petyovsky                      	iCount = 0;
+     202     2919     2919 19. 12. 2022 13:28:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             petyovsky                      
+     203     2696     2696 16. 12. 2022 16:39:50          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	return;
+     204     2696     2696 16. 12. 2022 16:39:50          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	}
+     205     2696     2696 16. 12. 2022 16:39:50          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     206     2386     2386 10. 12. 2022 1:08:18           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       // InstanceInfo getters
+     207     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	Actual getter
+     208     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	author Majnus
+     209     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+     210     3298     3298 21. 12. 2022 19:10:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       size_t CStack::Actual() const 
+     211     2436     2436 11. 12. 2022 22:48:43          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	{
+     212     3298     3298 21. 12. 2022 19:10:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	return iInstanceInfo.Living();
+     213     2436     2436 11. 12. 2022 22:48:43          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	}
+     214     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     215     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	ID getter
+     216     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	author Majnus
+     217     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+     218     2436     2436 11. 12. 2022 22:48:43          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       size_t CStack::ID() const
+     219     2436     2436 11. 12. 2022 22:48:43          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	{
+     220     2937     2937 19. 12. 2022 16:32:08          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	return iInstanceInfo.ID();
+     221     2436     2436 11. 12. 2022 22:48:43          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	}
+     222     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     223     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	Total getter
+     224     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	author Majnus
+     225     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+     226     2436     2436 11. 12. 2022 22:48:43          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       size_t CStack::Total() const
+     227     2436     2436 11. 12. 2022 22:48:43          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	{
+     228     2937     2937 19. 12. 2022 16:32:08          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	return iInstanceInfo.Total();
+     229     2436     2436 11. 12. 2022 22:48:43          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	}
+     230     2386     2386 10. 12. 2022 1:08:18           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     231     2386     2386 10. 12. 2022 1:08:18           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       // setters/getters
+     232     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	PocetPrvku getter
+     233     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	author Kluka
+     234     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+     235     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       size_t CStack::PocetPrvku() const
+     236     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	{
+     237     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #ifdef KLUKA_PRINT
+     238     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << "		PocetPrvku was called" << std::endl;
+     239     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << std::endl << "		iCount: " << iCount << std::endl;
+     240     2737     2737 17. 12. 2022 2:22:46           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << std::endl << "		PocetPrvku was called successfully" << std::endl;
+     241     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #endif
+     242     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     243     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	return iCount;
+     244     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	}
+     245     2386     2386 10. 12. 2022 1:08:18           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     246     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	Usage getter
+     247     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	author Pesek
+     248     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+     249     2859     2859 18. 12. 2022 19:01:25          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       double CStack::Usage()
+     250     2492     2492 13. 12. 2022 22:34:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	{
+     251     2480     2480 13. 12. 2022 17:30:55          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       	CBlock* node = new CBlock();
+     252     2386     2386 10. 12. 2022 1:08:18           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     253     2480     2480 13. 12. 2022 17:30:55          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       	double iStack_memory = sizeof(CBlock);
+     254     2480     2480 13. 12. 2022 17:30:55          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       	double iArray_memory = sizeof(node->Value());
+     255     2386     2386 10. 12. 2022 1:08:18           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     256     2480     2480 13. 12. 2022 17:30:55          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       	delete(node);
+     257     2480     2480 13. 12. 2022 17:30:55          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       
+     258     2859     2859 18. 12. 2022 19:01:25          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       	return 100 * ((iStack_memory-iArray_memory) / iArray_memory);
+     259     2492     2492 13. 12. 2022 22:34:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	}
+     260     2480     2480 13. 12. 2022 17:30:55          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       
+     261     2386     2386 10. 12. 2022 1:08:18           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       // unary operators
+     262     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	Unary Operator +
+     263     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	author Pesek
+     264     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+     265     2480     2480 13. 12. 2022 17:30:55          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       CStack& CStack::operator+()
+     266     2480     2480 13. 12. 2022 17:30:55          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       	{
+     267     2480     2480 13. 12. 2022 17:30:55          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       	return *this;
+     268     2480     2480 13. 12. 2022 17:30:55          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       	}
+     269     2386     2386 10. 12. 2022 1:08:18           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     270     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	Unary Operator -
+     271     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	author Kluka
+     272     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+     273     2483     2483 13. 12. 2022 18:10:09          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       CStack& CStack::operator-() 
+     274     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	{
+     275     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #ifdef KLUKA_PRINT
+     276     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << "		Operator - was called" << std::endl;
+     277     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #endif
+     278     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     279     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	if (!iCount)
+     280     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		{
+     281     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		throw "Error: iCount is 0";
+     282     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		}
+     283     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     284     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	if (!iTop)
+     285     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		{
+     286     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		throw "Error: iTop is nullptr";
+     287     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		}
+     288     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     289     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #ifdef KLUKA_PRINT
+     290     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << std::endl << "		Operator is calling Reverzuj " << std::endl;
+     291     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #endif
+     292     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     293     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	Reverzuj();
+     294     2681     2681 16. 12. 2022 1:13:08           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     295     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	if (!iCount)
+     296     2829     2829 18. 12. 2022 13:34:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		{
+     297     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		throw "Error: iCount is 0";
+     298     2829     2829 18. 12. 2022 13:34:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		}
+     299     2829     2829 18. 12. 2022 13:34:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     300     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	if (!iTop)
+     301     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		{
+     302     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		throw "Error: iTop is nullptr";
+     303     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		}
+     304     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     305     2681     2681 16. 12. 2022 1:13:08           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #ifdef KLUKA_PRINT
+     306     2681     2681 16. 12. 2022 1:13:08           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << std::endl << "		Check if operator - received correct data: " << std::endl;
+     307     2681     2681 16. 12. 2022 1:13:08           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << std::endl << "		Stack info after Reverzuj: " << std::endl;
+     308     2681     2681 16. 12. 2022 1:13:08           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << "		iCount: " << iCount << std::endl;
+     309     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << "		iTop: " << iTop->Value() << std::endl;
+     310     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << "		iBottom: " << iBottom->Value() << std::endl;
+     311     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     312     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	CBlock* Check_Stack = iTop;
+     313     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	while (Check_Stack != nullptr)
+     314     2681     2681 16. 12. 2022 1:13:08           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		{
+     315     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		std::cout << "			Value: " << Check_Stack->Value() << std::endl;
+     316     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		Check_Stack = static_cast<CBlock*>(Check_Stack->NextItem());
+     317     2681     2681 16. 12. 2022 1:13:08           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		}
+     318     2735     2735 17. 12. 2022 2:16:15           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << std::endl << "		Operator - was called successfully " << std::endl;
+     319     2681     2681 16. 12. 2022 1:13:08           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #endif
+     320     3672     3672 29. 12. 2022 21:04:03          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     321     3672     3672 29. 12. 2022 21:04:03          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #ifndef NDEBUG
+     322     3672     3672 29. 12. 2022 21:04:03          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	IntegrityTest();
+     323     3672     3672 29. 12. 2022 21:04:03          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #endif
+     324     3672     3672 29. 12. 2022 21:04:03          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     325     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	return *this;
+     326     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	}
+     327     2386     2386 10. 12. 2022 1:08:18           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     328     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	Unary Operator ++
+     329     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	author Prasek
+     330     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+     331     2420     2420 11. 12. 2022 17:50:38          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       CStack& CStack::operator++() 
+     332     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	{
+     333     2429     2429 11. 12. 2022 21:43:41          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       	return this->Push(CBlock());
+     334     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	}
+     335     2386     2386 10. 12. 2022 1:08:18           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     336     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	Unary Operator --
+     337     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	author Kluka
+     338     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+     339     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       CStack& CStack::operator--()
+     340     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	{
+     341     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #ifdef KLUKA_PRINT
+     342     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << "		Operator -- was called" << std::endl;
+     343     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #endif
+     344     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     345     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	if (!iCount)
+     346     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		{
+     347     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		throw "Error: iCount is 0";
+     348     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		}
+     349     2386     2386 10. 12. 2022 1:08:18           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     350     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	if (!iTop)
+     351     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		{
+     352     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		throw "Error: iTop is nullptr";
+     353     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		}
+     354     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     355     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	const size_t Count_before = iCount;
+     356     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     357     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #ifdef KLUKA_PRINT
+     358     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << std::endl << "		Stack info before Pop: " << std::endl;
+     359     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << "		iCount: " << iCount << std::endl;
+     360     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << "		iTop: " << iTop->Value() << std::endl;
+     361     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << "		iBottom: " << iBottom->Value() << std::endl;
+     362     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     363     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	CBlock* Check_Stack = iTop;
+     364     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	while (Check_Stack != nullptr)
+     365     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		{
+     366     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		std::cout << "			Value: " << Check_Stack->Value() << std::endl;
+     367     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		Check_Stack = static_cast<CBlock*>(Check_Stack->NextItem());
+     368     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		}
+     369     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     370     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << std::endl << "		Operator is calling Pop" << std::endl;
+     371     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #endif
+     372     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     373     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	Pop();
+     374     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     375     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	const size_t Count_after = iCount;
+     376     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     377     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #ifdef KLUKA_PRINT
+     378     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << "		Check if operator -- received correct data:" << std::endl;
+     379     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << std::endl << "		Stack info after Pop: " << std::endl;
+     380     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << "		iCount: " << iCount << std::endl;
+     381     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << "		iTop: " << iTop->Value() << std::endl;
+     382     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << "		iBottom: " << iBottom->Value() << std::endl;
+     383     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     384     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	Check_Stack = iTop;
+     385     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	while (Check_Stack != nullptr)
+     386     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		{
+     387     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		std::cout << "			Value: " << Check_Stack->Value() << std::endl;
+     388     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		Check_Stack = static_cast<CBlock*>(Check_Stack->NextItem());
+     389     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		}
+     390     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #endif
+     391     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     392     3672     3672 29. 12. 2022 21:04:03          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #ifndef NDEBUG
+     393     3672     3672 29. 12. 2022 21:04:03          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	IntegrityTest();
+     394     3672     3672 29. 12. 2022 21:04:03          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #endif
+     395     3672     3672 29. 12. 2022 21:04:03          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     396     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	if (Count_before > Count_after)
+     397     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		{
+     398     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #ifdef KLUKA_PRINT
+     399     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		std::cout << std::endl << "		Operator -- was called successfully " << std::endl;
+     400     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #endif
+     401     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     402     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		return *this;
+     403     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		}
+     404     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	else
+     405     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		{
+     406     2733     2733 17. 12. 2022 1:53:40           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		throw "Error: Pop is not working correctly";
+     407     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		}
+     408     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	}
+     409     2386     2386 10. 12. 2022 1:08:18           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     410     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	Unary Operator !
+     411     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	author Majnus
+     412     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+     413     2436     2436 11. 12. 2022 22:48:43          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       bool CStack::operator!() const
+     414     2436     2436 11. 12. 2022 22:48:43          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	{
+     415     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	if(!iTop)
+     416     2436     2436 11. 12. 2022 22:48:43          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		{
+     417     3345     3345 21. 12. 2022 21:03:00          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		throw "Error: iTop is nullptr";
+     418     2436     2436 11. 12. 2022 22:48:43          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		}
+     419     2386     2386 10. 12. 2022 1:08:18           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     420     2436     2436 11. 12. 2022 22:48:43          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	return false;
+     421     2436     2436 11. 12. 2022 22:48:43          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	}
+     422     2391     2391 10. 12. 2022 14:01:19          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     423     2386     2386 10. 12. 2022 1:08:18           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       // binary operators
+     424     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	Binary Operator +
+     425     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	author Majnus
+     426     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+     427     3249     3249 21. 12. 2022 16:45:21          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       CStack CStack::operator+(const CStack &aStack) const
+     428     2459     2459 12. 12. 2022 21:23:25          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	{
+     429     2713     2713 16. 12. 2022 21:09:44          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	CStack newstack;
+     430     2713     2713 16. 12. 2022 21:09:44          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	CBlock *tmp1 = this->iBottom;
+     431     2713     2713 16. 12. 2022 21:09:44          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	CBlock *tmp2 = aStack.iBottom;
+     432     3249     3249 21. 12. 2022 16:45:21          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       
+     433     3249     3249 21. 12. 2022 16:45:21          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	while(newstack.iCount != this->iCount)
+     434     3249     3249 21. 12. 2022 16:45:21          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		{
+     435     3249     3249 21. 12. 2022 16:45:21          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		newstack.Push(*tmp1);
+     436     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		tmp1 = static_cast<CBlock *>(tmp1->PrevItem());
+     437     3249     3249 21. 12. 2022 16:45:21          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		}
+     438     3249     3249 21. 12. 2022 16:45:21          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	while((newstack.iCount - this->iCount) != aStack.iCount)
+     439     3249     3249 21. 12. 2022 16:45:21          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		{
+     440     3249     3249 21. 12. 2022 16:45:21          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		newstack.Push(*tmp2);
+     441     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		tmp2 = static_cast<CBlock *>(tmp2->PrevItem());
+     442     3249     3249 21. 12. 2022 16:45:21          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		}
+     443     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     444     3249     3249 21. 12. 2022 16:45:21          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	return newstack;
+     445     2459     2459 12. 12. 2022 21:23:25          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	}
+     446     2459     2459 12. 12. 2022 21:23:25          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       
+     447     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	Binary Operator =
+     448     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	author Majnus
+     449     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+     450     3338     3338 21. 12. 2022 20:48:22          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       CStack& CStack::operator=(const CStack &aStack)
+     451     2492     2492 13. 12. 2022 22:34:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	{
+     452     2825     2825 18. 12. 2022 13:05:03          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	while (iCount)
+     453     3298     3298 21. 12. 2022 19:10:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		{
+     454     2825     2825 18. 12. 2022 13:05:03          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		Pop();
+     455     3298     3298 21. 12. 2022 19:10:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		}
+     456     2696     2696 16. 12. 2022 16:39:50          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     457     2825     2825 18. 12. 2022 13:05:03          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	CBlock *actual = aStack.iBottom;
+     458     3298     3298 21. 12. 2022 19:10:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       
+     459     2825     2825 18. 12. 2022 13:05:03          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	while(actual)
+     460     3298     3298 21. 12. 2022 19:10:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		{
+     461     2825     2825 18. 12. 2022 13:05:03          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		Push(*actual);
+     462     2825     2825 18. 12. 2022 13:05:03          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		actual = static_cast<CBlock *>(actual->PrevItem());
+     463     3298     3298 21. 12. 2022 19:10:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		}
+     464     2825     2825 18. 12. 2022 13:05:03          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       
+     465     2696     2696 16. 12. 2022 16:39:50          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	return *this;
+     466     2492     2492 13. 12. 2022 22:34:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	}
+     467     2460     2460 12. 12. 2022 22:11:41          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       
+     468     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	Binary non-member Operator +
+     469     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	author Pesek
+     470     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+     471     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       CStack operator+(const CBlock& aBlock, const CStack& aStack)
+     472     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	{
+     473     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       	CStack NewStack(aStack);
+     474     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       	NewStack.Push(aBlock);
+     475     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       	return NewStack;
+     476     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	}
+     477     2386     2386 10. 12. 2022 1:08:18           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     478     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	Binary non-member Operator +
+     479     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	author Pesek
+     480     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+     481     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       CStack operator+(const CStack& aStack, const CBlock& aBlock)
+     482     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       	{
+     483     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       	CStack NewStack = CStack();
+     484     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       	NewStack.Push(aBlock);
+     485     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       	return NewStack + aStack;
+     486     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       	}
+     487     3051     3051 20. 12. 2022 18:41:32          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       
+     488     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	Binary Operator -
+     489     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	author Prasek
+     490     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+     491     2421     2421 11. 12. 2022 18:23:26          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       CStack CStack::operator-(const CStack& aStack) const
+     492     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	{
+     493     2613     2613 15. 12. 2022 10:58:59          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       	CStack result;
+     494     2646     2646 15. 12. 2022 19:24:26          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       	CBlock* stack2 = aStack.iTop;
+     495     2613     2613 15. 12. 2022 10:58:59          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       
+     496     2646     2646 15. 12. 2022 19:24:26          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       	while (stack2 != nullptr)
+     497     2613     2613 15. 12. 2022 10:58:59          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       		{
+     498     2840     2840 18. 12. 2022 15:05:15          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       		CBlock *stack1 = this->iTop;
+     499     2840     2840 18. 12. 2022 15:05:15          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       		bool found = false;
+     500     2646     2646 15. 12. 2022 19:24:26          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       		while (stack1 != nullptr)
+     501     2613     2613 15. 12. 2022 10:58:59          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       			{
+     502     3352     3352 21. 12. 2022 21:15:11          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       			if (stack1->Value() == stack2->Value())
+     503     2613     2613 15. 12. 2022 10:58:59          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       				{
+     504     2840     2840 18. 12. 2022 15:05:15          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       				found = true;
+     505     2840     2840 18. 12. 2022 15:05:15          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       				break;
+     506     2613     2613 15. 12. 2022 10:58:59          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       				}
+     507     3352     3352 21. 12. 2022 21:15:11          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       			stack1 = static_cast<CBlock *>(stack1->NextItem());
+     508     2613     2613 15. 12. 2022 10:58:59          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       			}
+     509     2840     2840 18. 12. 2022 15:05:15          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       		if(!found) 
+     510     2840     2840 18. 12. 2022 15:05:15          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       			{
+     511     3352     3352 21. 12. 2022 21:15:11          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       			result.Push(static_cast<CBlock>(stack2->Value()));
+     512     2840     2840 18. 12. 2022 15:05:15          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       			}
+     513     2840     2840 18. 12. 2022 15:05:15          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       		stack2 = static_cast<CBlock *>(stack2->NextItem());
+     514     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		}
+     515     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     516     2451     2451 12. 12. 2022 20:00:28          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       	return result;
+     517     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	}
+     518     2386     2386 10. 12. 2022 1:08:18           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     519     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	Binary Operator -=
+     520     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	author Kluka
+     521     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+     522     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       CStack& CStack::operator-=(const CStack& aStack)
+     523     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	{
+     524     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #ifdef KLUKA_PRINT
+     525     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << "		Operator -= was called" << std::endl;
+     526     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #endif
+     527     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     528     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	if (!iTop)
+     529     2772     2772 17. 12. 2022 19:03:01          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		{
+     530     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		throw "Error: Stack1 iTop is nullptr";
+     531     2772     2772 17. 12. 2022 19:03:01          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		}
+     532     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     533     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	if (!aStack.iTop)
+     534     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		{
+     535     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		throw "Error: Stack2 iTop is nullptr";
+     536     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		}
+     537     2505     2505 14. 12. 2022 10:23:42          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	
+     538     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	CBlock* Current_Stack = iTop;
+     539     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	const CBlock* Current_Stack2;
+     540     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	CStack New_Stack;
+     541     2504     2504 14. 12. 2022 10:19:11          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	bool skipped;
+     542     2491     2491 13. 12. 2022 21:52:56          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     543     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #ifdef KLUKA_PRINT
+     544     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		std::cout << std::endl << "		Stack iCount: " << iCount << std::endl;
+     545     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		std::cout << "		Stack2 iCount: " << aStack.iCount << std::endl << std::endl;
+     546     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #endif
+     547     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     548     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	while (Current_Stack != nullptr)
+     549     2491     2491 13. 12. 2022 21:52:56          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		{
+     550     2504     2504 14. 12. 2022 10:19:11          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		skipped = false;
+     551     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		Current_Stack2 = aStack.iTop;
+     552     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     553     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #ifdef KLUKA_PRINT
+     554     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		std::cout << "		Stack value: " << Current_Stack->Value() << std::endl;
+     555     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #endif
+     556     2491     2491 13. 12. 2022 21:52:56          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     557     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		while (Current_Stack2 != nullptr)
+     558     2380     2380 9. 12. 2022 23:14:12           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       			{
+     559     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #ifdef KLUKA_PRINT
+     560     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       			std::cout << "				Stack2 value: " << Current_Stack2->Value() << std::endl;
+     561     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #endif
+     562     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     563     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       			if (Current_Stack->Value() == Current_Stack2->Value())
+     564     2505     2505 14. 12. 2022 10:23:42          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       			{
+     565     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #ifdef KLUKA_PRINT
+     566     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       				std::cout << "				match" << std::endl;
+     567     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #endif
+     568     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     569     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       				Current_Stack = static_cast<CBlock*>(Current_Stack->NextItem());
+     570     2504     2504 14. 12. 2022 10:19:11          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       				skipped = true;
+     571     2491     2491 13. 12. 2022 21:52:56          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       				break;
+     572     2491     2491 13. 12. 2022 21:52:56          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       				}
+     573     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       			Current_Stack2 = static_cast<const CBlock*>(Current_Stack2->NextItem());
+     574     2380     2380 9. 12. 2022 23:14:12           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       			}
+     575     2505     2505 14. 12. 2022 10:23:42          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     576     2504     2504 14. 12. 2022 10:19:11          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		if (skipped == true) continue;
+     577     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		New_Stack.Push(static_cast<CBlock>(Current_Stack->Value()));
+     578     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		Current_Stack = static_cast<CBlock*>(Current_Stack->NextItem());
+     579     2380     2380 9. 12. 2022 23:14:12           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		}
+     580     2681     2681 16. 12. 2022 1:13:08           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     581     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #ifdef KLUKA_PRINT
+     582     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << "		New Stack: " << std::endl;
+     583     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << "		New Stack iCount: " << New_Stack.iCount << std::endl;
+     584     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << "		iTop: " << iTop->Value() << std::endl;
+     585     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << "		iBottom: " << iBottom->Value() << std::endl;
+     586     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     587     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	CBlock* Check_Stack = New_Stack.iTop;
+     588     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	while (Check_Stack != nullptr)
+     589     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		{
+     590     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		std::cout << "			Value: " << Check_Stack->Value() << std::endl;
+     591     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		Check_Stack = static_cast<CBlock*>(Check_Stack->NextItem());
+     592     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		}
+     593     2681     2681 16. 12. 2022 1:13:08           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #endif
+     594     2839     2839 18. 12. 2022 15:04:48          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     595     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	-New_Stack;
+     596     2715     2715 16. 12. 2022 21:36:34          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     597     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #ifdef KLUKA_PRINT
+     598     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << std::endl << "		Operator is calling operator =" << std::endl;
+     599     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #endif
+     600     2893     2893 19. 12. 2022 1:01:28           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     601     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	*this = New_Stack;
+     602     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     603     2839     2839 18. 12. 2022 15:04:48          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #ifdef KLUKA_PRINT
+     604     2839     2839 18. 12. 2022 15:04:48          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << std::endl << "		this: iTop -> iBottom " << std::endl;
+     605     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << "		this iCount: " << iCount << std::endl;
+     606     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << "		iTop: " << iTop->Value() << std::endl;
+     607     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << "		iBottom: " << iBottom->Value() << std::endl;
+     608     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     609     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	Check_Stack = iTop;
+     610     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	while (Check_Stack != nullptr)
+     611     2839     2839 18. 12. 2022 15:04:48          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		{
+     612     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		std::cout << "			Value: " << Check_Stack->Value() << std::endl;
+     613     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		Check_Stack = static_cast<CBlock*>(Check_Stack->NextItem());
+     614     2839     2839 18. 12. 2022 15:04:48          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		}
+     615     2839     2839 18. 12. 2022 15:04:48          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #endif
+     616     2839     2839 18. 12. 2022 15:04:48          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     617     3672     3672 29. 12. 2022 21:04:03          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #ifndef NDEBUG
+     618     3672     3672 29. 12. 2022 21:04:03          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	IntegrityTest();
+     619     3672     3672 29. 12. 2022 21:04:03          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #endif
+     620     3672     3672 29. 12. 2022 21:04:03          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     621     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	if (*this == New_Stack)
+     622     2735     2735 17. 12. 2022 2:16:15           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		{
+     623     2893     2893 19. 12. 2022 1:01:28           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #ifdef KLUKA_PRINT
+     624     2735     2735 17. 12. 2022 2:16:15           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		std::cout << std::endl << "		Operator -= was called successfully " << std::endl;
+     625     2893     2893 19. 12. 2022 1:01:28           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #endif
+     626     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     627     2681     2681 16. 12. 2022 1:13:08           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		return *this;
+     628     2735     2735 17. 12. 2022 2:16:15           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		}
+     629     2715     2715 16. 12. 2022 21:36:34          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	else throw "Error: Operator = is not working correctly";
+     630     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	}
+     631     2380     2380 9. 12. 2022 23:14:12           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     632     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	Binary Operator +=
+     633     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	author Pesek
+     634     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+     635     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       CStack& CStack::operator+=(const CStack& aStack)
+     636     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	{
+     637     2919     2919 19. 12. 2022 13:28:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             petyovsky                      	CBlock *node = aStack.Bottom();
+     638     2919     2919 19. 12. 2022 13:28:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             petyovsky                      	while(node)
+     639     2853     2853 18. 12. 2022 16:52:28          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       		{
+     640     2919     2919 19. 12. 2022 13:28:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             petyovsky                      		Push(*node);
+     641     2853     2853 18. 12. 2022 16:52:28          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       		node = static_cast<CBlock*>(node->PrevItem());
+     642     2853     2853 18. 12. 2022 16:52:28          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       		}
+     643     2853     2853 18. 12. 2022 16:52:28          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       
+     644     2456     2456 12. 12. 2022 20:52:53          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       	return *this;
+     645     2454     2454 12. 12. 2022 20:10:56          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       	}
+     646     2454     2454 12. 12. 2022 20:10:56          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       
+     647     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	Operator size_t
+     648     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	author Prasek
+     649     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+     650     2421     2421 11. 12. 2022 18:23:26          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                        CStack::operator size_t() const
+     651     2421     2421 11. 12. 2022 18:23:26          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       	{
+     652     2429     2429 11. 12. 2022 21:43:41          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       	return iCount;
+     653     2421     2421 11. 12. 2022 18:23:26          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       	}
+     654     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     655     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	Relational Operator ==
+     656     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	author Kluka
+     657     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+     658     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       bool CStack::operator==(const CStack& aStack) const
+     659     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	{
+     660     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #ifdef KLUKA_PRINT
+     661     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << "		Operator == was called" << std::endl;
+     662     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << std::endl << "		Calling method CompareDeep" << std::endl;
+     663     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #endif
+     664     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     665     2492     2492 13. 12. 2022 22:34:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	if (this->CompareDeep(aStack) == 0)
+     666     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		{
+     667     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #ifdef KLUKA_PRINT
+     668     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		std::cout << std::endl << "		CompareDepp returned 0, Stacks are same" << std::endl;
+     669     2735     2735 17. 12. 2022 2:16:15           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		std::cout << std::endl << "		Operator == was called successfully " << std::endl;
+     670     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #endif
+     671     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     672     2492     2492 13. 12. 2022 22:34:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		return true;
+     673     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		}
+     674     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	else
+     675     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		{
+     676     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #ifdef KLUKA_PRINT
+     677     2680     2680 16. 12. 2022 0:35:59           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		std::cout << std::endl << "		CompareDepp returned -1 or 1, Stacks aren't same" << std::endl;
+     678     2735     2735 17. 12. 2022 2:16:15           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		std::cout << std::endl << "		Operator == was called successfully " << std::endl;
+     679     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #endif
+     680     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     681     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		return false;
+     682     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		}
+     683     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	}
+     684     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     685     2386     2386 10. 12. 2022 1:08:18           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #ifdef CBLOCK_THREE_WAY_COMPARISON
+     686     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	Three-way comparison by Value Operator
+     687     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	author Kluka
+     688     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+     689     2471     2471 13. 12. 2022 13:24:00          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       std::strong_ordering CStack::operator<=>(const CStack &aStack) const
+     690     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	{
+     691     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	return iCount <=> aStack.iCount;
+     692     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	}
+     693     2380     2380 9. 12. 2022 23:14:12           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     694     2386     2386 10. 12. 2022 1:08:18           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #else
+     695     2386     2386 10. 12. 2022 1:08:18           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       // relational operators
+     696     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	Relational Operator !=
+     697     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	author Majnus
+     698     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+     699     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       bool CStack::operator!=(const CStack& aStack) const
+     700     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	{
+     701     3296     3296 21. 12. 2022 19:04:04          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	if(this->CompareDeep(aStack) == 0)
+     702     3258     3258 21. 12. 2022 17:20:28          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		{
+     703     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		return true;
+     704     3258     3258 21. 12. 2022 17:20:28          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		}
+     705     3258     3258 21. 12. 2022 17:20:28          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	else
+     706     3258     3258 21. 12. 2022 17:20:28          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		{
+     707     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		return false;
+     708     3258     3258 21. 12. 2022 17:20:28          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		}
+     709     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	}
+     710     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     711     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	Relational Operator <
+     712     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	author Prasek
+     713     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+     714     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       bool CStack::operator<(const CStack& aStack) const
+     715     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	{
+     716     2688     2688 16. 12. 2022 11:42:13          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       	if (CompareDeep(aStack) == -1))
+     717     2688     2688 16. 12. 2022 11:42:13          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       		{
+     718     2688     2688 16. 12. 2022 11:42:13          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       		return true;
+     719     2688     2688 16. 12. 2022 11:42:13          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       		}
+     720     2688     2688 16. 12. 2022 11:42:13          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       	else
+     721     2688     2688 16. 12. 2022 11:42:13          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       		{
+     722     2688     2688 16. 12. 2022 11:42:13          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       		return false;
+     723     2688     2688 16. 12. 2022 11:42:13          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       		}
+     724     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	}
+     725      788      788 12. 11. 2022 19:36:18          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       
+     726     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	Relational Operator >
+     727     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	author Pesek
+     728     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+     729     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       bool CStack::operator>(const CStack& aStack) const
+     730     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	{
+     731     2844     2844 18. 12. 2022 15:17:14          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       	if (this->CompareDeep(aStack) == 1)
+     732     2875     2875 18. 12. 2022 21:31:52          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       		{
+     733     2844     2844 18. 12. 2022 15:17:14          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       		return true;
+     734     2875     2875 18. 12. 2022 21:31:52          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       		}
+     735     2844     2844 18. 12. 2022 15:17:14          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       	else
+     736     3217     3217 21. 12. 2022 14:57:55          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       		{
+     737     2844     2844 18. 12. 2022 15:17:14          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       		return false;
+     738     3217     3217 21. 12. 2022 14:57:55          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       		}
+     739     2882     2882 18. 12. 2022 22:12:02          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       	}
+     740     2227     2227 4. 12. 2022 11:32:33           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       
+     741     2386     2386 10. 12. 2022 1:08:18           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #endif /* CBLOCK_THREE_WAY_COMPARISON */
+     742     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     743     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	Output to the stream operator
+     744     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	author Majnus
+     745     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+     746     2919     2919 19. 12. 2022 13:28:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             petyovsky                      std::ostream& operator<<(std::ostream &aOStream, const CStack &aStack)
+     747     2656     2656 15. 12. 2022 20:57:32          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	{
+     748     2936     2936 19. 12. 2022 16:26:45          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	aOStream << '(' << aStack.iCount << ": ";
+     749     2656     2656 15. 12. 2022 20:57:32          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       
+     750     2919     2919 19. 12. 2022 13:28:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             petyovsky                      	CBlock *ptr = aStack.iTop;
+     751     2919     2919 19. 12. 2022 13:28:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             petyovsky                      	while(ptr)
+     752     2919     2919 19. 12. 2022 13:28:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             petyovsky                      		{
+     753     2919     2919 19. 12. 2022 13:28:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             petyovsky                      		aOStream << *ptr;
+     754     2919     2919 19. 12. 2022 13:28:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             petyovsky                      		ptr = static_cast<CBlock *>(ptr->NextItem());
+     755     2919     2919 19. 12. 2022 13:28:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             petyovsky                      		if(ptr)
+     756     2926     2926 19. 12. 2022 14:50:51          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       			aOStream << ",";
+     757     2919     2919 19. 12. 2022 13:28:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             petyovsky                      		}
+     758     2936     2936 19. 12. 2022 16:26:45          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	aOStream << ") ";
+     759     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     760     2436     2436 11. 12. 2022 22:48:43          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	return aOStream;
+     761     2656     2656 15. 12. 2022 20:57:32          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	}
+     762     2070     2070 2. 12. 2022 13:26:47           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     763     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	Input from the stream operator
+     764     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	author Majnus
+     765     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+     766     2919     2919 19. 12. 2022 13:28:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             petyovsky                      std::istream& operator>>(std::istream &aIStream, CStack &aStack)
+     767     2497     2497 13. 12. 2022 23:19:35          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	{
+     768     2936     2936 19. 12. 2022 16:26:45          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	char ch;
+     769     2936     2936 19. 12. 2022 16:26:45          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	aIStream >> ch;
+     770     2936     2936 19. 12. 2022 16:26:45          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	if(ch != '(')
+     771     2936     2936 19. 12. 2022 16:26:45          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		throw std::runtime_error("Input stream data integrity error!");
+     772     2656     2656 15. 12. 2022 20:57:32          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       
+     773     2936     2936 19. 12. 2022 16:26:45          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	ch = aIStream.peek();
+     774     2936     2936 19. 12. 2022 16:26:45          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	if(ch == ')')
+     775     2936     2936 19. 12. 2022 16:26:45          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		{
+     776     2936     2936 19. 12. 2022 16:26:45          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		aIStream >> ch;
+     777     2936     2936 19. 12. 2022 16:26:45          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		return aIStream;
+     778     2936     2936 19. 12. 2022 16:26:45          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		}
+     779     2936     2936 19. 12. 2022 16:26:45          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	
+     780     2936     2936 19. 12. 2022 16:26:45          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	while(ch != ')')
+     781     2936     2936 19. 12. 2022 16:26:45          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		{
+     782     2936     2936 19. 12. 2022 16:26:45          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		CBlock blk;
+     783     2936     2936 19. 12. 2022 16:26:45          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		aIStream >> blk;
+     784     3345     3345 21. 12. 2022 21:03:00          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		if(!aIStream.good())
+     785     3345     3345 21. 12. 2022 21:03:00          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       			throw std::runtime_error("Input stream data integrity error!");
+     786     2448     2448 12. 12. 2022 19:14:13          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       
+     787     2936     2936 19. 12. 2022 16:26:45          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		aStack.Push(blk);
+     788     2936     2936 19. 12. 2022 16:26:45          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		aIStream >> ch;
+     789     3345     3345 21. 12. 2022 21:03:00          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		if(!aIStream.good() || (ch != ',' && ch != ')'))
+     790     2936     2936 19. 12. 2022 16:26:45          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       			throw std::runtime_error("Input stream data integrity error!");
+     791     2936     2936 19. 12. 2022 16:26:45          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		}
+     792     2448     2448 12. 12. 2022 19:14:13          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       
+     793     2936     2936 19. 12. 2022 16:26:45          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	return aIStream;
+     794     2656     2656 15. 12. 2022 20:57:32          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	}
+     795     2656     2656 15. 12. 2022 20:57:32          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       
+     796     2386     2386 10. 12. 2022 1:08:18           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       // CStack characteristic methods
+     797     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	Method aaa.Reverzuj
+     798     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	author Kluka
+     799     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+     800     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       CStack& CStack::Reverzuj()
+     801     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	{
+     802     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #ifdef KLUKA_PRINT
+     803     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << "		Reverzuj was called" << std::endl;
+     804     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #endif
+     805     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     806     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	if (!iCount)
+     807     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		{
+     808     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		throw "Error: iCount is 0";
+     809     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		}
+     810     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     811     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	if (!iTop)
+     812     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		{
+     813     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		throw "Error: iTop is nullptr";
+     814     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		}
+     815     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     816     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #ifdef KLUKA_PRINT
+     817     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << std::endl << "		Original Stack: " << std::endl;
+     818     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << "		Original Stack iCount: " << iCount << std::endl;
+     819     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << "		iTop: " << iTop->Value() << std::endl;
+     820     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << "		iBottom: " << iBottom->Value() << std::endl;
+     821     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     822     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	CBlock* Check_Stack = iTop;
+     823     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	while (Check_Stack != nullptr)
+     824     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		{
+     825     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		std::cout << "			Value: " << Check_Stack->Value() << std::endl;
+     826     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		Check_Stack = static_cast<CBlock*>(Check_Stack->NextItem());
+     827     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		}
+     828     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #endif
+     829     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     830     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	CBlock* Head = iTop;
+     831     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	CBlock* Prev = nullptr, * Next = nullptr;
+     832     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	
+     833     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #ifdef KLUKA_PRINT
+     834     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << std::endl << "		Reversing using pointers: " <<  std::endl;
+     835     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #endif
+     836     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     837     2735     2735 17. 12. 2022 2:16:15           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	iBottom = iTop;
+     838     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	while (Head != nullptr)
+     839     2386     2386 10. 12. 2022 1:08:18           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		{
+     840     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		Next = static_cast<CBlock*>(Head->NextItem());
+     841     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		Head->SetPrevNext(Next,Prev);
+     842     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		Prev = Head;
+     843     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		Head = Next;
+     844     2386     2386 10. 12. 2022 1:08:18           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		}
+     845     2386     2386 10. 12. 2022 1:08:18           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     846     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	iTop = Prev;
+     847     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     848     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #ifdef KLUKA_PRINT
+     849     2829     2829 18. 12. 2022 13:34:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << std::endl << "		Reversed Stack: iTop -> iBottom " << std::endl;
+     850     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << "		Reversed Stack iCount: " << iCount << std::endl;
+     851     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << "		iTop: " << iTop->Value() << std::endl;
+     852     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << "		iBottom: " << iBottom->Value() << std::endl;
+     853     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     854     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	Check_Stack = iTop;
+     855     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	while (Check_Stack != nullptr)
+     856     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		{
+     857     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		std::cout << "			Value: " << Check_Stack->Value() << std::endl;
+     858     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		Check_Stack = static_cast<CBlock*>(Check_Stack->NextItem());
+     859     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		}
+     860     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     861     2829     2829 18. 12. 2022 13:34:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << std::endl << "		Reversed Stack: iBottom -> iTop " << std::endl;
+     862     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << "		Reversed Stack iCount: " << iCount << std::endl;
+     863     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << "		iTop: " << iTop->Value() << std::endl;
+     864     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << "		iBottom: " << iBottom->Value() << std::endl;
+     865     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     866     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	Check_Stack = iBottom;
+     867     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	while (Check_Stack != nullptr)
+     868     2829     2829 18. 12. 2022 13:34:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		{
+     869     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		std::cout << "			Value: " << Check_Stack->Value() << std::endl;
+     870     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		Check_Stack = static_cast<CBlock*>(Check_Stack->PrevItem());
+     871     2829     2829 18. 12. 2022 13:34:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		}
+     872     2829     2829 18. 12. 2022 13:34:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     873     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	std::cout << std::endl << "		Reverzuj was called successfully " << std::endl;
+     874     2617     2617 15. 12. 2022 13:08:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #endif
+     875     3141     3141 21. 12. 2022 0:38:53           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     876     3672     3672 29. 12. 2022 21:04:03          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #ifndef NDEBUG
+     877     3672     3672 29. 12. 2022 21:04:03          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	IntegrityTest();
+     878     3672     3672 29. 12. 2022 21:04:03          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       #endif
+     879     3672     3672 29. 12. 2022 21:04:03          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     880     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	return *this;
+     881     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	}
+     882     2386     2386 10. 12. 2022 1:08:18           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     883     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	Function Reverzuj(aaa)
+     884     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	author Prasek
+     885     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+     886     2419     2419 11. 12. 2022 17:07:44          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       CStack Reverzuj(CStack aValue)
+     887     2419     2419 11. 12. 2022 17:07:44          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       	{
+     888     2419     2419 11. 12. 2022 17:07:44          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       	CStack result = aValue;
+     889     2674     2674 15. 12. 2022 23:07:57          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	return result.Reverzuj();
+     890     2419     2419 11. 12. 2022 17:07:44          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       	}
+     891     2386     2386 10. 12. 2022 1:08:18           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     892     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	Stack Push
+     893     2931     2931 19. 12. 2022 15:30:23          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                        *	authors Prasek, Pesek (with help of Petyovsky)
+     894     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+     895     2456     2456 12. 12. 2022 20:52:53          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       CStack& CStack::Push(const CBlock& aValue)
+     896     2829     2829 18. 12. 2022 13:34:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	{
+     897     2919     2919 19. 12. 2022 13:28:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             petyovsky                      	if(!iCount)
+     898     2919     2919 19. 12. 2022 13:28:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             petyovsky                      		iTop = iBottom = new CBlock(aValue);
+     899     2829     2829 18. 12. 2022 13:34:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	else
+     900     2829     2829 18. 12. 2022 13:34:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		{
+     901     2919     2919 19. 12. 2022 13:28:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             petyovsky                      		CBlock *node = new CBlock(aValue.Value(), nullptr, iTop);
+     902     2829     2829 18. 12. 2022 13:34:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		iTop->SetPrevItem(node);
+     903     2829     2829 18. 12. 2022 13:34:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		iTop = node;
+     904     2829     2829 18. 12. 2022 13:34:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		}
+     905     2829     2829 18. 12. 2022 13:34:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     906     2919     2919 19. 12. 2022 13:28:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             petyovsky                      	++iCount;
+     907     2829     2829 18. 12. 2022 13:34:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	return *this;
+     908     2829     2829 18. 12. 2022 13:34:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	}
+     909     2386     2386 10. 12. 2022 1:08:18           /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     910     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	Stack Pop
+     911     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	authors Prasek, Pesek
+     912     3469     3469 21. 12. 2022 23:39:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	using source code of Kluka - previous version was throwing error (deleted by pointers and not nullptr)
+     913     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+     914     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       CStack& CStack::Pop()
+     915     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	{
+     916     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	if (!iCount)
+     917     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		{
+     918     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		throw "Error: iCount is 0";
+     919     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		}
+     920     2829     2829 18. 12. 2022 13:34:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     921     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	if (!iTop)
+     922     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		{
+     923     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		throw "Error: iTop is nullptr";
+     924     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		}
+     925     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     926     3305     3305 21. 12. 2022 19:24:19          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	CBlock *iNode = iTop;
+     927     3305     3305 21. 12. 2022 19:24:19          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	if(iCount == 1)
+     928     2807     2807 18. 12. 2022 10:40:51          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       		{
+     929     3305     3305 21. 12. 2022 19:24:19          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		iNode->SetPrevNext(nullptr, nullptr);
+     930     3305     3305 21. 12. 2022 19:24:19          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		iTop = iNode;
+     931     3305     3305 21. 12. 2022 19:24:19          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		iTop = nullptr;
+     932     3305     3305 21. 12. 2022 19:24:19          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		iBottom = nullptr;
+     933     3305     3305 21. 12. 2022 19:24:19          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		delete iNode;
+     934     3305     3305 21. 12. 2022 19:24:19          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		iCount = 0;
+     935     2807     2807 18. 12. 2022 10:40:51          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       		}
+     936     3305     3305 21. 12. 2022 19:24:19          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       
+     937     3305     3305 21. 12. 2022 19:24:19          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       	if(iCount > 1)
+     938     2829     2829 18. 12. 2022 13:34:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		{
+     939     3305     3305 21. 12. 2022 19:24:19          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		iNode = static_cast<CBlock *>(iNode->NextItem());
+     940     3305     3305 21. 12. 2022 19:24:19          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		iTop = iNode;
+     941     3305     3305 21. 12. 2022 19:24:19          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		iNode->PrevItem()->SetPrevNext(nullptr, nullptr);
+     942     3305     3305 21. 12. 2022 19:24:19          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		delete iNode->PrevItem();
+     943     3305     3305 21. 12. 2022 19:24:19          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		iNode->SetPrevItem(nullptr);
+     944     3305     3305 21. 12. 2022 19:24:19          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       		--iCount;
+     945     2829     2829 18. 12. 2022 13:34:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		}
+     946     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     947     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	return *this;
+     948     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	}
+     949     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     950     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	Stack Top
+     951     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	authors Prasek, Pesek
+     952     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+     953     2484     2484 13. 12. 2022 18:18:15          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       CBlock* CStack::Top() const
+     954     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	{
+     955     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	return iTop;
+     956     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	}
+     957     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     958     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	Stack Bottom
+     959     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	author Majnus
+     960     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+     961     2494     2494 13. 12. 2022 22:43:39          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       
+     962     2490     2490 13. 12. 2022 21:34:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       CBlock* CStack::Bottom() const
+     963     2492     2492 13. 12. 2022 22:34:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	{
+     964     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	return iBottom;
+     965     2492     2492 13. 12. 2022 22:34:20          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	}
+     966     2490     2490 13. 12. 2022 21:34:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xmajnu01                       
+     967     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	Stack Search
+     968     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	authors Prasek, Pesek
+     969     2839     2839 18. 12. 2022 15:04:48          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	fixed while cycle, just a little tweak - Kluka 
+     970     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+     971     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       bool CStack::Search(const CBlock &aValue) const
+     972     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	{
+     973     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	const CBlock *iCurrent = iTop;
+     974     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     975     2451     2451 12. 12. 2022 20:00:28          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       	while(iCurrent != nullptr)
+     976     2412     2412 11. 12. 2022 13:20:13          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       		{
+     977     2839     2839 18. 12. 2022 15:04:48          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		if(iCurrent->Value() == aValue.Value())	return true;
+     978     2839     2839 18. 12. 2022 15:04:48          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       		iCurrent = static_cast<CBlock *>(iCurrent->NextItem());
+     979     2412     2412 11. 12. 2022 13:20:13          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       		}
+     980     3458     3458 21. 12. 2022 23:29:53          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       
+     981     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	return false;
+     982     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	}
+     983     2412     2412 11. 12. 2022 13:20:13          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xprase08                       	
+     984     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       /*	Stack Dup
+     985     2829     2829 18. 12. 2022 13:34:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        *	authors	Prasek, Pesek
+     986     2417     2417 11. 12. 2022 15:12:30          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                        */
+     987     3203     3203 21. 12. 2022 14:26:58          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       CStack CStack::Dup() const
+     988     2416     2416 11. 12. 2022 14:34:46          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xkluka00                       	{
+     989     3203     3203 21. 12. 2022 14:26:58          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       	CStack Stack(*this);
+     990     3203     3203 21. 12. 2022 14:26:58          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             xpesek13                       	return Stack;
+     991     2919     2919 19. 12. 2022 13:28:05          /ct09_zasobnik1/trunk/Project/Project/CStack.cpp             petyovsky                      	}

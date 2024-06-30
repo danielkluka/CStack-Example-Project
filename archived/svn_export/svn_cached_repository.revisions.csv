@@ -1,0 +1,458 @@
+Revision,AuthorID,TimeStamp,Comment,HasStdInfo,HasChangeInfo,HasMergeInfo,HasUserRevPropInfo
+11,5,2022-10-26T17:11:03.789825Z,"",1,1,0,0
+45,2,2022-10-27T08:18:37.056187Z,"Měnil jsem jméno, jelikož se jmenuji jinak, nežli můj vyučující ",1,1,0,0
+50,3,2022-10-27T08:19:44.403679Z,"Úprava pojmenování Autor 3 :-)",1,1,0,0
+53,4,2022-10-27T08:20:00.298063Z,"My name Jeff (Autor 4 uprava jmena)",1,1,0,0
+57,1,2022-10-27T08:20:30.347342Z,"aktualizacia autora 2 v Introduction.md",1,1,0,0
+62,1,2022-10-27T08:25:54.695693Z,"oprava dokumentacie ",1,1,0,0
+70,2,2022-10-27T08:45:08.653335Z,"ahoj, plus nějake prikazy",1,1,0,0
+73,1,2022-10-27T08:48:14.947777Z,"ajoj nazdar",1,1,0,0
+78,3,2022-10-27T08:52:41.729097Z,"test konfliktu -bitka ",1,1,0,0
+81,4,2022-10-27T08:54:34.359728Z,"oprava konfliktu ",1,1,0,0
+89,1,2022-10-29T15:52:01.765266Z,"prva aktualizacia zadania (prepisy datovych typov, kontajnerov a pridelenie autorov k metodam)",1,1,0,0
+90,1,2022-10-29T16:30:16.694534Z,"prepis suborov CContainer.h a CContainer.cpp na CZasobnik.h a CZasobnik.cpp - povodne CContainery su teda nepouzite.. oprava drobnosti v dokumentacii v Introduction.md",1,1,0,0
+91,1,2022-10-29T16:34:18.931987Z,"delete CContainer.h a CContainer.cpp",1,1,0,0
+92,1,2022-10-29T16:49:44.646205Z,"uprava grafu pre graphviz",1,1,0,0
+93,1,2022-10-29T17:12:38.181304Z,"BPC-PPC 2022: CZasobnik Example Project",1,1,0,0
+94,4,2022-10-29T18:08:16.110796Z,"oprava mail adresy autora 4",1,1,0,0
+310,3,2022-11-03T08:56:29.301648Z,"DONE DONE DONE",1,1,0,0
+313,3,2022-11-03T08:58:26.890309Z,"done CContainer",1,1,0,0
+324,3,2022-11-03T09:13:56.213643Z,"Prejmenovani CZasobnik na CStack",1,1,0,0
+348,2,2022-11-04T16:53:07.959153Z,"uprava zadani s mymi chlapci",1,1,0,0
+349,2,2022-11-04T17:20:00.710844Z,"další commit s boizs",1,1,0,0
+369,1,2022-11-04T21:17:02.997859Z,"moje návrhy zadania",1,1,0,0
+371,1,2022-11-05T14:41:17.754321Z,"moje návrhy zadania vol. 2",1,1,0,0
+372,1,2022-11-05T14:49:51.919281Z,"aktualizácia Done, To-do, Note",1,1,0,0
+375,4,2022-11-05T17:21:00.203680Z,"Uprava zadani",1,1,0,0
+384,3,2022-11-06T09:01:23.191839Z,"Uprava zadani",1,1,0,0
+409,5,2022-11-07T17:08:19.700024Z,"Konzultace zadani",1,1,0,0
+481,4,2022-11-08T19:52:55.570477Z,"uprava zadani podle Petyho",1,1,0,0
+482,4,2022-11-08T20:14:53.299276Z,"uprava zadani podle Petyho",1,1,0,0
+655,2,2022-11-10T08:23:29.772650Z,"uprava autora",1,1,0,0
+658,1,2022-11-10T08:36:42.522173Z,"uprava hlavicky zadania projektu CBlock, nie projektu Projekt.. + doplnenie aliasu ""done"" do doxyfile",1,1,0,0
+663,3,2022-11-10T09:08:08.578790Z,"todo -> done, uprava zadani
+",1,1,0,0
+666,1,2022-11-10T09:20:36.270368Z,"kontejner -> zasobnik",1,1,0,0
+670,1,2022-11-10T09:39:06.601625Z,"prepis posledného Note na Done",1,1,0,0
+731,1,2022-11-10T19:41:19.997481Z,"finalna uprava zadania - prepis jednotlivych metod, oprava chyb a oprava typografickych chyb ",1,1,0,0
+742,1,2022-11-10T20:02:31.622643Z,"fix zadania",1,1,0,0
+744,1,2022-11-10T20:14:51.796759Z,"oprava operatora --",1,1,0,0
+773,1,2022-11-10T23:30:16.154657Z,"oprava autora 4 pri metode Usage(): Prasek->Pešek",1,1,0,0
+774,1,2022-11-10T23:39:02.940979Z,"uprava autorov v bode 8, Kluka, Prasek
+",1,1,0,0
+782,1,2022-11-11T10:44:23.205146Z,"pridané CBlock_long.h a CBlock_TInvertval.h so základnou definíciou triedy",1,1,0,0
+788,4,2022-11-12T18:36:18.127448Z,"Prvni nastrel funkce Push",1,1,0,0
+789,1,2022-11-12T21:29:09.914623Z,"vsetky konstruktory CBlock_long.h",1,1,0,0
+790,4,2022-11-12T21:40:28.943951Z,"presun push funkce do CBlock projektu",1,1,0,0
+791,1,2022-11-12T22:55:13.158359Z,"odstranenie ExtraIntu z konstruktorov, doplnenie destruktorov, InstanceInfo gettera a settero/getterov",1,1,0,0
+792,1,2022-11-12T22:59:04.785111Z,"fix dokumentacie CBlock_long.h",1,1,0,0
+808,5,2022-11-14T16:45:04.730378Z,"tag[ct09_zasobnik1/tags/zadani]: Zaloha",1,1,0,0
+809,5,2022-11-14T16:45:05.074563Z,"branch[ct09_zasobnik1/branches/oprava_zadani]: Pro ohodnoceni",1,1,0,0
+847,5,2022-11-14T16:47:36.214326Z,"tag[ct09_zasobnik1/tags/vanilla]: Vanilla zaloha",1,1,0,0
+869,1,2022-11-16T10:13:18.447063Z,"dokoncenie CBlock/CBlock/CBlock_long.h, doplenie typov 1 a 2 do CBlock/CBlock/Introduction.md, skuska unit testov CBlock/CBlock/CBlock_long.h",1,1,0,0
+870,1,2022-11-16T12:48:26.094019Z,"definicia konverzneho konstruktora z CBlock",1,1,0,0
+947,2,2022-11-21T20:13:23.878280Z,"Náhrada TStack.cpp za CStack.cpp a definice comparedeep a compare",1,1,0,0
+997,3,2022-11-23T17:02:15.897554Z,"Zadefinovani operatoru -,++, 
+Dokonceni operatoru <, size_t
+",1,1,0,0
+1020,2,2022-11-23T19:44:54.978322Z,"1.default konstruktor - vytvoření prázdného zásobníku
+3. Total, actual, id 
+Pracuji na privátní metodě compare deep - dynamic_cast?
+Chybí 2,4,5,6,7,8,9 - pokračuji zítra dobrou noc",1,1,0,0
+1026,5,2022-11-24T05:49:40.636786Z,"",1,1,0,0
+1034,5,2022-11-24T05:54:23.717016Z,"tag[ct09_zasobnik1/tags/zadani_opraveno]: Revize pro spojeni s trunk",1,1,0,0
+1062,3,2022-11-24T08:13:58.248072Z,"Uprava zadani dne opravy - klic prepsan na prvek, unarni + nic nedela, ale vraci identicky zasobnik
+
+",1,1,0,0
+1068,1,2022-11-24T08:37:13.996955Z,"merge zadania",1,1,0,0
+1070,3,2022-11-24T08:41:10.104068Z,"buxfix - konverzni konstruktor: klíč -> prvek
+       - dopsani zadani unarniho +",1,1,0,0
+1071,2,2022-11-24T08:46:30.980592Z,"úprava zadání bugfixu u unárního",1,1,0,0
+1072,2,2022-11-24T08:48:44.353506Z,"znovu oprava zadání, špatně jsem pochopil bugfix",1,1,0,0
+1076,1,2022-11-24T09:32:30.492050Z,"uprava dokumentacie CStack.h, doplneny threeway operator - zatial nepouzity, spravena celkova uprava CStack.h - opat rozdelenie do kategorii, aby bolo lepsie vidno, co sa kam dopisuje",1,1,0,0
+1078,1,2022-11-24T09:45:28.580524Z,"pridal som si poznamku ku SetValue v CBlock_long.h",1,1,0,0
+1079,1,2022-11-24T09:53:40.434066Z,"fix hlavicky CBlock",1,1,0,0
+1100,1,2022-11-24T16:38:39.696934Z,"dokonceny konverzny konstruktor z CBlock a zadukomentovane parametre CStack.h",1,1,0,0
+1101,1,2022-11-24T16:41:26.560381Z,"este raz, neviem, preco ten konstruktor necommitlo..",1,1,0,0
+1102,1,2022-11-24T18:38:24.276570Z,"Martinov defaultny konstruktor presunuty na zaciatok konstruktorov, kedze sa jedna o ten najdolezitejsi a najzakladnejsi konstruktor... prepisana dokumentacia ku konverznemu konstruktoru z CBlock, doplneny konverzny konstruktor z C stringu (je hotovy, ale caka sa na operatory << a >>), doplnena metoda PocetPrvku(), doplneny unarny operator --, doplneny operator == a spravena celkova uprava suboru CStack.h",1,1,0,0
+1113,1,2022-11-25T10:06:20.696488Z,"nacrt TInterval, nefunguje",1,1,0,0
+1114,1,2022-11-25T10:07:31.191979Z,"oprava nazvu CBlock_TInterval.h",1,1,0,0
+1115,1,2022-11-25T10:08:11.767675Z,"delete CBlock/CBlock_TInvertval.h",1,1,0,0
+1137,1,2022-11-25T19:29:06.682917Z,"uprava TInterval, pravdepodobne uz funguje, ale nie je typu long.. co ak to bude interval s X prvkami, kde v prvkoch moze byť ulozene napriklad true/false, long..?",1,1,0,0
+1140,1,2022-11-25T20:03:14.145109Z,"hotovy binarny operator -=",1,1,0,0
+1141,1,2022-11-25T21:54:47.792097Z,"dokonceny unarny operator -",1,1,0,0
+1144,1,2022-11-26T00:11:05.148340Z,"upraveny unarny operator - (spraveny pomocou metody Reverse) a metoda Reverse, ktora spravi bbb=aaa.Reverse()",1,1,0,0
+1145,1,2022-11-26T00:29:47.323422Z,"zadefinovanie priestorov pre kazdeho autora, ktory bude testovat svoje metody v main.cpp",1,1,0,0
+1153,1,2022-11-26T12:40:14.900169Z,"upravena definicia CBlock_TInterval.h tak, aby fungovala",1,1,0,0
+1154,1,2022-11-26T12:55:32.807063Z,"commit CBlock_TInterval.h pre Davida",1,1,0,0
+1171,4,2022-11-26T15:16:23.576932Z,"Prace na hlavicce TInterval - default c'tor, copy c'tor, konverzni c'tor z CBlock",1,1,0,0
+1198,3,2022-11-26T23:38:11.077347Z,"Hotova funkce Reveryuj(aaa) a ctor z init listu",1,1,0,0
+1200,3,2022-11-26T23:44:34.373464Z,"Ne Funkce xD ale metoda, zmeneno",1,1,0,0
+1252,1,2022-11-27T23:45:21.619181Z,"rozpísaná class TInterval, doplnené metódy do classy",1,1,0,0
+1262,1,2022-11-28T10:58:10.067409Z,"osetrenie minimalnej a maximalnej hranice classy TInterval",1,1,0,0
+1264,1,2022-11-28T11:10:51.616103Z,"dokumentacia TInterval metod Minimum a Maximum, oprava Conversion c'tor from plain C string (striped string) v classe CBlock, celkova uprava suboru",1,1,0,0
+1266,1,2022-11-28T11:46:47.386861Z,"oprava konverzneho konstruktora TInterval, oprava definicie inverzneho operatora TInterval, oprava konverzneho konstruktora CBlock, doplnenie destruktora CBlock, doplnenie ID gettera CBlock, oprava definicie settera CBlock Setvalue a oprava jeho telicka, doplnenie operatora - CBlock",1,1,0,0
+1270,1,2022-11-28T12:47:26.635159Z,"doplnene komparacne operatory TInterval, gettery Left() a Right() a charakteristicka metoda Location",1,1,0,0
+1271,1,2022-11-28T12:53:26.011654Z,"doplnenie mien autorov a oprava typografickych chyb",1,1,0,0
+1272,1,2022-11-28T12:54:55.569276Z,"zmena datoveho typu Minimum a Maximum z long na TType",1,1,0,0
+1273,1,2022-11-28T13:10:52.860055Z,"zmena aValue na aInterval v classe TInterval a doplnenie dokumentacie, popripade opravene typograficke chyby",1,1,0,0
+1275,1,2022-11-28T13:31:49.750122Z,"doplnenie threeway operatora a nasledne spustenie vsetkych porovnavacich operatorov v classe TInterval",1,1,0,0
+1279,3,2022-11-28T14:44:05.389672Z,"Zadefinovani metod Stacku (Push, Pop, Top, Search, Dup) bez jednotlivych parametru - nutne DOPLNIT",1,1,0,0
+1285,4,2022-11-28T16:51:17.381012Z,"Doplneni parametru a dokumentace funkci Push, Pop, Top, Dup, Search.",1,1,0,0
+1293,2,2022-11-28T18:13:56.338629Z,"úprava dokumentace a referencí",1,1,0,0
+1305,3,2022-11-28T19:04:51.975509Z,"Dodelana metoda Search a byly udelany zmeny v definicich",1,1,0,0
+1349,2,2022-11-28T21:36:27.595542Z,"operator ! operator + uprava chyb",1,1,0,0
+1350,2,2022-11-28T21:37:10.481635Z,"operator ! a +",1,1,0,0
+1356,3,2022-11-28T22:10:08.613642Z,"Dodelani metody Pop(), Top(), doreseni konflikftu - diky Martine ;) xD, unarni opperator -- odkomentovani a doplneni metody Pop(), uprava zadani",1,1,0,0
+1357,1,2022-11-28T22:14:39.448664Z,"opat doriesenie konflitu, diki martin :)",1,1,0,0
+1359,4,2022-11-28T23:09:16.740095Z,"zadefinovani hlavicek - conversion c'tor z size_t a pole, useless unary operator+, Binary operator+=, operator >, Usage getter, compare method, binary non-member operator+",1,1,0,0
+1369,2,2022-11-29T09:28:51.613659Z,"commituji o 106, protože nerad vyvolávám konfliky.
+Upraveno: CStack.h - rozdělení sekcí operátorů pro lepší rozlišitelnost, přidání relačního operátoru !=, přemístění rel. operátoru od Dana do sekce rel operátorů a drobné úpravy
+",1,1,0,0
+1375,1,2022-11-29T11:16:29.859557Z,"uprava CStack.h, oprava referencii",1,1,0,0
+1383,1,2022-11-29T12:55:32.413646Z,"oprava mojich metod: unarny operator - (osetrenie v pripade prazdneho zasobnika - nebolo by mozne reverzovat) a opravil som vracanie hodnoty pomocou return this->Reverse(), volal som to vtedy zle a neuvedomil som si to.. unarny operator --, opat zle volanie a vracanie.. upravena metoda Reverse(), osetrenie proti prazdnemu zasobniku
+
+oprava cudzich metod: Pop(), nemohol som ju volat, dostala parameter, ale ten parameter v kode nebol vyuzity a doplnil som referenciu CStack&
+
+aktivoval som operator <=>",1,1,0,0
+1385,1,2022-11-29T13:05:45.445983Z,"osetrenie operatora --",1,1,0,0
+1387,1,2022-11-29T14:02:38.718770Z,"uprava CBlock_TInterval.h a jeho kontrola",1,1,0,0
+1427,1,2022-11-29T18:15:43.037177Z,"doplnenie unit testov CBlock_TInterval.h a aktualizacia projektu do stavu, kedy je spustitelny",1,1,0,0
+1432,1,2022-11-29T18:35:44.593723Z,"pravdepodobne finalna uprava CBlock_TInterval.h",1,1,0,0
+1439,1,2022-11-29T19:06:25.746312Z,"oprava threeway operatora a oprava unit testov, vsetko v CBlock_TInterval.h",1,1,0,0
+1444,1,2022-11-29T19:29:40.118647Z,"test",1,1,0,0
+1458,3,2022-11-29T20:23:29.222990Z,"Conversion c'tor of type size_t",1,1,0,0
+1459,2,2022-11-29T21:03:19.512654Z,"uprava plus zakomentovani a vlozeni operator=, kteremu se budu venovat zitra",1,1,0,0
+1461,1,2022-11-29T21:16:09.076395Z,"CBlock_TInterval.h kompletne hotovy",1,1,0,0
+1464,1,2022-11-29T21:50:11.455843Z,"uprava konverzneho konstruktora zo stringu",1,1,0,0
+1487,1,2022-11-30T11:08:52.696291Z,"doplnenie intervalu o plnenie hodnot medzi hranicami, zatial nefunguje",1,1,0,0
+1490,1,2022-11-30T11:58:39.370886Z,"uprava TInterval tak, aby to vypisovalo stream v tvare <min,max>, pravdepodobne vdaka tomuto nebude potrebne plnenie ciselneho intervalu cislami.. nevyuzite casti kodu pre plnenie nie su odladene a su zakomentovane poznamkou //(not used at this stage of development).. test intervalu OK",1,1,0,0
+1492,1,2022-11-30T12:14:13.872708Z,"uprava chyb v dokumentacii CBlock_TInterval.h",1,1,0,0
+1493,1,2022-11-30T12:15:12.584282Z,"definicia TInterval iValue - oprava dokumentacie",1,1,0,0
+1494,1,2022-11-30T12:20:29.149883Z,"final build a commit CBlock_TInterval.h + generacia doxygen",1,1,0,0
+1495,1,2022-11-30T12:30:03.043780Z,"oprava dokumentacie gettera Value v CBlock_TInterval.h v classe CBlock",1,1,0,0
+1521,1,2022-11-30T14:41:14.989165Z,"CBlock_TInterval.h attention",1,1,0,0
+1559,1,2022-11-30T15:57:40.692147Z,"poznamky CBlock_TInterval.h, neboj Martin, nebude konflikt, robis v inom subore",1,1,0,0
+1560,1,2022-11-30T16:00:26.748007Z,"Minimum method attention",1,1,0,0
+1561,1,2022-11-30T16:02:05.930367Z,"attention fix",1,1,0,0
+1564,2,2022-11-30T16:06:30.455016Z,"Přidání do public destruktor, který si zavolá funkci ActiveCountDownOfElements a odpočítá aktivní prvky.
+
+@David @Šimon nejspíše máte pořád špatně relační operátory, zkuste na to mrknout.
+
+PS: na 60% klávesnici se fakt špatně hledá ~ , tak kdyby s tím měl někdo problém jako já ho najít tak tady je. Nebo je taky v přednáškách.
+",1,1,0,0
+1566,3,2022-11-30T16:07:41.710051Z,"Úprava relačních operátorů -> CompareDeep. Úprava dokumentace
+",1,1,0,0
+1578,2,2022-11-30T16:24:37.181600Z,"bug -> bugfix - úsilí navýšeno.",1,1,0,0
+1589,1,2022-11-30T16:45:47.368964Z,"uprava unit testov CBlock_TInterval.h - znazornenie osetrenia zleho poradia vstupnych parametrov",1,1,0,0
+1598,3,2022-11-30T16:57:18.395857Z,"uprava {}, vymazani komentaru u operator++",1,1,0,0
+1599,2,2022-11-30T17:06:21.433992Z,"úprava destruktoru a jeho přemístění do sekce d´tor - odstranění operatoru + z vrchní části CStack.h",1,1,0,0
+1606,2,2022-11-30T17:49:07.743192Z,"úprava binárního operátoru = a přidání jeho popisu",1,1,0,0
+1608,3,2022-11-30T17:59:03.960487Z,"Oprava u operator++, vytvorene komentovane funkce v .cpp",1,1,0,0
+1611,3,2022-11-30T18:09:29.433090Z,"uprava dokumentace - doplneni tecek za return a details v CStack.h",1,1,0,0
+1613,4,2022-11-30T18:12:30.267635Z,"uprava dokumentace CBlock_TInterval.h - doplneni tecek, umazani s u authors",1,1,0,0
+1629,2,2022-11-30T18:46:50.793008Z,"nástřel copy konstruktoru.",1,1,0,0
+1630,3,2022-11-30T18:52:16.562428Z,"formalni upravy CStack.h <3",1,1,0,0
+1634,4,2022-11-30T18:56:03.093568Z,"definice metod Dup, Compare",1,1,0,0
+1635,3,2022-11-30T19:03:04.079951Z,"oprava v Introduction.md -> pvky -> prvky",1,1,0,0
+1642,2,2022-11-30T19:39:59.880032Z,"pridani standardniho vstupu a vystupu instance tridy CStack - pomocí streamů (friend funkcí) pomocí operátorů << a >>
+změna pozice kopy konstruktoru, posunutí referencí",1,1,0,0
+1648,1,2022-11-30T20:15:08.220103Z,"uprava dokumentacie unit testov v CBlock_TInterval.h",1,1,0,0
+1653,2,2022-11-30T20:29:48.888710Z,"úprava popisů mých hlaviček
+úprava friend std::istream& operator<<(std::istream& aIStream, CBlock& aStack); - bylo tam >>
+nalezení jedné reference, která byla opět vpravo...",1,1,0,0
+1656,1,2022-11-30T20:34:37.662310Z,"finalna uprava CBlock_long.h, uprava dokumentacie unit testov CBlock_TInterval.h, doplnenie poznamky CStack.h.. finalna kontrola unit testov CBlock_long.h a CBlock_TInterval.h",1,1,0,0
+1663,1,2022-11-30T20:52:03.165148Z,"poznamka v CStack.h",1,1,0,0
+1710,1,2022-12-01T06:19:51.782683Z,"aktualizacia suboru CStack.cpp - dokumentacia",1,1,0,0
+1712,1,2022-12-01T06:40:05.426754Z,"dokumentacia main.cpp, doplnenie autorov a pridanie poznamok",1,1,0,0
+1732,1,2022-12-01T08:26:41.650123Z,"osetrenie input streamu (operator>>) v classe TInterval, pridanie vynimky, zmena dokumentacie CBlock_TInterval.h",1,1,0,0
+1735,1,2022-12-01T08:30:17.800848Z,"uprava poznamok v CBlock_TInterval.h ku vsetkemu, co sa tyka metody Fill()",1,1,0,0
+1736,3,2022-12-01T08:30:44.235312Z,"uprava v Doxyfile",1,1,0,0
+1737,4,2022-12-01T08:33:01.600255Z,"stack.Push v main.cpp",1,1,0,0
+1741,3,2022-12-01T08:40:34.495465Z,"iBottom, uprava {}",1,1,0,0
+1745,3,2022-12-01T08:47:19.428364Z,"uprava v Ctoru size_t",1,1,0,0
+1752,4,2022-12-01T09:28:20.895847Z,"UnitTest1 created",1,1,0,0
+1761,1,2022-12-01T09:41:05.629042Z,"odstranenie unit testov z projektu CBlock....",1,1,0,0
+1763,1,2022-12-01T09:42:53.865571Z,"odstranenie suborov pre unit testy",1,1,0,0
+1769,1,2022-12-01T10:43:01.123898Z,"pridanie unit testov pre Project",1,1,0,0
+1777,1,2022-12-01T11:56:07.801656Z,"oprava unit testov - oba projekty CBlock a Project",1,1,0,0
+1778,1,2022-12-01T12:00:11.335076Z,"aktualizacia unit testov v projekte Project",1,1,0,0
+1977,1,2022-12-01T22:42:37.896123Z,"doplnenie volania mojich metod, report: 
+ - potrebujeme destruktor, ktory pouziva delete - preto sa neodalokovala vsetka pamat v main.cpp
+ - nejde mi operator --, pretoze Pop potrebujeme opravit
+ - nejde mi operator -=, pretoze neviem preco
+
+uprava CStack.h, kontrola unit testov pre CBlock_TInterval.h - funguju spravne, uprava main.cpp",1,1,0,0
+2070,1,2022-12-02T12:26:47.326709Z,"priprava na odovzdanie podla zadania",1,1,0,0
+2076,1,2022-12-02T12:40:03.373986Z,"oprava doxyfile a generacia doxygen dokumentacie, zmena autorov pre CBlock_long.h a CBlock_TInterval.h",1,1,0,0
+2077,1,2022-12-02T13:06:46.792884Z,"pripravoval som unit testy pre project.. nejde to",1,1,0,0
+2079,3,2022-12-02T13:52:51.981808Z,"snaha o opravu unit testu
+",1,1,0,0
+2080,1,2022-12-02T14:03:35.338071Z,"pridanie suborov",1,1,0,0
+2082,1,2022-12-02T14:07:29.170848Z,"odstranenie suborov z cblock",1,1,0,0
+2085,3,2022-12-02T14:22:22.084317Z,"Přenastavení projektu Project a jeho Unit Testů na nejnovější normu C++. RETARDOVANY MICROSOFT, FUJ BLE - default byla C++ 14 :-) ",1,1,0,0
+2086,1,2022-12-02T14:36:03.162730Z,"test commitu pre simona",1,1,0,0
+2087,1,2022-12-02T15:11:39.570373Z,"oprava nastaveni unit testov pre projekt Project",1,1,0,0
+2088,2,2022-12-02T15:13:55.218725Z,"Test unit testů i z jineho pc než Danova - funguje
+Úprava bugfixu",1,1,0,0
+2089,3,2022-12-02T15:14:04.945806Z,"uprava bugfixu, unit testy jedou jupiii, volejme 3x hura Microsoftu :)",1,1,0,0
+2120,3,2022-12-02T15:24:16.620116Z,"hratky s unit testy v projectu",1,1,0,0
+2121,2,2022-12-02T15:30:37.218977Z,"přidání unit testu z cblocku",1,1,0,0
+2125,4,2022-12-02T15:41:41.825248Z,"unit test greater_than",1,1,0,0
+2127,3,2022-12-02T15:50:52.917312Z,"unit test conversion ctor - Prasek
+",1,1,0,0
+2128,1,2022-12-02T16:26:39.819033Z,"CStack_ctor_conv",1,1,0,0
+2131,1,2022-12-02T16:40:21.475845Z,"uprava môjho conv c'tora, zakomentovanie simonovho",1,1,0,0
+2132,3,2022-12-02T17:03:01.252883Z,"unit test >",1,1,0,0
+2134,4,2022-12-02T17:09:24.174069Z,"unit test operatoru > v  UnitTests.cpp. Pokus metody pro vytvoreni stacku o n prvku(soubor CStack.h) pro testovani velikosti stacku. ",1,1,0,0
+2144,2,2022-12-02T18:28:14.272146Z,"Přidání unit testu, oprava názvů unit testů u Praska a Peška jelikož se již dnes nebudou nacházet na pc. Následného procházení a studování kódu s přidáním výpisu jména v main.cpp pro ohraničení výpisu následně implementování ""implementation ofCStack class methods created and sorted by each autors""",1,1,0,0
+2156,2,2022-12-02T19:15:41.073190Z,"Přidání popisu pro unit test od Šimona Praska, jelikož není u PC a bylo tam něco napsáno. Jelikož to není můj unit test, nechci do jeho práce moc zasahovat.",1,1,0,0
+2183,1,2022-12-02T21:07:20.910346Z,"odstranenie #include CStack.h z main.cpp",1,1,0,0
+2189,2,2022-12-02T21:54:49.372455Z,"znovu úprava mého unit testu (neukládám si úpravu kódu) + velký aha moment ve vytvéření unit testů. + jsem všude kde jsem mohl (ve svém unit testu, ostatní jsem již upozornil) jsem narval const, jelikož jak řekl pan Petyovský na cvičeních kam můžete narvěte const nebo referenci. Tak jsem tam narval const. ",1,1,0,0
+2196,4,2022-12-02T22:46:02.929979Z,"UnitTest operator_greater_than description ",1,1,0,0
+2199,1,2022-12-02T23:45:04.619772Z,"update unit test conv c'tora z cblocku",1,1,0,0
+2209,1,2022-12-03T10:03:00.602187Z,"pokus o fix operatora -=",1,1,0,0
+2220,1,2022-12-03T12:43:26.923627Z,"update dokumentacie oboch projektov",1,1,0,0
+2221,1,2022-12-03T12:44:29.641568Z,"doplnenie autora v projekte project podla projektu cblock",1,1,0,0
+2222,4,2022-12-03T12:51:01.752504Z,"prace na TestValue0 metode v CStack.h pro testovani. Doplneni smazani temporary uzlu v Push metode pomoci delete.",1,1,0,0
+2227,4,2022-12-04T10:32:33.947060Z,"Pridani return value k Pop funkci. CStack::TestValue0 uz funguje. UnitTest > taky.",1,1,0,0
+2228,1,2022-12-04T10:38:39.914203Z,"aktivacia unarneho operatora -- v main.cpp v projekte Project",1,1,0,0
+2245,5,2022-12-05T12:46:28.834049Z,"tag[ct09_zasobnik1/tags/hlavicka_CBlock]: Zaloha",1,1,0,0
+2246,5,2022-12-05T12:46:29.170724Z,"branch[ct09_zasobnik1/branches/oprava_hlavicka_CBlock]: Pro ohodnoceni",1,1,0,0
+2252,2,2022-12-06T20:53:35.237044Z,"nástřel metody compare deep, upřímně jsem zapomněl jestli budu porovnávat prvek po prvku nebo pouze Actual a iTop i iBottom. vytvořil jsem alespoň funkci Bottom vracející iBottom. Dneska je to vše. pac a pusu, zítra pokračuji.",1,1,0,0
+2253,4,2022-12-06T22:17:01.990005Z,"Prace na Usage metode. ",1,1,0,0
+2316,5,2022-12-07T19:18:39.737523Z,"",1,1,0,0
+2318,1,2022-12-07T20:00:13.688782Z,"merge",1,1,0,0
+2357,3,2022-12-08T21:20:29.973887Z,"oprava bugu - prejmenovani metod a funkce Reverse na Reverzuj, dynamic_cast -> static_cast, uprava funkce Reverzuj, aby byla friend. Prejmenovani vsech Reverse na Reverzuj",1,1,0,0
+2358,1,2022-12-09T09:38:03.207325Z,"uprava operatora >> v CBlock_TInterval.h - osetrenie kvality streamu novo vytvorenych pomocnych premennych tmp_aLeft a tmp_aRight a ich pridelenie premennym TInterval.iLeft a TInterval.iRight v pripade dobreho vstupu",1,1,0,0
+2371,1,2022-12-09T18:59:15.825292Z,"zmena nazvu metody Fill() na Values, zmena jej vyuzitia a dokoncenie vyskumu tejto metody (zvazene bolo pole, vektor aj zmena celkovej triedy a konstruktorov na plnenie premennej iValues (ktora bola testovana private aj public).. metoda bola dokoncena a jej volanie bolo otestovane (volanie z main.cpp bolo rovnako X-krat testovane roznymi sposobmi, castokrat to zlyhavalo na kompatibilite typov a pointerov, dochadzalo ku extremnej strate udajov a viacerym zmenam parametrov, ktore bolo treba osetrovat.. preto boli zvazovane samostatne metody na tlacenie, ale to by opat extremne skomplikovalo cely kod.. a zvazovane boli aj aktivacie kodu cez ifdefy, ale to by opat znepriehladnilo kod).. na zaver boli odstranene vsetky zakomentovane casti kodu, ktore s metodou Fill suviseli a neboli by vyuzite..",1,1,0,0
+2372,1,2022-12-09T19:30:00.089448Z,"doplnenie volania metody Values v classe TInterval, nie je vsak defaultne aktivovana.. pridane osetrenie a dokumentacia",1,1,0,0
+2374,1,2022-12-09T19:48:12.575323Z,"kontrola testov s metodou Values() v classe TInterval, odstranenie volania z defaultneho konstruktora (test by bol neuspesny) a celkova uprava suboru CBlock_TInterval.h",1,1,0,0
+2377,1,2022-12-09T21:04:52.762913Z,"dokoncenie operatora -=, uprava main.cpp",1,1,0,0
+2380,1,2022-12-09T22:14:12.182050Z,"presun telicok mojich metod z CStack.h do CStack.cpp",1,1,0,0
+2381,1,2022-12-09T22:51:33.480561Z,"presunutie telicok mojich konstruktorov z CStack.h do CStack.cpp",1,1,0,0
+2382,1,2022-12-09T22:58:46.688088Z,"doplnenie pointera iBottom v mojich konstruktoroch",1,1,0,0
+2383,1,2022-12-09T23:09:32.293903Z,"oprava dokumentacie konstruktora - odstranenie warningu, ktory generoval Doxygen a zmena dokumentacie streamu konstruktora",1,1,0,0
+2384,1,2022-12-09T23:17:15.606444Z,"oprava anglickej gramatiky v CBlock_TInterval.h (dakujem ReSharper)",1,1,0,0
+2385,1,2022-12-09T23:22:43.995270Z,"oprava anglickej gramatiky v CStack.h",1,1,0,0
+2386,1,2022-12-10T00:08:18.071118Z,"presun niektorych metod z CStack.h do CStack.cpp a celkova uprava oboch suborov, upratanie v CStack.cpp",1,1,0,0
+2388,1,2022-12-10T11:08:48.139868Z,"drobne opravy",1,1,0,0
+2389,1,2022-12-10T11:17:39.906960Z,"uprava main.cpp",1,1,0,0
+2391,1,2022-12-10T13:01:19.719354Z,"uprava chyb CStack.cpp a celkova uprava UnitTests.cpp",1,1,0,0
+2392,1,2022-12-10T14:05:40.034466Z,"rozpracovane unit testy:
+ - operátor – jako unární operátor prohodí pořadí CBlocků v zásobníku. (3.) a teda aj:
+    - umožňující volání bbb=aaa.Reverzuj(), která mění zásobník aaa na reverzovaný zásobník bbb (Při postupném procházení zásobníku pomocí ukazatele, kdy se v každé iteraci prohodí hodnoty následujícího a předchozího prvku.), (8.)
+
+ - relační operátory == pro porovnání dvou zásobníků. (6.)
+
+uprava UnitTests.cpp a aj CStack.h a CStack.cpp, aktivoval som operator ==",1,1,0,0
+2397,1,2022-12-10T17:20:27.900111Z,"unit test string conversion c'tor",1,1,0,0
+2408,1,2022-12-11T10:00:50.085194Z,"chcel som spravit unit test, ale opat vam nieco nefunguje..",1,1,0,0
+2409,1,2022-12-11T10:49:31.256895Z,"oprava, dokoncenie.. opravoval som Push a Pop, kontroloval to v main.cpp a dokoncil som unit test operatora --",1,1,0,0
+2410,1,2022-12-11T11:24:15.316593Z,"uprava main.cpp - vylepsenie kontroly pre classu CStack",1,1,0,0
+2411,1,2022-12-11T11:30:43.282454Z,"nova verzia main.cpp",1,1,0,0
+2412,3,2022-12-11T12:20:13.967831Z,"Presun kodu metod zasobniku z .h do .cpp",1,1,0,0
+2413,1,2022-12-11T12:30:12.751777Z,"graficka uprava suborov",1,1,0,0
+2414,1,2022-12-11T13:08:00.378105Z,"graficka uprava suborov CBlock_TInterval.h a CStack.h",1,1,0,0
+2416,1,2022-12-11T13:34:46.831673Z,"graficka uprava suboru",1,1,0,0
+2417,1,2022-12-11T14:12:30.370450Z,"aktualizacia komentarov",1,1,0,0
+2418,3,2022-12-11T14:25:48.526998Z,"funkce Reverzuj presunuta do Stack.cpp, priprava testu v main.cpp",1,1,0,0
+2419,3,2022-12-11T16:07:44.221167Z,"Funkce Reverzuj(aaa) pridana do main.cpp",1,1,0,0
+2420,3,2022-12-11T16:50:38.778480Z,"Uprava v Introduction.md - chybelo slovo Prvek, dale nastrel unary operator++ - treba prokonzultovat s tymem",1,1,0,0
+2421,3,2022-12-11T17:23:26.317524Z,"operator size_t presunut do CStack.cpp, upraven",1,1,0,0
+2426,2,2022-12-11T19:47:17.001108Z,"nakonec jsem si vymyslel jednodušší compare deep, snad bude podle zadání - potřeba konzultace, zda-li Vám to vyhovuje. jinak po delší odmlce je komitující monstrum zpět, připravte se solidní nálož kódů.",1,1,0,0
+2429,3,2022-12-11T20:43:41.255482Z,"Size_t ctor CStack.h -> CStack.cpp. dodelan, opraven unary operator++",1,1,0,0
+2430,1,2022-12-11T20:44:22.658681Z,"oprava operatora -=, treba dokoncit previazanie pointerov pri odstraneni prvku",1,1,0,0
+2431,2,2022-12-11T20:45:45.390161Z,"formování nové deepcompare - přidání throw u vyjímky operátoru !,avšak ještě ji nechytám.",1,1,0,0
+2433,3,2022-12-11T21:00:26.731473Z,"uprava v zadani, jen lehoucka, neni se ceho bat :) a potom neco malo udelano v CStack.cpp",1,1,0,0
+2436,2,2022-12-11T21:48:43.628104Z,"bylo mi namluveno, že mám z hlavičkového souboru hlavičky s tělíčky dát do .cpp - tak jsem to udělal. kdo by to byl tušil, že se musí u iostreamu a ostreamu smazat friend...
+přidal jsem si poznámky v mainu, nemažte mi je prosím - děkuji, postupně si je budu mazat. 
+není jdu zpět na compare deep, zítra dopoledne zkusím destruktor - nic neslibuji, musím makat i na RR.",1,1,0,0
+2437,3,2022-12-11T22:00:09.269952Z,"presun Conversion c'tor from init list do cpp",1,1,0,0
+2439,2,2022-12-11T22:47:14.529021Z,"pilování metody compare deep, pomoc od našeho Top G, jsme na správné cestě.
+neprošel equal unit test, zítra bude snad opraveno a vrhnu se na stream operátory.
+Dobrou noc.",1,1,0,0
+2440,1,2022-12-12T01:18:18.183228Z,"debug comparedeep a push",1,1,0,0
+2446,1,2022-12-12T16:21:46.411064Z,"save compare deep",1,1,0,0
+2448,2,2022-12-12T18:14:13.641040Z,"destruktor. nevím proč mám potřebu stále všude rvát for, když to jde hezky pomoci while...",1,1,0,0
+2449,2,2022-12-12T18:21:25.895050Z,"nečtu pořádně zadání... přidán aktivní odpočet počet prvků u destruktoru.",1,1,0,0
+2450,4,2022-12-12T18:54:28.980969Z,"Pridani iBottom inicializace v Push metode. Dodelani Usage metody. Zacatek prace na += operatoru",1,1,0,0
+2451,3,2022-12-12T19:00:28.244393Z,"hratky s certem, dodelal jsem binary-, upraivl Search, graficke upravy, hratky v mainu
+",1,1,0,0
+2452,3,2022-12-12T19:05:19.214716Z,"oprava funkci, aby to jelo, upravte s ito kuci",1,1,0,0
+2453,2,2022-12-12T19:06:53.226406Z,"musím hodit update, simon psal do skupiny, ze upravil compare.",1,1,0,0
+2454,4,2022-12-12T19:10:56.450723Z,"dalsi oprava Compare",1,1,0,0
+2455,4,2022-12-12T19:15:10.206277Z,"hehe, dalsi compare fix",1,1,0,0
+2456,4,2022-12-12T19:52:53.878750Z,"Uprava push - ted uz jsou spravne nastaveny pointery na next, prev.",1,1,0,0
+2458,2,2022-12-12T19:58:09.674334Z,"copy konstruktor. nefunguje push. Karta se obrátila: ŠIMONE OKAMŽIZĚ SI OPRAV PUSH METODU, Davide ty taky prosím <3.
+ŠIMONE: upravil jsem ti while, když jdeš z topu musíš používat PrevItem.
+ŠIMONE, tohle rýpání jsem si musel užít, promiň. Ty sis ho taky užíval.",1,1,0,0
+2459,2,2022-12-12T20:23:25.969647Z,"1001 a jeden aha momentů. 
+tělíčko operátoru!",1,1,0,0
+2460,2,2022-12-12T21:11:41.787790Z,"operator = 
+prakticky vykradený copykonstruktor a destruktor. další aha momenty
+nyní příprava na konzultaci deepcompare.
+zítra už ale opravdu iostram a ostream",1,1,0,0
+2461,2,2022-12-12T22:22:44.459403Z,"svět není tak růžový...
+destroy nefunguje. free nepomáhá, psychika se bortí, ale dneska si troufnu říct, že jsem docela mákl. 
+Zítra pokračování, oprava destruktoru napsání již zmínění iostream a ostream operátorů. 
+",1,1,0,0
+2462,4,2022-12-12T23:12:52.275021Z,"+= operator done. unittest conv ctor z pole a size_t done. Taky jsem se asi na 2 hodiny zasekl u TestValue0 a stacilo napsat jediny slovo :) ale nevim proc mi to nefungovalo. Z nejakyho duvodu mi to random zavolalo destruktor a tim padem znicilo stack kterej se tam vytvarel.",1,1,0,0
+2471,2,2022-12-13T12:24:00.148968Z,"debugování destruktoru. 
+bolest.",1,1,0,0
+2472,2,2022-12-13T13:03:00.418538Z,"další úprava destruktoru. 
+už toho mám dost a to mě teď čeká uin. 
+",1,1,0,0
+2476,3,2022-12-13T15:21:43.910269Z,"ja uz ani nevim, co jsem tu delal, udelejte kuk do modified souboru :)",1,1,0,0
+2477,3,2022-12-13T15:22:07.754147Z,"tak jsem neco necommitnul hehe",1,1,0,0
+2480,4,2022-12-13T16:30:55.247699Z,"presun metod do CStack.cpp",1,1,0,0
+2483,1,2022-12-13T17:10:09.240522Z,"oprava unarneho operatora minus a metody Reverzuj",1,1,0,0
+2484,4,2022-12-13T17:18:15.352527Z,"test metod(push, top, conv ctor z pole o zname velikosti, compare) v main.cpp. Prepsani CStack::TestValue0 aby vracelo pole CBlocku.",1,1,0,0
+2485,4,2022-12-13T17:41:22.620657Z,"test operatoru+= v main.cpp",1,1,0,0
+2486,4,2022-12-13T18:48:05.305609Z,"Unittest operatoru+=",1,1,0,0
+2489,2,2022-12-13T20:16:26.921576Z,"začínám se v tom topit jako Slovák v brynze. Nic proti Dane.
+destruktor hotový. 
+pokud ne, vzdávám se veškerých práv a svobod, jdu žít do džungle a točit yt videa. 
+teď ho jdu aplikovat do metod, kde je starý destruktor.",1,1,0,0
+2490,2,2022-12-13T20:34:05.515127Z,"úprava destruktoru u operátoru =
+děkuji za upozornění od Davida, Bottom již by měl fungovat správně.
+PS. kdyby se Vám vizuálko snažilo nalhat, že žádný CSTACK_H nemáte, nevěřte mu. Vypněte, zapněte, on ho najde...",1,1,0,0
+2491,1,2022-12-13T20:52:56.790801Z,"oprava operatora -=, graficka uprava suborov
+",1,1,0,0
+2492,1,2022-12-13T21:34:20.825263Z,"graficka uprava suborov, oprava metod, kontrola unit testov",1,1,0,0
+2493,1,2022-12-13T21:42:20.962109Z,"uz jsem stary gandalfe",1,1,0,0
+2494,3,2022-12-13T21:43:39.751981Z,"Konflikt zas a znova xD jdu to opravit, btw jinak jsem upravoval Pop, Push, Bottom apod.",1,1,0,0
+2496,3,2022-12-13T21:48:20.458883Z,"uprava Pop()
+",1,1,0,0
+2497,2,2022-12-13T22:19:35.411766Z,"s posledními % baterie rychle commituji.
+pokrok v kódu není tak velký jako pokrok ve znalostech, které jsem nabyl.
+začátek istreamu. vykradení kódu z tintervalu a následná aplikace. odkaz na literaturu, pro pochopení. logicky vím jak na to, ale ještě jsem to nikdy nepsal...
+už to chci mít z krku, ale pořád lepší jak dokola debugovat destruktor.",1,1,0,0
+2499,1,2022-12-13T22:47:18.841035Z,"opravil som d'tor, bola tam chyba v podmienke... teraz d'tor nefunguje, ak je itop nullptr",1,1,0,0
+2503,1,2022-12-14T09:15:56.769306Z,"save operatora -= so vsetkymi komentarmi - pokus o delete prvku zasobnika, osetrenie vsetkych pointerov (menia sa stale ulozene miesta v pamati, preto bol vytvoreny novy zasobnik), vytvorenie noveho zasobnika s prvkami prveho a bez prvkov prveho z druheho",1,1,0,0
+2504,1,2022-12-14T09:19:11.405804Z,"ulozenie operatora -= bez zbytocneho kodu s vypisom",1,1,0,0
+2505,1,2022-12-14T09:23:42.058479Z,"save final verzie operatora -= bez vypisu",1,1,0,0
+2506,1,2022-12-14T09:50:29.495177Z,"oprava mojich testov.. vo vsetkych testoch je memory leak",1,1,0,0
+2509,1,2022-12-14T13:20:08.838696Z,"dokoncenie mojho posledneho unit testu - operator -=.. graficka uprava UnitTests.cpp a ostatnych suborov, uprava main.cpp",1,1,0,0
+2534,3,2022-12-14T14:57:35.590980Z,"hratky v unit testech a tak. ted smer RBM na robota s nozem ",1,1,0,0
+2575,2,2022-12-14T19:35:31.446218Z,"klasicky zmatek a jel jsem v kopykonstruktoru špatným směrem... již opraveno",1,1,0,0
+2605,3,2022-12-15T08:33:07.377927Z,"graficka uprava UnitTests.cpp",1,1,0,0
+2611,4,2022-12-15T09:44:00.904206Z,"Prace na UnitTestu nonmember operatoru+ (CBlock + CStack)",1,1,0,0
+2612,4,2022-12-15T09:58:11.263582Z,"jeste jedna uprava Push ",1,1,0,0
+2613,3,2022-12-15T09:58:59.924028Z,"srandy v stackcpp a unit testech, musim na tom pracovat",1,1,0,0
+2617,1,2022-12-15T12:08:20.818237Z,"osetrenie mojich metod + pridanie vypisu, Reverzuj pravedpodobne nie je dokoncena",1,1,0,0
+2646,3,2022-12-15T18:24:26.688608Z,"commitovani ve vlaku je fakt sranda, asi mi jede Search i druhym zpusobem, teoreticky jsem ho nemusel ani prepisovat, chyba neni asi na me strane, sere se to u Martinova operator=, takze na to prosim mrkni Martinku :*",1,1,0,0
+2649,2,2022-12-15T18:36:11.934431Z,"úprava copy c tor.
+umazání delete funkce u operátoru = ",1,1,0,0
+2656,2,2022-12-15T19:57:32.904787Z,"úprava istream a nástřel ostream. špatná hlavička jak v kodu tak moje.",1,1,0,0
+2662,2,2022-12-15T21:03:09.865154Z,"další neúspěšný pokus o destruktor. už na to nemám nervy. debug nepomáhá. chytám z toho tenisový loket.
+momentální stav: Čech v tatrách.",1,1,0,0
+2667,2,2022-12-15T21:35:37.154594Z,"koncim, deprese. zkousel jsem rozjet operator +, ale nedaří se. drobné úpravy, ale posun nic moc.",1,1,0,0
+2673,2,2022-12-15T22:07:18.775780Z,"opět debug destruktoru. 
+momentální stav: taková cesta z lesa, zatím se z ní nikdo nedostal, ale já budu první.",1,1,0,0
+2674,1,2022-12-15T22:07:57.568949Z,"oprava metody Reverzuj, uz funguje.. plus osetrenie mojich metod",1,1,0,0
+2676,2,2022-12-15T22:44:36.824986Z,"napadlo mě ošefovat destruktor pro případ, že nemáme adresu iTop. Tak začneme z iBottom. nevím jestli je to dobrá myšlenka, ale asi to může fungovat - ještě ověřím.
+momentální stav: Díky bohu za ALD",1,1,0,0
+2680,1,2022-12-15T23:35:59.501662Z,"volanie operatora == v main.cpp, oprava formatovania UnitTests.cpp",1,1,0,0
+2681,1,2022-12-16T00:13:08.325662Z,"pridanie vynimiek",1,1,0,0
+2683,1,2022-12-16T00:52:50.690020Z,"operator= ?",1,1,0,0
+2688,3,2022-12-16T10:42:13.084506Z,"uprava operator<, bugifx",1,1,0,0
+2696,1,2022-12-16T15:39:50.371219Z,"pokus o opravu destruktora
+",1,1,0,0
+2708,2,2022-12-16T19:29:19.314835Z,"naprosto zbytečný comit zbytečného člověka",1,1,0,0
+2713,2,2022-12-16T20:09:44.327160Z,"nová verze operátoru +. debugováno pár chvil. zdá se funkční.
+",1,1,0,0
+2715,1,2022-12-16T20:36:34.012570Z,"pridany konzultacny rezim, aktualizacia niektorych metod",1,1,0,0
+2717,1,2022-12-16T21:08:56.779872Z,"oprava doxygen
+",1,1,0,0
+2733,1,2022-12-17T00:53:40.627354Z,"kontrola unit testov, oprava unit testov (nz david, obaja sme mali chybu).. oprava conv ctora z cblocku",1,1,0,0
+2734,1,2022-12-17T00:55:11.171495Z,"zabudol som naspat aktivovat tinterval",1,1,0,0
+2735,1,2022-12-17T01:16:15.318693Z,"uspesne ukoncenie celej mojej projektovej casti :)",1,1,0,0
+2736,1,2022-12-17T01:20:59.661412Z,"deaktivacia mojej prace - priprava na konzultaciu",1,1,0,0
+2737,1,2022-12-17T01:22:46.951735Z,"koniec",1,1,0,0
+2772,1,2022-12-17T18:03:01.256204Z,"moj posledny commit, uzite si ho, teraz ste v tom sami, idem si konecne oddychnut
+
+dokoncene posledne veci, dokocena kompletna dokumentacia Documentation.md a Introduction.md, doplnene a opravene to, co chybalo.. kontrola vsetkeho..",1,1,0,0
+2807,3,2022-12-18T09:40:51.820504Z,"vyjimka Pop",1,1,0,0
+2813,3,2022-12-18T11:09:51.656330Z,"UnitTests.cpp z me strany hotovy, ale stoji na operator=, az bude hotov, checknu to a pripadne opravim. :) uz se blizime do finale kuci, a hlavne diky Dane <3",1,1,0,0
+2821,3,2022-12-18T11:55:55.422140Z,"testovani v main.cpp",1,1,0,0
+2825,2,2022-12-18T12:05:03.675706Z,"poslední dobou trávím více času debugováním nežli se svou přítelkyní.
+možná jsem špatný programátor. možná špatný přítel. nejspíše obojí.
+operátor = se zdá býti funkční...",1,1,0,0
+2829,1,2022-12-18T12:34:05.489177Z,"oprava metody Destroy, uspesna odalokacia az polovice pamate.. nova verzia Push a Pop",1,1,0,0
+2835,2,2022-12-18T13:22:43.253966Z,"pokus o istream...",1,1,0,0
+2837,4,2022-12-18T13:23:17.861744Z,"hotovy UnitTest friend operator+ (Stack + CBlock)",1,1,0,0
+2839,1,2022-12-18T14:04:48.641732Z,"debug a tak",1,1,0,0
+2840,3,2022-12-18T14:05:15.486753Z,"UnitTests binary operator- funguje jupi",1,1,0,0
+2842,1,2022-12-18T14:07:51.333180Z,"zapnutie rezimu konzultacie v main.cpp",1,1,0,0
+2843,3,2022-12-18T14:08:11.212869Z,"OPERATOR- JUP(I JUPI JUPI JDU SE UCIT RBM a AEI a projekt RR1 a semestralku, muj vedouci mi povedel, ze hmmm mate toho malo, rip ja, ale to pujde = 42",1,1,0,0
+2844,4,2022-12-18T14:17:14.583884Z,"unittest unary operatoru+ ",1,1,0,0
+2853,4,2022-12-18T15:52:28.496909Z,"oprava operatoru+= a jeho unittestu",1,1,0,0
+2855,2,2022-12-18T16:19:37.009025Z,"unit test copy konstruktoru",1,1,0,0
+2859,4,2022-12-18T18:01:25.005739Z,"Testy v main.cpp",1,1,0,0
+2862,4,2022-12-18T18:52:52.471615Z,"testy v main.cpp",1,1,0,0
+2867,4,2022-12-18T19:20:13.484332Z,"testy v main.cpp",1,1,0,0
+2875,4,2022-12-18T20:31:52.314177Z,"odkomentovani testovani pameti v unit testech",1,1,0,0
+2877,3,2022-12-18T20:38:03.496223Z,"unit testy leakuji pamet tam kde se da, hahaha, tolik BYTU, ty by se mohly rozdavat mladym rodinam, aby meli kde bydlet. Uz jsem z toho marny, potrebuju pomoc psychiatricke lecebny z tohodle projektu a z tohodle semestru, jo sranda to je. ",1,1,0,0
+2879,4,2022-12-18T20:59:03.847914Z,"Free pameti po pouziti metod CStack::TestValue0 a CSTack::TestValueRandom",1,1,0,0
+2882,4,2022-12-18T21:12:02.565016Z,"Doplneni dokumentace k CStack::TestValueRandom()",1,1,0,0
+2886,2,2022-12-18T21:41:38.561006Z,"další pokus o návrh inputu",1,1,0,0
+2887,1,2022-12-18T21:46:14.052834Z,"oprava unit testu binary subtr",1,1,0,0
+2891,1,2022-12-18T23:46:27.197078Z,"odstranenie komentarov, pridanie poznamok
+",1,1,0,0
+2892,1,2022-12-18T23:49:45.416782Z,"doplnenie dokumentacie",1,1,0,0
+2893,1,2022-12-19T00:01:28.923815Z,"doplnenie tlace.. asi moj uplne posledny commit..",1,1,0,0
+2894,1,2022-12-19T00:04:32.711784Z,"bye bye ",1,1,0,0
+2905,1,2022-12-19T10:28:44.816994Z,"zmena destroy, vypnutie konzultacneho rezimu",1,1,0,0
+2906,1,2022-12-19T10:43:23.637226Z,"MOJ POSLEDNY COMMIT",1,1,0,0
+2909,1,2022-12-19T11:00:53.205197Z,"az teraz",1,1,0,0
+2912,1,2022-12-19T11:09:35.596719Z,"zapnuty konzultacny rezim
+",1,1,0,0
+2919,5,2022-12-19T12:28:05.230954Z,"Konzultace. Uff. uff.",1,1,0,0
+2922,4,2022-12-19T13:21:50.435061Z,"uprava testu operatoru+ v main.cpp a v UnitTests.cpp",1,1,0,0
+2926,1,2022-12-19T13:50:51.083199Z,"finalna ukazka mojich metod v main.cpp",1,1,0,0
+2931,3,2022-12-19T14:30:23.947719Z,"Komentar k IntegrityTest, odstraneni tzv. hovnokodu",1,1,0,0
+2935,3,2022-12-19T14:45:52.236975Z,"jdu se ucit na rbm, brb tak za dva dny a ten den moji cast dokoncim hosi. gl hf hlavne ten main, pripadne UnitTests.cpp. finale utrpeni se blizi",1,1,0,0
+2936,2,2022-12-19T15:26:45.156385Z,"input output funguje... teď jestli mě omluvíte jdu odstranit chaos.
+ještě jednou děkuji panu Petyovskému a jmenuji ho oficiálně polobohem",1,1,0,0
+2937,2,2022-12-19T15:32:08.206640Z,"uklizeno",1,1,0,0
+2949,1,2022-12-19T17:01:54.127386Z,"dokonceny unit test, prepis niektorych funkcii podla rad doktora petyovskeho",1,1,0,0
+3051,4,2022-12-20T17:41:32.498296Z,"operator+ neni komutativni, takze jsem pridal dalsi metodu provadejici operaci CStack + CBlock",1,1,0,0
+3075,3,2022-12-20T19:00:32.491632Z,"Ma cast main.cpp dokonecna, vse by melo fungovat. Snad jsem na neco nezapomnel. Asi nejspis muj posledni commit. Dane tobe diky za leadership, za trello a obecne za vsechnu praci, co jsi okolo tohodle projektu mel. Ostatnim clenum tymu dekuju, ze jsme se dokazali vzdy domluvit. Panove byla to jizda, dekuji. Pokud bych uz nic necommitoval, tak jsem folder 'blitky' uz na dobro smazal. :)",1,1,0,0
+3141,1,2022-12-20T23:38:53.965934Z,"finalizacia mojej prace, kontrola dokumentacie.. aj ja dakujem chalani",1,1,0,0
+3203,4,2022-12-21T13:26:58.503873Z,"Dup test v main.cpp a UnitTests.cpp",1,1,0,0
+3211,2,2022-12-21T13:44:37.656808Z,"unit test destruktoru",1,1,0,0
+3215,4,2022-12-21T13:55:35.395019Z,"vyjimka v CStack::TestValueRandom() a chytani vyjimek v main.cpp",1,1,0,0
+3217,4,2022-12-21T13:57:55.202807Z,"uklid ",1,1,0,0
+3225,2,2022-12-21T14:28:57.536240Z,"Přidání popisků v unit testech metodám, které se testují samy.",1,1,0,0
+3237,2,2022-12-21T15:15:38.504643Z,"přidání unit testu pro operátor = ",1,1,0,0
+3249,2,2022-12-21T15:45:21.795895Z,"unit test operator + hotov",1,1,0,0
+3258,2,2022-12-21T16:20:28.555211Z,"rozsireni testu operatoru =, chyba v popu",1,1,0,0
+3296,2,2022-12-21T18:04:04.069700Z,"unit test !=
+",1,1,0,0
+3298,2,2022-12-21T18:10:57.241147Z,"odstranění hřbitovu z CStack.cpp",1,1,0,0
+3305,2,2022-12-21T18:24:19.858552Z,"znovu obnovení funkčního, ač složitěji napsaného Popu",1,1,0,0
+3338,2,2022-12-21T19:48:22.882644Z,"úprava a zavolání mých metod i operátorů v mainu",1,1,0,0
+3341,1,2022-12-21T19:54:06.967690Z,"uprava dokumentacie
+",1,1,0,0
+3345,2,2022-12-21T20:03:00.581334Z,"jemná úprava dokumentace, odkomentování good u istreamu, jemné uhlazení mainu",1,1,0,0
+3352,2,2022-12-21T20:15:11.482153Z,"odstranění mrtvých duší z CSTACK_H a jemné úpravy v CStack.cpp",1,1,0,0
+3458,1,2022-12-21T22:29:53.856004Z,"FINAL VERZIA PROJEKTU, DAKUJEM ZA SPOLUPRACU (a po tolkych commitoch je to cest, aby som ja daval ten posledny commit) https://www.youtube.com/watch?v=3_-a9nVZYjk&ab_channel=TrapNation",1,1,0,0
+3469,1,2022-12-21T22:39:46.075694Z,"https://www.youtube.com/watch?v=3_-a9nVZYjk&ab_channel=TrapNation",1,1,0,0
+3493,1,2022-12-21T22:55:12.081615Z,"vypnutie KLUKA_PRINT",1,1,0,0
+3494,1,2022-12-21T22:56:29.821830Z,"za davida",1,1,0,0
+3496,1,2022-12-21T22:57:36.635744Z,"oprava poslednej }",1,1,0,0
+3661,1,2022-12-29T16:57:41.032212Z,"uprava dokumentacie, zadania a zmazanie nepotrebneho zakomentovaneho kodu v UnitTests.cpp",1,1,0,0
+3662,1,2022-12-29T17:17:11.337549Z,"zmena formatu dokumentacie unit testov v UnitTests.cpp - funkcne zobrazenie v test list",1,1,0,0
+3666,1,2022-12-29T18:29:29.543716Z,"ciastocne doplnenie dokumentacie mojich testov v UnitTests.cpp",1,1,0,0
+3668,1,2022-12-29T18:47:59.420497Z,"kompletne dokoncenie dokumentacie mojich testov v UnitTests.cpp",1,1,0,0
+3670,1,2022-12-29T19:51:31.581138Z,"fix dokumentacie Documentation.md",1,1,0,0
+3671,1,2022-12-29T19:55:59.502113Z,"doplnenie autorov pridanych metod a doplnenie metody IntegrityTest do dokumentacie",1,1,0,0
+3672,1,2022-12-29T20:04:03.646789Z,"doplnenie testovania IntegrityTest do mojich metod - vsetko preslo",1,1,0,0
+3673,1,2022-12-29T20:14:59.555750Z,"opat doplnenie
+",1,1,0,0
+3691,1,2022-12-30T12:38:24.327440Z,"doplnenie dokumentacie",1,1,0,0
+3692,4,2022-12-30T13:07:18.129956Z,"doplneni dokumentace mych metod",1,1,0,0
+3718,5,2023-01-02T13:22:37.975147Z,"tag[ct09_zasobnik1/tags/final]: Zaloha",1,1,0,0
+3719,5,2023-01-02T13:22:38.351871Z,"branch[ct09_zasobnik1/branches/oprava_final]: Pro ohodnoceni",1,1,0,0
+3751,5,2023-01-05T10:46:14.446752Z,"",1,1,0,0

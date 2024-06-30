@@ -1,0 +1,679 @@
+/** \file CStack.cpp
+ *  \brief CStack class source
+ *  \details File contains implementation of CStack support functions
+ *  \authors Kluka, Majnus, Pesek, Prasek
+ *  \version 2022
+ *	\attention File CStack.cpp is in very early stage of development.
+ *  $Id$
+ */
+
+#include <cstring>
+#include "CStack.h"
+
+// comparison methods
+/*	Private method CompareDeep
+ *	authors Majnus, Kluka
+ */
+int CStack::CompareDeep(const CStack& aStack2) const // : následující slovem public - tøída bude dìdit všechny prkvy z tøídy za public
+	{
+	//poznamky - nemazat - diky
+	//vytvorit delete v destroy metode, ktery bude mazat samostatne instance - destroy bude volana v destruktoru
+
+
+	//Privátní metoda CompareDeep, která porovná zásobníky i podle hodnot CBlock (návratové hodnoty jako u Compare).
+	//Výsledky získané voláním metod Compare a/nebo CompareDeep budou ke své èinnosti používat relaèní operátory zásobníku.
+	//a vrátí hodnotu -1,0 nebo 1 (první je kratší, stejné, první je delší)
+
+	size_t aStack1_Count = iCount;
+	size_t aStack2_Count = aStack2.iCount;
+
+	if ((aStack2_Count == 0) && (aStack1_Count == 0))
+		return 0;
+
+	if (aStack1_Count < aStack2_Count)
+		return -1;
+	if (aStack1_Count > aStack2_Count)
+		return 1;
+	if (aStack1_Count == aStack2_Count)
+		{
+
+		CBlock* iCurrent_Stack1 = iTop;
+		CBlock* iCurrent_Stack2 = aStack2.iTop; //aktualni prvek 2. zasobniku
+
+
+		while (iCurrent_Stack1 != NULL)
+			{
+			if (iCurrent_Stack1->Value() < iCurrent_Stack2->Value())
+				return -1;
+
+			if (iCurrent_Stack1->Value() > iCurrent_Stack2->Value()) // umi rozeznat <=>, je to dobreeee
+				return 1;
+
+			if (iCurrent_Stack1->Value() == iCurrent_Stack2->Value())
+				{
+				iCurrent_Stack2 = static_cast<CBlock*>(iCurrent_Stack2->NextItem());
+				iCurrent_Stack1 = static_cast<CBlock*>(iCurrent_Stack1->NextItem());
+				}
+			}
+		}
+		return 0;
+	}
+
+/*	Private method Compare
+ *	author Pesek
+ */
+int CStack::Compare(const CStack& aStack) const
+	{
+	if (this->PocetPrvku() > aStack.PocetPrvku())
+		{
+		return 1;
+		}
+	else if (this->PocetPrvku() < aStack.PocetPrvku())
+		{
+		return -1;
+		}
+	else
+		return 0;
+	}
+
+// c'tors
+/*	Default c'tor
+ *	author Majnus
+ */
+CStack::CStack(): iTop(nullptr), iBottom(nullptr),iCount(0)
+	{
+	}
+
+/*	CBlock conversion c'tor
+ *	author Kluka
+ */
+CStack::CStack(const CBlock& aBlock)
+	{
+	iTop = new CBlock(aBlock.Value(), nullptr, nullptr);
+	iTop->SetPrevNext(iTop, iTop);
+	iBottom = iTop;
+	iCount = 1;
+	}
+
+/*	Copy c'tor
+ *	author Majnus
+ */
+CStack::CStack(const CStack& aStack) //vzniká nový cstack - konstruktor
+//kopykonstruktor - vytvoøí vlastní kopii všech dat (hluboka kopie jednotlivých instanci tøídy CBlock), ale bude mít unikátní iID. ( Majnuš )
+	{
+
+	CBlock *tmp = aStack.iBottom; //novy cstak, adresa na nejaky cblock  - patri novemu cstacku //astack
+
+
+	while(tmp != nullptr)
+	{
+		this->Push(*tmp);//virtual arrow 
+		tmp = dynamic_cast<CBlock *>(tmp->NextItem());
+	}
+
+
+	}
+
+/*	String conversion c'tor
+ *	author Kluka
+ */
+CStack::CStack(const char* aString) : iTop(nullptr), iBottom(nullptr), iCount(0)
+	{
+	std::stringstream ss;
+	ss << aString;
+	//ss >> *this; // chyba Martinov operator >>
+
+	/*
+	ss << "(";
+	do
+		{
+		ss << aString;
+		}
+	while(aString != ")");
+	ss >> *this;
+	// potrebne operatory << a >>, inak hotovo.. a tiez cakam na Martina, aby som vedel, ako spravi stream*/
+	}
+
+/*	CBlock conversion c'tor from array of known size
+ *	author Pesek
+ */
+CStack::CStack(size_t aSize, const CBlock* aArray) : iTop(nullptr), iBottom(nullptr), iCount(0)
+	{
+	for (size_t i = 0; i < aSize; ++i)
+	{
+		Push(aArray[i]);
+	}
+	}
+
+/*	Convert c'tor from init list
+ *	author Prasek
+ */
+CStack::CStack(std::initializer_list<CBlock> aInitList) : CStack(aInitList.size(), std::data(aInitList))
+	{
+	}
+
+/*	Conversion c'tor of type size_t
+ *	author Prasek
+ */
+CStack::CStack(const size_t aSize) : iTop(nullptr), iBottom(nullptr), iCount(0)
+	{
+	for(size_t i = 0; i < aSize; ++i)
+		{
+		this->Push(CBlock());
+		++iCount;
+		}
+	}
+
+// d'tor
+/*	Destructor
+ *	author Majnus
+ */
+ CStack::~CStack() noexcept(noexcept(std::declval<CBlockBase>().~CBlockBase()))
+	 {
+
+	CBlock *tmp = this->iTop;
+	 
+	 if(iCount = 0)
+		 {
+		 while(tmp != nullptr)
+			 {
+			 CBlock* next = static_cast<CBlock*>(tmp->NextItem());
+			 if(iCount > 1)
+				 {
+				 tmp = static_cast<CBlock *>(tmp->SetNextItem(nullptr));
+				 tmp = static_cast<CBlock *>(tmp->SetPrevItem(nullptr));
+				 }
+			 delete tmp;
+			 tmp = next;
+			 --iCount;
+			 }
+		 this->iTop = nullptr;
+		 }
+	 }
+
+// InstanceInfo getters
+/*	Actual getter
+ *	author Majnus
+ */
+size_t CStack::Actual() const //iInstance living - pocet zijicich
+	{
+	return iInstanceInfo.Living(); //peak -> ptrdiff_t - zakladni funkce c++ vracejici pointer arithmetic and array indexing //pres classinfo? return ClassInfo<CStack>::Living();
+	}
+
+/*	ID getter
+ *	author Majnus
+ */
+size_t CStack::ID() const
+	{
+	return iInstanceInfo.ID(); //taky peak
+	}
+
+/*	Total getter
+ *	author Majnus
+ */
+size_t CStack::Total() const
+	{
+	return iInstanceInfo.Total(); //taky peak //taky class info?
+	}
+
+// setters/getters
+/*	PocetPrvku getter
+ *	author Kluka
+ */
+size_t CStack::PocetPrvku() const
+	{
+	return iCount;
+	}
+
+/*	Usage getter
+ *	author Pesek
+ */
+double Usage()
+	{
+	CBlock* node = new CBlock();
+
+	double iStack_memory = sizeof(CBlock);
+	double iArray_memory = sizeof(node->Value());
+
+	delete(node);
+
+	return 100 * iStack_memory / iArray_memory;
+	}
+
+// unary operators
+/*	Unary Operator +
+ *	author Pesek
+ */
+CStack& CStack::operator+()
+	{
+	return *this;
+	}
+
+/*	Unary Operator -
+ *	author Kluka
+ */
+CStack& CStack::operator-() 
+	{
+	if (iCount == 0 || iTop == nullptr)
+		return *this;
+
+	return *this->Reverzuj();
+	}
+
+/*	Unary Operator ++
+ *	author Prasek
+ */
+CStack& CStack::operator++() 
+	{
+	return this->Push(CBlock());
+	}
+
+/*	Unary Operator --
+ *	author Kluka
+ */
+CStack& CStack::operator--()
+	{
+	if (iCount == 0 || iTop == nullptr)
+		return *this;
+
+	return this->Pop();
+	}
+
+/*	Unary Operator !
+ *	author Majnus
+ */
+bool CStack::operator!() const
+	{
+	if(iTop == NULL)
+		{
+		throw "prazdny_zasobnik!";
+		//return true;
+		}
+
+	return false;
+	}
+
+// binary operators
+/*	Binary Operator +
+ *	author Majnus
+ */
+CStack CStack::operator+(const CStack &aStack) const //aStack - ten druhy - navrtat do cpp
+	{
+	//operátor + jako binární operátor, který seète dva zásobníky a nebude komutativní, èili bude záležet na poøadí zásobníkù. (Majnuš)
+
+	CStack stack1(*this);
+	//CStack stack2(aStack); //uz vchází jako reference - již dereferencovane - moznost stejne funkce - pretezovani konstruktoru - oficialne
+
+	//CBlock* tmp1 = stack1.iBottom; //promena ve ktere je adresa iTop - vrchni prvek
+	CBlock* tmp2 = aStack.iBottom;
+
+	while(tmp2 != nullptr)
+		{
+		stack1.Push(*tmp2);//virtual arrow 
+		tmp2 = dynamic_cast<CBlock *>(tmp2->NextItem());
+		}
+
+	return stack1;
+	}
+
+/*	Binary Operator =
+ *	author Majnus
+ */
+CStack& CStack::operator=(const CStack &aStack) //oprava & a const - musím na sebe sahat
+	{
+
+	CBlock *tmp = iTop;
+	CBlock *tmpnext;
+
+	this->iBottom = nullptr;
+	this->iTop = nullptr;
+
+	auto x = Actual();
+
+
+	if(iCount = 0)
+		{
+		while(tmp != nullptr)
+			{
+			CBlock *next = static_cast<CBlock *>(tmp->NextItem());
+			if(iCount > 1)
+				{
+				tmp = static_cast<CBlock *>(tmp->SetNextItem(nullptr));
+				tmp = static_cast<CBlock *>(tmp->SetPrevItem(nullptr));
+				}
+			delete tmp;
+			tmp = next;
+			--iCount;
+			}
+		this->iTop = nullptr;
+		}
+
+	CBlock *tmpa = aStack.iBottom; //novy cstak, adresa na nejaky cblock  - patri novemu cstacku //astack
+
+
+	while(tmpa != nullptr)
+		{
+		this->Push(*tmpa);//virtual arrow 
+		tmpa = dynamic_cast<CBlock *>(tmpa->NextItem());
+		}
+	return *this; //nezapominat na hvezdicky, jelikoz je to reference
+	}
+
+/*	Binary non-member Operator +
+ *	author Pesek
+ */
+CStack operator+(const CBlock& aBlock, const CStack& aStack)
+	{
+	CStack iNewStack = CStack(aStack);
+	iNewStack.Push(aBlock);
+	return iNewStack;
+	}
+
+/*	Binary Operator -
+ *	author Prasek
+ */
+CStack CStack::operator-(const CStack& aStack) const
+	{
+	CStack result;
+	CBlock *tmp = aStack.iTop;
+
+	if(!tmp)
+		{
+		return result;
+		}
+
+	while(tmp)
+		{
+		if(!this->Search(*tmp))
+			{
+			result.Push(*tmp);
+			}
+		tmp = dynamic_cast<CBlock *>(tmp->PrevItem()); //previtem - predtim next - jde se odzhora dolu
+		}
+	return result;
+	}
+
+/*	Binary Operator -=
+ *	author Kluka
+ */
+CStack& CStack::operator-=(const CStack& aStack)
+	{
+	if ((iTop == NULL) || (aStack.iTop == NULL))
+		{
+		std::cout << "One of the Stacks is empty." << std::endl;
+		return *this;
+		}
+
+	CBlock* iCurrent_Stack = iTop;
+	const CBlock* iCurrent_Stack2;
+	bool deleted;
+
+	while (iCurrent_Stack != NULL)
+		{
+		deleted = false;
+		iCurrent_Stack2 = aStack.iTop;
+		std::cout << "		Stack value: " << iCurrent_Stack->Value() << std::endl;
+
+		while (iCurrent_Stack2 != NULL)
+			{
+			std::cout << "				Stack2 value: " << iCurrent_Stack2->Value() << std::endl;
+
+			if (iCurrent_Stack->Value() == iCurrent_Stack2->Value())
+				{
+				std::cout << "				match" << std::endl;
+				CBlock* node = iCurrent_Stack;
+				iCurrent_Stack = static_cast<CBlock*>(iCurrent_Stack->NextItem());
+				//delete(node);
+
+				node = nullptr;
+				deleted = true;
+				--iCount;
+				break;
+				}
+
+			iCurrent_Stack2 = static_cast<const CBlock*>(iCurrent_Stack2->NextItem());
+			}
+
+		if (deleted == true) continue;
+		iCurrent_Stack = static_cast<CBlock*>(iCurrent_Stack->NextItem());
+		}
+
+	return *this;
+	}
+
+/*	Binary Operator +=
+ *	author Pesek
+ */
+CStack& CStack::operator+=(const CStack& aStack)
+	{
+	const CBlock* iRight_Stack = aStack.iTop;
+	const CBlock* iLeft_Stack = iTop;
+	
+	CStack iCopyRight_stack = CStack(aStack); // nefunguje, protoze nefunguje copy c'tor
+
+
+	this->iBottom->SetNextItem(aStack.iTop);
+	this->iBottom = aStack.iBottom;
+	
+	return *this;
+	}
+
+
+/*	Operator size_t
+ *	author Prasek
+ */
+ CStack::operator size_t() const
+	{
+	return iCount;
+	}
+
+/*	Relational Operator ==
+ *	author Kluka
+ */
+bool CStack::operator==(const CStack& aStack) const
+	{
+	if (this->CompareDeep(aStack) == 0)
+		return true;
+	else return false;
+	}
+
+#ifdef CBLOCK_THREE_WAY_COMPARISON
+/*	Three-way comparison by Value Operator
+ *	author Kluka
+ */
+std::strong_ordering CStack::operator<=>(const CStack &aStack) const
+	{
+	return iCount <=> aStack.iCount;
+	}
+
+#else
+// relational operators
+/*	Relational Operator !=
+ *	author Majnus
+ */
+bool CStack::operator!=(const CStack& aStack) const
+	{
+	return CompareDeep(aStack);
+	}
+
+/*	Relational Operator <
+ *	author Prasek
+ */
+bool CStack::operator<(const CStack& aStack) const
+	{
+	return CompareDeep(aStack);
+	//return (iCount < aStack.iCount); 
+	}
+
+/*	Relational Operator >
+ *	author Pesek
+ */
+bool CStack::operator>(const CStack& aStack) const
+	{
+	return CompareDeep(aStack);
+	//return (iCount > aStack.iCount);
+	}
+
+#endif /* CBLOCK_THREE_WAY_COMPARISON */
+
+//
+//pøetížením operátorù << a >> ve stejném formátu navrženém pro konstruktor z char
+//*(tj.èárkami oddìlený seznam hodnot zásobníku ve tvaru "(hodnota-prvku1,hodnota-prvku2,hodnota-prvku3,...)")
+
+/*	Output to the stream operator
+ *	author Majnus
+ */
+std::ostream& operator<<(std::ostream& aOStream, const CBlock& aStack)
+{
+	return aOStream;
+}
+
+/*	Input from the stream operator
+ *	author Majnus
+ */
+std::istream &operator>>(std::istream &aIStream, CBlock &aStack)
+{
+
+	
+	//char a;
+
+	//aIStream >> a;
+
+	//if( a == "(")
+
+
+	return aIStream;
+}
+
+// CStack characteristic methods
+/*	Method aaa.Reverzuj
+ *	author Kluka
+ */
+CStack* CStack::Reverzuj()
+	{
+	if (iCount == 0 || iTop == nullptr)
+		return this;
+
+	CBlock* iHead = iTop;
+	CBlock* iPrev = NULL, * iNext = NULL;
+	while (iHead != NULL)
+		{
+		iNext = static_cast<CBlock*>(iHead->NextItem());
+		iHead->SetNextItem(iPrev);
+		iPrev = iHead;
+		iHead = iNext;
+		}
+
+	iHead = iPrev;
+	return this;
+	}
+
+/*	Function Reverzuj(aaa)
+ *	author Prasek
+ */
+CStack Reverzuj(CStack aValue)
+	{
+	CStack result = aValue;
+	return *result.Reverzuj();
+	}
+
+/*	Stack Push
+ *	authors Pesek, Prasek
+ */
+CStack& CStack::Push(const CBlock& aValue)
+{
+	// je jedno, co pushnete do zasobnika, ci true alebo false, vzdy je tam iba false..
+	CBlock* node = new CBlock(aValue);
+
+	node->SetValue(aValue.Value());
+
+	if (iCount == 0)
+		{
+		node->SetNextItem(nullptr);
+		node->SetPrevItem(nullptr);
+		this->iBottom = node;
+		}
+	else
+		{
+		node->SetNextItem(this->iTop);
+		this->iTop->SetPrevItem(node);
+		}
+
+	this->iTop = node;
+
+	++iCount; //thank me later - Dano
+
+	return *this;
+
+	//(Danova verzia, ktora nesla.. )
+	/*
+	CBlock* old_node = this->iTop;
+	CBlock* node = new CBlock(aValue);
+
+	node->SetPrevItem(old_node);
+	node->SetNextItem(node);
+	node->SetValue(aValue.Value());
+
+	this->iTop = node;
+
+	++iCount; //thank me later - Dano
+
+	return *this;*/
+	}
+
+/*	Stack Pop
+ *	authors Prasek, Pesek
+ */
+CStack& CStack::Pop()
+	{
+	CBlock* temp = iTop;
+	iTop = static_cast<CBlock*>(iTop->NextItem());
+
+	delete(temp);
+
+	--iCount; //thank me later - Dano - diky, S.
+	return *this;
+	}
+
+/*	Stack Top
+ *	authors Prasek, Pesek
+ */
+CBlock* CStack::Top() const
+	{
+	return iTop;
+	}
+
+/*	Stack Bottom
+ *	author Majnus
+ */
+CBlock* CStack::Bottom() const
+	{
+	return iBottom;
+	
+	}
+
+/*	Stack Search
+ *	authors Prasek, Pesek
+ */
+bool CStack::Search(const CBlock &aValue) const
+	{
+	const CBlock *iCurrent = iTop;
+
+	while(iCurrent != nullptr)
+		{
+		if(*iCurrent == aValue)
+			return true;
+		iCurrent = dynamic_cast<CBlock *>(iTop->NextItem());
+		}
+	return false;
+	}
+	
+/*	Stack Dup
+ *	authors Pesek, Prasek
+ */
+CStack CStack::Dup(CStack* aStack)
+	{
+	CStack iStack(*this);
+	aStack = &iStack;
+	return *this; // dodelal jsem return, prosim zkontrolovat, idk jestli je to dobre - S. -> vyskúšajte v main.cpp - Dano
+	}
